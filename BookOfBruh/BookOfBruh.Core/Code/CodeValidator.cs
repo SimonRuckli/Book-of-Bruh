@@ -5,7 +5,7 @@
 
     public class CodeValidator
     {
-        public static Result<double> Validate(int code)
+        public Result<double> Validate(int code)
         {
             throw new NotImplementedException();
         }
