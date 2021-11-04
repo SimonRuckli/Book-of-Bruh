@@ -2,6 +2,6 @@
 {
     public class Wallet
     {
-        public double BruhCoin { get; set; }
+        public double BruhCoins { get; set; }
     }
 }
