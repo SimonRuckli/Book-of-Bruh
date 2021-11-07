@@ -6,7 +6,7 @@
     {
         public Slots Generate()
         {
-            throw new NotImplementedException();
+            return new Slots(new ISymbol[5, 3]);
         }
     }
 }
