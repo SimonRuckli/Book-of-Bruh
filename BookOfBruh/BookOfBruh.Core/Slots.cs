@@ -2,6 +2,11 @@
 {
     public class Slots
     {
-        public ISymbol[] Symbols { get; set; }
+        public ISymbol[,] Symbols { get; }
+
+        public Slots(ISymbol[,] symbols)
+        {
+            this.Symbols = symbols;
+        }
     }
 }

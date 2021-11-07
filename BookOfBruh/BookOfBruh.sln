@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookOfBruh.View", "BookOfBruh.View\BookOfBruh.View.csproj", "{EF08E115-E38D-4DAF-AC00-E80AEAF10A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookOfBruh.Core", "BookOfBruh.Core\BookOfBruh.Core.csproj", "{69E95E04-92AF-4F2E-856C-DB9D305CDB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookOfBruh.Core", "BookOfBruh.Core\BookOfBruh.Core.csproj", "{69E95E04-92AF-4F2E-856C-DB9D305CDB1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookOfBruh.Core.Test", "BookOfBruh.Core.Test\BookOfBruh.Core.Test.csproj", "{ECF87F7E-FEDB-47B5-BC6F-C81703606522}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{69E95E04-92AF-4F2E-856C-DB9D305CDB1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69E95E04-92AF-4F2E-856C-DB9D305CDB1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69E95E04-92AF-4F2E-856C-DB9D305CDB1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECF87F7E-FEDB-47B5-BC6F-C81703606522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECF87F7E-FEDB-47B5-BC6F-C81703606522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECF87F7E-FEDB-47B5-BC6F-C81703606522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECF87F7E-FEDB-47B5-BC6F-C81703606522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
