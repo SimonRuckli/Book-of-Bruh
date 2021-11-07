@@ -53,7 +53,8 @@
             Grid.Column="0"
             Height="80"
             Margin="10"
-            VerticalAlignment="Bottom"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             FontSize="50">
             Spin
         </Button>

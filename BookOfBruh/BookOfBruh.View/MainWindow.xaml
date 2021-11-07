@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:BookOfBruh.View"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:BookOfBruh.View.Controls"
+    xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
     Title="Book of Bruh"
     Width="800"
     Height="450"
@@ -28,6 +29,6 @@
             Book of Bruh
         </Label>
         <controls:ControlsView Grid.Row="1" Grid.Column="1"/>
-       
+        <slot:SlotView Grid.Row="1" Grid.Column="0"/>
     </Grid>
 </Window>
