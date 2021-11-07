@@ -1,12 +1,16 @@
-﻿namespace BookOfBruh.Core.Slot
+﻿using System;
+
+namespace BookOfBruh.Core.Slot
 {
     public class SlotGenerator
     {
         private readonly ISymbolGenerator symbolGenerator;
+        private readonly Random random;
 
         public SlotGenerator(ISymbolGenerator symbolGenerator)
         {
             this.symbolGenerator = symbolGenerator;
+            this.random = new Random();
         }
 
         public Slots Generate()
@@ -17,7 +21,8 @@
             {
                 for (int y = 0; y < symbols.GetLength(1); y++)
                 {
-                    symbols[x, y] = this.symbolGenerator.Generate(0);
+                    int next = this.random.Next(1000);
+                    symbols[x, y] = this.symbolGenerator.Generate(next);
                 }
             }
             return new Slots(symbols);
