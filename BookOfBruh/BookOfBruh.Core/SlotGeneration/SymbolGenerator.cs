@@ -6,43 +6,44 @@
     {
         public ISymbol Generate(int number)
         {
-            if (number % 15 == 0)
+            if (number < 20)
             {
-                return new WildSymbol();
+                return new TenSymbol();
             }
-            if (number % 13 == 0)
+            if (number is >= 20 and < 40)
             {
-                return new SimiSymbol();
+                return new JSymbol();
             }
-            if (number % 11 == 0)
+            if (number is >= 40 and < 55)
             {
-                return new VincSymbol();
+                return new QSymbol();
             }
-            if (number % 9 == 0)
+            if (number is >= 55 and < 70)
             {
-                return new JoegiSymbol();
+                return new KSymbol();
             }
-            if (number % 7 == 0)
+            if (number is >= 70 and < 80)
             {
                 return new ASymbol();
             }
+            if (number is >= 80 and < 88)
+            {
+                return new JoegiSymbol();
+            }
+            if (number is >= 88 and < 94)
+            {
+                return new VincSymbol();
+            }
+            if (number is >= 94 and < 98)
+            {
+                return new SimiSymbol();
+            }
+            if (number is >= 98 and < 100)
+            {
+                return new WildSymbol();
+            }
 
-            if (number % 2 == 0)
-            {
-                if (number % 3 == 0)
-                {
-                    return new QSymbol();
-                }
-                return new TenSymbol();
-            }
-            else
-            {
-                if (number % 3 == 0)
-                {
-                    return new KSymbol();
-                }
-                return new JSymbol();
-            }
+            throw new ArgumentOutOfRangeException($"{number} cannot be over 99");
         }
     }
 }

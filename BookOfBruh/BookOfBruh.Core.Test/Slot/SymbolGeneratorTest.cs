@@ -10,7 +10,7 @@ namespace BookOfBruh.Core.Test.Slot
     public class SymbolGeneratorTest
     {
         [Fact]
-        public void SymbolGeneratorShouldReturnTenSymbolWhenNumberEven()
+        public void SymbolGeneratorShouldReturnTenSymbolWhenNumberIsUnderTwenty()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
@@ -24,112 +24,112 @@ namespace BookOfBruh.Core.Test.Slot
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnJSymbolWhenNumberOdd()
+        public void SymbolGeneratorShouldReturnJSymbolWhenNumberIsBetweenTwentyAndForty()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new JSymbol();
 
             // Act
-            ISymbol result = testee.Generate(1);
+            ISymbol result = testee.Generate(30);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnQSymbolWhenNumberIsEvenAndDividableByThree()
+        public void SymbolGeneratorShouldReturnQSymbolWhenNumberIsBetweenFortyAndFiftyFive()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new QSymbol();
 
             // Act
-            ISymbol result = testee.Generate(6);
+            ISymbol result = testee.Generate(50);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnKSymbolWhenNumberIsOddAndDividableByThree()
+        public void SymbolGeneratorShouldReturnKSymbolWhenNumberIsBetweenFiftyFiveAndSeventy()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new KSymbol();
 
             // Act
-            ISymbol result = testee.Generate(3);
+            ISymbol result = testee.Generate(60);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnASymbolWhenNumberIsDividableBySeven()
+        public void SymbolGeneratorShouldReturnASymbolWhenNumberIsBetweenSeventyAndEighty()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new ASymbol();
 
             // Act
-            ISymbol result = testee.Generate(7);
+            ISymbol result = testee.Generate(75);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnJoegiSymbolWhenNumberIsDividableByNine()
+        public void SymbolGeneratorShouldReturnJoegiSymbolWhenNumberIsBetweenEightyAndEightyEight()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new JoegiSymbol();
 
             // Act
-            ISymbol result = testee.Generate(9);
+            ISymbol result = testee.Generate(84);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnVincSymbolWhenNumberIsDividableByEleven()
+        public void SymbolGeneratorShouldReturnVincSymbolWhenNumberIsBetweenEightyEightAndNinetyFour()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new VincSymbol();
 
             // Act
-            ISymbol result = testee.Generate(11);
+            ISymbol result = testee.Generate(90);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnSimiSymbolWhenNumberIsDividableByThirteen()
+        public void SymbolGeneratorShouldReturnSimiSymbolWhenNumberIsBetweenNinetyFourAndNinetyEight()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new SimiSymbol();
 
             // Act
-            ISymbol result = testee.Generate(13);
+            ISymbol result = testee.Generate(95);
 
             // Assert
             result.Should().Be(expected);
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnWildSymbolWhenNumberIsDividableByFifteen()
+        public void SymbolGeneratorShouldReturnWildSymbolWhenNumberIsBetweenNinetyEightAndHundred()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new WildSymbol();
 
             // Act
-            ISymbol result = testee.Generate(15);
+            ISymbol result = testee.Generate(99);
 
             // Assert
             result.Should().Be(expected);
@@ -141,7 +141,7 @@ namespace BookOfBruh.Core.Test.Slot
             
             ISymbolGenerator testee = new SymbolGenerator();
 
-            const int n = 1000;
+            const int n = 100;
 
             ISymbol[] symbols = new ISymbol[n];
            
