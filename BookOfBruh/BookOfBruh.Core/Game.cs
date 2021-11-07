@@ -1,4 +1,5 @@
-﻿using CSharpFunctionalExtensions;
+﻿using BookOfBruh.Core.Slot;
+using CSharpFunctionalExtensions;
 
 namespace BookOfBruh.Core
 {
