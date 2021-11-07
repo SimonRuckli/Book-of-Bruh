@@ -15,7 +15,7 @@
             ISymbol expected = new TenSymbol();
 
             // Act
-            ISymbol result = testee.Generate(0);
+            ISymbol result = testee.Generate(2);
 
             // Assert
             result.Should().Be(expected);
@@ -44,6 +44,20 @@
 
             // Act
             ISymbol result = testee.Generate(6);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void SymbolGeneratorShouldReturnKSymbolWhenNumberIsOddAndDividableByThree()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new KSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(3);
 
             // Assert
             result.Should().Be(expected);

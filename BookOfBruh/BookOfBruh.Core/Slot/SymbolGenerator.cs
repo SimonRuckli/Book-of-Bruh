@@ -14,8 +14,14 @@
                 }
                 return new TenSymbol();
             }
-
-            return new JSymbol();
+            else
+            {
+                if (number % 3 == 0)
+                {
+                    return new KSymbol();
+                }
+                return new JSymbol();
+            }
         }
     }
 }
