@@ -8,6 +8,10 @@
         {
             if (number % 2 == 0)
             {
+                if (number % 3 == 0)
+                {
+                    return new QSymbol();
+                }
                 return new TenSymbol();
             }
 

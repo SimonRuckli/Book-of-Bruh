@@ -34,5 +34,19 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SymbolGeneratorShouldReturnQSymbolWhenNumberIsEvenAndDividableByThree()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new QSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(6);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 }
