@@ -2,8 +2,8 @@
 {
     using Xunit;
     using FluentAssertions;
-    using BookOfBruh.Core.Slot;
-    using BookOfBruh.Core.Symbols;
+    using Slot;
+    using Symbols;
 
     public class SymbolGeneratorTest
     {
