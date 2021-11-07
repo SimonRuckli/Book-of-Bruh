@@ -108,6 +108,20 @@ namespace BookOfBruh.Core.Test.Slot
         }
 
         [Fact]
+        public void SymbolGeneratorShouldReturnSimiSymbolWhenNumberIsDividableByThirteen()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new SimiSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(13);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Fact]
         public void GenerateNSymbols()
         {
             
