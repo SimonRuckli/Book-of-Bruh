@@ -1,4 +1,6 @@
-﻿namespace BookOfBruh.Core.Test.Slot
+﻿using System.Linq;
+
+namespace BookOfBruh.Core.Test.Slot
 {
     using Symbols;
     using FluentAssertions;
@@ -78,17 +80,50 @@
         }
 
         [Fact]
-        public void SymbolGeneratorShouldReturnJoegiSymbolWhenNumberIsDividableByEight()
+        public void SymbolGeneratorShouldReturnJoegiSymbolWhenNumberIsDividableByNine()
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator();
             ISymbol expected = new JoegiSymbol();
 
             // Act
-            ISymbol result = testee.Generate(8);
+            ISymbol result = testee.Generate(9);
 
             // Assert
             result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void GenerateNSymbols()
+        {
+            
+            ISymbolGenerator testee = new SymbolGenerator();
+
+            const int n = 1000;
+
+            ISymbol[] symbols = new ISymbol[n];
+           
+
+            for (int i = 0; i < n; i++)
+            {
+                symbols[i] = testee.Generate(i);
+            }
+
+            int jSymbolCount = symbols.Count(s => s is JSymbol);
+            int tenSymbolCount = symbols.Count(s => s is TenSymbol);
+
+            int qSymbolCount = symbols.Count(s => s is QSymbol);
+            int kSymbolCount = symbols.Count(s => s is KSymbol);
+
+            int aSymbolCount = symbols.Count(s => s is ASymbol);
+
+            int joegiSymbolCount = symbols.Count(s => s is JoegiSymbol);
+
+            int vincSymbolCount = symbols.Count(s => s is VincSymbol);
+
+            int simiSymbolCount = symbols.Count(s => s is SimiSymbol);
+
+            int wildSymbolCount = symbols.Count(s => s is WildSymbol);
         }
     }
 }
