@@ -6,6 +6,10 @@
     {
         public ISymbol Generate(int number)
         {
+            if (number % 15 == 0)
+            {
+                return new WildSymbol();
+            }
             if (number % 13 == 0)
             {
                 return new SimiSymbol();

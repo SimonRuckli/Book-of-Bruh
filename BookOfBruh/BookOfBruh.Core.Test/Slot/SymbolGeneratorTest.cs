@@ -122,6 +122,20 @@ namespace BookOfBruh.Core.Test.Slot
         }
 
         [Fact]
+        public void SymbolGeneratorShouldReturnWildSymbolWhenNumberIsDividableByFifteen()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new WildSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(15);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Fact]
         public void GenerateNSymbols()
         {
             
