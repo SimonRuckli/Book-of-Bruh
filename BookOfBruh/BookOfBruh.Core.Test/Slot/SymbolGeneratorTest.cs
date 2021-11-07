@@ -62,5 +62,19 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SymbolGeneratorShouldReturnASymbolWhenNumberIsDividableBySeven()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new ASymbol();
+
+            // Act
+            ISymbol result = testee.Generate(7);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 }

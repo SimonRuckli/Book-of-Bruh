@@ -6,6 +6,11 @@
     {
         public ISymbol Generate(int number)
         {
+            if (number % 7 == 0)
+            {
+                return new ASymbol();
+            }
+
             if (number % 2 == 0)
             {
                 if (number % 3 == 0)
