@@ -1,27 +1,32 @@
-﻿namespace BookOfBruh.Core
+﻿using CSharpFunctionalExtensions;
+
+namespace BookOfBruh.Core
 {
     using System;
-    using BookOfBruh.Core.Code;
+    using Code;
 
     public class Game
     {
-        private readonly SlotMachine slotMachine;
         private readonly Player player;
         private readonly CodeValidator codeValidator;
+        private readonly SlotGenerator slotGenerator;
+        private readonly SlotAnalyzer slotAnalyzer;
 
-        public Game(SlotMachine slotMachine, Player player, CodeValidator codeValidator)
+
+        public Game(Player player, CodeValidator codeValidator, SlotGenerator slotGenerator, SlotAnalyzer slotAnalyzer)
         {
-            this.slotMachine = slotMachine;
             this.player = player;
             this.codeValidator = codeValidator;
+            this.slotGenerator = slotGenerator;
+            this.slotAnalyzer = slotAnalyzer;
         }
 
-        public void Spin(double stake)
+        public Result<SpinResult> Spin(double stake)
         {
             throw new NotImplementedException();
         }
 
-        public void AddToWallet(int code)
+        public Result<double> AddToWallet(int code)
         {
             throw new NotImplementedException();
         }
