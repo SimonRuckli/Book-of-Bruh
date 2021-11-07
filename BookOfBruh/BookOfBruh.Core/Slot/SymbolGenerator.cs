@@ -6,6 +6,11 @@
     {
         public ISymbol Generate(int number)
         {
+            if (number % 8 == 0)
+            {
+                return new JoegiSymbol();
+            }
+
             if (number % 7 == 0)
             {
                 return new ASymbol();

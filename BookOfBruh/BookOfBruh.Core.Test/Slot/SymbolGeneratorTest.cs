@@ -76,5 +76,19 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SymbolGeneratorShouldReturnJoegiSymbolWhenNumberIsDividableByEight()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new JoegiSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(8);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 }
