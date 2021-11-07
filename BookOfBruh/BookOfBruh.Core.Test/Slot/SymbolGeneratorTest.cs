@@ -94,6 +94,20 @@ namespace BookOfBruh.Core.Test.Slot
         }
 
         [Fact]
+        public void SymbolGeneratorShouldReturnVincSymbolWhenNumberIsDividableByEleven()
+        {
+            // Arrange
+            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbol expected = new VincSymbol();
+
+            // Act
+            ISymbol result = testee.Generate(11);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Fact]
         public void GenerateNSymbols()
         {
             

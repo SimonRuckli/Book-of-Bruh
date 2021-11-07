@@ -6,7 +6,10 @@
     {
         public ISymbol Generate(int number)
         {
-            
+            if (number % 11 == 0)
+            {
+                return new VincSymbol();
+            }
             if (number % 9 == 0)
             {
                 return new JoegiSymbol();
