@@ -6,7 +6,12 @@
     {
         public ISymbol Generate(int number)
         {
-            return new TenSymbol();
+            if (number % 2 == 0)
+            {
+                return new TenSymbol();
+            }
+
+            return new JSymbol();
         }
     }
 }
