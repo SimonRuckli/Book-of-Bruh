@@ -1,10 +1,12 @@
-using BookOfBruh.Core.Slot;
 using BookOfBruh.Core.Symbols;
 using FluentAssertions;
 using Xunit;
 
 namespace BookOfBruh.Core.Test.Slot
 {
+    using BookOfBruh.Core.GameData;
+    using BookOfBruh.Core.SlotGeneration;
+
     public class SlotGeneratorTest
     {
         [Fact]

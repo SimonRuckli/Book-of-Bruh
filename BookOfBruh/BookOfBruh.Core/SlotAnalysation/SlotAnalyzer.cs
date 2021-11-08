@@ -1,6 +1,7 @@
-﻿namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core.SlotAnalysation
 {
     using System;
+    using BookOfBruh.Core.GameData;
 
     public class SlotAnalyzer
     {

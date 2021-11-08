@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core.Symbols
 {
     public interface ISymbol
     {

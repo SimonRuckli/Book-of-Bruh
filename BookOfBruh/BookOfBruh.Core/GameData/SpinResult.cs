@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core.GameData
 {
     public class SpinResult 
     {

@@ -2,10 +2,10 @@
 
 namespace BookOfBruh.Core.Test.Slot
 {
+    using BookOfBruh.Core.SlotGeneration;
     using Symbols;
     using FluentAssertions;
     using Xunit;
-    using BookOfBruh.Core.Slot;
 
     public class SymbolGeneratorTest
     {

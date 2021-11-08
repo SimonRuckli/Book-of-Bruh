@@ -1,7 +1,9 @@
-﻿using System;
-
-namespace BookOfBruh.Core.Slot
+﻿namespace BookOfBruh.Core.SlotGeneration
 {
+    using System;
+    using BookOfBruh.Core.GameData;
+    using BookOfBruh.Core.Symbols;
+
     public class SlotGenerator
     {
         private readonly ISymbolGenerator symbolGenerator;

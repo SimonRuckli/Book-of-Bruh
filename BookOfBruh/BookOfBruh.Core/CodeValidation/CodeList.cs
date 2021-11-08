@@ -1,6 +1,7 @@
-﻿namespace BookOfBruh.Core.Code
+﻿namespace BookOfBruh.Core.CodeValidation
 {
     using System.Collections.Generic;
+    using BookOfBruh.Core.Code;
 
     public class CodeList
     {

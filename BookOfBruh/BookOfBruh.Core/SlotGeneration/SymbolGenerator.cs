@@ -1,6 +1,6 @@
-﻿namespace BookOfBruh.Core.Slot
+﻿namespace BookOfBruh.Core.SlotGeneration
 {
-    using Symbols;
+    using BookOfBruh.Core.Symbols;
 
     public class SymbolGenerator : ISymbolGenerator
     {

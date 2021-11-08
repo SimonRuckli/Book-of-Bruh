@@ -1,9 +1,11 @@
-﻿using BookOfBruh.Core.Slot;
-using CSharpFunctionalExtensions;
+﻿using CSharpFunctionalExtensions;
 
 namespace BookOfBruh.Core
 {
     using System;
+    using BookOfBruh.Core.GameData;
+    using BookOfBruh.Core.SlotAnalysation;
+    using BookOfBruh.Core.SlotGeneration;
     using Code;
 
     public class Game
