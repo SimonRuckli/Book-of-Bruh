@@ -17,11 +17,11 @@
 
             ISymbol[,] symbols = new ISymbol[5, 3]
             {
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new ASymbol(), null, null},
-                {new ASymbol(), null, null},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
             };
 
             Slots input = new Slots(symbols);
@@ -42,11 +42,11 @@
 
             ISymbol[,] symbols = new ISymbol[5, 3]
             {
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new ASymbol(), null, null},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
             };
 
             Slots input = new Slots(symbols);
@@ -67,11 +67,11 @@
 
             ISymbol[,] symbols = new ISymbol[5, 3]
             {
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
-                {new TenSymbol(), null, null},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
             };
 
             Slots input = new Slots(symbols);
@@ -82,5 +82,35 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInDiagonal()
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+            const double expected = 3;
+
+            ISymbol[,] symbols = new ISymbol[5, 3]
+            {
+                {new TenSymbol(), new FS(), new FS()},
+                {new FS(), new TenSymbol(), new FS()},
+                {new FS(), new FS(), new TenSymbol()},
+                {new FS(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
+            };
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+    }
+
+    internal struct FS : ISymbol
+    {
+        public byte Rarity  => 100;
     }
 }

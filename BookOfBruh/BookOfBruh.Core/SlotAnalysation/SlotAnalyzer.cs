@@ -1,41 +1,73 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using BookOfBruh.Core.Symbols;
-
-namespace BookOfBruh.Core.SlotAnalysation
+﻿namespace BookOfBruh.Core.SlotAnalysation
 {
-    using System;
+    using BookOfBruh.Core.Symbols;
+    using CSharpFunctionalExtensions;
     using BookOfBruh.Core.GameData;
 
     public class SlotAnalyzer
     {
         public double Analyze(Slots slots)
         {
-            List<ISymbol> row = new List<ISymbol>();
-          
-            for (int x = 0; x < slots.Columns; x++)
+            int sameSymbolCount = 1;
+
+            bool foundNextValue = true;
+            int currentX = 0;
+            int currentY = 0;
+
+            while (foundNextValue)
             {
-                if (row.Count == 0)
+                Result<(int x, int y)> nextPosition = this.FindNextCountableSymbolPosition(currentX, currentY, slots.Symbols);
+
+                if (nextPosition.IsSuccess)
                 {
-                    row.Add(slots.Symbols[x,0]);
+                    sameSymbolCount++;
+                    (currentX, currentY) = nextPosition.Value;
                 }
-                else if(slots.Symbols[x,0].GetType() == row.Last().GetType())
+                else
                 {
-                    row.Add(slots.Symbols[x,0]);
+                    foundNextValue = false;
                 }
             }
 
-            if (row.Count == 4)
+            if (sameSymbolCount == 4)
             {
                 return 6;
             }
-            if (row.Count == 5)
+            if (sameSymbolCount == 5)
             {
                 return 24;
             }
+            if (sameSymbolCount == 3)
+            {
+                return 3;
+            }
 
-            return 3;
+            return 0;
+        }
+
+        private Result<(int x, int y)> FindNextCountableSymbolPosition(int currentX, int currentY, ISymbol[,] symbols)
+        {
+            int nextX = currentX + 1;
+            int nextY = currentY - 1;
+
+            ISymbol currentSymbol = symbols[currentX, currentY];
+
+            if (nextY < 0)
+            {
+                nextY++;
+            }
+
+            while (nextY < 3 && nextX < 5)
+            {
+                if (symbols[nextX, nextY].GetType() == currentSymbol.GetType())
+                {
+                    return (nextX, nextY);
+                }
+
+                nextY++;
+            }
+
+            return Result.Failure<(int x, int y)>("Found no next Symbol");
         }
     }
 }
