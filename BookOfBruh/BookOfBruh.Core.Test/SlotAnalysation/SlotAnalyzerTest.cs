@@ -57,5 +57,30 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SlotAnalyzerShouldReturnTwentyFourWhenFiveTenSymbolsInARow()
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+            const double expected = 24;
+
+            ISymbol[,] symbols = new ISymbol[5, 3]
+            {
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+            };
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 }

@@ -30,7 +30,11 @@ namespace BookOfBruh.Core.SlotAnalysation
             {
                 return 6;
             }
-            
+            if (row.Count == 5)
+            {
+                return 24;
+            }
+
             return 3;
         }
     }
