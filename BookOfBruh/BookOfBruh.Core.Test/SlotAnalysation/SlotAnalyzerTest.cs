@@ -20,8 +20,33 @@
                 {new TenSymbol(), null, null},
                 {new TenSymbol(), null, null},
                 {new TenSymbol(), null, null},
-                {null, null, null},
-                {null, null, null},
+                {new ASymbol(), null, null},
+                {new ASymbol(), null, null},
+            };
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void SlotAnalyzerShouldReturnSixWhenFourTenSymbolsInARow()
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+            const double expected = 6;
+
+            ISymbol[,] symbols = new ISymbol[5, 3]
+            {
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new ASymbol(), null, null},
             };
 
             Slots input = new Slots(symbols);
