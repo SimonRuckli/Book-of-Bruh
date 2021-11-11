@@ -107,6 +107,31 @@
             // Assert
             result.Should().Be(expected);
         }
+
+        [Fact]
+        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInTriangle()
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+            const double expected = 3;
+
+            ISymbol[,] symbols = new ISymbol[5, 3]
+            {
+                {new TenSymbol(), new FS(), new FS()},
+                {new FS(), new TenSymbol(), new FS()},
+                {new TenSymbol(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
+                {new FS(), new FS(), new FS()},
+            };
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 
     internal struct FS : ISymbol
