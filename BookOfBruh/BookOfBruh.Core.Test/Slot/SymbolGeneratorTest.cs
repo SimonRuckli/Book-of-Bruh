@@ -2,6 +2,7 @@
 
 namespace BookOfBruh.Core.Test.Slot
 {
+    using System.Collections.Generic;
     using BookOfBruh.Core.SlotGeneration;
     using Symbols;
     using FluentAssertions;
@@ -13,7 +14,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnEighteenTenSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 18;
 
@@ -34,7 +35,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnEighteenJSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 18;
 
@@ -55,7 +56,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnFourteenQSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 14;
 
@@ -76,7 +77,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnFourteenKSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 14;
 
@@ -97,7 +98,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnTenASymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 10;
 
@@ -118,7 +119,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnEightJoegiSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 8;
 
@@ -139,7 +140,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnSevenVincSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 7;
 
@@ -160,7 +161,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnSixSimiSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 6;
 
@@ -181,7 +182,7 @@ namespace BookOfBruh.Core.Test.Slot
         public void SymbolGeneratorShouldReturnFiveWildSymbolWhenHundredSymbolsGenerated()
         {
             // Arrange
-            ISymbolGenerator testee = new SymbolGenerator();
+            ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
             const int N = 100;
             const int Expected = 5;
 
@@ -196,6 +197,54 @@ namespace BookOfBruh.Core.Test.Slot
             // Assert
             symbols.Count(s => s is WildSymbol).Should().Be(Expected);
 
+        }
+    }
+
+    public class FakeSymbolListGenerator : ISymbolListGenerator
+    {
+        public List<ISymbol> Generate()
+        {
+            List<ISymbol> symbols = new List<ISymbol>();
+
+            for (int i = 0; i < 18; i++)
+            {
+                symbols.Add(new JSymbol());
+                symbols.Add(new TenSymbol());
+            }
+
+            for (int i = 0; i < 14; i++)
+            {
+                symbols.Add(new QSymbol());
+                symbols.Add(new KSymbol());
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                symbols.Add(new ASymbol());
+            }
+
+            for (int i = 0; i < 8; i++)
+            {
+                symbols.Add(new JoegiSymbol());
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                symbols.Add(new VincSymbol());
+            }
+
+            for (int i = 0; i < 6; i++)
+            {
+                symbols.Add(new SimiSymbol());
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                symbols.Add(new WildSymbol());
+            }
+
+
+            return symbols;
         }
     }
 }
