@@ -162,19 +162,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 6;
+            const int n = 100;
+            const int expected = 6;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is SimiSymbol).Should().Be(Expected);
+            symbols.Count(s => s is SimiSymbol).Should().Be(expected);
 
         }
 
