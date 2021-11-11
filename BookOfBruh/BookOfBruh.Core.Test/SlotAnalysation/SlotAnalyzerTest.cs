@@ -6,25 +6,31 @@
     using BookOfBruh.Core.GameData;
     using BookOfBruh.Core.Symbols;
 
-    public class SlotAnalysationTest
+    public class SlotAnalyzerTest
     {
         [Fact]
-        public void test()
+        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInARow()
         {
             // Arrange
             SlotAnalyzer testee = new SlotAnalyzer();
+            const double expected = 3;
+
             ISymbol[,] symbols = new ISymbol[5, 3]
             {
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {new TenSymbol(), null, null},
+                {null, null, null},
+                {null, null, null},
             };
+
             Slots input = new Slots(symbols);
+
             // Act
-            testee.Analyze(input);
+            double result = testee.Analyze(input);
+
             // Assert
+            result.Should().Be(expected);
         }
     }
 }
