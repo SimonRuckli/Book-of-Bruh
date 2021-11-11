@@ -15,19 +15,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 18;
+            const int n = 100;
+            const int expected = 18;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is TenSymbol).Should().Be(Expected);
+            symbols.Count(s => s is TenSymbol).Should().Be(expected);
             
         }
 
@@ -36,19 +36,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 18;
+            const int n = 100;
+            const int expected = 18;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is JSymbol).Should().Be(Expected);
+            symbols.Count(s => s is JSymbol).Should().Be(expected);
 
         }
 
@@ -57,19 +57,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 14;
+            const int n = 100;
+            const int expected = 14;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is QSymbol).Should().Be(Expected);
+            symbols.Count(s => s is QSymbol).Should().Be(expected);
 
         }
 
@@ -78,19 +78,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 14;
+            const int n = 100;
+            const int expected = 14;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is KSymbol).Should().Be(Expected);
+            symbols.Count(s => s is KSymbol).Should().Be(expected);
 
         }
 
@@ -99,19 +99,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 10;
+            const int n = 100;
+            const int expected = 10;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is ASymbol).Should().Be(Expected);
+            symbols.Count(s => s is ASymbol).Should().Be(expected);
 
         }
 
@@ -120,19 +120,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 8;
+            const int n = 100;
+            const int expected = 8;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is JoegiSymbol).Should().Be(Expected);
+            symbols.Count(s => s is JoegiSymbol).Should().Be(expected);
 
         }
 
@@ -141,19 +141,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 7;
+            const int n = 100;
+            const int expected = 7;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is VincSymbol).Should().Be(Expected);
+            symbols.Count(s => s is VincSymbol).Should().Be(expected);
 
         }
 
@@ -183,19 +183,19 @@ namespace BookOfBruh.Core.Test.Slot
         {
             // Arrange
             ISymbolGenerator testee = new SymbolGenerator(new FakeSymbolListGenerator());
-            const int N = 100;
-            const int Expected = 5;
+            const int n = 100;
+            const int expected = 5;
 
-            ISymbol[] symbols = new ISymbol[N];
+            ISymbol[] symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < N; i++)
+            for (int i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
 
             // Assert
-            symbols.Count(s => s is WildSymbol).Should().Be(Expected);
+            symbols.Count(s => s is WildSymbol).Should().Be(expected);
 
         }
     }
@@ -242,7 +242,6 @@ namespace BookOfBruh.Core.Test.Slot
             {
                 symbols.Add(new WildSymbol());
             }
-
 
             return symbols;
         }
