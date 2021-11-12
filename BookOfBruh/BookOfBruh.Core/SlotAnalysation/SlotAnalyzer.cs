@@ -9,19 +9,9 @@
     {
         public double Analyze(Slots slots)
         {
-            int sameSymbolCount = 1;
-            
-            Point start = new Point(0, 0);
+            int sameSymbolCount = CalculateSameSymbolCount(slots.Symbols);
 
-            Result<Point> nextPosition = FindNextCountableSymbolPosition(start, slots.Symbols);
-
-            while (nextPosition.IsSuccess)
-            {
-                sameSymbolCount++;
-                nextPosition = FindNextCountableSymbolPosition(nextPosition.Value, slots.Symbols);
-            }
-
-            ISymbol startSymbol = slots.Symbols[start.X, start.Y];
+            ISymbol startSymbol = slots.Symbols[0, 0];
 
             if (sameSymbolCount == 3)
             {
@@ -37,6 +27,23 @@
             }
 
             return 0;
+        }
+
+        private static int CalculateSameSymbolCount(ISymbol[,] symbols)
+        {
+            int sameSymbolCount = 1;
+
+            Point start = new Point(0, 0);
+
+            Result<Point> nextPosition = FindNextCountableSymbolPosition(start, symbols);
+
+            while (nextPosition.IsSuccess)
+            {
+                sameSymbolCount++;
+                nextPosition = FindNextCountableSymbolPosition(nextPosition.Value, symbols);
+            }
+
+            return sameSymbolCount;
         }
 
         private static Result<Point> FindNextCountableSymbolPosition(Point current, ISymbol[,] symbols)
