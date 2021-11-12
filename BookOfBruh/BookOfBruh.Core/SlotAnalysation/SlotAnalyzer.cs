@@ -11,28 +11,29 @@
         {
             int sameSymbolCount = 1;
             
-            Point current = new Point(0, 0);
+            Point start = new Point(0, 0);
 
-            Result<Point> nextPosition = FindNextCountableSymbolPosition(current, slots.Symbols);
+            Result<Point> nextPosition = FindNextCountableSymbolPosition(start, slots.Symbols);
 
             while (nextPosition.IsSuccess)
             {
                 sameSymbolCount++;
-                current = nextPosition.Value;
-                nextPosition = FindNextCountableSymbolPosition(current, slots.Symbols);
+                nextPosition = FindNextCountableSymbolPosition(nextPosition.Value, slots.Symbols);
             }
+
+            ISymbol startSymbol = slots.Symbols[start.X, start.Y];
 
             if (sameSymbolCount == 3)
             {
-                return 3;
+                return 3 * startSymbol.Rarity;
             }
             if (sameSymbolCount == 4)
             {
-                return 6;
+                return 6 * startSymbol.Rarity;
             }
             if (sameSymbolCount == 5)
             {
-                return 24;
+                return 24 * startSymbol.Rarity;
             }
 
             return 0;

@@ -2,6 +2,6 @@
 {
     public struct TenSymbol : ISymbol
     {
-        public byte Rarity => 0;
+        public byte Rarity => 1;
     }
 }
