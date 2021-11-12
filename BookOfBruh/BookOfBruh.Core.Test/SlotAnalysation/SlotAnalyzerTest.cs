@@ -134,6 +134,31 @@
             // Assert
             result.Should().Be(expected);
         }
+        [Theory]
+
+        [InlineData("|-----|" +
+                    "|-----|" +
+                    "|-----|", 0)]
+
+        [InlineData("|TT---|" +
+                    "|--T--|" +
+                    "|-----|", 0)]
+
+        public void SlotAnalyzerShouldReturnZeroWhen(string pattern, int expected)
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+
+            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 
     internal struct FS : ISymbol

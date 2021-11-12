@@ -5,6 +5,7 @@
     using CSharpFunctionalExtensions;
     using BookOfBruh.Core.GameData;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class SlotAnalyzer
     {
@@ -47,26 +48,41 @@
             for (int i = 0; i < slots.Rows; i++)
             {
                 Point start = new Point(0, i);
-                int count = CalculateSameSymbolCount(slots.Symbols, start);
-                sameSymbols.Add((slots.Symbols[start.X, start.Y], count));
+                List <Point> pattern = CalculateSameSymbolCount(slots.Symbols, start);
+                if (IsPatternValide(pattern))
+                {
+                    sameSymbols.Add((slots.Symbols[start.X, start.Y], pattern.Count));
+                }
             }
 
             return sameSymbols;
         }
 
-        private static int CalculateSameSymbolCount(ISymbol[,] symbols, Point start)
+        private static bool IsPatternValide(List<Point> pattern)
         {
-            int sameSymbolCount = 1;
+            List<Point> reverse = pattern.Reverse<Point>().ToList();
+
+            List<(Point o, Point r)> zip = pattern.Zip(reverse).ToList();
+
+            var same = zip.Where(z => z.o.Y == z.r.Y);
+
+            return same.Count() == pattern.Count();
+        }
+
+        private static List<Point> CalculateSameSymbolCount(ISymbol[,] symbols, Point start)
+        {
+            List<Point> points = new List<Point>() { start };
 
             Result<Point> nextPosition = FindNextCountableSymbolPosition(start, symbols);
 
+
             while (nextPosition.IsSuccess)
             {
-                sameSymbolCount++;
+                points.Add(nextPosition.Value);
                 nextPosition = FindNextCountableSymbolPosition(nextPosition.Value, symbols);
             }
 
-            return sameSymbolCount;
+            return points;
         }
 
         private static Result<Point> FindNextCountableSymbolPosition(Point current, ISymbol[,] symbols)
