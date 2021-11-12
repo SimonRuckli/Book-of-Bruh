@@ -4,36 +4,59 @@
     using BookOfBruh.Core.Symbols;
     using CSharpFunctionalExtensions;
     using BookOfBruh.Core.GameData;
+    using System.Collections.Generic;
 
     public class SlotAnalyzer
     {
         public double Analyze(Slots slots)
         {
-            int sameSymbolCount = CalculateSameSymbolCount(slots.Symbols);
 
-            ISymbol startSymbol = slots.Symbols[0, 0];
+            List<(ISymbol symbol, int count)> sameSymbols = CalculateSameSymbols(slots);
 
-            if (sameSymbolCount == 3)
-            {
-                return 3 * startSymbol.Rarity;
-            }
-            if (sameSymbolCount == 4)
-            {
-                return 6 * startSymbol.Rarity;
-            }
-            if (sameSymbolCount == 5)
-            {
-                return 24 * startSymbol.Rarity;
-            }
-
-            return 0;
+            return CalculateMultiplicator(sameSymbols);
+            
         }
 
-        private static int CalculateSameSymbolCount(ISymbol[,] symbols)
+        private static double CalculateMultiplicator(List<(ISymbol symbol, int count)> sameSymbols)
+        {
+            int multiplicator = 0;
+
+            foreach ((ISymbol symbol, int count) sameSymbol in sameSymbols)
+            {
+                if (sameSymbol.count == 3)
+                {
+                    multiplicator += 3 * sameSymbol.symbol.Rarity;
+                }
+                if (sameSymbol.count == 4)
+                {
+                    multiplicator += 6 * sameSymbol.symbol.Rarity;
+                }
+                if (sameSymbol.count == 5)
+                {
+                    multiplicator += 24 * sameSymbol.symbol.Rarity;
+                }
+            }
+
+            return multiplicator;
+        }
+
+        private static List<(ISymbol symbol, int count)> CalculateSameSymbols(Slots slots)
+        {
+            List<(ISymbol symbol, int count)> sameSymbols = new List<(ISymbol symbol, int count)>();
+
+            for (int i = 0; i < slots.Rows; i++)
+            {
+                Point start = new Point(0, i);
+                int count = CalculateSameSymbolCount(slots.Symbols, start);
+                sameSymbols.Add((slots.Symbols[start.X, start.Y], count));
+            }
+
+            return sameSymbols;
+        }
+
+        private static int CalculateSameSymbolCount(ISymbol[,] symbols, Point start)
         {
             int sameSymbolCount = 1;
-
-            Point start = new Point(0, 0);
 
             Result<Point> nextPosition = FindNextCountableSymbolPosition(start, symbols);
 

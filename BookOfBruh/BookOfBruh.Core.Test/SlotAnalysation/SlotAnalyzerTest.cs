@@ -38,11 +38,88 @@
                     "|-TTT-|" +
                     "|-----|", 24)]
        
+        [InlineData("|T---T|" +
+                    "|-T-T-|" +
+                    "|--T--|", 24)]
+       
+        [InlineData("|-----|" +
+                    "|TTT--|" +
+                    "|-----|", 3)]
+
+        [InlineData("|-----|" +
+                    "|TTTT-|" +
+                    "|-----|", 6)]
+
+        [InlineData("|-----|" +
+                    "|TTTTT|" +
+                    "|-----|", 24)]
+
+        [InlineData("|-T---|" +
+                    "|T-T-T|" +
+                    "|---T-|", 24)]
+
+        [InlineData("|---T-|" +
+                    "|T-T-T|" +
+                    "|-T---|", 24)]
+
+        [InlineData("|-----|" +
+                    "|T-T-T|" +
+                    "|-T-T-|", 24)]
+
+        [InlineData("|-T-T-|" +
+                    "|T-T-T|" +
+                    "|-----|", 24)]
+
+        [InlineData("|-----|" +
+                    "|T---T|" +
+                    "|-TTT-|", 24)]
+
+        [InlineData("|-TTT-|" +
+                    "|T---T|" +
+                    "|-----|", 24)]
+
+        [InlineData("|-----|" +
+                    "|T-T--|" +
+                    "|-T---|", 3)]
+
+        [InlineData("|-T---|" +
+                    "|T-T--|" +
+                    "|-----|", 3)]
+
+        [InlineData("|-----|" +
+                    "|-----|" +
+                    "|TTT--|", 3)]
+
+        [InlineData("|-----|" +
+                    "|-----|" +
+                    "|TTTT-|", 6)]
+
+        [InlineData("|-----|" +
+                    "|-----|" +
+                    "|TTTTT|", 24)]
+
+        [InlineData("|--T--|" +
+                    "|-T---|" +
+                    "|T----|", 3)]
+
+        [InlineData("|-----|" +
+                    "|-T---|" +
+                    "|T-T--|", 3)]
+
+        [InlineData("|-----|" +
+                    "|-T-T-|" +
+                    "|T-T-T|", 24)]
+
         [InlineData("|-----|" +
                     "|-TTT-|" +
                     "|T---T|", 24)]
 
-        public void SlotAnalyzerShouldReturnCorrectPatternWhern(string pattern, int expected)
+        [InlineData("|--T--|" +
+                    "|-T-T-|" +
+                    "|T---T|", 24)]
+
+
+        public void SlotAnalyzerShouldReturnCorrectMultiplicatorWhen(string pattern, int expected)
         {
             // Arrange
             SlotAnalyzer testee = new SlotAnalyzer();
@@ -61,6 +138,6 @@
 
     internal struct FS : ISymbol
     {
-        public byte Rarity  => 100;
+        public byte Rarity  => 0;
     }
 }
