@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.Core.SlotAnalysation
 {
+    using System.Drawing;
     using BookOfBruh.Core.Symbols;
     using CSharpFunctionalExtensions;
     using BookOfBruh.Core.GameData;
@@ -9,26 +10,22 @@
         public double Analyze(Slots slots)
         {
             int sameSymbolCount = 1;
+            
+            Point current = new Point(0, 0);
 
-            bool foundNextValue = true;
-            int currentX = 0;
-            int currentY = 0;
+            Result<Point> nextPosition = FindNextCountableSymbolPosition(current, slots.Symbols);
 
-            while (foundNextValue)
+            while (nextPosition.IsSuccess)
             {
-                Result<(int x, int y)> nextPosition = this.FindNextCountableSymbolPosition(currentX, currentY, slots.Symbols);
-
-                if (nextPosition.IsSuccess)
-                {
-                    sameSymbolCount++;
-                    (currentX, currentY) = nextPosition.Value;
-                }
-                else
-                {
-                    foundNextValue = false;
-                }
+                sameSymbolCount++;
+                current = nextPosition.Value;
+                nextPosition = FindNextCountableSymbolPosition(current, slots.Symbols);
             }
 
+            if (sameSymbolCount == 3)
+            {
+                return 3;
+            }
             if (sameSymbolCount == 4)
             {
                 return 6;
@@ -37,37 +34,32 @@
             {
                 return 24;
             }
-            if (sameSymbolCount == 3)
-            {
-                return 3;
-            }
 
             return 0;
         }
 
-        private Result<(int x, int y)> FindNextCountableSymbolPosition(int currentX, int currentY, ISymbol[,] symbols)
+        private static Result<Point> FindNextCountableSymbolPosition(Point current, ISymbol[,] symbols)
         {
-            int nextX = currentX + 1;
-            int nextY = currentY - 1;
+            Point next = new Point(current.X + 1, current.Y - 1);
 
-            ISymbol currentSymbol = symbols[currentX, currentY];
+            ISymbol currentSymbol = symbols[current.X, current.Y];
 
-            if (nextY < 0)
+            if (next.Y < 0)
             {
-                nextY++;
+                next.Y++;
             }
 
-            while (nextY < 3 && nextX < 5)
+            while (next.Y < 3 && next.X < 5)
             {
-                if (symbols[nextX, nextY].GetType() == currentSymbol.GetType())
+                if (symbols[next.X, next.Y].GetType() == currentSymbol.GetType())
                 {
-                    return (nextX, nextY);
+                    return next;
                 }
 
-                nextY++;
+                next.Y++;
             }
 
-            return Result.Failure<(int x, int y)>("Found no next Symbol");
+            return Result.Failure<Point>("Found no next Symbol");
         }
     }
 }
