@@ -1,0 +1,38 @@
+﻿namespace BookOfBruh.Core.Test.SlotAnalysation
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using BookOfBruh.Core.Symbols;
+
+    internal class SymbolTestHelper
+    {
+
+        internal static ISymbol[,] SymbolsFromPattern(string pattern)
+        {
+            List<List<ISymbol>> enumerable = pattern.Split('|', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Select(c => SymbolFromChar(c)).ToList()).ToList();
+
+            ISymbol[,] symbols = new ISymbol[5, 3];
+
+            for (int y = 0; y < enumerable.Count; y++)
+            {
+                for (int x = 0; x < enumerable[y].Count; x++)
+                {
+                    symbols[x, y] = enumerable[y][x];
+                }
+            }
+
+            return symbols;
+        }
+
+        private static ISymbol SymbolFromChar(char c)
+        {
+            return c switch
+            {
+                'T' => new TenSymbol(),
+                '-' => new FS(),
+                _ => throw new ArgumentException()
+            };
+        }
+    }
+}

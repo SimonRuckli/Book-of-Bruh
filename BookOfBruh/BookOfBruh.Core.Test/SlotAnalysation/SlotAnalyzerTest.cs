@@ -8,196 +8,46 @@
 
     public class SlotAnalyzerTest
     {
-        [Fact]
-        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInARow()
+        [Theory]
+
+        [InlineData("|TTT--|" +
+                    "|-----|" +
+                    "|-----|", 3)]
+
+        [InlineData("|TTTT-|" +
+                    "|-----|" +
+                    "|-----|", 6)]
+
+        [InlineData("|TTTTT|" +
+                    "|-----|" +
+                    "|-----|", 24)]
+       
+        [InlineData("|T----|" +
+                    "|-T---|" +
+                    "|--T--|", 3)]
+       
+        [InlineData("|T-T--|" +
+                    "|-T---|" +
+                    "|-----|", 3)]
+       
+        [InlineData("|T-T-T|" +
+                    "|-T-T-|" +
+                    "|-----|", 24)]
+       
+        [InlineData("|T---T|" +
+                    "|-TTT-|" +
+                    "|-----|", 24)]
+       
+        [InlineData("|-----|" +
+                    "|-TTT-|" +
+                    "|T---T|", 24)]
+
+        public void SlotAnalyzerShouldReturnCorrectPatternWhern(string pattern, int expected)
         {
             // Arrange
             SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 3;
 
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnSixWhenFourTenSymbolsInARow()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 6;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnTwentyFourWhenFiveTenSymbolsInARow()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 24;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInDiagonal()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 3;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new FS(), new TenSymbol()},
-                {new FS(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnThreeWhenThreeTenSymbolsInTriangle()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 3;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-                {new FS(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnTwentyFourWhenFiveTenSymbolsInTriangle()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 24;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnTwentyFourWhenFiveTenSymbolsInUForm()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 24;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new FS(), new FS(), new TenSymbol()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new FS(), new TenSymbol()},
-            };
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Fact]
-        public void SlotAnalyzerShouldReturnTwentyFourWhenFiveTenSymbolsInNForm()
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-            const double expected = 24;
-
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new TenSymbol(), new FS(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new FS(), new TenSymbol(), new FS()},
-                {new TenSymbol(), new FS(), new FS()},
-            };
+            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
 
             Slots input = new Slots(symbols);
 
