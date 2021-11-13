@@ -173,7 +173,7 @@
         
         [InlineData("|TTT_-|" +
                     "|TTT_-|" +
-                    "|TTT_-|", 9)]
+                    "|TTT_-|", 27)]
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhenSeveralPattern(string pattern, int expected)
         {

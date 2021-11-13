@@ -11,7 +11,7 @@
     {
         public double Analyze(Slots slots)
         {
-            List<(ISymbol symbol, int count)> sameSymbols = CalculateSameSymbols(slots);
+            List<(ISymbol symbol, int count)> sameSymbols = CalculateSameSymbolCount(slots);
 
             return CalculateMultiplier(sameSymbols);
         }
@@ -39,14 +39,14 @@
             return multiplier;
         }
 
-        private static List<(ISymbol symbol, int count)> CalculateSameSymbols(Slots slots)
+        private static List<(ISymbol symbol, int count)> CalculateSameSymbolCount(Slots slots)
         {
             List<(ISymbol symbol, int count)> sameSymbols = new List<(ISymbol symbol, int count)>();
 
             for (int i = 0; i < slots.Rows; i++)
             {
                 Point start = new Point(0, i);
-                List <Point> pattern = CalculateSameSymbolCount(slots.Symbols, start);
+                List <Point> pattern = CalculateAllCountableSymbolPoints(slots.Symbols, start);
                 if (IsPatternValid(pattern))
                 {
                     sameSymbols.Add((slots.Symbols[start.X, start.Y], pattern.Count));
@@ -56,23 +56,24 @@
             return sameSymbols;
         }
 
-        private static List<Point> CalculateSameSymbolCount(ISymbol[,] symbols, Point start)
+        private static List<Point> CalculateAllCountableSymbolPoints(ISymbol[,] symbols, Point start)
         {
             List<Point> points = new List<Point>() { start };
+            List<Point> pointsToCalculate = new List<Point>(){start};
 
-            Result<Point> nextPosition = FindNextCountableSymbolPosition(start, symbols);
-
-            while (nextPosition.IsSuccess)
+            while (pointsToCalculate.Count > 0)
             {
-                points.Add(nextPosition.Value);
-                nextPosition = FindNextCountableSymbolPosition(nextPosition.Value, symbols);
+                points.Add(pointsToCalculate.First());
+                pointsToCalculate.AddRange(FindNextCountableSymbolPoints(pointsToCalculate.First(), symbols));
+                pointsToCalculate.RemoveAt(0);
             }
 
             return points;
         }
 
-        private static Result<Point> FindNextCountableSymbolPosition(Point current, ISymbol[,] symbols)
+        private static List<Point> FindNextCountableSymbolPoints(Point current, ISymbol[,] symbols)
         {
+            List<Point> nextPositions = new List<Point>();
             Point next = new Point(current.X + 1, current.Y - 1);
 
             ISymbol currentSymbol = symbols[current.X, current.Y];
@@ -86,13 +87,13 @@
             {
                 if (symbols[next.X, next.Y].GetType() == currentSymbol.GetType())
                 {
-                    return next;
+                    nextPositions.Add(next);
                 }
 
                 next.Y++;
             }
 
-            return Result.Failure<Point>("Found no next Symbol");
+            return nextPositions;
         }
 
         private static bool IsPatternValid(IReadOnlyList<Point> pattern)
