@@ -165,5 +165,30 @@
             result.Should().Be(expected);
         }
 
+        [Theory]
+        
+        [InlineData("|TTT_-|" +
+                    "|-_-_-|" +
+                    "|TTT_-|", 6)]
+        
+        [InlineData("|TTT_-|" +
+                    "|TTT_-|" +
+                    "|TTT_-|", 9)]
+
+        public void SlotAnalyzerShouldReturnCorrectMultiplierWhenSeveralPattern(string pattern, int expected)
+        {
+            // Arrange
+            SlotAnalyzer testee = new SlotAnalyzer();
+
+            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
+
+            Slots input = new Slots(symbols);
+
+            // Act
+            double result = testee.Analyze(input);
+
+            // Assert
+            result.Should().Be(expected);
+        }
     }
 }

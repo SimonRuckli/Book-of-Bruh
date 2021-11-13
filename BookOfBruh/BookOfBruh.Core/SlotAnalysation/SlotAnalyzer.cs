@@ -11,11 +11,9 @@
     {
         public double Analyze(Slots slots)
         {
-
             List<(ISymbol symbol, int count)> sameSymbols = CalculateSameSymbols(slots);
 
             return CalculateMultiplier(sameSymbols);
-            
         }
 
         private static double CalculateMultiplier(List<(ISymbol symbol, int count)> sameSymbols)
