@@ -128,9 +128,17 @@
             return same.Count() == pattern.Count();
         }
 
-        private static bool CanPatternBeOnlyDiagonal(IReadOnlyCollection<Point> pattern)
+        private static bool CanPatternBeOnlyDiagonal(IReadOnlyList<Point> pattern)
         {
-            return pattern.Count is 3 or 5;
+            if (pattern.Count is 3 && pattern[0].Y != 1)
+            {
+                return true;
+            }
+            if (pattern.Count is 5)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

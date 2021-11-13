@@ -10,116 +10,116 @@
     {
         [Theory]
 
-        [InlineData("|TTT--|" +
-                    "|-----|" +
-                    "|-----|", 3)]
+        [InlineData("|TTT_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|", 3)]
 
         [InlineData("|TTTT-|" +
-                    "|-----|" +
-                    "|-----|", 6)]
+                    "|-_-_-|" +
+                    "|-_-_-|", 6)]
 
         [InlineData("|TTTTT|" +
-                    "|-----|" +
-                    "|-----|", 24)]
+                    "|-_-_-|" +
+                    "|-_-_-|", 24)]
        
-        [InlineData("|T----|" +
+        [InlineData("|T_-_-|" +
+                    "|-T-_-|" +
+                    "|-_T_-|", 3)]
+       
+        [InlineData("|T_T_-|" +
                     "|-T---|" +
-                    "|--T--|", 3)]
+                    "|-_-_-|", 3)]
        
-        [InlineData("|T-T--|" +
-                    "|-T---|" +
-                    "|-----|", 3)]
-       
-        [InlineData("|T-T-T|" +
+        [InlineData("|T_T_T|" +
                     "|-T-T-|" +
-                    "|-----|", 24)]
+                    "|-_-_-|", 24)]
        
-        [InlineData("|T---T|" +
+        [InlineData("|T_-_T|" +
                     "|-TTT-|" +
-                    "|-----|", 24)]
+                    "|-_-_-|", 24)]
        
-        [InlineData("|T---T|" +
+        [InlineData("|T_-_T|" +
                     "|-T-T-|" +
-                    "|--T--|", 24)]
+                    "|-_T_-|", 24)]
        
-        [InlineData("|-----|" +
-                    "|TTT--|" +
-                    "|-----|", 3)]
+        [InlineData("|-_-_-|" +
+                    "|TTT_-|" +
+                    "|-_-_-|", 3)]
 
-        [InlineData("|-----|" +
+        [InlineData("|-_-_-|" +
                     "|TTTT-|" +
-                    "|-----|", 6)]
+                    "|-_-_-|", 6)]
 
-        [InlineData("|-----|" +
+        [InlineData("|-_-_-|" +
                     "|TTTTT|" +
-                    "|-----|", 24)]
+                    "|-_-_-|", 24)]
 
-        [InlineData("|-T---|" +
-                    "|T-T-T|" +
-                    "|---T-|", 24)]
+        [InlineData("|-T-_-|" +
+                    "|T_T_T|" +
+                    "|-_-T-|", 24)]
 
-        [InlineData("|---T-|" +
-                    "|T-T-T|" +
-                    "|-T---|", 24)]
+        [InlineData("|-_-T-|" +
+                    "|T_T_T|" +
+                    "|-T-_-|", 24)]
 
-        [InlineData("|-----|" +
-                    "|T-T-T|" +
+        [InlineData("|-_-_-|" +
+                    "|T_T_T|" +
                     "|-T-T-|", 24)]
 
         [InlineData("|-T-T-|" +
-                    "|T-T-T|" +
-                    "|-----|", 24)]
+                    "|T_T_T|" +
+                    "|-_-_-|", 24)]
 
-        [InlineData("|-----|" +
-                    "|T---T|" +
+        [InlineData("|-_-_-|" +
+                    "|T_-_T|" +
                     "|-TTT-|", 24)]
 
         [InlineData("|-TTT-|" +
-                    "|T---T|" +
-                    "|-----|", 24)]
+                    "|T_-_T|" +
+                    "|-_-_-|", 24)]
 
-        [InlineData("|-----|" +
-                    "|T-T--|" +
-                    "|-T---|", 3)]
+        [InlineData("|-_-_-|" +
+                    "|T_T_-|" +
+                    "|-T-_-|", 3)]
 
-        [InlineData("|-T---|" +
-                    "|T-T--|" +
-                    "|-----|", 3)]
+        [InlineData("|-T-_-|" +
+                    "|T-T_-|" +
+                    "|-_-_-|", 3)]
 
-        [InlineData("|-----|" +
-                    "|-----|" +
-                    "|TTT--|", 3)]
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|TTT_-|", 3)]
 
-        [InlineData("|-----|" +
-                    "|-----|" +
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
                     "|TTTT-|", 6)]
 
-        [InlineData("|-----|" +
-                    "|-----|" +
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
                     "|TTTTT|", 24)]
 
-        [InlineData("|--T--|" +
-                    "|-T---|" +
-                    "|T----|", 3)]
+        [InlineData("|-_T_-|" +
+                    "|-T-_-|" +
+                    "|T_-_-|", 3)]
 
-        [InlineData("|-----|" +
-                    "|-T---|" +
-                    "|T-T--|", 3)]
+        [InlineData("|-_-_-|" +
+                    "|-T-_-|" +
+                    "|T_T_-|", 3)]
 
-        [InlineData("|-----|" +
+        [InlineData("|-_-_-|" +
                     "|-T-T-|" +
-                    "|T-T-T|", 24)]
+                    "|T_T_T|", 24)]
 
-        [InlineData("|-----|" +
+        [InlineData("|-_-_-|" +
                     "|-TTT-|" +
-                    "|T---T|", 24)]
+                    "|T_-_T|", 24)]
 
-        [InlineData("|--T--|" +
+        [InlineData("|-_T_-|" +
                     "|-T-T-|" +
-                    "|T---T|", 24)]
+                    "|T_-_T|", 24)]
 
 
-        public void SlotAnalyzerShouldReturnCorrectMultiplicatorWhen(string pattern, int expected)
+        public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string pattern, int expected)
         {
             // Arrange
             SlotAnalyzer testee = new SlotAnalyzer();
@@ -137,17 +137,17 @@
 
         [Theory]
 
-        [InlineData("|-----|" +
-                    "|-----|" +
-                    "|-----|", 0)]
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|", 0)]
 
-        [InlineData("|TT---|" +
-                    "|--T--|" +
-                    "|-----|", 0)]
+        [InlineData("|TT-_-|" +
+                    "|-_T_-|" +
+                    "|-_-_-|", 0)]
 
-        [InlineData("|T----|" +
+        [InlineData("|T_-_-|" +
                     "|-T-TT|" +
-                    "|--T--|", 0)]
+                    "|-_T_-|", 0)]
 
         public void SlotAnalyzerShouldReturnZeroWhen(string pattern, int expected)
         {
@@ -164,10 +164,6 @@
             // Assert
             result.Should().Be(expected);
         }
-    }
 
-    internal struct FS : ISymbol
-    {
-        public byte Rarity  => 0;
     }
 }

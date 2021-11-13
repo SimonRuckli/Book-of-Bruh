@@ -31,8 +31,17 @@
             {
                 'T' => new TenSymbol(),
                 '-' => new FS(),
+                '_' => new FS2(),
                 _ => throw new ArgumentException()
             };
         }
+    }
+    internal struct FS : ISymbol
+    {
+        public byte Rarity => 0;
+    }
+    internal struct FS2 : ISymbol
+    {
+        public byte Rarity => 0;
     }
 }
