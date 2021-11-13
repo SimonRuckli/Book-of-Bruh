@@ -134,6 +134,7 @@
             // Assert
             result.Should().Be(expected);
         }
+
         [Theory]
 
         [InlineData("|-----|" +
@@ -143,6 +144,10 @@
         [InlineData("|TT---|" +
                     "|--T--|" +
                     "|-----|", 0)]
+
+        [InlineData("|T----|" +
+                    "|-T-TT|" +
+                    "|--T--|", 0)]
 
         public void SlotAnalyzerShouldReturnZeroWhen(string pattern, int expected)
         {

@@ -14,31 +14,31 @@
 
             List<(ISymbol symbol, int count)> sameSymbols = CalculateSameSymbols(slots);
 
-            return CalculateMultiplicator(sameSymbols);
+            return CalculateMultiplier(sameSymbols);
             
         }
 
-        private static double CalculateMultiplicator(List<(ISymbol symbol, int count)> sameSymbols)
+        private static double CalculateMultiplier(List<(ISymbol symbol, int count)> sameSymbols)
         {
-            int multiplicator = 0;
+            int multiplier = 0;
 
-            foreach ((ISymbol symbol, int count) sameSymbol in sameSymbols)
+            foreach ((ISymbol symbol, int count) in sameSymbols)
             {
-                if (sameSymbol.count == 3)
+                switch (count)
                 {
-                    multiplicator += 3 * sameSymbol.symbol.Rarity;
-                }
-                if (sameSymbol.count == 4)
-                {
-                    multiplicator += 6 * sameSymbol.symbol.Rarity;
-                }
-                if (sameSymbol.count == 5)
-                {
-                    multiplicator += 24 * sameSymbol.symbol.Rarity;
+                    case 3:
+                        multiplier += 3 * symbol.Rarity;
+                        break;
+                    case 4:
+                        multiplier += 6 * symbol.Rarity;
+                        break;
+                    case 5:
+                        multiplier += 24 * symbol.Rarity;
+                        break;
                 }
             }
 
-            return multiplicator;
+            return multiplier;
         }
 
         private static List<(ISymbol symbol, int count)> CalculateSameSymbols(Slots slots)
@@ -49,7 +49,7 @@
             {
                 Point start = new Point(0, i);
                 List <Point> pattern = CalculateSameSymbolCount(slots.Symbols, start);
-                if (IsPatternValide(pattern))
+                if (IsPatternValid(pattern))
                 {
                     sameSymbols.Add((slots.Symbols[start.X, start.Y], pattern.Count));
                 }
@@ -58,23 +58,11 @@
             return sameSymbols;
         }
 
-        private static bool IsPatternValide(List<Point> pattern)
-        {
-            List<Point> reverse = pattern.Reverse<Point>().ToList();
-
-            List<(Point o, Point r)> zip = pattern.Zip(reverse).ToList();
-
-            var same = zip.Where(z => z.o.Y == z.r.Y);
-
-            return same.Count() == pattern.Count();
-        }
-
         private static List<Point> CalculateSameSymbolCount(ISymbol[,] symbols, Point start)
         {
             List<Point> points = new List<Point>() { start };
 
             Result<Point> nextPosition = FindNextCountableSymbolPosition(start, symbols);
-
 
             while (nextPosition.IsSuccess)
             {
@@ -107,6 +95,42 @@
             }
 
             return Result.Failure<Point>("Found no next Symbol");
+        }
+
+        private static bool IsPatternValid(IReadOnlyList<Point> pattern)
+        {
+            return CanPatternBeOnlyDiagonal(pattern)
+                   && IsPatternOnlyDiagonal(pattern)
+                   || IsPatternSymmetrical(pattern);
+        }
+
+        private static bool IsPatternOnlyDiagonal(IReadOnlyList<Point> pattern)
+        {
+            for (int i = 1; i < pattern.Count; i++)
+            {
+                if (pattern[i].Y == pattern[i - 1].Y)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool IsPatternSymmetrical(IReadOnlyCollection<Point> pattern)
+        {
+            IEnumerable<Point> reverse = pattern.Reverse<Point>();
+
+            IEnumerable<(Point o, Point r)> zip = pattern.Zip(reverse);
+
+            IEnumerable<(Point o, Point r)> same = zip.Where(z => z.o.Y == z.r.Y);
+
+            return same.Count() == pattern.Count();
+        }
+
+        private static bool CanPatternBeOnlyDiagonal(IReadOnlyCollection<Point> pattern)
+        {
+            return pattern.Count is 3 or 5;
         }
     }
 }
