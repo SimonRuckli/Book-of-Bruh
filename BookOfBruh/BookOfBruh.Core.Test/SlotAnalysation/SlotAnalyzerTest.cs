@@ -311,6 +311,93 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     , 24)]
 
 
+
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|",
+                new string[]
+                {
+                    "|-_-_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|"
+                }
+                , 0)]
+
+        [InlineData("|TT-_-|" +
+                    "|-_T_-|" +
+                    "|-_-_-|",
+                new string[]
+                {
+                    "|-_-_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|"
+                }
+                , 0)]
+
+        [InlineData("|T_-_-|" +
+                    "|-T-TT|" +
+                    "|-_T_-|",
+                new string[]
+                {
+                    "|P_-_-|" +
+                    "|-P-_-|" +
+                    "|-_P_-|"
+                }
+                , 3)]
+
+
+
+        [InlineData("|TTT_-|" +
+                    "|-_-_-|" +
+                    "|TTT_-|",
+                new string[]
+                {
+                    "|PPP_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|",
+
+                    "|-_-_-|" +
+                    "|-_-_-|" +
+                    "|PPP_-|",
+                }
+                , 6)]
+
+        [InlineData("|TTT_-|" +
+                    "|TTT_-|" +
+                    "|TTT_-|",
+                new string[]
+                {
+                    "|PPP_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|",
+
+                    "|-_-_-|" +
+                    "|PPP_-|" +
+                    "|-_-_-|",
+
+                    "|-_-_-|" +
+                    "|-_-_-|" +
+                    "|PPP_-|",
+
+                    "|P-P_-|" +
+                    "|-P-_-|" +
+                    "|-_-_-|",
+
+                    "|-P-_-|" +
+                    "|P-P_-|" +
+                    "|-_-_-|",
+
+                    "|-_-_-|" +
+                    "|P-P_-|" +
+                    "|-P-_-|",
+
+                    "|-_-_-|" +
+                    "|-P-_-|" +
+                    "|P-P_-|"
+                }
+                , 27)]
+
+
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string pattern, string[] stringPatterns, int expected)
         {
             // Arrange
@@ -344,63 +431,5 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                 return this.patterns;
             }
         }
-
-        /*
-        [Theory]
-
-        [InlineData("|-_-_-|" +
-                    "|-_-_-|" +
-                    "|-_-_-|", 0)]
-
-        [InlineData("|TT-_-|" +
-                    "|-_T_-|" +
-                    "|-_-_-|", 0)]
-
-        [InlineData("|T_-_-|" +
-                    "|-T-TT|" +
-                    "|-_T_-|", 0)]
-
-        public void SlotAnalyzerShouldReturnZeroWhen(string pattern, int expected)
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-
-            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-
-        [Theory]
-        
-        [InlineData("|TTT_-|" +
-                    "|-_-_-|" +
-                    "|TTT_-|", 6)]
-        
-        [InlineData("|TTT_-|" +
-                    "|TTT_-|" +
-                    "|TTT_-|", 27)]
-
-        public void SlotAnalyzerShouldReturnCorrectMultiplierWhenSeveralPattern(string pattern, int expected)
-        {
-            // Arrange
-            SlotAnalyzer testee = new SlotAnalyzer();
-
-            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
-
-            Slots input = new Slots(symbols);
-
-            // Act
-            double result = testee.Analyze(input);
-
-            // Assert
-            result.Should().Be(expected);
-        }
-        */
     }
 }
