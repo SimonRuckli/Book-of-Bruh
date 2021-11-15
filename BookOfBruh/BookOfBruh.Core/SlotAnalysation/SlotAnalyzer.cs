@@ -20,35 +20,25 @@
         {
             double multiplier = 0;
 
+            const int first = 0;
+
             for (int y = 0; y < slots.Rows; y++)
             {
-                multiplier += this.CalculateRowValue(slots, y);
+                Point firstPoint = new Point(first, y);
+
+                List<Point> points = CalculateSameSymbolPoints(slots, firstPoint);
+
+                List<Pattern> patterns = this.patternMatcher.FindMatches(points); 
+
+                List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
+
+                multiplier += CalculateRowMultiplier(patternCounts, slots.Symbols[first, y]);
             }
 
             return multiplier;
         }
-
-        private double CalculateRowValue(Slots slots, int row)
-        {
-            const int first = 0;
-
-            ISymbol firstSymbol = slots.Symbols[first, row];
-
-            List<Pattern> patterns = this.CalculatePatterns(new Point(first, row), slots);
-
-            List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
-
-            return CalculateRowMultiplier(firstSymbol, patternCounts);
-        }
-
-        private List<Pattern> CalculatePatterns(Point firstPoint, Slots slots)
-        {
-            List<Point> points = CalculateSameSymbolPoints(firstPoint, slots);
-
-            return this.patternMatcher.FindMatches(points);
-        }
-
-        private static List<Point> CalculateSameSymbolPoints(Point firstPoint, Slots slots)
+        
+        private static List<Point> CalculateSameSymbolPoints(Slots slots, Point firstPoint)
         {
             List<Point> points = new List<Point>() { firstPoint };
 
@@ -70,7 +60,7 @@
             return points;
         }
 
-        private static double CalculateRowMultiplier(ISymbol firstSymbol, List<int> patternCounts)
+        private static double CalculateRowMultiplier(List<int> patternCounts, ISymbol firstSymbol)
         {
             int multiplier = 0;
 
