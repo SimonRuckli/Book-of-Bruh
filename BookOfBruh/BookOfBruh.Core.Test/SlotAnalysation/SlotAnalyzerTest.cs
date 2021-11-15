@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace BookOfBruh.Core.Test.SlotAnalysation
 {
@@ -371,16 +372,16 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|" +
                     "|-_-_-|",
 
-                    "|-_-_-|" +
-                    "|PPP_-|" +
-                    "|-_-_-|",
-
-                    "|-_-_-|" +
-                    "|-_-_-|" +
-                    "|PPP_-|",
-
                     "|P-P_-|" +
                     "|-P-_-|" +
+                    "|-_-_-|",
+
+                    "|P_-_-|" +
+                    "|-P-_-|" +
+                    "|--P_-|",
+
+                    "|-_-_-|" +
+                    "|PPP_-|" +
                     "|-_-_-|",
 
                     "|-P-_-|" +
@@ -392,8 +393,16 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-P-_-|",
 
                     "|-_-_-|" +
+                    "|-_-_-|" +
+                    "|PPP_-|",
+
+                    "|-_-_-|" +
                     "|-P-_-|" +
-                    "|P-P_-|"
+                    "|P-P_-|",
+
+                    "|-_P_-|" +
+                    "|-P-_-|" +
+                    "|P--_-|"
                 }
                 , 27)]
 
@@ -428,6 +437,11 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
 
             public List<Pattern> FindMatches(List<Point> input)
             {
+                if (this.patterns.Count > 1)
+                {
+                    List<Pattern> matching = this.patterns.Where(p => p.Value.First(pp => pp.X == 0) == input.First()).ToList();
+                    return matching;
+                }
                 return this.patterns;
             }
         }
