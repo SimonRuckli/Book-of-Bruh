@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using BookOfBruh.Core.Symbols;
-
-namespace BookOfBruh.Core.SlotAnalysation
+﻿namespace BookOfBruh.Core.SlotAnalysation
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using BookOfBruh.Core.Symbols;
     using BookOfBruh.Core.GameData;
 
     public class SlotAnalyzer
@@ -22,46 +22,45 @@ namespace BookOfBruh.Core.SlotAnalysation
 
             for (int y = 0; y < slots.Rows; y++)
             {
-                const int first = 0;
-                ISymbol firstSymbol = slots.Symbols[first, y];
-                List<Point> points = GetSameSymbolPoints(firstSymbol, slots);
-                points.Add(new Point(first,y));
-
-                List<Pattern> patterns = this.patternMatcher.FindMatches(points);
-
-                List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
-
-                foreach (int patternCount in patternCounts)
-                {
-                    if (patternCount == 5)
-                    {
-                        multiplier += 24 * firstSymbol.Rarity;
-                    }
-                    if (patternCount == 4)
-                    {
-                        multiplier += 6 * firstSymbol.Rarity;
-                    }
-                    if (patternCount == 3)
-                    {
-                        multiplier += 3 * firstSymbol.Rarity;
-                    }
-                }
+                multiplier += this.CalculateRowValue(slots, y);
             }
 
             return multiplier;
         }
 
-        private static List<Point> GetSameSymbolPoints(ISymbol slotsSymbol, Slots slots)
+        private double CalculateRowValue(Slots slots, int row)
         {
-            List<Point> points = new List<Point>();
+            const int first = 0;
+
+            ISymbol firstSymbol = slots.Symbols[first, row];
+
+            List<Pattern> patterns = this.CalculatePatterns(new Point(first, row), slots);
+
+            List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
+
+            return CalculateRowMultiplier(firstSymbol, patternCounts);
+        }
+
+        private List<Pattern> CalculatePatterns(Point firstPoint, Slots slots)
+        {
+            List<Point> points = CalculateSameSymbolPoints(firstPoint, slots);
+
+            return this.patternMatcher.FindMatches(points);
+        }
+
+        private static List<Point> CalculateSameSymbolPoints(Point firstPoint, Slots slots)
+        {
+            List<Point> points = new List<Point>() { firstPoint };
 
             const int ignoreFirst = 1;
-            
+
+            Type firstSymbol = slots.Symbols[firstPoint.X, firstPoint.Y].GetType();
+
             for (int y = 0; y < slots.Rows; y++)
             {
                 for (int x = ignoreFirst; x < slots.Columns; x++)
                 {
-                    if (slots.Symbols[x, y].GetType() == slotsSymbol.GetType())
+                    if (slots.Symbols[x, y].GetType() == firstSymbol)
                     {
                         points.Add(new Point(x, y));
                     }
@@ -69,6 +68,29 @@ namespace BookOfBruh.Core.SlotAnalysation
             }
 
             return points;
+        }
+
+        private static double CalculateRowMultiplier(ISymbol firstSymbol, List<int> patternCounts)
+        {
+            int multiplier = 0;
+
+            foreach (int patternCount in patternCounts)
+            {
+                if (patternCount == 5)
+                {
+                    multiplier += 24 * firstSymbol.Rarity;
+                }
+                if (patternCount == 4)
+                {
+                    multiplier += 6 * firstSymbol.Rarity;
+                }
+                if (patternCount == 3)
+                {
+                    multiplier += 3 * firstSymbol.Rarity;
+                }
+            }
+
+            return multiplier;
         }
     }
 }
