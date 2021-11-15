@@ -18,9 +18,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|PPP_-|" +
+                        "|-_-_-|" +
+                        "|-_-_-|"
                     }
                     , 3)]
 
@@ -29,9 +29,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|PPPP-|" +
+                        "|-_-_-|" +
+                        "|-_-_-|"
                     }
                     , 6)]
 
@@ -40,9 +40,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|PPPPP|" +
+                        "|-_-_-|" +
+                        "|-_-_-|"
                     }
                     , 24)]
        
@@ -51,20 +51,20 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_T_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|P_-_-|" +
+                        "|-P-_-|" +
+                        "|-_P_-|"
                     }
                     , 3)]
        
         [InlineData("|T_T_-|" +
-                    "|-T---|" +
+                    "|-T-_-|" +
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|P_P_-|" +
+                        "|-P-_-|" +
+                        "|-_-_-|"
                     }
                     , 3)]
        
@@ -73,9 +73,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
+                        "|P_P_P|" +
                         "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|"
                     }
                     , 24)]
        
@@ -84,9 +84,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|P_-_P|" +
+                        "|-PPP-|" +
+                        "|-_-_-|"
                     }
                     , 24)]
        
@@ -95,9 +95,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_T_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
+                        "|P_-_P|" +
                         "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_P_-|"
                     }
                     , 24)]
        
@@ -106,9 +106,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|PPP_-|" +
+                        "|-_-_-|"
                     }
                     , 3)]
 
@@ -117,9 +117,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|PPPP-|" +
+                        "|-_-_-|"
                     }
                     , 6)]
 
@@ -128,9 +128,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|PPPPP|" +
+                        "|-_-_-|"
                     }
                     , 24)]
 
@@ -139,9 +139,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-T-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-P-_-|" +
+                        "|P_P_P|" +
+                        "|-_-P-|"
                     }
                     , 24)]
 
@@ -150,9 +150,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-T-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-P-|" +
+                        "|P_P_P|" +
+                        "|-P-_-|"
                     }
                     , 24)]
 
@@ -161,9 +161,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-T-T-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|P_P_P|" +
+                        "|-P-P-|"
                     }
                     , 24)]
 
@@ -172,9 +172,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
                         "|-P-P-|" +
-                        "|P_-_P|"
+                        "|P_P_P|" +
+                        "|-_-_-|"
                     }
                     , 24)]
 
@@ -183,9 +183,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-TTT-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|P_-_P|" +
+                        "|-PPP-|"
                     }
                     , 24)]
 
@@ -194,9 +194,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-PPP-|" +
+                        "|P_-_P|" +
+                        "|-_-_-|"
                     }
                     , 24)]
 
@@ -205,9 +205,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-T-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|P_P_-|" +
+                        "|-P-_-|"
                     }
                     , 3)]
 
@@ -216,9 +216,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-P-_-|" +
+                        "|P_P_-|" +
+                        "|-_-_-|"
                     }
                     , 3)]
 
@@ -227,9 +227,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|TTT_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPP_-|"
                     }
                     , 3)]
 
@@ -238,9 +238,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|TTTT-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
                     }
                     , 6)]
 
@@ -249,9 +249,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|TTTTT|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPPP|"
                     }
                     , 24)]
 
@@ -261,8 +261,8 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     new string[]
                     {
                         "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-P-_-|" +
+                        "|P_-_-|"
                     }
                     , 3)]
 
@@ -271,9 +271,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|T_T_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|-P-_-|" +
+                        "|P_P_-|"
                     }
                     , 3)]
 
@@ -282,9 +282,9 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|T_T_T|",
                     new string[]
                     {
-                        "|-_P_-|" +
+                        "|-_-_-|" +
                         "|-P-P-|" +
-                        "|P_-_P|"
+                        "|P_P_P|"
                     }
                     , 24)]
 
@@ -293,8 +293,8 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     "|T_-_T|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
+                        "|-_-_-|" +
+                        "|-PPP-|" +
                         "|P_-_P|"
                     }
                     , 24)]
