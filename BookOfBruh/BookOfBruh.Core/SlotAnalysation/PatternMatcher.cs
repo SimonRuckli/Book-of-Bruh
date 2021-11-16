@@ -15,14 +15,4 @@
             throw new System.NotImplementedException();
         }
     }
-
-    public class Pattern
-    {
-        public List<Point> Value { get; }
-
-        public Pattern(List<Point> value)
-        {
-            this.Value = value;
-        }
-    }
 }
