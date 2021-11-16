@@ -55,8 +55,20 @@ namespace BookOfBruh.Core.SlotAnalysation
         {
             Point firstPoint = input.First(point => point.X == 0);
 
-            List<Point> linePattern = input.Where(p => p.Y == firstPoint.Y).ToList();
+            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 
+            List<Point> linePattern = new List<Point>() { firstPoint };
+
+            Point lastPoint = firstPoint;
+
+            foreach (Point point in sortedPoints
+                .Where(point => point.X == lastPoint.X + 1)
+                .Where(point => point.Y == lastPoint.Y))
+            {
+                linePattern.Add(point);
+                lastPoint = point;
+            }
+            
             return linePattern.Count >= 3 ? linePattern : new List<Point>();
         }
     }
