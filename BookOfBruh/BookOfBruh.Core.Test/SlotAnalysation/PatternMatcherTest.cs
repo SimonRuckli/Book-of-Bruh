@@ -8,21 +8,31 @@
 
     public class PatternMatcherTest
     {
-        [Fact]
-        public void PatternMatcherShould()
+        [Theory]
+        
+        [InlineData("|PPP_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|",
+            new string[]
+            {
+                "|PPP_-|" +
+                "|-_-_-|" +
+                "|-_-_-|"
+            })]
+
+        public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange
-            List<Point> pointList = new List<Point>()
-            {
-                new Point() { X = 0, Y = 0 },
-                new Point() { X = 1, Y = 0 },
-                new Point() { X = 2, Y = 0 }
-            };
+            List<Point> pointList = PatternTestHelper.PointsFromString(input);
+            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
             
-            Pattern testee = new Pattern(pointList);
+            PatternMatcher testee = new PatternMatcher();
+
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
+
             // Assert
+            result.Should().BeEquivalentTo(expected);
         }
     }
 }

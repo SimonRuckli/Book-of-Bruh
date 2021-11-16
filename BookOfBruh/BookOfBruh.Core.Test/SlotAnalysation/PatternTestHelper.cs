@@ -13,8 +13,17 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
         {
             return stringPatterns.Select(PatternFromString).ToList();
         }
+        public static List<Point> PointsFromString(string input)
+        {
+            return InternalPointsFromString(input);
+        }
 
         private static Pattern PatternFromString(string pattern)
+        {
+            return new Pattern(InternalPointsFromString(pattern));
+        }
+
+        private static List<Point> InternalPointsFromString(string pattern)
         {
             const char point = 'P';
 
@@ -33,7 +42,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                 }
             }
 
-            return new Pattern(validPoints);
+            return validPoints;
         }
     }
 }
