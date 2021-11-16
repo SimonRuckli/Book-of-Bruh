@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-
-namespace BookOfBruh.Core.Test.SlotAnalysation
+﻿namespace BookOfBruh.Core.Test.SlotAnalysation
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
     using Xunit;
     using FluentAssertions;
     using BookOfBruh.Core.SlotAnalysation;
@@ -13,6 +12,8 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
     public class SlotAnalyzerTest
     {
         [Theory]
+
+        // All valid patterns
 
         [InlineData("|TTT_-|" +
                     "|-_-_-|" +
@@ -311,7 +312,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                     } 
                     , 24)]
 
-
+        // Invalid patterns
 
         [InlineData("|-_-_-|" +
                     "|-_-_-|" +
@@ -346,7 +347,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                 }
                 , 3)]
 
-
+        // Several patterns
 
         [InlineData("|TTT_-|" +
                     "|-_-_-|" +
@@ -407,7 +408,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
                 , 27)]
 
 
-        public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string pattern, string[] stringPatterns, int expected)
+        public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, int expected)
         {
             // Arrange
             List<Pattern> patterns = PatternTestHelper.PatternsFromStringPatterns(stringPatterns);
@@ -415,7 +416,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation
 
             SlotAnalyzer testee = new SlotAnalyzer(patternMatcher);
 
-            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
+            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
 
             Slots input = new Slots(symbols);
 
