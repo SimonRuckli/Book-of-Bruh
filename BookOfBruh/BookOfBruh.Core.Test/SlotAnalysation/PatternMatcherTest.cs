@@ -146,6 +146,16 @@
                 "|-_P_-|",
             })]
 
+        [InlineData("|P_-_P|" +
+                    "|-P-P-|" +
+                    "|-_P_-|",
+            new string[]
+            {
+                "|P_-_P|" +
+                "|-P-P-|" +
+                "|-_P_-|",
+            })]
+
         public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange
