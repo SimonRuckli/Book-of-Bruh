@@ -88,6 +88,64 @@
                 "|-_-_-|",
             })]
 
+        [InlineData("|-_-_-|" +
+                    "|PPP_P|" +
+                    "|-P-P-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_P|" +
+                "|-P-P-|",
+
+                "|-_-_-|" +
+                "|PPP_-|" +
+                "|-_-_-|",
+            })]
+
+        [InlineData("|-P-_-|" +
+                    "|P-P_P|" +
+                    "|-P-P-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_P|" +
+                "|-P-P-|",
+
+                "|-P-_-|" +
+                "|P_P_-|" +
+                "|-_-_-|",
+            })]
+
+        [InlineData("|-_-P-|" +
+                    "|P_P_P|" +
+                    "|-P-_-|",
+            new string[]
+            {
+                "|-_-P-|" +
+                "|P_P_P|" +
+                "|-P-_-|",
+            })]
+
+        [InlineData("|P_-_-|" +
+                    "|-P-_-|" +
+                    "|-_P_-|",
+            new string[]
+            {
+                "|P_-_-|" +
+                "|-P-_-|" +
+                "|-_P_-|",
+            })]
+
+        [InlineData("|P_-_-|" +
+                    "|-P-P-|" +
+                    "|-_P_-|",
+            new string[]
+            {
+                "|P_-_-|" +
+                "|-P-_-|" +
+                "|-_P_-|",
+            })]
+
         public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange

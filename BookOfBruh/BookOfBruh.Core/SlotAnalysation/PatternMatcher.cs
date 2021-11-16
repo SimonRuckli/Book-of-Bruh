@@ -16,21 +16,26 @@ namespace BookOfBruh.Core.SlotAnalysation
         {
             List<Pattern> patterns = new List<Pattern>();
             List<Point> linePattern = FindLinePattern(input);
-            List<Point> trianglePattern = FindTrianglePattern(input);
+            List<Point> trianglePatternUp = FindTrianglePattern(input, 1);
+            List<Point> trianglePatternDown = FindTrianglePattern(input, -1);
 
             if (linePattern.Any())
             {
                 patterns.Add(new Pattern(linePattern));
             }
-            if (trianglePattern.Any())
+            if (trianglePatternUp.Any())
             {
-                patterns.Add(new Pattern(trianglePattern));
+                patterns.Add(new Pattern(trianglePatternUp));
+            }
+            if (trianglePatternDown.Any())
+            {
+                patterns.Add(new Pattern(trianglePatternDown));
             }
 
             return patterns;
         }
 
-        private static List<Point> FindTrianglePattern(List<Point> input)
+        private static List<Point> FindTrianglePattern(List<Point> input, int direction)
         {
             Point firstPoint = input.First(point => point.X == 0);
 
@@ -39,10 +44,11 @@ namespace BookOfBruh.Core.SlotAnalysation
             List<Point> trianglePattern = new List<Point>(){firstPoint};
             
             Point lastPoint = firstPoint;
-
+            
             foreach (Point point in sortedPoints
                 .Where(point => point.X == lastPoint.X + 1)
-                .Where(point => point.Y == lastPoint.Y+1 || point.Y == lastPoint.Y - 1))
+                .Where(point => point.Y == firstPoint.Y || point.Y == firstPoint.Y + direction)
+                .Where(point => point.Y == lastPoint.Y + 1 || point.Y == lastPoint.Y - 1))
             {
                 trianglePattern.Add(point);
                 lastPoint = point;
