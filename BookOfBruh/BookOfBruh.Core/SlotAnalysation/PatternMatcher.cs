@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-
-namespace BookOfBruh.Core.SlotAnalysation
+﻿namespace BookOfBruh.Core.SlotAnalysation
 {
     using System.Drawing;
     using System.Collections.Generic;
+    using System.Linq;
 
     public interface IPatternMatcher
     {
@@ -98,6 +95,12 @@ namespace BookOfBruh.Core.SlotAnalysation
             return FindTrianglePattern(input, 1);
         }
 
+        private static List<Point> FindLinePattern(List<Point> input)
+        {
+            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
+            return FindLinePatternAt(sortedPoints, 0);
+        }
+
         private static List<Point> FindFlashPattern(List<Point> input, int direction)
         {
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
@@ -173,6 +176,12 @@ namespace BookOfBruh.Core.SlotAnalysation
             return uniquePattern.Count >= 3 ? uniquePattern : new List<Point>();
         }
 
+        private static List<Point> FindTrianglePattern(List<Point> input, int direction)
+        {
+            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
+            return FindTrianglePatternAt(0, sortedPoints, direction);
+        }
+
         private static List<Point> FindOnlyDiagonalPattern(List<Point> input, int start)
         {
             List<Point> diagonal = new List<Point>() { input[start] };
@@ -194,22 +203,15 @@ namespace BookOfBruh.Core.SlotAnalysation
             return diagonal.Count >= 3 ? diagonal : new List<Point>();
         }
 
-        private static List<Point> FindTrianglePattern(List<Point> input, int direction)
+        private static List<Point> FindTrianglePatternAt(int position, List<Point> sortedInput, int direction)
         {
-            return FindTrianglePatternAt(0, input, direction);
-        }
-        
-        private static List<Point> FindTrianglePatternAt(int position, List<Point> input, int direction)
-        {
-            Point firstPoint = input.First(point => point.X == position);
-
-            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
-
+            Point firstPoint = sortedInput.First(point => point.X == position);
+            
             List<Point> trianglePattern = new List<Point>(){firstPoint};
             
             Point lastPoint = firstPoint;
             
-            foreach (Point point in sortedPoints
+            foreach (Point point in sortedInput
                 .Where(point => point.X == lastPoint.X + 1)
                 .Where(point => point.Y == firstPoint.Y || point.Y == firstPoint.Y + direction)
                 .Where(point => point.Y == lastPoint.Y + 1 || point.Y == lastPoint.Y - 1))
@@ -225,23 +227,16 @@ namespace BookOfBruh.Core.SlotAnalysation
 
             return trianglePattern.Count >= 3 ? trianglePattern : new List<Point>();
         }
-        
 
-        private static List<Point> FindLinePattern(List<Point> input)
+        private static List<Point> FindLinePatternAt(List<Point> sortedInput, int position)
         {
-            return FindLinePatternAt(input, 0);
-        }
-        private static List<Point> FindLinePatternAt(List<Point> input, int position)
-        {
-            Point firstPoint = input.First(point => point.X == position);
-
-            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
+            Point firstPoint = sortedInput.First(point => point.X == position);
 
             List<Point> linePattern = new List<Point>() { firstPoint };
 
             Point lastPoint = firstPoint;
 
-            foreach (Point point in sortedPoints
+            foreach (Point point in sortedInput
                 .Where(point => point.X == lastPoint.X + 1)
                 .Where(point => point.Y == lastPoint.Y))
             {
