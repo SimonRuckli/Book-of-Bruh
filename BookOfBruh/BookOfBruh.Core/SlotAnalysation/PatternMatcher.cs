@@ -4,7 +4,8 @@ namespace BookOfBruh.Core.SlotAnalysation
 {
     using System.Drawing;
     using System.Collections.Generic;
-    
+    using System.Diagnostics.Tracing;
+
     public interface IPatternMatcher
     {
         public List<Pattern> FindMatches(List<Point> input);
@@ -46,30 +47,36 @@ namespace BookOfBruh.Core.SlotAnalysation
 
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 
-            List<Point> diagonalPattern = new List<Point>() { firstPoint };
+            List<Point> diagonalPattern = new List<Point>();
             
-            for (int i = 1; i < sortedPoints.Count; i++)
+            diagonalPattern.AddRange(FindOnlyDiagonalPattern(sortedPoints, 0));
+            diagonalPattern.AddRange(FindOnlyDiagonalPattern(sortedPoints, 2));
+
+            List<Point> uniquePattern = diagonalPattern.Distinct().ToList();
+
+            return uniquePattern.Count >= 3 ? uniquePattern : new List<Point>();
+        }
+
+        private static List<Point> FindOnlyDiagonalPattern(List<Point> input, int start)
+        {
+            List<Point> diagonal = new List<Point>() { input[start] };
+
+            for (int i = start + 1; i < input.Count; i++)
             {
-                Point current = sortedPoints[i];
-                if (current == new Point(1,1))
+                if (input[i].X == diagonal.Last().X + 1)
                 {
-                    diagonalPattern.Add(current);
-                }
-                if (current == new Point(2,2))
-                {
-                    diagonalPattern.Add(current);
-                }
-                if (current == new Point(3,1))
-                {
-                    diagonalPattern.Add(current);
-                }
-                if (current == new Point(4,0))
-                {
-                    diagonalPattern.Add(current);
+                    if (input[i].Y == diagonal.Last().Y + 1 || input[i].Y == diagonal.Last().Y - 1)
+                    {
+                        if (diagonal.All(p => p.Y != input[i].Y))
+                        {
+                            diagonal.Add(input[i]);
+                        }
+                    }
                 }
             }
 
-            return diagonalPattern.Count >= 3 ? diagonalPattern : new List<Point>();
+
+            return diagonal.Count >= 3 ? diagonal : new List<Point>();
         }
 
         private static List<Point> FindTrianglePattern(List<Point> input, int direction)

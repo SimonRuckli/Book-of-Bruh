@@ -116,16 +116,6 @@
                 "|-_-_-|",
             })]
 
-        [InlineData("|-_-P-|" +
-                    "|P_P_P|" +
-                    "|-P-_-|",
-            new string[]
-            {
-                "|-_-P-|" +
-                "|P_P_P|" +
-                "|-P-_-|",
-            })]
-
         [InlineData("|P_-_-|" +
                     "|-P-_-|" +
                     "|-_P_-|",
@@ -134,6 +124,16 @@
                 "|P_-_-|" +
                 "|-P-_-|" +
                 "|-_P_-|",
+            })]
+
+        [InlineData("|-_P_-|" +
+                    "|-P-_-|" +
+                    "|P_-_-|",
+            new string[]
+            {
+                "|-_P_-|" +
+                "|-P-_-|" +
+                "|P_-_-|",
             })]
 
         [InlineData("|P_-_-|" +
@@ -156,13 +156,23 @@
                 "|-_P_-|",
             })]
 
+        [InlineData("|-_P_-|" +
+                    "|-P-P-|" +
+                    "|P_-_P|",
+            new string[]
+            {
+                "|-_P_-|" +
+                "|-P-P-|" +
+                "|P_-_P|",
+            })]
+
         public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange
             List<Point> pointList = PatternTestHelper.PointsFromString(input);
             List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
             
-            PatternMatcher testee = new PatternMatcher();
+            IPatternMatcher testee = new PatternMatcher();
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
