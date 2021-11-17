@@ -20,7 +20,8 @@ namespace BookOfBruh.Core.SlotAnalysation
             List<Point> trianglePatternUp = FindTrianglePattern(input, 1);
             List<Point> trianglePatternDown = FindTrianglePattern(input, -1);
             List<Point> diagonalPattern = FindDiagonalPattern(input);
-            List<Point> uPattern = FindUPattern(input, 1);
+            List<Point> uPatternUp = FindUPattern(input, 1);
+            List<Point> uPatternDown = FindUPattern(input, -1);
 
             if (linePattern.Any())
             {
@@ -38,9 +39,13 @@ namespace BookOfBruh.Core.SlotAnalysation
             {
                 patterns.Add(new Pattern(diagonalPattern));
             }
-            if (uPattern.Any())
+            if (uPatternUp.Any())
             {
-                patterns.Add(new Pattern(uPattern));
+                patterns.Add(new Pattern(uPatternUp));
+            }
+            if (uPatternDown.Any())
+            {
+                patterns.Add(new Pattern(uPatternDown));
             }
 
             return patterns;

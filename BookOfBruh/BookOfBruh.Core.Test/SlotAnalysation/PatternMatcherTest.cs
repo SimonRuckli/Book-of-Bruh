@@ -232,6 +232,36 @@
                 "|-_-_-|",
             })]
 
+        [InlineData("|-_-_-|" +
+                    "|P_-_P|" +
+                    "|-PPP-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_-_P|" +
+                "|-PPP-|",
+            })]
+
+        [InlineData("|-_-_-|" +
+                    "|-PPP-|" +
+                    "|P_-_P|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|-PPP-|" +
+                "|P_-_P|",
+            })]
+
+        [InlineData("|-PPP-|" +
+                    "|P_-_P|" +
+                    "|-_-_-|",
+            new string[]
+            {
+                "|-PPP-|" +
+                "|P_-_P|" +
+                "|-_-_-|",
+            })]
+
         // Single incorrect Pattern
 
         [InlineData("|PPP_-|" +
@@ -434,6 +464,20 @@
                 "|-_-_-|" +
                 "|PPPPP|" +
                 "|-_-_-|",
+            })]
+
+        [InlineData("|-PPP-|" +
+                    "|P_-_P|" +
+                    "|-PPP-|",
+            new string[]
+            {
+                "|-PPP-|" +
+                "|P_-_P|" +
+                "|-_-_-|",
+
+                "|-_-_-|" +
+                "|P_-_P|" +
+                "|-PPP-|",
             })]
 
         public void PatternMatcherShould(string input, string[] patterns)
