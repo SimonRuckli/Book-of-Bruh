@@ -73,6 +73,11 @@ namespace BookOfBruh.Core.SlotAnalysation
 
             List<Point> linePattern = FindLinePatternAt(test, 1);
 
+            if (linePattern.Count == 4)
+            {
+                linePattern.RemoveAt(linePattern.Count - 1);
+            }
+
             uPattern.AddRange(linePattern);
 
             IEnumerable<Point> lastPoint = sortedPoints

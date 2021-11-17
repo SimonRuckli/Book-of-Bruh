@@ -344,6 +344,23 @@
                 "|P_P_-|"
             })]
 
+        [InlineData("|P_-_P|" +
+                    "|-PPPP|" +
+                    "|-_-_-|",
+            new string[]
+            {
+                "|P_-_P|" +
+                "|-PPP-|" +
+                "|-_-_-|"
+            })]
+
+        [InlineData("|P_-_P|" +
+                    "|-PP_-|" +
+                    "|-_-_-|",
+            new string[]
+            {
+            })]
+
         // multiple correct Pattern
 
         [InlineData("|-P-_-|" +
