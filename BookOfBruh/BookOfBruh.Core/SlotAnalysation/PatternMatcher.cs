@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 
 namespace BookOfBruh.Core.SlotAnalysation
 {
@@ -22,6 +23,8 @@ namespace BookOfBruh.Core.SlotAnalysation
             List<Point> diagonalPattern = FindDiagonalPattern(input);
             List<Point> uPatternUp = FindUPattern(input, 1);
             List<Point> uPatternDown = FindUPattern(input, -1);
+            List<Point> flashPatternUp = FindFlashPattern(input, 1);
+            List<Point> flashPatternDown = FindFlashPattern(input, -1);
 
             if (linePattern.Any())
             {
@@ -29,11 +32,17 @@ namespace BookOfBruh.Core.SlotAnalysation
             }
             if (trianglePatternUp.Any())
             {
-                patterns.Add(new Pattern(trianglePatternUp));
+                if ((trianglePatternUp.Count == 3 && flashPatternUp.Any()) == false)
+                {
+                    patterns.Add(new Pattern(trianglePatternUp));
+                }
             }
             if (trianglePatternDown.Any())
             {
-                patterns.Add(new Pattern(trianglePatternDown));
+                if ((trianglePatternDown.Count == 3 && flashPatternDown.Any()) == false)
+                {
+                    patterns.Add(new Pattern(trianglePatternDown));
+                }
             }
             if (diagonalPattern.Any())
             {
@@ -47,8 +56,38 @@ namespace BookOfBruh.Core.SlotAnalysation
             {
                 patterns.Add(new Pattern(uPatternDown));
             }
+            if (flashPatternUp.Any())
+            {
+                patterns.Add(new Pattern(flashPatternUp));
+            }
+            if (flashPatternDown.Any())
+            {
+                patterns.Add(new Pattern(flashPatternDown));
+            }
 
             return patterns;
+        }
+
+        private static List<Point> FindFlashPattern(List<Point> input, int direction)
+        {
+            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
+
+            List<Point> flashPattern = new List<Point>();
+
+            List<Point> firstTriangle = FindTrianglePatternAt(0, sortedPoints, direction);
+            List<Point> secondTriangle = FindTrianglePatternAt(2, sortedPoints, direction * -1);
+
+            if (firstTriangle.Count > 3)
+            {
+                firstTriangle = firstTriangle.GetRange(0, 3);
+            }
+
+            flashPattern.AddRange(firstTriangle);
+            flashPattern.AddRange(secondTriangle);
+
+            flashPattern = flashPattern.Distinct().ToList();
+
+            return flashPattern.Count == 5 ? flashPattern : new List<Point>();
         }
 
         private static List<Point> FindUPattern(List<Point> input, int direction)
@@ -127,7 +166,12 @@ namespace BookOfBruh.Core.SlotAnalysation
 
         private static List<Point> FindTrianglePattern(List<Point> input, int direction)
         {
-            Point firstPoint = input.First(point => point.X == 0);
+            return FindTrianglePatternAt(0, input, direction);
+        }
+        
+        private static List<Point> FindTrianglePatternAt(int position, List<Point> input, int direction)
+        {
+            Point firstPoint = input.First(point => point.X == position);
 
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 
@@ -151,6 +195,7 @@ namespace BookOfBruh.Core.SlotAnalysation
 
             return trianglePattern.Count >= 3 ? trianglePattern : new List<Point>();
         }
+        
 
         private static List<Point> FindLinePattern(List<Point> input)
         {

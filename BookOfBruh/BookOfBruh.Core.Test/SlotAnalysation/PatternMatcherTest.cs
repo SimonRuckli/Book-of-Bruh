@@ -262,7 +262,43 @@
                 "|-_-_-|",
             })]
 
-        // Single incorrect Pattern
+        [InlineData("|-P-_-|" +
+                    "|P_P_P|" +
+                    "|-_-P-|",
+            new string[]
+            {
+                "|-P-_-|" +
+                "|P_P_P|" +
+                "|-_-P-|",
+            })]
+
+        [InlineData("|-_-P-|" +
+                    "|P_P_P|" +
+                    "|-P-_-|",
+            new string[]
+            {
+                "|-_-P-|" +
+                "|P_P_P|" +
+                "|-P-_-|",
+            })]
+        
+
+        public void PatternMatcherShouldReturnCorrectSinglePattern(string input, string[] patterns)
+        {
+            // Arrange
+            List<Point> pointList = PatternTestHelper.PointsFromString(input);
+            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
+            
+            IPatternMatcher testee = new PatternMatcher();
+
+            // Act
+            List<Pattern> result = testee.FindMatches(pointList);
+
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
 
         [InlineData("|PPP_-|" +
                     "|-_-P-|" +
@@ -361,13 +397,28 @@
             {
             })]
 
-        // multiple correct Pattern
+        public void PatternMatcherShouldReturnIncorrectSinglePattern(string input, string[] patterns)
+        {
+            // Arrange
+            List<Point> pointList = PatternTestHelper.PointsFromString(input);
+            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
+            
+            IPatternMatcher testee = new PatternMatcher();
+
+            // Act
+            List<Pattern> result = testee.FindMatches(pointList);
+
+            // Assert
+            result.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
 
         [InlineData("|-P-_-|" +
                     "|PPP_-|" +
                     "|-_-_-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-P-_-|" +
                 "|P_P_-|" +
                 "|-_-_-|",
@@ -375,27 +426,27 @@
                 "|-_-_-|" +
                 "|PPP_-|" +
                 "|-_-_-|",
-            })]
+         })]
 
         [InlineData("|-P-_-|" +
                     "|P-P_P|" +
                     "|-P-P-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-_-_-|" +
                 "|P_P_P|" +
                 "|-P-P-|",
 
                 "|-P-_-|" +
-                "|P_P_-|" +
-                "|-_-_-|",
-            })]
+                "|P_P_P|" +
+                "|-_-P-|",
+         })]
 
         [InlineData("|-P-P-|" +
                     "|PPP_P|" +
                     "|-_-_-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-P-P-|" +
                 "|P_P_P|" +
                 "|-_-_-|",
@@ -403,13 +454,13 @@
                 "|-_-_-|" +
                 "|PPP_-|" +
                 "|-_-_-|",
-            })]
+         })]
 
         [InlineData("|-_-_-|" +
                     "|PPP_P|" +
                     "|-P-P-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-_-_-|" +
                 "|P_P_P|" +
                 "|-P-P-|",
@@ -417,13 +468,13 @@
                 "|-_-_-|" +
                 "|PPP_-|" +
                 "|-_-_-|",
-            })]
+         })]
 
         [InlineData("|-P-P-|" +
                     "|P_P_P|" +
                     "|-P-P-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-_-_-|" +
                 "|P_P_P|" +
                 "|-P-P-|",
@@ -431,13 +482,21 @@
                 "|-P-P-|" +
                 "|P_P_P|" +
                 "|-_-_-|",
-            })]
+
+                "|-P-_-|" +
+                "|P_P_P|" +
+                "|-_-P-|",
+
+                "|-_-P-|" +
+                "|P_P_P|" +
+                "|-P-_-|",
+         })]
 
         [InlineData("|-P-_-|" +
                     "|P_P_-|" +
                     "|-P-_-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-_-_-|" +
                 "|P_P_-|" +
                 "|-P-_-|",
@@ -445,13 +504,13 @@
                 "|-P-_-|" +
                 "|P_P_-|" +
                 "|-_-_-|",
-            })]
+         })]
 
         [InlineData("|-P-_-|" +
                     "|PPPPP|" +
                     "|-P-_-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-_-_-|" +
                 "|P_P_-|" +
                 "|-P-_-|",
@@ -463,17 +522,13 @@
                 "|-_-_-|" +
                 "|PPPPP|" +
                 "|-_-_-|",
-            })]
+         })]
 
         [InlineData("|-P-P-|" +
                     "|PPPPP|" +
                     "|-P-_-|",
-            new string[]
-            {
-                "|-_-_-|" +
-                "|P_P_-|" +
-                "|-P-_-|",
-
+         new string[]
+         {
                 "|-P-P-|" +
                 "|P_P_P|" +
                 "|-_-_-|",
@@ -481,13 +536,17 @@
                 "|-_-_-|" +
                 "|PPPPP|" +
                 "|-_-_-|",
-            })]
+
+                "|-_-P-|" +
+                "|P_P_P|" +
+                "|-P-_-|",
+         })]
 
         [InlineData("|-PPP-|" +
                     "|P_-_P|" +
                     "|-PPP-|",
-            new string[]
-            {
+         new string[]
+         {
                 "|-PPP-|" +
                 "|P_-_P|" +
                 "|-_-_-|",
@@ -495,9 +554,9 @@
                 "|-_-_-|" +
                 "|P_-_P|" +
                 "|-PPP-|",
-            })]
+         })]
 
-        public void PatternMatcherShould(string input, string[] patterns)
+        public void PatternMatcherShouldReturnCorrectMultiplePattern(string input, string[] patterns)
         {
             // Arrange
             List<Point> pointList = PatternTestHelper.PointsFromString(input);
