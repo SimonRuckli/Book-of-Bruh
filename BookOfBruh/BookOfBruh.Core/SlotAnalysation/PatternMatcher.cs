@@ -95,6 +95,11 @@ namespace BookOfBruh.Core.SlotAnalysation
                 lastPoint = point;
             }
 
+            if (trianglePattern.Count == 4)
+            {
+                trianglePattern.RemoveAt(trianglePattern.Count-1);
+            }
+
             return trianglePattern.Count >= 3 ? trianglePattern : new List<Point>();
         }
 
