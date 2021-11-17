@@ -44,10 +44,12 @@ namespace BookOfBruh.Core.SlotAnalysation
         {
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 
-            List<Point> diagonalPattern = new List<Point>();
-            
-            diagonalPattern.AddRange(FindOnlyDiagonalPattern(sortedPoints, 0));
-            diagonalPattern.AddRange(FindOnlyDiagonalPattern(sortedPoints, 2));
+            List<Point> diagonalPattern = FindOnlyDiagonalPattern(sortedPoints, 0);
+
+            if (diagonalPattern.Any())
+            {
+                diagonalPattern.AddRange(FindOnlyDiagonalPattern(sortedPoints, 2));
+            }
 
             List<Point> uniquePattern = diagonalPattern.Distinct().ToList();
 

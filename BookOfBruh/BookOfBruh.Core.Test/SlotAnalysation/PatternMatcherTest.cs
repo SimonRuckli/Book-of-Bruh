@@ -362,6 +362,34 @@
                 "|-_-_-|",
             })]
 
+        [InlineData("|-P-P-|" +
+                    "|P_P_P|" +
+                    "|-P-P-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_P|" +
+                "|-P-P-|",
+
+                "|-P-P-|" +
+                "|P_P_P|" +
+                "|-_-_-|",
+            })]
+
+        [InlineData("|-P-_-|" +
+                    "|P_P_-|" +
+                    "|-P-_-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_-|" +
+                "|-P-_-|",
+
+                "|-P-_-|" +
+                "|P_P_-|" +
+                "|-_-_-|",
+            })]
+
         public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange
