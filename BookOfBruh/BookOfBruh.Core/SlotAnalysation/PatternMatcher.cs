@@ -4,11 +4,6 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public interface IPatternMatcher
-    {
-        public List<Pattern> FindMatches(List<Point> input);
-    }
-
     public class PatternMatcher : IPatternMatcher
     {
         public List<Pattern> FindMatches(List<Point> input)
