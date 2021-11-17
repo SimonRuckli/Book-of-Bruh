@@ -18,13 +18,13 @@ namespace BookOfBruh.Core.SlotAnalysation
         {
             List<Pattern> patterns = new List<Pattern>();
             List<Point> linePattern = FindLinePattern(input);
-            List<Point> trianglePatternUp = FindTrianglePattern(input, 1);
-            List<Point> trianglePatternDown = FindTrianglePattern(input, -1);
+            List<Point> trianglePatternUp = FindTrianglePatternUp(input);
+            List<Point> trianglePatternDown = FindTrianglePatternDown(input);
             List<Point> diagonalPattern = FindDiagonalPattern(input);
-            List<Point> uPatternUp = FindUPattern(input, 1);
-            List<Point> uPatternDown = FindUPattern(input, -1);
-            List<Point> flashPatternUp = FindFlashPattern(input, 1);
-            List<Point> flashPatternDown = FindFlashPattern(input, -1);
+            List<Point> uPatternUp = FindUPatternUp(input);
+            List<Point> uPatternDown = FindUPatternDown(input);
+            List<Point> flashPatternUp = FindFlashPatternUp(input);
+            List<Point> flashPatternDown = FindFlashPatternDown(input);
 
             if (linePattern.Any())
             {
@@ -66,6 +66,36 @@ namespace BookOfBruh.Core.SlotAnalysation
             }
 
             return patterns;
+        }
+
+        private static List<Point> FindFlashPatternDown(List<Point> input)
+        {
+            return FindFlashPattern(input, -1);
+        }
+
+        private static List<Point> FindFlashPatternUp(List<Point> input)
+        {
+            return FindFlashPattern(input, 1);
+        }
+
+        private static List<Point> FindUPatternDown(List<Point> input)
+        {
+            return FindUPattern(input, -1);
+        }
+
+        private static List<Point> FindUPatternUp(List<Point> input)
+        {
+            return FindUPattern(input, 1);
+        }
+
+        private static List<Point> FindTrianglePatternDown(List<Point> input)
+        {
+            return FindTrianglePattern(input, -1);
+        }
+
+        private static List<Point> FindTrianglePatternUp(List<Point> input)
+        {
+            return FindTrianglePattern(input, 1);
         }
 
         private static List<Point> FindFlashPattern(List<Point> input, int direction)
