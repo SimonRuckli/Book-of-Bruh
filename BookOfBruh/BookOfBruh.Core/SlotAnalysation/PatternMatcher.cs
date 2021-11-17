@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 
 namespace BookOfBruh.Core.SlotAnalysation
 {
@@ -19,6 +20,7 @@ namespace BookOfBruh.Core.SlotAnalysation
             List<Point> trianglePatternUp = FindTrianglePattern(input, 1);
             List<Point> trianglePatternDown = FindTrianglePattern(input, -1);
             List<Point> diagonalPattern = FindDiagonalPattern(input);
+            List<Point> uPattern = FindUPattern(input, 1);
 
             if (linePattern.Any())
             {
@@ -36,8 +38,44 @@ namespace BookOfBruh.Core.SlotAnalysation
             {
                 patterns.Add(new Pattern(diagonalPattern));
             }
+            if (uPattern.Any())
+            {
+                patterns.Add(new Pattern(uPattern));
+            }
 
             return patterns;
+        }
+
+        private static List<Point> FindUPattern(List<Point> input, int direction)
+        {
+            List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
+
+            List<Point> uPattern = new List<Point>() { sortedPoints.First() };
+
+            List<Point> firstPointInLinePattern = sortedPoints
+                .Where(p => p.X == 1)
+                .Where(p => p.Y == uPattern.First().Y + direction)
+                .ToList();
+
+            List<Point> test = sortedPoints.Where(p => p.X > 1).ToList();
+            
+            if (!firstPointInLinePattern.Any())
+            {
+                return new List<Point>();
+            }
+
+            test.AddRange(firstPointInLinePattern);
+
+            List<Point> linePattern = FindLinePatternAt(test, 1);
+
+            uPattern.AddRange(linePattern);
+
+            IEnumerable<Point> lastPoint = sortedPoints
+                .Where(p=> p.X == 4)
+                .Where(p => p.Y == sortedPoints.First().Y);
+            uPattern.AddRange(lastPoint);
+
+            return uPattern.Count == 5 ? uPattern : new List<Point>();
         }
 
         private static List<Point> FindDiagonalPattern(List<Point> input)
@@ -106,7 +144,11 @@ namespace BookOfBruh.Core.SlotAnalysation
 
         private static List<Point> FindLinePattern(List<Point> input)
         {
-            Point firstPoint = input.First(point => point.X == 0);
+            return FindLinePatternAt(input, 0);
+        }
+        private static List<Point> FindLinePatternAt(List<Point> input, int position)
+        {
+            Point firstPoint = input.First(point => point.X == position);
 
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 

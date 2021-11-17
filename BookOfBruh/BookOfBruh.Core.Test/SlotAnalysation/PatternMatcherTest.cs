@@ -222,6 +222,16 @@
                 "|P_-_P|",
             })]
 
+        [InlineData("|P_-_P|" +
+                    "|-PPP-|" +
+                    "|-_-_-|",
+            new string[]
+            {
+                "|P_-_P|" +
+                "|-PPP-|" +
+                "|-_-_-|",
+            })]
+
         // Single incorrect Pattern
 
         [InlineData("|PPP_-|" +
