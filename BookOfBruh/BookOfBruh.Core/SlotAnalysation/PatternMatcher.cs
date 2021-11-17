@@ -4,7 +4,6 @@ namespace BookOfBruh.Core.SlotAnalysation
 {
     using System.Drawing;
     using System.Collections.Generic;
-    using System.Diagnostics.Tracing;
 
     public interface IPatternMatcher
     {
@@ -43,8 +42,6 @@ namespace BookOfBruh.Core.SlotAnalysation
 
         private static List<Point> FindDiagonalPattern(List<Point> input)
         {
-            Point firstPoint = input.First(point => point.X == 0);
-
             List<Point> sortedPoints = input.OrderBy(p => p.X).ToList();
 
             List<Point> diagonalPattern = new List<Point>();
