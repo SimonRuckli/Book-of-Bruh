@@ -390,6 +390,42 @@
                 "|-_-_-|",
             })]
 
+        [InlineData("|-P-_-|" +
+                    "|PPPPP|" +
+                    "|-P-_-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_-|" +
+                "|-P-_-|",
+
+                "|-P-_-|" +
+                "|P_P_-|" +
+                "|-_-_-|",
+
+                "|-_-_-|" +
+                "|PPPPP|" +
+                "|-_-_-|",
+            })]
+
+        [InlineData("|-P-P-|" +
+                    "|PPPPP|" +
+                    "|-P-_-|",
+            new string[]
+            {
+                "|-_-_-|" +
+                "|P_P_-|" +
+                "|-P-_-|",
+
+                "|-P-P-|" +
+                "|P_P_P|" +
+                "|-_-_-|",
+
+                "|-_-_-|" +
+                "|PPPPP|" +
+                "|-_-_-|",
+            })]
+
         public void PatternMatcherShould(string input, string[] patterns)
         {
             // Arrange

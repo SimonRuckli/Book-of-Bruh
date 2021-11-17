@@ -74,7 +74,6 @@ namespace BookOfBruh.Core.SlotAnalysation
                 }
             }
 
-
             return diagonal.Count >= 3 ? diagonal : new List<Point>();
         }
 
