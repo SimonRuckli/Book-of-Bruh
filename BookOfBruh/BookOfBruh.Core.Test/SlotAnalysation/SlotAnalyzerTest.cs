@@ -424,8 +424,8 @@
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-PPP-|" +
-                        "|P_-_P|" +
+                        "|PPPP-|" +
+                        "|-_-_-|" +
                         "|-_-_-|"
                     }
                     , 12.6)]
@@ -467,9 +467,9 @@
                     "|-_-_-|",
                     new string[]
                     {
-                        "|-_P_-|" +
-                        "|-P-P-|" +
-                        "|P_-_P|"
+                        "|-_-_-|" +
+                        "|PPPP-|" +
+                        "|-_-_-|"
                     }
                     , 10.8)]
 
@@ -646,10 +646,10 @@
                         "|P_P_P|" +
                         "|-P-_-|"
                     }
-                    , 72)]
+                    , 90)]
 
 
-        public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, int expected)
+        public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, double expected)
         {
             // Arrange
             List<Pattern> patterns = PatternTestHelper.PatternsFromStringPatterns(stringPatterns);
@@ -665,7 +665,7 @@
             double result = testee.Analyze(input);
 
             // Assert
-            result.Should().Be(expected);
+            result.Should().BeApproximately(expected, 0.0001);
         }
 
         internal class FakePatternMatcher : IPatternMatcher

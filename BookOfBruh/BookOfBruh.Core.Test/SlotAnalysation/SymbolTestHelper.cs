@@ -30,6 +30,14 @@
             return c switch
             {
                 'T' => new TenSymbol(),
+                'Q' => new QSymbol(),
+                'S' => new SimiSymbol(),
+                'H' => new JoegiSymbol(),
+                'V' => new VincSymbol(),
+                'W' => new WildSymbol(),
+                'A' => new ASymbol(),
+                'J' => new JSymbol(),
+                'K' => new KSymbol(),
                 '-' => new FS(),
                 '_' => new FS2(),
                 _ => throw new ArgumentException()
