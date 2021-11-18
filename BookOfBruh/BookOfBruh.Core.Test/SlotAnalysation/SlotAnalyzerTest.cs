@@ -715,7 +715,8 @@
 
                     foreach (Pattern pattern in this.patterns)
                     {
-                        if (pattern.Value.SequenceEqual(orderedInput))
+                        List<Point> test = pattern.Value.Where(point => orderedInput.Contains(point)).ToList();
+                        if (pattern.Value.SequenceEqual(test))
                         {
                             matching.Add(pattern);
                         }
