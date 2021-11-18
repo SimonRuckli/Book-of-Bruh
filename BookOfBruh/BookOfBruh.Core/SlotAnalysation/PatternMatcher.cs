@@ -10,7 +10,7 @@
         {
             List<Pattern> patterns = new List<Pattern>();
 
-            var orderedInput = input.OrderBy(p => p.X).ToList();
+            List<Point> orderedInput = input.OrderBy(p => p.X).ToList();
 
             List<Point> linePattern = FindLinePattern(orderedInput);
             List<Point> trianglePatternUp = FindTrianglePatternUp(orderedInput);
@@ -63,37 +63,37 @@
             return patterns;
         }
 
-        private static List<Point> FindFlashPatternDown(List<Point> input)
+        private static List<Point> FindFlashPatternDown(IReadOnlyCollection<Point> input)
         {
             return FindFlashPattern(input, -1);
         }
 
-        private static List<Point> FindFlashPatternUp(List<Point> input)
+        private static List<Point> FindFlashPatternUp(IReadOnlyCollection<Point> input)
         {
             return FindFlashPattern(input, 1);
         }
 
-        private static List<Point> FindUPatternDown(List<Point> input)
+        private static List<Point> FindUPatternDown(IReadOnlyCollection<Point> input)
         {
             return FindUPattern(input, -1);
         }
 
-        private static List<Point> FindUPatternUp(List<Point> input)
+        private static List<Point> FindUPatternUp(IReadOnlyCollection<Point> input)
         {
             return FindUPattern(input, 1);
         }
 
-        private static List<Point> FindLinePattern(List<Point> input)
+        private static List<Point> FindLinePattern(IReadOnlyCollection<Point> input)
         {
             return FindLinePatternAt(input, 0);
         }
 
-        private static List<Point> FindTrianglePatternDown(List<Point> input)
+        private static List<Point> FindTrianglePatternDown(IReadOnlyCollection<Point> input)
         {
             return FindTrianglePattern(input, -1);
         }
 
-        private static List<Point> FindTrianglePatternUp(List<Point> input)
+        private static List<Point> FindTrianglePatternUp(IReadOnlyCollection<Point> input)
         {
             return FindTrianglePattern(input, 1);
         }
@@ -101,30 +101,38 @@
         private static List<Point> FindFlashPattern(IReadOnlyCollection<Point> sortedInput, int direction)
         {
             List<Point> flashPattern = new List<Point>();
-
-            List<Point> firstTriangle = FindTrianglePatternAt(0, sortedInput, direction);
-
-            IEnumerable<Point> firstPointInSecondTriangle = sortedInput.Where(p => p.X == 2).Where(p => p.Y == 1);
-
-            List<Point> test = sortedInput.Where(p => p.X > 2).ToList();
-            test.AddRange(firstPointInSecondTriangle);
-
-            List<Point> secondTriangle = FindTrianglePatternAt(2, test, direction * -1);
-
-            if (firstTriangle.Count > 3)
-            {
-                firstTriangle = firstTriangle.GetRange(0, 3);
-            }
-
-            flashPattern.AddRange(firstTriangle);
-            flashPattern.AddRange(secondTriangle);
+            
+            flashPattern.AddRange(FindFirstTrianglePattern(sortedInput, direction));
+            flashPattern.AddRange(FindSecondTrianglePattern(sortedInput, direction));
 
             flashPattern = flashPattern.Distinct().ToList();
 
             return flashPattern.Count == 5 ? flashPattern : new List<Point>();
         }
 
-        private static List<Point> FindDiagonalPattern(List<Point> input)
+        private static List<Point> FindFirstTrianglePattern(IReadOnlyCollection<Point> sortedInput, int direction)
+        {
+            List<Point> firstTriangle = FindTrianglePatternAt(0, sortedInput, direction);
+
+            if (firstTriangle.Count > 3)
+            {
+                firstTriangle = firstTriangle.GetRange(0, 3);
+            }
+
+            return firstTriangle;
+        }
+
+        private static List<Point> FindSecondTrianglePattern(IReadOnlyCollection<Point> sortedInput, int direction)
+        {
+            IEnumerable<Point> firstPointInSecondTriangle = sortedInput.Where(p => p.X == 2).Where(p => p.Y == 1);
+
+            List<Point> shortedInput = sortedInput.Where(p => p.X > 2).ToList();
+            shortedInput.AddRange(firstPointInSecondTriangle);
+
+            return FindTrianglePatternAt(2, shortedInput, direction * -1);
+        }
+
+        private static List<Point> FindDiagonalPattern(IReadOnlyList<Point> input)
         {
             List<Point> diagonalPattern = FindOnlyDiagonalPattern(input, 0);
 
@@ -152,7 +160,7 @@
             return uPattern.Count == 5 ? uPattern : new List<Point>();
         }
 
-        private static List<Point> FindTrianglePattern(List<Point> input, int direction)
+        private static List<Point> FindTrianglePattern(IReadOnlyCollection<Point> input, int direction)
         {
             return FindTrianglePatternAt(0, input, direction);
         }
