@@ -9,15 +9,18 @@
         private readonly ILinePatternMatcher linePatternMatcher;
         private readonly ITrianglePatternMatcher trianglePatternMatcher;
         private readonly IDiagonalPatternMatcher diagonalPatternMatcher;
+        private readonly IUPatternMatcher uPatternMatcher;
 
         public PatternMatcher(
             ILinePatternMatcher linePatternMatcher, 
             ITrianglePatternMatcher trianglePatternMatcher,
-            IDiagonalPatternMatcher diagonalPatternMatcher)
+            IDiagonalPatternMatcher diagonalPatternMatcher,
+            IUPatternMatcher uPatternMatcher)
         {
             this.linePatternMatcher = linePatternMatcher;
             this.trianglePatternMatcher = trianglePatternMatcher;
             this.diagonalPatternMatcher = diagonalPatternMatcher;
+            this.uPatternMatcher = uPatternMatcher;
         }
 
         public List<Pattern> FindMatches(List<Point> input)
@@ -89,12 +92,12 @@
 
         private List<Point> FindUPatternDown(List<Point> input)
         {
-            return this.FindUPattern(input, -1);
+            return this.uPatternMatcher.FindMatches(input, -1);
         }
 
         private List<Point> FindUPatternUp(List<Point> input)
         {
-            return this.FindUPattern(input, 1);
+            return this.uPatternMatcher.FindMatches(input, 1);
         }
 
         private List<Point> FindLinePattern(List<Point> input)
@@ -146,49 +149,9 @@
             return this.trianglePatternMatcher.FindMatchesAt(2, direction * -1, shortedInput);
         }
 
-        private List<Point> FindUPattern(List<Point> sortedInput, int direction)
-        {
-            List<Point> uPattern = new List<Point>() { sortedInput.First() };
-            
-            uPattern.AddRange(this.FindShortedLinePattern(sortedInput, direction));
-
-            IEnumerable<Point> lastPoint = sortedInput
-                .Where(p=> p.X == 4)
-                .Where(p => p.Y == sortedInput.First().Y);
-            uPattern.AddRange(lastPoint);
-
-            return uPattern.Count == 5 ? uPattern : new List<Point>();
-        }
-
         private  List<Point> FindTrianglePattern(List<Point> input, int direction)
         {
             return this.trianglePatternMatcher.FindMatchesAt(0, direction, input);
-        }
-
-        private List<Point> FindShortedLinePattern(IReadOnlyCollection<Point> sortedInput, int direction)
-        {
-            List<Point> firstPointInLinePattern = sortedInput
-                .Where(p => p.X == 1)
-                .Where(p => p.Y == sortedInput.First().Y + direction)
-                .ToList();
-
-            List<Point> shortedInput = sortedInput.Where(p => p.X > 1).ToList();
-
-            if (!firstPointInLinePattern.Any())
-            {
-                return new List<Point>();
-            }
-
-            shortedInput.AddRange(firstPointInLinePattern);
-
-            List<Point> linePattern = this.linePatternMatcher.FindMatchesAt(1, shortedInput);
-
-            if (linePattern.Count == 4)
-            {
-                linePattern.RemoveAt(linePattern.Count - 1);
-            }
-
-            return linePattern;
         }
     }
 }

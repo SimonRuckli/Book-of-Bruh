@@ -292,7 +292,8 @@
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
-                new DiagonalPatternMatcher());
+                new DiagonalPatternMatcher(),
+                new UPatternMatcher(new LinePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -409,7 +410,8 @@
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
-                new DiagonalPatternMatcher());
+                new DiagonalPatternMatcher(),
+                new UPatternMatcher(new LinePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -606,7 +608,8 @@
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
-                new DiagonalPatternMatcher());
+                new DiagonalPatternMatcher(),
+                new UPatternMatcher(new LinePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
