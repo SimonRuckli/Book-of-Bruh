@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.Core.SlotAnalysation
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
@@ -91,7 +90,8 @@
             {
                 for (int x = ignoreFirst; x < slots.Columns; x++)
                 {
-                    if (slots.Symbols[x, y].GetType() == template.GetType())
+                    ISymbol current = slots.Symbols[x, y];
+                    if (current.GetType() == template.GetType() || current is WildSymbol)
                     {
                         points.Add(new Point(x, y));
                     }
