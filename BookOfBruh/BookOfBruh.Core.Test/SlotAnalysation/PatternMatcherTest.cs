@@ -293,7 +293,8 @@
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
                 new DiagonalPatternMatcher(),
-                new UPatternMatcher(new LinePatternMatcher()));
+                new UPatternMatcher(new LinePatternMatcher()),
+                new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -411,7 +412,8 @@
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
                 new DiagonalPatternMatcher(),
-                new UPatternMatcher(new LinePatternMatcher()));
+                new UPatternMatcher(new LinePatternMatcher()),
+                new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -609,7 +611,8 @@
                 new LinePatternMatcher(),
                 new TrianglePatternMatcher(),
                 new DiagonalPatternMatcher(),
-                new UPatternMatcher(new LinePatternMatcher()));
+                new UPatternMatcher(new LinePatternMatcher()),
+                new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);

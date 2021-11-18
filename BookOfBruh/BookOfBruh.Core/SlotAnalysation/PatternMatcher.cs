@@ -10,17 +10,20 @@
         private readonly ITrianglePatternMatcher trianglePatternMatcher;
         private readonly IDiagonalPatternMatcher diagonalPatternMatcher;
         private readonly IUPatternMatcher uPatternMatcher;
+        private readonly IFlashPatternMatcher flashPatternMatcher;
 
         public PatternMatcher(
             ILinePatternMatcher linePatternMatcher, 
             ITrianglePatternMatcher trianglePatternMatcher,
             IDiagonalPatternMatcher diagonalPatternMatcher,
-            IUPatternMatcher uPatternMatcher)
+            IUPatternMatcher uPatternMatcher,
+            IFlashPatternMatcher flashPatternMatcher)
         {
             this.linePatternMatcher = linePatternMatcher;
             this.trianglePatternMatcher = trianglePatternMatcher;
             this.diagonalPatternMatcher = diagonalPatternMatcher;
             this.uPatternMatcher = uPatternMatcher;
+            this.flashPatternMatcher = flashPatternMatcher;
         }
 
         public List<Pattern> FindMatches(List<Point> input)
@@ -33,8 +36,8 @@
             List<Point> trianglePatternUp = this.FindTrianglePatternUp(orderedInput);
             List<Point> trianglePatternDown = this.FindTrianglePatternDown(orderedInput);
             List<Point> diagonalPattern = this.diagonalPatternMatcher.FindMatches(orderedInput);
-            List<Point> uPatternUp = FindUPatternUp(orderedInput);
-            List<Point> uPatternDown = FindUPatternDown(orderedInput);
+            List<Point> uPatternUp = this.FindUPatternUp(orderedInput);
+            List<Point> uPatternDown = this.FindUPatternDown(orderedInput);
             List<Point> flashPatternUp = FindFlashPatternUp(orderedInput);
             List<Point> flashPatternDown = FindFlashPatternDown(orderedInput);
 
@@ -82,12 +85,12 @@
 
         private List<Point> FindFlashPatternDown(List<Point> input)
         {
-            return this.FindFlashPattern(input, -1);
+            return this.flashPatternMatcher.FindMatches(-1, input);
         }
 
         private List<Point> FindFlashPatternUp(List<Point> input)
         {
-            return this.FindFlashPattern(input, 1);
+            return this.flashPatternMatcher.FindMatches(1, input);
         }
 
         private List<Point> FindUPatternDown(List<Point> input)
@@ -113,40 +116,6 @@
         private List<Point> FindTrianglePatternUp(List<Point> input)
         {
             return this.FindTrianglePattern(input, 1);
-        }
-
-        private List<Point> FindFlashPattern(List<Point> sortedInput, int direction)
-        {
-            List<Point> flashPattern = new List<Point>();
-            
-            flashPattern.AddRange(this.FindFirstTrianglePattern(sortedInput, direction));
-            flashPattern.AddRange(FindSecondTrianglePattern(sortedInput, direction));
-
-            flashPattern = flashPattern.Distinct().ToList();
-
-            return flashPattern.Count == 5 ? flashPattern : new List<Point>();
-        }
-
-        private List<Point> FindFirstTrianglePattern(List<Point> sortedInput, int direction)
-        {
-            List<Point> firstTriangle = this.trianglePatternMatcher.FindMatchesAt(0, direction, sortedInput);
-
-            if (firstTriangle.Count > 3)
-            {
-                firstTriangle = firstTriangle.GetRange(0, 3);
-            }
-
-            return firstTriangle;
-        }
-
-        private List<Point> FindSecondTrianglePattern(IReadOnlyCollection<Point> sortedInput, int direction)
-        {
-            IEnumerable<Point> firstPointInSecondTriangle = sortedInput.Where(p => p.X == 2).Where(p => p.Y == 1);
-
-            List<Point> shortedInput = sortedInput.Where(p => p.X > 2).ToList();
-            shortedInput.AddRange(firstPointInSecondTriangle);
-
-            return this.trianglePatternMatcher.FindMatchesAt(2, direction * -1, shortedInput);
         }
 
         private  List<Point> FindTrianglePattern(List<Point> input, int direction)
