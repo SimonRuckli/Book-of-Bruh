@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core.SlotAnalysation
+﻿namespace BookOfBruh.Core.SlotAnalysation.PatternMatchers
 {
     using System.Collections.Generic;
     using System.Drawing;

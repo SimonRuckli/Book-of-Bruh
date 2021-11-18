@@ -3,6 +3,7 @@
     using System.Drawing;
     using System.Collections.Generic;
     using System.Linq;
+    using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
 
     public class PatternMatcher : IPatternMatcher
     {

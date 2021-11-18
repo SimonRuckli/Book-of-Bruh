@@ -5,8 +5,9 @@
     using BookOfBruh.Core.SlotAnalysation;
     using System.Collections.Generic;
     using System.Drawing;
+    using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
 
-    public class PatternMatcherTest
+    public class PatternMatcherIntegrationsTest
     {
         [Theory]
         
