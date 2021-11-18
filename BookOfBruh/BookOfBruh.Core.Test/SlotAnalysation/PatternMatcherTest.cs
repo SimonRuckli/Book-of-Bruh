@@ -289,7 +289,7 @@
             List<Point> pointList = PatternTestHelper.PointsFromString(input);
             List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
             
-            IPatternMatcher testee = new PatternMatcher();
+            IPatternMatcher testee = new PatternMatcher(new LinePatternMatcher());
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -402,8 +402,8 @@
             // Arrange
             List<Point> pointList = PatternTestHelper.PointsFromString(input);
             List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
-            
-            IPatternMatcher testee = new PatternMatcher();
+
+            IPatternMatcher testee = new PatternMatcher(new LinePatternMatcher());
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
@@ -596,8 +596,8 @@
             // Arrange
             List<Point> pointList = PatternTestHelper.PointsFromString(input);
             List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
-            
-            IPatternMatcher testee = new PatternMatcher();
+
+            IPatternMatcher testee = new PatternMatcher(new LinePatternMatcher());
 
             // Act
             List<Pattern> result = testee.FindMatches(pointList);
