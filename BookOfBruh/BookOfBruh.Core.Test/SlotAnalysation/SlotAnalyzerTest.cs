@@ -35,7 +35,7 @@
                         "|-_-_-|" +
                         "|-_-_-|"
                     }
-                    , 6)]
+                    , 9)]
 
         [InlineData("|TTTTT|" +
                     "|-_-_-|" +
@@ -123,7 +123,7 @@
                         "|PPPP-|" +
                         "|-_-_-|"
                     }
-                    , 6)]
+                    , 9)]
 
         [InlineData("|-_-_-|" +
                     "|TTTTT|" +
@@ -244,7 +244,7 @@
                         "|-_-_-|" +
                         "|PPPP-|"
                     }
-                    , 6)]
+                    , 9)]
 
         [InlineData("|-_-_-|" +
                     "|-_-_-|" +
@@ -406,6 +406,247 @@
                     "|P--_-|"
                 }
                 , 27)]
+
+        // ASymbol 
+        [InlineData("|-_-_-|" +
+                    "|A_-_A|" +
+                    "|-AAA-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|P_-_P|" +
+                        "|-PPP-|"
+                    }
+                    , 33.6)]
+
+        [InlineData("|AAAA-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|",
+                    new string[]
+                    {
+                        "|-PPP-|" +
+                        "|P_-_P|" +
+                        "|-_-_-|"
+                    }
+                    , 12.6)]
+
+        [InlineData("|-_-_-|" +
+                    "|A_A_-|" +
+                    "|-A-_-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|P_P_-|" +
+                        "|-P-_-|"
+                    }
+                    , 4.2)]
+
+        // QSymbol 
+        [InlineData("|-Q-_-|" +
+                    "|Q_Q_-|" +
+                    "|-_-_-|",
+                    new string[]
+                    {
+                        "|-P-_-|" +
+                        "|P_P_-|" +
+                        "|-_-_-|"
+                    }
+                    , 3.6)]
+        [InlineData("|-_Q_-|" +
+                    "|-Q-Q-|" +
+                    "|Q_-_Q|",
+                    new string[]
+                    {
+                        "|-_P_-|" +
+                        "|-P-P-|" +
+                        "|P_-_P|"
+                    }
+                    , 28.8)]
+        [InlineData("|-_-_-|" +
+                    "|QQQQ-|" +
+                    "|-_-_-|",
+                    new string[]
+                    {
+                        "|-_P_-|" +
+                        "|-P-P-|" +
+                        "|P_-_P|"
+                    }
+                    , 10.8)]
+
+        // KSymbol 
+        [InlineData("|-_-_-|" +
+                    "|KKK_-|" +
+                    "|-_-_-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|PPP_-|" +
+                        "|-_-_-|"
+                    }
+                    , 3.6)]
+        [InlineData("|K_-_K|" +
+                    "|-K-K-|" +
+                    "|-_K_-|",
+                    new string[]
+                    {
+                        "|P_-_P|" +
+                        "|-P-P-|" +
+                        "|-_P_-|"
+                    }
+                    , 28.8)]
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|KKKK-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
+                    }
+                    , 10.8)]
+        // JSymbol
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|JJJJ-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
+                    }
+                    , 9)]
+
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|JJJJJ|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPPP|"
+                    }
+                    , 24)]
+
+        [InlineData("|-_J_-|" +
+                    "|-J-_-|" +
+                    "|J_-_-|",
+                    new string[]
+                    {
+                        "|-_P_-|" +
+                        "|-P-_-|" +
+                        "|P_-_-|"
+                    }
+                    , 3)]
+        // JoegiSymbol
+        [InlineData("|-_-_-|" +
+                    "|H_-_H|" +
+                    "|-HHH-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|P_-_P|" +
+                        "|-PPP-|"
+                    }
+                    , 48)]
+
+        [InlineData("|-_H_-|" +
+                    "|-H-_-|" +
+                    "|H_-_-|",
+                    new string[]
+                    {
+                        "|-_P_-|" +
+                        "|-P-_-|" +
+                        "|P_-_-|"
+                    }
+                    , 6)]
+
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|HHHH-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
+                    }
+                    , 18)]
+        // VincSymbol
+        [InlineData("|-_-V-|" +
+                    "|V_V_V|" +
+                    "|-V-_-|",
+                    new string[]
+                    {
+                        "|-_-P-|" +
+                        "|P_P_P|" +
+                        "|-P-_-|"
+                    }
+                    , 60)]
+
+        [InlineData("|V_-_-|" +
+                    "|-V-_-|" +
+                    "|-_V_-|",
+                    new string[]
+                    {
+                        "|P_-_-|" +
+                        "|-P-_-|" +
+                        "|-_P_-|"
+                    }
+                    , 7.5)]
+
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|VVVV-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
+                    }
+                    , 22.5)]
+        // SSymbol
+        [InlineData("|-_-S-|" +
+                    "|S_S_S|" +
+                    "|-S-_-|",
+                    new string[]
+                    {
+                        "|-_-P-|" +
+                        "|P_P_P|" +
+                        "|-P-_-|"
+                    }
+                    , 72)]
+
+        [InlineData("|S_-_-|" +
+                    "|-S-_-|" +
+                    "|-_S_-|",
+                    new string[]
+                    {
+                        "|P_-_-|" +
+                        "|-P-_-|" +
+                        "|-_P_-|"
+                    }
+                    , 9)]
+
+        [InlineData("|-_-_-|" +
+                    "|-_-_-|" +
+                    "|SSSS-|",
+                    new string[]
+                    {
+                        "|-_-_-|" +
+                        "|-_-_-|" +
+                        "|PPPP-|"
+                    }
+                    , 27)]
+        // WildSymbol
+        [InlineData("|-_-W-|" +
+                    "|W_W_W|" +
+                    "|-W-_-|",
+                    new string[]
+                    {
+                        "|-_-P-|" +
+                        "|P_P_P|" +
+                        "|-P-_-|"
+                    }
+                    , 72)]
 
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, int expected)
