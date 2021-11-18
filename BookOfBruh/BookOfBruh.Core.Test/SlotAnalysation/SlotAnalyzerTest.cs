@@ -647,6 +647,17 @@
                         "|-P-_-|"
                     }
                     , 90)]
+        
+        [InlineData("|-_-A-|" +
+                    "|W_A_A|" +
+                    "|-A-_-|",
+                    new string[]
+                    {
+                        "|-_-P-|" +
+                        "|P_P_P|" +
+                        "|-P-_-|"
+                    }
+                    , 33.6)]
 
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, double expected)
