@@ -658,6 +658,21 @@
                         "|-P-_-|"
                     }
                     , 33.6)]
+        
+        [InlineData("|-TTT-|" +
+                    "|W_-_W|" +
+                    "|-AAA-|",
+                    new string[]
+                    { 
+                        "|-PPP-|" +
+                        "|P_-_P|" +
+                        "|-_-_-|",
+
+                        "|-_-_-|" +
+                        "|P_-_P|" +
+                        "|-PPP-|",
+                    }
+                    , 57.6)]
 
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, double expected)
@@ -681,18 +696,30 @@
 
         internal class FakePatternMatcher : IPatternMatcher
         {
-            private readonly List<Pattern> patterns;
+            private readonly List<Pattern> patterns = new List<Pattern>();
 
             public FakePatternMatcher(List<Pattern> patterns)
             {
-                this.patterns = patterns;
+                foreach (Pattern pattern in patterns)
+                {
+                    this.patterns.Add(new Pattern(pattern.Value.OrderBy(p => p.X).ToList()));
+                }
             }
 
             public List<Pattern> FindMatches(List<Point> input)
             {
+                List<Point> orderedInput = input.OrderBy(p => p.X).ToList();
                 if (this.patterns.Count > 1)
                 {
-                    List<Pattern> matching = this.patterns.Where(p => p.Value.First(pp => pp.X == 0) == input.First()).ToList();
+                    List<Pattern> matching = new List<Pattern>();
+
+                    foreach (Pattern pattern in this.patterns)
+                    {
+                        if (pattern.Value.SequenceEqual(input))
+                        {
+                            matching.Add(pattern);
+                        }
+                    }
                     return matching;
                 }
                 return this.patterns;
