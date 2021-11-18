@@ -38,10 +38,10 @@
     }
     internal struct FS : ISymbol
     {
-        public byte Rarity => 0;
+        public double Rarity => 0;
     }
     internal struct FS2 : ISymbol
     {
-        public byte Rarity => 0;
+        public double Rarity => 0;
     }
 }

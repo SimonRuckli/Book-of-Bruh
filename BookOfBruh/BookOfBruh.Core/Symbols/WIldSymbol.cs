@@ -2,6 +2,6 @@
 {
     public struct WildSymbol : ISymbol
     {
-        public byte Rarity => 6;
+        public double Rarity => 11.25;
     }
 }

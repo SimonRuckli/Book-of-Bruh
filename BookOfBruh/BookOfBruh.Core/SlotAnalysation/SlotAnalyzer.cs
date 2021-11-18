@@ -62,21 +62,21 @@
 
         private static double CalculateRowMultiplier(List<int> patternCounts, ISymbol firstSymbol)
         {
-            int multiplier = 0;
+            double multiplier = 0;
 
             foreach (int patternCount in patternCounts)
             {
                 if (patternCount == 5)
                 {
-                    multiplier += 24 * firstSymbol.Rarity;
+                    multiplier += firstSymbol.Rarity * 8;
                 }
                 if (patternCount == 4)
                 {
-                    multiplier += 6 * firstSymbol.Rarity;
+                    multiplier += firstSymbol.Rarity * 3;
                 }
                 if (patternCount == 3)
                 {
-                    multiplier += 3 * firstSymbol.Rarity;
+                    multiplier += firstSymbol.Rarity;
                 }
             }
 

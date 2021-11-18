@@ -2,6 +2,6 @@
 {
     public interface ISymbol
     {
-        public byte Rarity { get; }
+        public double Rarity { get; }
     }
 }
