@@ -6,7 +6,7 @@
 
     public interface IUPatternMatcher
     {
-        List<Point> FindMatches(List<Point> sortedInput, int direction);
+        List<Point> FindMatches(int direction, List<Point> input);
     }
 
     public class UPatternMatcher : IUPatternMatcher
@@ -18,28 +18,28 @@
             this.linePatternMatcher = linePatternMatcher;
         }
 
-        public List<Point> FindMatches(List<Point> sortedInput, int direction)
+        public List<Point> FindMatches(int direction, List<Point> input)
         {
-            List<Point> uPattern = new List<Point>() { sortedInput.First() };
+            List<Point> uPattern = new List<Point>() { input.First() };
 
-            uPattern.AddRange(this.FindShortedLinePattern(sortedInput, direction));
+            uPattern.AddRange(this.FindShortedLinePattern(input, direction));
 
-            IEnumerable<Point> lastPoint = sortedInput
+            IEnumerable<Point> lastPoint = input
                                            .Where(p => p.X == 4)
-                                           .Where(p => p.Y == sortedInput.First().Y);
+                                           .Where(p => p.Y == input.First().Y);
             uPattern.AddRange(lastPoint);
 
             return uPattern.Count == 5 ? uPattern : new List<Point>();
         }
 
-        private List<Point> FindShortedLinePattern(IReadOnlyCollection<Point> sortedInput, int direction)
+        private List<Point> FindShortedLinePattern(IReadOnlyCollection<Point> input, int direction)
         {
-            List<Point> firstPointInLinePattern = sortedInput
+            List<Point> firstPointInLinePattern = input
                                                   .Where(p => p.X == 1)
-                                                  .Where(p => p.Y == sortedInput.First().Y + direction)
+                                                  .Where(p => p.Y == input.First().Y + direction)
                                                   .ToList();
 
-            List<Point> shortedInput = sortedInput.Where(p => p.X > 1).ToList();
+            List<Point> shortedInput = input.Where(p => p.X > 1).ToList();
 
             if (!firstPointInLinePattern.Any())
             {

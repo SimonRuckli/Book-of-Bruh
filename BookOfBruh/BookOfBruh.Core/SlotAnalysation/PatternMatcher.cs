@@ -35,11 +35,11 @@
             List<Point> linePattern = this.FindLinePattern(orderedInput);
             List<Point> trianglePatternUp = this.FindTrianglePatternUp(orderedInput);
             List<Point> trianglePatternDown = this.FindTrianglePatternDown(orderedInput);
-            List<Point> diagonalPattern = this.diagonalPatternMatcher.FindMatches(orderedInput);
+            List<Point> diagonalPattern = this.FindDiagonalPattern(orderedInput);
             List<Point> uPatternUp = this.FindUPatternUp(orderedInput);
             List<Point> uPatternDown = this.FindUPatternDown(orderedInput);
-            List<Point> flashPatternUp = FindFlashPatternUp(orderedInput);
-            List<Point> flashPatternDown = FindFlashPatternDown(orderedInput);
+            List<Point> flashPatternUp = this.FindFlashPatternUp(orderedInput);
+            List<Point> flashPatternDown = this.FindFlashPatternDown(orderedInput);
 
             if (linePattern.Any())
             {
@@ -83,6 +83,11 @@
             return patterns;
         }
 
+        private List<Point> FindDiagonalPattern(List<Point> input)
+        {
+            return this.diagonalPatternMatcher.FindMatches(input);
+        }
+
         private List<Point> FindFlashPatternDown(List<Point> input)
         {
             return this.flashPatternMatcher.FindMatches(-1, input);
@@ -95,12 +100,12 @@
 
         private List<Point> FindUPatternDown(List<Point> input)
         {
-            return this.uPatternMatcher.FindMatches(input, -1);
+            return this.uPatternMatcher.FindMatches(-1, input);
         }
 
         private List<Point> FindUPatternUp(List<Point> input)
         {
-            return this.uPatternMatcher.FindMatches(input, 1);
+            return this.uPatternMatcher.FindMatches(1, input);
         }
 
         private List<Point> FindLinePattern(List<Point> input)
