@@ -715,7 +715,7 @@
 
                     foreach (Pattern pattern in this.patterns)
                     {
-                        if (pattern.Value.SequenceEqual(input))
+                        if (pattern.Value.SequenceEqual(orderedInput))
                         {
                             matching.Add(pattern);
                         }
