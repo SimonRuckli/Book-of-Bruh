@@ -23,7 +23,7 @@
             {
                 for (int y = 0; y < symbols.GetLength(1); y++)
                 {
-                    int next = this.random.Next(1000);
+                    int next = this.random.Next(100);
                     symbols[x, y] = this.symbolGenerator.Generate(next);
                 }
             }

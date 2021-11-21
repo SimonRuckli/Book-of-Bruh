@@ -2,6 +2,7 @@
 {
     using BookOfBruh.Core.SlotAnalysation;
     using Ninject.Modules;
+    using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
 
     public class TestModule : NinjectModule
     {
