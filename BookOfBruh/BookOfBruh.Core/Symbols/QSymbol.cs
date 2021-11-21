@@ -2,6 +2,6 @@
 {
     public struct QSymbol : ISymbol
     {
-        public byte Rarity => 1;
+        public double Rarity => 3.6;
     }
 }
