@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core.Code
+﻿namespace BookOfBruh.Core.CodeValidation
 {
     using System;
     using CSharpFunctionalExtensions;

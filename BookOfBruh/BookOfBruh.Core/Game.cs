@@ -3,10 +3,10 @@
 namespace BookOfBruh.Core
 {
     using System;
+    using BookOfBruh.Core.CodeValidation;
     using BookOfBruh.Core.GameData;
     using BookOfBruh.Core.SlotAnalysation;
     using BookOfBruh.Core.SlotGeneration;
-    using Code;
 
     public class Game
     {

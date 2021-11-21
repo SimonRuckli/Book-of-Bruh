@@ -2,6 +2,6 @@
 {
     public struct ASymbol : ISymbol
     {
-        public byte Rarity => 2;
+        public double Rarity => 4.2;
     }
 }
