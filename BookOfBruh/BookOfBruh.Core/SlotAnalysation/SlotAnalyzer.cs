@@ -6,7 +6,12 @@
     using BookOfBruh.Core.Symbols;
     using BookOfBruh.Core.GameData;
 
-    public class SlotAnalyzer
+    public interface ISlotAnalyzer
+    {
+        double Analyze(Slots slots);
+    }
+
+    public class SlotAnalyzer : ISlotAnalyzer
     {
         private readonly IPatternMatcher patternMatcher;
 

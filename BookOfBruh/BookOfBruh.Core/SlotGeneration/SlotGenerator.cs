@@ -4,7 +4,12 @@
     using BookOfBruh.Core.GameData;
     using BookOfBruh.Core.Symbols;
 
-    public class SlotGenerator
+    public interface ISlotGenerator
+    {
+        Slots Generate();
+    }
+
+    public class SlotGenerator : ISlotGenerator
     {
         private readonly ISymbolGenerator symbolGenerator;
         private readonly Random random;

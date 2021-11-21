@@ -3,7 +3,12 @@
     using System;
     using CSharpFunctionalExtensions;
 
-    public class CodeValidator
+    public interface ICodeValidator
+    {
+        Result<double> Validate(int code);
+    }
+
+    public class CodeValidator : ICodeValidator
     {
         public Result<double> Validate(int code)
         {
