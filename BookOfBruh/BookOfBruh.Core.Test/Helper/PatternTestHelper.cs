@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-
-namespace BookOfBruh.Core.Test.SlotAnalysation
+﻿namespace BookOfBruh.Core.Test.Helper
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
     using BookOfBruh.Core.SlotAnalysation;
 

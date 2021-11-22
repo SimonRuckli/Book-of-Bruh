@@ -1,8 +1,8 @@
 ﻿namespace BookOfBruh.Core.SlotGeneration
 {
     using System;
-    using BookOfBruh.Core.GameData;
-    using BookOfBruh.Core.Symbols;
+    using GameData;
+    using Symbols;
 
     public interface ISlotGenerator
     {

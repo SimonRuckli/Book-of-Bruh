@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace BookOfBruh.View.Slot
+﻿namespace BookOfBruh.View.Slot
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaktionslogik für SlotView.xaml
     /// </summary>

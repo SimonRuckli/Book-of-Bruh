@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using BookOfBruh.Core.SlotGeneration;
-    using BookOfBruh.Core.Symbols;
+    using SlotGeneration;
+    using Symbols;
     using Xunit;
     using FluentAssertions;
     using FluentAssertions.Execution;

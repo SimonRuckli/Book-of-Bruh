@@ -1,6 +1,6 @@
 namespace BookOfBruh.Core.SlotGeneration
 {
-    using BookOfBruh.Core.Symbols;
+    using Symbols;
 
     public interface ISymbolGenerator
     {

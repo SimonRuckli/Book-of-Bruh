@@ -1,12 +1,11 @@
-﻿using System.Linq;
-
-namespace BookOfBruh.Core.Test.Slot
+﻿namespace BookOfBruh.Core.Test.Slot
 {
     using System.Collections.Generic;
-    using BookOfBruh.Core.SlotGeneration;
+    using SlotGeneration;
     using Symbols;
     using FluentAssertions;
     using Xunit;
+    using System.Linq;
 
     public class SymbolGeneratorTest
     {

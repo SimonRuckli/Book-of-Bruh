@@ -1,7 +1,7 @@
-﻿using System.Windows;
-
-namespace BookOfBruh.View
+﻿namespace BookOfBruh.View
 {
+    using System.Windows;
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

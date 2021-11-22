@@ -9,7 +9,7 @@
 
     public class Player : IPlayer
     {
-        private Wallet wallet;
+        private readonly Wallet wallet;
 
         public Player(string name, Wallet wallet)
         {

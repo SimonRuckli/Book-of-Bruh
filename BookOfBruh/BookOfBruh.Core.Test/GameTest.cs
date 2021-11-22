@@ -1,22 +1,23 @@
 ﻿namespace BookOfBruh.Core.Test
 {
-    using BookOfBruh.Core.CodeValidation;
-    using BookOfBruh.Core.GameData;
+    using CodeValidation;
+    using GameData;
     using BookOfBruh.Core.SlotAnalysation;
-    using BookOfBruh.Core.SlotGeneration;
+    using SlotGeneration;
     using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Xunit;
+
     public class GameTest
     {
         [Fact]
         public void SpinShouldReturnCorrectSpinResult()
         {
             // Arrange
-            ISlotGenerator fakeSlotGenerator = new IFakeSlotGenerator();
-            ISlotAnalyzer fakeSlotAnalyzer = new IFakeSlotAnalyzer();
-            ICodeValidator fakeCodeValidator = new IFakeCodeValidator();
-            IPlayer fakePlayer = new IFakePlayer();
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator();
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer();
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator();
+            IPlayer fakePlayer = new FakePlayer();
             int stake = 1;
             SpinResult expected = new SpinResult(new Slots(new Symbols.ISymbol[5,3]), 1);
 
@@ -30,7 +31,7 @@
         }
     }
 
-    internal class IFakeSlotGenerator : ISlotGenerator
+    internal class FakeSlotGenerator : ISlotGenerator
     {
         public Slots Generate()
         {
@@ -38,7 +39,7 @@
         }
     }
 
-    internal class IFakeSlotAnalyzer : ISlotAnalyzer
+    internal class FakeSlotAnalyzer : ISlotAnalyzer
     {
         public double Analyze(Slots slots)
         {
@@ -46,7 +47,7 @@
         }
     }
 
-    internal class IFakeCodeValidator : ICodeValidator
+    internal class FakeCodeValidator : ICodeValidator
     {
         public Result<double> Validate(int code)
         {
@@ -54,12 +55,12 @@
         }
     }
 
-    internal class IFakeWallet : IWallet
+    internal class FakeWallet : IWallet
     {
         public double BruhCoins { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     }
 
-    internal class IFakePlayer : IPlayer
+    internal class FakePlayer : IPlayer
     {
         public string Name => throw new System.NotImplementedException();
 

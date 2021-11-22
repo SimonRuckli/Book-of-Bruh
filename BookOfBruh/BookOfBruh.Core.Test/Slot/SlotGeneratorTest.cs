@@ -1,11 +1,10 @@
-using BookOfBruh.Core.Symbols;
-using FluentAssertions;
-using Xunit;
-
 namespace BookOfBruh.Core.Test.Slot
 {
-    using BookOfBruh.Core.GameData;
-    using BookOfBruh.Core.SlotGeneration;
+    using Symbols;
+    using FluentAssertions;
+    using Xunit;
+    using GameData;
+    using SlotGeneration;
 
     public class SlotGeneratorTest
     {
@@ -31,14 +30,9 @@ namespace BookOfBruh.Core.Test.Slot
             // Arrange
             ISymbolGenerator symbolGenerator = new FakeSymbolGenerator(new ASymbol());
             SlotGenerator testee = new SlotGenerator(symbolGenerator);
-            ISymbol[,] symbols = new ISymbol[5, 3]
-            {
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-                {new ASymbol(), new ASymbol(), new ASymbol()},
-            };
+            ISymbol[,] symbols = Helper.SymbolTestHelper.SymbolsFromPattern("|AAAAA|" + 
+                                                                            "|AAAAA|" +
+                                                                            "|AAAAA|");
 
             Slots expected = new Slots(symbols);
 

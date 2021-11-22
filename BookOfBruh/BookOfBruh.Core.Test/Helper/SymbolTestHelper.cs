@@ -1,9 +1,9 @@
-﻿namespace BookOfBruh.Core.Test.SlotAnalysation
+﻿namespace BookOfBruh.Core.Test.Helper
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using BookOfBruh.Core.Symbols;
+    using Symbols;
 
     internal class SymbolTestHelper
     {
@@ -38,17 +38,17 @@
                 'A' => new ASymbol(),
                 'J' => new JSymbol(),
                 'K' => new KSymbol(),
-                '-' => new FS(),
-                '_' => new FS2(),
+                '-' => new Fs(),
+                '_' => new Fs2(),
                 _ => throw new ArgumentException()
             };
         }
     }
-    internal struct FS : ISymbol
+    internal struct Fs : ISymbol
     {
         public double Rarity => 0;
     }
-    internal struct FS2 : ISymbol
+    internal struct Fs2 : ISymbol
     {
         public double Rarity => 0;
     }

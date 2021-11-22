@@ -1,4 +1,6 @@
-﻿namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
+﻿using BookOfBruh.Core.Test.Helper;
+
+namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
 {
     using System.Collections.Generic;
     using System.Drawing;

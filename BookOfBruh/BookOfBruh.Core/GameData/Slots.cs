@@ -1,6 +1,6 @@
 ﻿namespace BookOfBruh.Core.GameData
 {
-    using BookOfBruh.Core.Symbols;
+    using Symbols;
 
     public class Slots
     {
