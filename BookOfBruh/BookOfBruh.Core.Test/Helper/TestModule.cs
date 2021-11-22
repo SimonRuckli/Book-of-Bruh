@@ -1,6 +1,7 @@
-﻿namespace BookOfBruh.Core.Test
+﻿namespace BookOfBruh.Core.Test.Helper
 {
     using BookOfBruh.Core.SlotAnalysation;
+    using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
     using Ninject.Modules;
 
     public class TestModule : NinjectModule

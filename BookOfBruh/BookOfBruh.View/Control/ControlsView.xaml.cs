@@ -1,7 +1,7 @@
-﻿using System.Windows.Controls;
-
-namespace BookOfBruh.View.Control
+﻿namespace BookOfBruh.View.Control
 {
+    using System.Windows.Controls;
+
     /// <summary>
     /// Interaction logic for ControlsView.xaml
     /// </summary>

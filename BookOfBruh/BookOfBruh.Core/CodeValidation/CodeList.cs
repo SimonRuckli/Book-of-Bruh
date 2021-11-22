@@ -4,8 +4,7 @@
 
     public class CodeList
     {
-        public static List<CodeValues> Codes =
-            new() { };
+        public static List<CodeValues> Codes = new();
 
     }
 }

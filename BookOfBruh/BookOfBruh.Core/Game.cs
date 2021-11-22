@@ -1,22 +1,22 @@
-﻿using CSharpFunctionalExtensions;
-
-namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core
 {
     using System;
-    using BookOfBruh.Core.CodeValidation;
-    using BookOfBruh.Core.GameData;
-    using BookOfBruh.Core.SlotAnalysation;
-    using BookOfBruh.Core.SlotGeneration;
+    using CodeValidation;
+    using GameData;
+    using SlotAnalysation;
+    using SlotGeneration;
+    using CSharpFunctionalExtensions;
+
 
     public class Game
     {
-        private readonly Player player;
-        private readonly CodeValidator codeValidator;
-        private readonly SlotGenerator slotGenerator;
-        private readonly SlotAnalyzer slotAnalyzer;
+        private readonly IPlayer player;
+        private readonly ICodeValidator codeValidator;
+        private readonly ISlotGenerator slotGenerator;
+        private readonly ISlotAnalyzer slotAnalyzer;
 
 
-        public Game(Player player, CodeValidator codeValidator, SlotGenerator slotGenerator, SlotAnalyzer slotAnalyzer)
+        public Game(IPlayer player, ICodeValidator codeValidator, ISlotGenerator slotGenerator, ISlotAnalyzer slotAnalyzer)
         {
             this.player = player;
             this.codeValidator = codeValidator;
@@ -26,7 +26,9 @@ namespace BookOfBruh.Core
 
         public Result<SpinResult> Spin(double stake)
         {
-            throw new NotImplementedException();
+            Slots generate = this.slotGenerator.Generate();
+            double analyze = this.slotAnalyzer.Analyze(generate);
+            return new SpinResult(generate, analyze * stake);
         }
 
         public Result<double> AddToWallet(int code)

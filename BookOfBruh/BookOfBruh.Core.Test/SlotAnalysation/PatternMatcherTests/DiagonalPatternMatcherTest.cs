@@ -6,6 +6,8 @@
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
     using FluentAssertions;
     using Xunit;
+    using Helper;
+
 
     public class DiagonalPatternMatcherTest
     {

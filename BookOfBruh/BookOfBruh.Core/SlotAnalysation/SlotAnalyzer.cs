@@ -3,10 +3,15 @@
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
-    using BookOfBruh.Core.Symbols;
-    using BookOfBruh.Core.GameData;
+    using Symbols;
+    using GameData;
 
-    public class SlotAnalyzer
+    public interface ISlotAnalyzer
+    {
+        double Analyze(Slots slots);
+    }
+
+    public class SlotAnalyzer : ISlotAnalyzer
     {
         private readonly IPatternMatcher patternMatcher;
 

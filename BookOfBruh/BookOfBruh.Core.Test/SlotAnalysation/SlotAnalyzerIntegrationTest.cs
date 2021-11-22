@@ -1,11 +1,12 @@
 ﻿namespace BookOfBruh.Core.Test.SlotAnalysation
 {
-    using BookOfBruh.Core.GameData;
+    using GameData;
     using BookOfBruh.Core.SlotAnalysation;
-    using BookOfBruh.Core.Symbols;
+    using Symbols;
     using FluentAssertions;
     using Ninject;
     using Xunit;
+    using Helper;
 
     public class SlotAnalyzerIntegrationTest
     {
