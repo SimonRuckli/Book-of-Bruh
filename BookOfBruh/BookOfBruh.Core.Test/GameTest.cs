@@ -33,7 +33,7 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
 
-            IPlayer fakePlayer = new FakePlayer();
+            IPlayer fakePlayer = new FakePlayer(0);
 
             SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins);
 
@@ -60,7 +60,7 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
 
-            IPlayer fakePlayer = new FakePlayer();
+            IPlayer fakePlayer = new FakePlayer(0);
             
             Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
 
@@ -85,7 +85,7 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
 
-            IPlayer fakePlayer = new FakePlayer();
+            IPlayer fakePlayer = new FakePlayer(0);
             
             Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
             
@@ -94,6 +94,29 @@
 
             // Assert
             result.IsFailure.Should().BeTrue();
+        }
+
+        [Theory]
+
+        [InlineData(1, 34, 0, 34)]
+
+        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerBefore, double playerPast)
+        {
+            // Arrange
+            const double fakePatternPoint = 0;
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+
+            IPlayer fakePlayer = new FakePlayer(playerBefore);
+            
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            
+            // Act
+            testee.AddToWallet(code);
+
+            // Assert
+            testee.Player.BruhCoins.Should().Be(playerPast);
         }
     }
 
@@ -149,13 +172,18 @@
 
     internal class FakePlayer : IPlayer
     {
+        public FakePlayer(double playerBefore)
+        {
+            this.BruhCoins = playerBefore;
+        }
+
         public string Name => throw new System.NotImplementedException();
 
-        public double BruhCoins => throw new System.NotImplementedException();
+        public double BruhCoins { get; set; }
 
         public void AddBruhCoins(double bruhCoins)
         {
-            throw new System.NotImplementedException();
+            this.BruhCoins += bruhCoins;
         }
     }
 }

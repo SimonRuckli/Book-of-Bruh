@@ -10,7 +10,6 @@
 
     public class Game
     {
-        private readonly IPlayer player;
         private readonly ICodeValidator codeValidator;
         private readonly ISlotGenerator slotGenerator;
         private readonly ISlotAnalyzer slotAnalyzer;
@@ -18,11 +17,13 @@
 
         public Game(IPlayer player, ICodeValidator codeValidator, ISlotGenerator slotGenerator, ISlotAnalyzer slotAnalyzer)
         {
-            this.player = player;
+            this.Player = player;
             this.codeValidator = codeValidator;
             this.slotGenerator = slotGenerator;
             this.slotAnalyzer = slotAnalyzer;
         }
+
+        public IPlayer Player { get; }
 
         public Result<SpinResult> Spin(double stake)
         {
@@ -33,7 +34,14 @@
 
         public Result<double> AddToWallet(int code)
         {
-            return this.codeValidator.Validate(code);
+            Result<double> validate = this.codeValidator.Validate(code);
+
+            if (validate.IsSuccess)
+            {
+                this.Player.AddBruhCoins(validate.Value);
+            }
+
+            return validate;
         }
     }
 }
