@@ -25,4 +25,8 @@
     <ProjectReference Include="..\BookOfBruh.Core\BookOfBruh.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CodeValidator\" />
+  </ItemGroup>
+
 </Project>
