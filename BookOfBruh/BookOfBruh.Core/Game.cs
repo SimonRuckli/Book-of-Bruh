@@ -26,7 +26,9 @@
 
         public Result<SpinResult> Spin(double stake)
         {
-            return new SpinResult(new Slots(new Symbols.ISymbol[5, 3]), 1);
+            Slots generate = this.slotGenerator.Generate();
+            double analyze = this.slotAnalyzer.Analyze(generate);
+            return new SpinResult(generate, analyze * stake);
         }
 
         public Result<double> AddToWallet(int code)

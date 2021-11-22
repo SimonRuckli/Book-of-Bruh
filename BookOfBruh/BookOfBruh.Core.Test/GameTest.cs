@@ -6,20 +6,33 @@
     using SlotGeneration;
     using CSharpFunctionalExtensions;
     using FluentAssertions;
+    using Helper;
     using Xunit;
 
     public class GameTest
     {
-        [Fact]
-        public void SpinShouldReturnCorrectSpinResult()
+        [Theory]
+
+        [InlineData("|TTT_-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|", 3, 1, 3
+            )]
+
+        [InlineData("|TTTT-|" +
+                    "|-_-_-|" +
+                    "|-_-_-|", 6, 2, 12
+            )]
+
+        public void SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
         {
             // Arrange
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator();
-            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer();
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator();
+
             IPlayer fakePlayer = new FakePlayer();
-            int stake = 1;
-            SpinResult expected = new SpinResult(new Slots(new Symbols.ISymbol[5,3]), 1);
+
+            SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins);
 
             Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
 
@@ -33,17 +46,31 @@
 
     internal class FakeSlotGenerator : ISlotGenerator
     {
+        private readonly Slots slots;
+
+        public FakeSlotGenerator(Slots slots)
+        {
+            this.slots = slots;
+        }
+
         public Slots Generate()
         {
-            throw new System.NotImplementedException();
+            return this.slots;
         }
     }
 
     internal class FakeSlotAnalyzer : ISlotAnalyzer
     {
+        private readonly double patternPoint;
+
+        public FakeSlotAnalyzer(double patternPoint)
+        {
+            this.patternPoint = patternPoint;
+        }
+
         public double Analyze(Slots slots)
         {
-            throw new System.NotImplementedException();
+            return this.patternPoint;
         }
     }
 
