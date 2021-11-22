@@ -33,7 +33,7 @@
 
         public Result<double> AddToWallet(int code)
         {
-            throw new NotImplementedException();
+            return this.codeValidator.Validate(code);
         }
     }
 }

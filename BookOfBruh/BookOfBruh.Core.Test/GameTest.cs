@@ -7,6 +7,7 @@
     using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Helper;
+    using Symbols;
     using Xunit;
 
     public class GameTest
@@ -41,6 +42,33 @@
 
             // Assert
             result.Value.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+
+        [InlineData(1245, 1)]
+
+        [InlineData(32423, 4)]
+
+        public void AddToWalletShouldReturnCorrectAmountOfBruhCoins(int code, double bruhCoins )
+        {
+            // Arrange
+            const double fakePatternPoint = 0;
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator();
+
+            IPlayer fakePlayer = new FakePlayer();
+            
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+
+            double expected = bruhCoins;
+
+            // Act
+            Result<double> result = testee.AddToWallet(code);
+
+            // Assert
+            result.Value.Should().Be(expected);
         }
     }
 
