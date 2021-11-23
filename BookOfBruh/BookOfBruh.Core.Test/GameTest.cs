@@ -7,6 +7,7 @@
     using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Helper;
+    using Symbols;
     using Xunit;
 
     public class GameTest
@@ -26,11 +27,13 @@
         public void SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
         {
             // Arrange
+            const double fakeBruhCoin = 0;
+
             ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
-            ICodeValidator fakeCodeValidator = new FakeCodeValidator();
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
 
-            IPlayer fakePlayer = new FakePlayer();
+            IPlayer fakePlayer = new FakePlayer(0);
 
             SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins);
 
@@ -41,6 +44,79 @@
 
             // Assert
             result.Value.Should().BeEquivalentTo(expected);
+        }
+
+        [Theory]
+
+        [InlineData(1245, 1)]
+
+        [InlineData(32423, 4)]
+
+        public void AddToWalletShouldReturnCorrectAmountOfBruhCoins(int code, double bruhCoins)
+        {
+            // Arrange
+            const double fakePatternPoint = 0;
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+
+            IPlayer fakePlayer = new FakePlayer(0);
+            
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+
+            double expected = bruhCoins;
+
+            // Act
+            Result<double> result = testee.AddToWallet(code);
+
+            // Assert
+            result.Value.Should().Be(expected);
+        }
+
+        [Theory]
+
+        [InlineData(0, 0)]
+
+        public void AddToWalletShouldReturnFailWhenCodeNotValid(int code, double bruhCoins)
+        {
+            // Arrange
+            const double fakePatternPoint = 0;
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+
+            IPlayer fakePlayer = new FakePlayer(0);
+            
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            
+            // Act
+            Result<double> result = testee.AddToWallet(code);
+
+            // Assert
+            result.IsFailure.Should().BeTrue();
+        }
+
+        [Theory]
+
+        [InlineData(1, 34, 0, 34)]
+
+        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerBefore, double playerPast)
+        {
+            // Arrange
+            const double fakePatternPoint = 0;
+            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
+            ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+
+            IPlayer fakePlayer = new FakePlayer(playerBefore);
+            
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            
+            // Act
+            testee.AddToWallet(code);
+
+            // Assert
+            testee.Player.BruhCoins.Should().Be(playerPast);
         }
     }
 
@@ -76,9 +152,16 @@
 
     internal class FakeCodeValidator : ICodeValidator
     {
+        private readonly double bruhCoins;
+
+        public FakeCodeValidator(double bruhCoins)
+        {
+            this.bruhCoins = bruhCoins;
+        }
+
         public Result<double> Validate(int code)
         {
-            throw new System.NotImplementedException();
+            return this.bruhCoins == 0 ? Result.Failure<double>("Not a valid Code") : this.bruhCoins;
         }
     }
 
@@ -89,13 +172,18 @@
 
     internal class FakePlayer : IPlayer
     {
+        public FakePlayer(double playerBefore)
+        {
+            this.BruhCoins = playerBefore;
+        }
+
         public string Name => throw new System.NotImplementedException();
 
-        public double BruhCoins => throw new System.NotImplementedException();
+        public double BruhCoins { get; set; }
 
         public void AddBruhCoins(double bruhCoins)
         {
-            throw new System.NotImplementedException();
+            this.BruhCoins += bruhCoins;
         }
     }
 }
