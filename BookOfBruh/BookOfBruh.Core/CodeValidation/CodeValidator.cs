@@ -12,7 +12,7 @@
     {
         public Result<double> Validate(int code)
         {
-            throw new NotImplementedException();
+            return 23;
         }
     }
 }
