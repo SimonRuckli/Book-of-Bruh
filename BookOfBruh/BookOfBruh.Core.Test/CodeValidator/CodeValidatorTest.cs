@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.Core.Test.CodeValidator
 {
+    using System.Collections.Generic;
     using CodeValidation;
     using CSharpFunctionalExtensions;
     using FluentAssertions;
@@ -7,13 +8,15 @@
 
     public class CodeValidatorTest
     {
-        [Fact]
-        public void ValidCodeShouldReturnCorrectAmountOfBruhCoins()
+        [Theory]
+        [InlineData(2352, 23)]
+        [InlineData(2351, 2)]
+
+        public void ValidCodeShouldReturnCorrectAmountOfBruhCoins(int code, double expected)
         {
             // Arrange
-            CodeValidator testee = new CodeValidator();
-            const int code = 2352;
-            const double expected = 23;
+            Dictionary<int, double> codeValues = new Dictionary<int, double> {{code, expected}};
+            CodeValidator testee = new CodeValidator(codeValues);
 
             // Act
             Result<double> validate = testee.Validate(code);

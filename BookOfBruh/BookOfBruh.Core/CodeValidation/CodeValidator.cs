@@ -1,6 +1,6 @@
 ﻿namespace BookOfBruh.Core.CodeValidation
 {
-    using System;
+    using System.Collections.Generic;
     using CSharpFunctionalExtensions;
 
     public interface ICodeValidator
@@ -10,9 +10,16 @@
 
     public class CodeValidator : ICodeValidator
     {
+        private readonly Dictionary<int, double> codeValues;
+
+        public CodeValidator(Dictionary<int, double> codeValues)
+        {
+            this.codeValues = codeValues;
+        }
+
         public Result<double> Validate(int code)
         {
-            return 23;
+            return codeValues[code];
         }
     }
 }
