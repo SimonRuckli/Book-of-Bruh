@@ -131,5 +131,5 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
-/BookOfBruh.View/.vs/BookOfBruh.View/v16/.suo
-/BookOfBruh/.vs/BookOfBruh.View/DesignTimeBuild/.dtbcache.v2
+.vs/
+/BookOfBruh/.vs/BookOfBruh/v16/TestStore/0/000.testlog
