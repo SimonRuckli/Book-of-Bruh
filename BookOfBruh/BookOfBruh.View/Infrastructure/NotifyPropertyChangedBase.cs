@@ -2,7 +2,6 @@
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
-    using Annotations;
 
     public class NotifyPropertyChangedBase : INotifyPropertyChanged
     {
