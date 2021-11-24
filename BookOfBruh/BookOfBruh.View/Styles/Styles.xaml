@@ -12,6 +12,19 @@
         <Setter Property="MinWidth" Value="20" />
     </Style>
 
+    <Style x:Key="CenteredBorderedLabel" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="Gray" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="15" />
+        <Setter Property="MinWidth" Value="20" />
+    </Style>
+
     <Style x:Key="CenteredButton" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="Margin" Value="1" />
