@@ -55,7 +55,8 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="50"
+            Command="{Binding SpinClickCommand}">
             Spin
         </Button>
     </Grid>
