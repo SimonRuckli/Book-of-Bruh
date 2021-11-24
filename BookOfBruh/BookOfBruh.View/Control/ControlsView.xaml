@@ -28,11 +28,12 @@
             FontSize="15">
             Guthaben
         </Label>
-        <TextBox
+        <Label
             Grid.Row="2"
             Grid.Column="0"
             Margin="10"
-            IsReadOnly="True" />
+            Background="White"
+            Content="{Binding Guthaben, UpdateSourceTrigger=PropertyChanged}"/>
         <Label
             Grid.Row="3"
             Grid.Column="0"
