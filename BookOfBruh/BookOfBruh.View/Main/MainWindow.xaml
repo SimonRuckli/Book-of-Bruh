@@ -13,6 +13,12 @@
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
     mc:Ignorable="d">
     <Grid>
+        <Grid.Resources>
+            <Style x:Key="Titel" TargetType="Control">
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="42" />
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="1*" />
@@ -21,18 +27,18 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
+
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            Height="70"
-            HorizontalContentAlignment="Center"
-            FontSize="42">
-            Book of Bruh
-        </Label>
+            Style="{StaticResource Titel}"
+            Content="Book of Bruh"/>
+
         <control:ControlsView 
             Grid.Row="1" 
             Grid.Column="1"
             DataContext="{Binding ControlViewModel}"/>
+
         <slot:SlotView 
             Grid.Row="1" 
             Grid.Column="0"

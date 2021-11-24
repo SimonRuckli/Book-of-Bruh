@@ -19,45 +19,36 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
-            Height="40"
-            Margin="10"
-            HorizontalContentAlignment="Center"
-            FontSize="15">
-            Guthaben
-        </Label>
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Guthaben"/>
+
         <Label
             Grid.Row="2"
             Grid.Column="0"
-            Margin="10"
-            Background="White"
+            Style="{StaticResource CenteredGrayLabel}"
             Content="{Binding Guthaben, UpdateSourceTrigger=PropertyChanged}"/>
+
         <Label
             Grid.Row="3"
             Grid.Column="0"
-            Height="40"
-            Margin="10"
-            HorizontalContentAlignment="Center"
-            FontSize="15">
-            Einsatz
-        </Label>
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Einsatz"/>
+
         <TextBox
             Grid.Row="4"
             Grid.Column="0"
             Margin="10"
             IsReadOnly="True" />
+
         <Button
             Grid.Row="5"
             Grid.Column="0"
-            Height="80"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="50"
-            Command="{Binding SpinClickCommand}">
-            Spin
-        </Button>
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SpinClickCommand}"
+            Content="Spin"/>
     </Grid>
 </UserControl>

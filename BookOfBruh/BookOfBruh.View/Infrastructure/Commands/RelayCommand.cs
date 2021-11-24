@@ -6,6 +6,7 @@
 // <author>Rico Suter, mail@rsuter.com</author>
 //-----------------------------------------------------------------------
 
+#nullable enable
 namespace BookOfBruh.View.Infrastructure.Commands
 {
     using System;
