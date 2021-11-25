@@ -42,7 +42,7 @@
             Grid.Row="3"
             Grid.Column="0"
             Margin="100, 20, 100, 20"
-            IsReadOnly="True" />
+            />
         <Button
             Grid.Row="4"
             Margin="100, 20, 100, 20"
