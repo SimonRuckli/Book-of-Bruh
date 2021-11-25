@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookOfBruh.View.Stake"
         mc:Ignorable="d"
-        Title="Change Stake" ResizeMode="NoResize" Height="450" Width="800">
+        Title="Change Stake" ResizeMode="NoResize" Height="200" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Button
@@ -26,7 +26,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             0.10
         </Button>
         <Button
@@ -35,7 +35,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             0.20
         </Button>
         <Button
@@ -44,7 +44,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             0.50
         </Button>
         <Button
@@ -53,7 +53,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             1.00
         </Button>
         <Button
@@ -62,7 +62,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             2.00
         </Button>
         <Button
@@ -71,7 +71,7 @@
             Margin="10"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            FontSize="50">
+            FontSize="25">
             5.00
         </Button>
     </Grid>
