@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.Core.CodeValidation
 {
     using System.Collections.Generic;
+    using System.Linq;
     using CSharpFunctionalExtensions;
 
     public interface ICodeValidator
@@ -10,16 +11,24 @@
 
     public class CodeValidator : ICodeValidator
     {
-        private readonly Dictionary<int, double> codeValues;
+        private readonly AcceptedCodes acceptedCodes;
 
-        public CodeValidator(Dictionary<int, double> codeValues)
+        public CodeValidator(AcceptedCodes acceptedCodes)
         {
-            this.codeValues = codeValues;
+            this.acceptedCodes = acceptedCodes;
         }
 
         public Result<double> Validate(int code)
         {
-            return codeValues[code];
+            double bruhCoin;
+            if(acceptedCodes.CodeList.TryGetValue(code, out bruhCoin))
+            {
+                return Result.Success(bruhCoin);
+            }
+            else
+            {
+                return Result.Failure<double>("Code not found!");
+            }
         }
     }
 }
