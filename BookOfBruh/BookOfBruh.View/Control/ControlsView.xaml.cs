@@ -16,7 +16,7 @@
         private void Label_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             WalletView win = new WalletView();
-            win.Show();
+            win.ShowDialog();
         }
     }
 }
