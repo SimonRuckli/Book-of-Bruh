@@ -39,7 +39,6 @@
             Height="40"
             Margin="10"
             HorizontalContentAlignment="Center"
-            MouseLeftButtonDown="Label_MouseLeftButtonDown"
             FontSize="15">
             Einsatz
         </Label>
