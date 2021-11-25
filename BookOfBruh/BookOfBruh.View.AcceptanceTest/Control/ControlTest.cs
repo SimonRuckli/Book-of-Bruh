@@ -19,9 +19,9 @@
         [Fact]
         public void SpinWithStakeOneShouldReturnSix()
         {
-            _.GivenTheTextBoxesAreFilled();
-            _.WhenIPressCalculationButton();
-            _.ThenTheResultShouldBe();
+            _.GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne();
+            _.WhenIPressSpinAndRollThreeTenInARow();
+            _.ThenTheWalletShouldBeSixAndTheSlotShouldBeDisplayed();
         }
     }
 }

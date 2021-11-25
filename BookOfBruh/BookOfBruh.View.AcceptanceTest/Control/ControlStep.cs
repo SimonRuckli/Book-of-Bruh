@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
+    using TechTalk.SpecFlow;
     using View.Control;
 
     public class ControlStep
@@ -9,6 +10,25 @@
         public ControlStep(ControlViewModel controlViewModel)
         {
             this.controlViewModel = controlViewModel;
+        }
+
+        [Given(@"The Wallet Contains One Bruh Coin And The Stake Is One")]
+        public void GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        [When(@"IPressSpinAndRollThreeTenInARow")]
+        public void WhenIPressSpinAndRollThreeTenInARow()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
+        [Then(@"The Wallet Should Be Six And The Slot Should Be Displayed")]
+        public void ThenTheWalletShouldBeSixAndTheSlotShouldBeDisplayed()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
