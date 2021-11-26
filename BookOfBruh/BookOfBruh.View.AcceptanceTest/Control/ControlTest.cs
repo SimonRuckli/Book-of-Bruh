@@ -19,11 +19,11 @@
 
 
         [Fact]
-        public void SpinWithStakeOneShouldReturnSix()
+        public void SpinWithStakeOneShouldReturnThree()
         {
             _.GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne();
             _.WhenIPressSpinAndRollThreeTenInARow();
-            _.ThenTheWalletShouldBeSixAndTheSlotShouldBeDisplayed();
+            _.ThenTheWalletShouldBeThree();
         }
     }
 }

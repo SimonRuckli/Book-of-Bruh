@@ -1,19 +1,32 @@
 ﻿namespace BookOfBruh.View.Control
 {
+    using Core;
+    using Core.GameData;
+    using CSharpFunctionalExtensions;
     using Infrastructure;
     using Infrastructure.Commands;
 
     public class ControlViewModel : NotifyPropertyChangedBase
     {
+        private readonly Game game;
 
-        public ControlViewModel()
+        public ControlViewModel(Game game)
         {
+            this.game = game;
             this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
         }
 
-        public RelayCommand SpinClickCommand { get; set; }  
+        public RelayCommand SpinClickCommand { get; set; }
 
-        public float Guthaben { get; } = 0f;
+        public double BruhCoins
+        {
+            get
+            {
+                return game.Player.BruhCoins;
+            }
+        }
+
+        public float Stake { get; set; }
 
         private bool SpinIsValid()
         {
@@ -22,7 +35,10 @@
 
         private void SpinClick()
         {
-            throw new System.NotImplementedException();
+            Result<SpinResult> result = this.game.Spin(this.Stake);
+
+            SpinResult resultValue = result.Value;
+            game.Player.BruhCoins += resultValue.BruhCoins;
         }
 
     }

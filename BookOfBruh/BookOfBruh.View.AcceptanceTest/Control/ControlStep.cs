@@ -1,13 +1,12 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
-    using Core;
+    using FluentAssertions;
     using TechTalk.SpecFlow;
     using View.Control;
 
     public class ControlStep
     {
         private readonly ControlViewModel controlViewModel;
-        private readonly Game game;
 
         public ControlStep(ControlViewModel controlViewModel)
         {
@@ -17,19 +16,20 @@
         [Given(@"The Wallet Contains One Bruh Coin And The Stake Is One")]
         public void GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne()
         {
+            controlViewModel.Stake = 1f;
         }
 
         [When(@"IPressSpinAndRollThreeTenInARow")]
         public void WhenIPressSpinAndRollThreeTenInARow()
         {
-            throw new System.NotImplementedException();
+            controlViewModel.SpinClickCommand.Execute();
         }
 
 
         [Then(@"The Wallet Should Be Six And The Slot Should Be Displayed")]
-        public void ThenTheWalletShouldBeSixAndTheSlotShouldBeDisplayed()
+        public void ThenTheWalletShouldBeThree()
         {
-            throw new System.NotImplementedException();
+            this.controlViewModel.BruhCoins.Should().Be(3);
         }
     }
 }

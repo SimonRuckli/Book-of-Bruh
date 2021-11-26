@@ -24,7 +24,7 @@
             Grid.Row="1"
             Grid.Column="0"
             Style="{StaticResource CenteredGrayLabel}"
-            Content="Guthaben"/>
+            Content="BruhCoins"/>
 
         <Label
             Grid.Row="2"
