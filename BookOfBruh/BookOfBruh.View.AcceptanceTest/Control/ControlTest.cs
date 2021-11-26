@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
+    using Core;
     using Infrastructure;
     using Ninject;
     using View.Control;
@@ -12,7 +13,8 @@
         public ControlTest()
         {
             IKernel kernel = new StandardKernel(new BookOfBruhTestModule());
-            _ = new ControlStep(kernel.Get<ControlViewModel>());
+            ControlViewModel controlViewModel = kernel.Get<ControlViewModel>();
+            _ = new ControlStep(controlViewModel);
         }
 
 

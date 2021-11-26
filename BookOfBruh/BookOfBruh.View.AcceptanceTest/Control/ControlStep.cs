@@ -1,11 +1,13 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
+    using Core;
     using TechTalk.SpecFlow;
     using View.Control;
 
     public class ControlStep
     {
         private readonly ControlViewModel controlViewModel;
+        private readonly Game game;
 
         public ControlStep(ControlViewModel controlViewModel)
         {
@@ -15,7 +17,6 @@
         [Given(@"The Wallet Contains One Bruh Coin And The Stake Is One")]
         public void GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne()
         {
-            throw new System.NotImplementedException();
         }
 
         [When(@"IPressSpinAndRollThreeTenInARow")]

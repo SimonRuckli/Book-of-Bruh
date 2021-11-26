@@ -13,7 +13,7 @@
 
         public RelayCommand SpinClickCommand { get; set; }  
 
-        public string Guthaben { get; } = "Proof of Concept";
+        public float Guthaben { get; } = 0f;
 
         private bool SpinIsValid()
         {
