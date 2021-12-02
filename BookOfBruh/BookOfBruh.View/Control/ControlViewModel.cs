@@ -26,7 +26,7 @@
             }
         }
 
-        public float Stake { get; set; }
+        public double Stake { get; set; }
 
         private bool SpinIsValid()
         {
