@@ -4,13 +4,14 @@
 
     public class AcceptedCodes
     {
-        public Dictionary<int, double> CodeList;
+        public Dictionary<int, double> CodeList { get; }
+
         public AcceptedCodes()
         {
             CodeList = CreateCodeDictionary();
         }
 
-        private Dictionary<int, double> CreateCodeDictionary()
+        private static Dictionary<int, double> CreateCodeDictionary()
         {
             return new Dictionary<int, double>() {
                 { 420, 10 },

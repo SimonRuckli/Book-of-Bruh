@@ -15,8 +15,8 @@
         public void ValidCodeShouldReturnCorrectAmountOfBruhCoins(int code, double expected)
         {
             // Arrange
-            Dictionary<int, double> codeValues = new Dictionary<int, double> {{code, expected}};
-            CodeValidator testee = new CodeValidator(codeValues);
+            AcceptedCodes acceptedCodes = new AcceptedCodes();
+            CodeValidator testee = new CodeValidator(acceptedCodes);
 
             // Act
             Result<double> validate = testee.Validate(code);
