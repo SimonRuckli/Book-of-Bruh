@@ -24,9 +24,14 @@
             mainWindowViewModel.StakeViewModel.SelectStakeOneClickCommand.Execute();
         }
 
-        public void ThenTheStakeShouldBeChangedToOne()
+        public void ThenTheStakeShouldBeChangedTo(double stake)
         {
-            mainWindowViewModel.ControlViewModel.Stake.Should().Be(1);
+            mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
+        }
+
+        public void WhenIPressStakeTwo()
+        {
+            mainWindowViewModel.StakeViewModel.SelectStakeTwoClickCommand.Execute();
         }
     }
 }

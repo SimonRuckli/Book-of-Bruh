@@ -19,13 +19,20 @@
             _ = new StakeStep(mainWindowViewModel);
         }
 
-
         [Fact]
-        public void CLickStakeOneShouldChangeStakeToStakeOne()
+        public void ClickStakeOneShouldChangeStakeToStakeOne()
         {
             _.GivenTheStakeIsZero();
             _.WhenIPressStakeOne();
-            _.ThenTheStakeShouldBeChangedToOne();
+            _.ThenTheStakeShouldBeChangedTo(1);
+        }
+        
+        [Fact]
+        public void ClickStakeTwoShouldChangeStakeToStakeTwo()
+        {
+            _.GivenTheStakeIsZero();
+            _.WhenIPressStakeTwo();
+            _.ThenTheStakeShouldBeChangedTo(2);
         }
     }
 }
