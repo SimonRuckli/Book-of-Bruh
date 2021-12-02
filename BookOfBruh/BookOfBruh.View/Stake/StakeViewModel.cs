@@ -12,7 +12,7 @@
             this.SelectStakeTwoClickCommand = new RelayCommand(this.SelectStakeTwoClick, this.SelectStakeTwoIsValid);
         }
 
-        public EventHandler<StakeEventArgs>? StakeChanged { get; set; }
+        public EventHandler<StakeEventArgs> StakeChanged { get; set; }
 
         public RelayCommand SelectStakeOneClickCommand { get; set; }
 

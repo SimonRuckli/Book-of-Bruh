@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
-    using Core;
     using Infrastructure;
     using Ninject;
     using View.Control;

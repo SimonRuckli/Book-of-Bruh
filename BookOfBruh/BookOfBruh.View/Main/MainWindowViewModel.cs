@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.View.Main
 {
-    using System;
     using Control;
     using Infrastructure;
     using Slot;

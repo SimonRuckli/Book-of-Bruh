@@ -1,11 +1,8 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Stake
 {
-    using Control;
     using Infrastructure;
     using Main;
     using Ninject;
-    using View.Control;
-    using View.Stake;
     using Xunit;
 
     public class StakeTest

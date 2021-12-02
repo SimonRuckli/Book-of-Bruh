@@ -2,8 +2,6 @@
 {
     using FluentAssertions;
     using Main;
-    using View.Control;
-    using View.Stake;
 
     public class StakeStep
     {
