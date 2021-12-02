@@ -21,6 +21,7 @@
             this.Bind<ISlotGenerator>().To<FakeSlotGenerator>().InSingletonScope();
 
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
+            this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();
             this.Bind<IPatternMatcher>().To<PatternMatcher>().InSingletonScope();
 

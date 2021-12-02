@@ -27,6 +27,7 @@
             this.Bind<ISymbolGenerator>().To<SymbolGenerator>().InSingletonScope();
             this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
+            this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();
             this.Bind<IPatternMatcher>().To<PatternMatcher>().InSingletonScope();
 
