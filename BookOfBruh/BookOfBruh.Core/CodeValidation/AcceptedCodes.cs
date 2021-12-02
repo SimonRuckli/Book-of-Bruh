@@ -2,7 +2,12 @@
 {
     using System.Collections.Generic;
 
-    public class AcceptedCodes
+    public interface IAcceptedCodes
+    {
+        public Dictionary<int, double> CodeList { get; }
+    }
+
+    public class AcceptedCodes : IAcceptedCodes
     {
         public Dictionary<int, double> CodeList { get; }
 

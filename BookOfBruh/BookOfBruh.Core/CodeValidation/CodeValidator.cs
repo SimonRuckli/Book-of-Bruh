@@ -9,13 +9,13 @@
 
     public class CodeValidator : ICodeValidator
     {
-        private readonly AcceptedCodes acceptedCodes;
+        private readonly IAcceptedCodes acceptedCodes;
 
-        public CodeValidator(AcceptedCodes acceptedCodes)
+        public CodeValidator(IAcceptedCodes acceptedCodes)
         {
             this.acceptedCodes = acceptedCodes;
         }
-
+        
         public Result<double> Validate(int code)
         {
             return acceptedCodes.CodeList.TryGetValue(code, out var bruhCoin) 
