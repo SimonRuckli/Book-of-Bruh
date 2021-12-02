@@ -1,33 +1,32 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Stake
 {
     using FluentAssertions;
+    using Main;
     using View.Control;
     using View.Stake;
 
     public class StakeStep
     {
-        private readonly StakeViewModel stakeViewModel;
-        private readonly ControlViewModel controlViewModel;
-
-        public StakeStep(StakeViewModel stakeViewModel, ControlViewModel controlViewModel)
+        private readonly MainWindowViewModel mainWindowViewModel;
+        
+        public StakeStep(MainWindowViewModel mainWindowViewModel)
         {
-            this.stakeViewModel = stakeViewModel;
-            this.controlViewModel = controlViewModel;
+            this.mainWindowViewModel = mainWindowViewModel;
         }
 
         public void GivenTheStakeIsZero()
         {
-            controlViewModel.Stake = 0;
+            mainWindowViewModel.ControlViewModel.Stake = 0;
         }
 
         public void WhenIPressStakeOne()
         {
-            stakeViewModel.SelectStakeOneClickCommand.Execute();
+            mainWindowViewModel.StakeViewModel.SelectStakeOneClickCommand.Execute();
         }
 
         public void ThenTheStakeShouldBeChangedToOne()
         {
-            controlViewModel.Stake.Should().Be(1);
+            mainWindowViewModel.ControlViewModel.Stake.Should().Be(1);
         }
     }
 }

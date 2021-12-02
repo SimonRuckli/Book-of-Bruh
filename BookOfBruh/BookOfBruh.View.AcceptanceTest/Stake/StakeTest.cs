@@ -2,6 +2,7 @@
 {
     using Control;
     using Infrastructure;
+    using Main;
     using Ninject;
     using View.Control;
     using View.Stake;
@@ -14,9 +15,8 @@
         public StakeTest()
         {
             IKernel kernel = new StandardKernel(new BookOfBruhTestModule());
-            StakeViewModel stakeViewModel = kernel.Get<StakeViewModel>();
-            ControlViewModel controlViewModel = kernel.Get<ControlViewModel>();
-            _ = new StakeStep(stakeViewModel, controlViewModel);
+            MainWindowViewModel mainWindowViewModel = kernel.Get<MainWindowViewModel>();
+            _ = new StakeStep(mainWindowViewModel);
         }
 
 
