@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:stake="clr-namespace:BookOfBruh.View.Stake"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance stake:StakeViewModel}"
         Title="Change Stake" ResizeMode="NoResize" Height="200" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,56 +24,44 @@
         <Button
             Grid.Row="1"
             Grid.Column="0"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            0.10
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakePointTenClickCommand}"
+            Content="0.10">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="1"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            0.20
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakePointTwentyClickCommand}"
+            Content="0.20">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="2"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            0.50
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakePointFiftyClickCommand}"
+            Content="0.50">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="3"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            1.00
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakeOneClickCommand}"
+            Content="1.00">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="4"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            2.00
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakeTwoClickCommand}"
+            Content="2.00">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="5"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="25">
-            5.00
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SelectStakeFiveClickCommand}"
+            Content="5.00">
         </Button>
     </Grid>
 </Window>
