@@ -31,5 +31,25 @@
         {
             mainWindowViewModel.StakeViewModel.SelectStakeTwoClickCommand.Execute();
         }
+
+        public void WhenIPressStakeFive()
+        {
+            mainWindowViewModel.StakeViewModel.SelectStakeFiveClickCommand.Execute();
+        }
+
+        public void WhenIPressStakePointTwenty()
+        {
+            mainWindowViewModel.StakeViewModel.SelectStakePointTwentyClickCommand.Execute();
+        }
+
+        public void WhenIPressStakePointFifty()
+        {
+            mainWindowViewModel.StakeViewModel.SelectStakePointFiftyClickCommand.Execute();
+        }
+
+        public void WhenIPressStakePointTen()
+        {
+            mainWindowViewModel.StakeViewModel.SelectStakePointTenClickCommand.Execute();
+        }
     }
 }
