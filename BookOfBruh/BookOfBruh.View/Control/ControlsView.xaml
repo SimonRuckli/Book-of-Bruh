@@ -30,7 +30,7 @@
             Grid.Row="2"
             Grid.Column="0"
             Style="{StaticResource CenteredBorderedLabel}"
-            Content="{Binding Guthaben, UpdateSourceTrigger=PropertyChanged}"/>
+            Content="{Binding BruhCoins, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label
             Grid.Row="3"
