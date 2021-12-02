@@ -10,7 +10,9 @@
         public MainWindowViewModel(
             SlotViewModel slotViewModel, 
             ControlViewModel controlViewModel, 
-            StakeViewModel stakeViewModel)
+            StakeViewModel stakeViewModel,
+            IStakeViewService stakeViewService
+            )
         {
             SlotViewModel = slotViewModel;
             ControlViewModel = controlViewModel;
