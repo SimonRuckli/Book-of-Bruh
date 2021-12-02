@@ -8,12 +8,14 @@
     using Core.SlotGeneration;
     using Ninject.Modules;
     using View.Control;
+    using View.Stake;
 
     public class BookOfBruhTestModule : NinjectModule
     {
         public override void Load()
         {
             this.Bind<ControlViewModel>().ToSelf().InSingletonScope();
+            this.Bind<StakeViewModel>().ToSelf().InSingletonScope();
 
             this.Bind<Game>().ToSelf().InSingletonScope();
 
