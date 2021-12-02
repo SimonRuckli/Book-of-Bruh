@@ -6,7 +6,7 @@
     {
         public StakeEventArgs(double stake)
         {
-            this.Stake = stake
+            this.Stake = stake;
         }
         public double Stake { get; }
     }

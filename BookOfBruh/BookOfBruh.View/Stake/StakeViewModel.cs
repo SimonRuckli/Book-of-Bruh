@@ -1,9 +1,10 @@
 ﻿namespace BookOfBruh.View.Stake
 {
     using System;
+    using Infrastructure;
     using Infrastructure.Commands;
 
-    public class StakeViewModel
+    public class StakeViewModel : NotifyPropertyChangedBase
     {
         public StakeViewModel()
         {
@@ -12,7 +13,7 @@
 
         public RelayCommand SelectStakeOneClickCommand { get; set; }
 
-        public EventHandler StakeChanged;
+        public EventHandler<StakeEventArgs>? StakeChanged { get; set; }
 
         private bool SelectStakeOneIsValid()
         {
@@ -26,8 +27,8 @@
 
         private void RaiseStakeChangedEventWithArgs(double stake)
         {
-
-            this.StakeChanged.Invoke(this, new StakeEventArgs(stake));
+            var args = new StakeEventArgs(stake);
+            this.StakeChanged?.Invoke(this, args);
         }
     }
 }
