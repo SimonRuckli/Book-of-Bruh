@@ -5,13 +5,8 @@
         public double BruhCoins { get; set; }
     }
 
-    public class Wallet
+    public class Wallet : IWallet
     {
-        public Wallet(double bruhCoins)
-        {
-            this.BruhCoins = bruhCoins;
-        }
-
         public double BruhCoins { get; set; }
     }
 }

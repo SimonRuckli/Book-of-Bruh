@@ -1,31 +1,25 @@
-﻿namespace BookOfBruh.View.Infrastructure
+﻿namespace BookOfBruh.View.AcceptanceTest.Infrastructure
 {
-    using Control;
     using Core;
     using Core.CodeValidation;
     using Core.GameData;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
-    using Main;
     using Ninject.Modules;
-    using Slot;
+    using View.Control;
 
-    internal class BookOfBruhModule : NinjectModule
+    public class BookOfBruhTestModule : NinjectModule
     {
         public override void Load()
         {
-            this.Bind<MainWindowViewModel>().ToSelf().InSingletonScope();
             this.Bind<ControlViewModel>().ToSelf().InSingletonScope();
-            this.Bind<SlotViewModel>().ToSelf().InSingletonScope();
-            
+
             this.Bind<Game>().ToSelf().InSingletonScope();
 
-            this.Bind<IPlayer>().To<Player>().InSingletonScope();
-            this.Bind<IWallet>().To<Wallet>().InSingletonScope();
-            this.Bind<ISlotGenerator>().To<SlotGenerator>().InSingletonScope();
-            this.Bind<ISymbolGenerator>().To<SymbolGenerator>().InSingletonScope();
-            this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
+            this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
+            this.Bind<ISlotGenerator>().To<FakeSlotGenerator>().InSingletonScope();
+
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();

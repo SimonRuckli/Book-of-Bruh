@@ -2,8 +2,7 @@
 {
     public interface IPlayer
     {
-        public string Name { get; }
-        public double BruhCoins { get; }
+        public double BruhCoins { get; set; }
         public void AddBruhCoins(double bruhCoins);
     }
 
@@ -11,13 +10,16 @@
     {
         private readonly Wallet wallet;
 
-        public Player(string name, Wallet wallet)
+        public Player(Wallet wallet)
         {
-            this.Name = name;
             this.wallet = wallet;
         }
 
-        public double BruhCoins => this.wallet.BruhCoins;
+        public double BruhCoins
+        {
+            get => this.wallet.BruhCoins;
+            set => this.wallet.BruhCoins = value;
+        }
 
         public string Name { get; set; }
 
