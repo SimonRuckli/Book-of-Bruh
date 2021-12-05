@@ -14,42 +14,42 @@
 
         public void GivenTheStakeIsZero()
         {
-            mainWindowViewModel.ControlViewModel.Stake = 0;
+            this.mainWindowViewModel.ControlViewModel.Stake = 0;
         }
 
         public void WhenIPressStakeOne()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakeOneClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakeOneClickCommand.Execute();
         }
 
         public void ThenTheStakeShouldBeChangedTo(double stake)
         {
-            mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
+            this.mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
         }
 
         public void WhenIPressStakeTwo()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakeTwoClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakeTwoClickCommand.Execute();
         }
 
         public void WhenIPressStakeFive()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakeFiveClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakeFiveClickCommand.Execute();
         }
 
         public void WhenIPressStakePointTwenty()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakePointTwentyClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakePointTwentyClickCommand.Execute();
         }
 
         public void WhenIPressStakePointFifty()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakePointFiftyClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakePointFiftyClickCommand.Execute();
         }
 
         public void WhenIPressStakePointTen()
         {
-            mainWindowViewModel.StakeViewModel.SelectStakePointTenClickCommand.Execute();
+            this.mainWindowViewModel.StakeViewModel.SelectStakePointTenClickCommand.Execute();
         }
     }
 }

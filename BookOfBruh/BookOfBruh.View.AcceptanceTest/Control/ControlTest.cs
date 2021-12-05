@@ -1,4 +1,5 @@
-﻿namespace BookOfBruh.View.AcceptanceTest.Control
+﻿// ReSharper disable ArrangeThisQualifier
+namespace BookOfBruh.View.AcceptanceTest.Control
 {
     using Infrastructure;
     using Ninject;

@@ -18,17 +18,17 @@
             )
         {
             this.stakeViewService = stakeViewService;
-            SlotViewModel = slotViewModel;
-            ControlViewModel = controlViewModel;
-            StakeViewModel = stakeViewModel;
+            this.SlotViewModel = slotViewModel;
+            this.ControlViewModel = controlViewModel;
+            this.StakeViewModel = stakeViewModel;
 
-            this.StakeViewModel.StakeChanged += StakeChanged;
-            this.ControlViewModel.OpenStake += OpenStake;
+            this.StakeViewModel.StakeChanged += this.StakeChanged;
+            this.ControlViewModel.OpenStake += this.OpenStake;
         }
 
         private void OpenStake(object? sender, EventArgs e)
         {
-            ShowStakeWindow();
+            this.ShowStakeWindow();
         }
 
         private void StakeChanged(object? sender, StakeEventArgs e)
@@ -38,7 +38,7 @@
 
         private void ShowStakeWindow()
         {
-            stakeViewService.CreateWindow(this.StakeViewModel);
+            this.stakeViewService.CreateWindow(this.StakeViewModel);
         }
 
         public SlotViewModel SlotViewModel { get; }

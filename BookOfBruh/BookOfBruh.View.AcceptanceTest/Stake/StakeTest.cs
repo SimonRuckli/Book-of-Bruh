@@ -1,4 +1,5 @@
-﻿namespace BookOfBruh.View.AcceptanceTest.Stake
+﻿// ReSharper disable ArrangeThisQualifier
+namespace BookOfBruh.View.AcceptanceTest.Stake
 {
     using Infrastructure;
     using Main;
