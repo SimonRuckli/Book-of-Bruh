@@ -19,6 +19,8 @@
             this.Bind<MainWindowViewModel>().ToSelf().InSingletonScope();
             this.Bind<StakeViewModel>().ToSelf().InSingletonScope();
 
+            this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
+
             this.Bind<Game>().ToSelf().InSingletonScope();
 
             this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
