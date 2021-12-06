@@ -48,7 +48,7 @@
             Result<SpinResult> result = this.game.Spin(this.Stake);
 
             SpinResult resultValue = result.Value;
-            game.Player.BruhCoins += resultValue.BruhCoins;
+            this.game.Player.BruhCoins += resultValue.BruhCoins;
         }
 
     }
