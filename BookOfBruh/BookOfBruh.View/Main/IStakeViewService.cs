@@ -11,7 +11,11 @@
     {
         public void CreateWindow(StakeViewModel stakeViewModel)
         {
-            StakeView view = new StakeView {DataContext = stakeViewModel};
+            StakeView view = new StakeView
+            {
+                DataContext = stakeViewModel,
+                Topmost = true
+            };
             view.Show();
         }
     }
