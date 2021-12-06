@@ -32,13 +32,7 @@
 
         public RelayCommand SpinClickCommand { get; set; }
 
-        public double BruhCoins
-        {
-            get
-            {
-                return game.Player.BruhCoins;
-            }
-        }
+        public double BruhCoins => this.game.Player.BruhCoins;
 
         public double Stake { get; set; }
 

@@ -21,12 +21,6 @@
         {
             this.mainWindowViewModel.StakeViewModel.SelectStakeOneClickCommand.Execute();
         }
-
-        public void ThenTheStakeShouldBeChangedTo(double stake)
-        {
-            this.mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
-        }
-
         public void WhenIPressStakeTwo()
         {
             this.mainWindowViewModel.StakeViewModel.SelectStakeTwoClickCommand.Execute();
@@ -51,5 +45,11 @@
         {
             this.mainWindowViewModel.StakeViewModel.SelectStakePointTenClickCommand.Execute();
         }
+        
+        public void ThenTheStakeShouldBeChangedTo(double stake)
+        {
+            this.mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
+        }
+
     }
 }

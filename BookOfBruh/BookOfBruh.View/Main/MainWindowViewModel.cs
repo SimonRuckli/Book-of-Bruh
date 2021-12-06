@@ -26,6 +26,10 @@
             this.ControlViewModel.OpenStake += this.OpenStake;
         }
 
+        public SlotViewModel SlotViewModel { get; }
+        public ControlViewModel ControlViewModel { get; }
+        public StakeViewModel StakeViewModel { get; }
+
         private void OpenStake(object? sender, EventArgs e)
         {
             this.ShowStakeWindow();
@@ -40,10 +44,5 @@
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
         }
-
-        public SlotViewModel SlotViewModel { get; }
-
-        public ControlViewModel ControlViewModel { get; }
-        public StakeViewModel StakeViewModel { get; }
     }
 }
