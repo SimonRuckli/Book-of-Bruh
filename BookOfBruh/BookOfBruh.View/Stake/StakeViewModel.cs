@@ -16,6 +16,9 @@
             this.SelectStakePointFiftyClickCommand = new RelayCommand(this.SelectStakePointFiftyClick, this.SelectStakePointFiftyIsValid);
         }
 
+
+        public EventHandler CloseView { get; set; }
+
         public EventHandler<StakeEventArgs> StakeChanged { get; set; }
 
         public RelayCommand SelectStakeOneClickCommand { get; set; }
@@ -90,6 +93,11 @@
         {
             var args = new StakeEventArgs(stake);
             this.StakeChanged?.Invoke(this, args);
+        }
+
+        public void RequestClose()
+        {
+            this.CloseView?.Invoke(this, EventArgs.Empty);
         }
     }
 }

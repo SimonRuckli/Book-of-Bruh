@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.View.Main
 {
-    using System;
     using System.Windows;
 
     /// <summary>

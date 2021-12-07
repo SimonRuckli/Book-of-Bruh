@@ -5,29 +5,18 @@
     public interface IStakeViewService
     {
         public void CreateWindow(StakeViewModel stakeViewModel);
-
-        public void CloseWindow();
     }
 
     public class StakeViewService : IStakeViewService
     {
-        private StakeView view;
-
         public void CreateWindow(StakeViewModel stakeViewModel)
         {
-           this.view = new StakeView
+           StakeView view = new StakeView(stakeViewModel)
            {
-                DataContext = stakeViewModel,
-
-                Topmost = true
+               Topmost = true
            };
-
-            this.view.Show();
-        }
-
-        public void CloseWindow()
-        {
-            view?.Close();
+            
+            view.Show();
         }
     }
 }

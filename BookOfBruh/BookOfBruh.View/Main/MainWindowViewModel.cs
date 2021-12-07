@@ -34,12 +34,12 @@
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
 
-        private void OpenStake(object? sender, EventArgs e)
+        private void OpenStake(object sender, EventArgs e)
         {
             this.ShowStakeWindow();
         }
 
-        private void StakeChanged(object? sender, StakeEventArgs e)
+        private void StakeChanged(object sender, StakeEventArgs e)
         {
             this.ControlViewModel.Stake = e.Stake;
             this.CloseStakeView();
@@ -57,7 +57,7 @@
 
         private void CloseStakeView()
         {
-            this.stakeViewService.CloseWindow();
+            this.StakeViewModel.RequestClose();
         }
     }
 }
