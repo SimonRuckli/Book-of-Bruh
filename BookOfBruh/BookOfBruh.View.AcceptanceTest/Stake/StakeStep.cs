@@ -50,6 +50,5 @@
         {
             this.mainWindowViewModel.ControlViewModel.Stake.Should().Be(stake);
         }
-
     }
 }

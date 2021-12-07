@@ -38,11 +38,17 @@
         private void StakeChanged(object? sender, StakeEventArgs e)
         {
             this.ControlViewModel.Stake = e.Stake;
+            this.CloseStakeView();
         }
 
         private void ShowStakeWindow()
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
+        }
+
+        private void CloseStakeView()
+        {
+            this.stakeViewService.CloseWindow();
         }
     }
 }
