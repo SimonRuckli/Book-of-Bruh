@@ -5,6 +5,7 @@
     public interface IStakeViewService
     {
         public void CreateWindow(StakeViewModel stakeViewModel);
+
         public void CloseWindow();
     }
 

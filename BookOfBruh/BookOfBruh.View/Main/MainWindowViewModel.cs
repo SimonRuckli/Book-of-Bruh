@@ -3,6 +3,7 @@
     using System;
     using Control;
     using Infrastructure;
+    using Infrastructure.Commands;
     using Slot;
     using Stake;
 
@@ -24,8 +25,11 @@
 
             this.StakeViewModel.StakeChanged += this.StakeChanged;
             this.ControlViewModel.OpenStake += this.OpenStake;
+
+            this.ViewClosedCommand = new RelayCommand(ViewClosed);
         }
 
+        public RelayCommand ViewClosedCommand { get; set; }
         public SlotViewModel SlotViewModel { get; }
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
@@ -44,6 +48,11 @@
         private void ShowStakeWindow()
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
+        }
+
+        private void ViewClosed()
+        {
+            this.CloseStakeView();
         }
 
         private void CloseStakeView()

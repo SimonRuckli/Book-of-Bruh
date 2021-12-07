@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.Main
 {
+    using System;
     using System.Windows;
 
     /// <summary>
@@ -10,6 +11,11 @@
         public MainWindow()
         {
             this.InitializeComponent();
+        }
+
+        private void MainWindow_OnClosed(object? sender, EventArgs e)
+        {
+            ((MainWindowViewModel)this.DataContext).ViewClosedCommand.Execute();
         }
     }
 }
