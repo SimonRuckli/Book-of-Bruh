@@ -8,7 +8,7 @@
     {
         public Slots Generate()
         {
-            return new Slots(new ISymbol[5, 3]
+            return new Slots(new ISymbol[,]
             {
                 {new TenSymbol(), new ASymbol(), new ASymbol()},
                 {new TenSymbol(), new JSymbol(), new JSymbol()},

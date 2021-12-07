@@ -16,13 +16,13 @@
         [Given(@"The Wallet Contains One Bruh Coin And The Stake Is One")]
         public void GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne()
         {
-            controlViewModel.Stake = 1;
+            this.controlViewModel.Stake = 1;
         }
 
         [When(@"IPressSpinAndRollThreeTenInARow")]
         public void WhenIPressSpinAndRollThreeTenInARow()
         {
-            controlViewModel.SpinClickCommand.Execute();
+            this.controlViewModel.SpinClickCommand.Execute();
         }
 
 

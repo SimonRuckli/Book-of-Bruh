@@ -7,11 +7,19 @@
     xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
     xmlns:control="clr-namespace:BookOfBruh.View.Control"
     xmlns:main="clr-namespace:BookOfBruh.View.Main"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     Title="Book of Bruh"
     Width="800"
     Height="450"
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
     mc:Ignorable="d">
+
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="Closed">
+            <b:InvokeCommandAction Command="{Binding ViewClosedCommand}"></b:InvokeCommandAction>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+
     <Grid>
         <Grid.Resources>
             <Style x:Key="Titel" TargetType="Control">

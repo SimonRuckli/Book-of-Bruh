@@ -6,14 +6,20 @@
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
+    using Main;
     using Ninject.Modules;
     using View.Control;
+    using View.Stake;
 
     public class BookOfBruhTestModule : NinjectModule
     {
         public override void Load()
         {
             this.Bind<ControlViewModel>().ToSelf().InSingletonScope();
+            this.Bind<MainWindowViewModel>().ToSelf().InSingletonScope();
+            this.Bind<StakeViewModel>().ToSelf().InSingletonScope();
+
+            this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
 
             this.Bind<Game>().ToSelf().InSingletonScope();
 
