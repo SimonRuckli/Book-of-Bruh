@@ -35,7 +35,11 @@
         public EventHandler OpenStake;
         public EventHandler<SpinEventArgs> Spin;
 
-        public double BruhCoins => this.game.Player.BruhCoins;
+        public double BruhCoins
+        {
+            get => this.game.Player.BruhCoins;
+            set => this.game.Player.BruhCoins = value;
+        }
 
         public double Stake { get; set; }
 
@@ -51,7 +55,7 @@
 
             SpinResult resultValue = result.Value;
 
-            this.game.Player.BruhCoins += resultValue.BruhCoins;
+            this.BruhCoins += resultValue.BruhCoins;
 
             this.Spin?.Invoke(this, new SpinEventArgs(resultValue));
         }
