@@ -12,10 +12,5 @@
         {
             this.InitializeComponent();
         }
-
-        private void MainWindow_OnClosed(object? sender, EventArgs e)
-        {
-            ((MainWindowViewModel)this.DataContext).ViewClosedCommand.Execute();
-        }
     }
 }
