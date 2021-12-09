@@ -17,7 +17,7 @@
             InitializeComponent();
         }
 
-        private void CloseView(object? sender, EventArgs e)
+        private void CloseView(object sender, EventArgs e)
         {
             this.Close();
         }

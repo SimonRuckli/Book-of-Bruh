@@ -35,8 +35,14 @@
             this.ControlViewModel.OpenStake += this.OpenStake;
             this.ControlViewModel.OpenWallet += this.OpenWallet;
             this.ControlViewModel.Spin += this.Spin;
+            this.walletViewModel.AddedToWallet += this.AddToWallet;
 
             this.ViewClosedCommand = new RelayCommand(ViewClosed);
+        }
+
+        private void AddToWallet(object sender, AddToWalletArgs e)
+        {
+            this.ControlViewModel.RefreshBruhCoins();
         }
 
 

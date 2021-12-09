@@ -87,11 +87,15 @@
             
             this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
 
+            this.RefreshBruhCoins();
+        }
+
+        public void RefreshBruhCoins()
+        {
             OnPropertyChanged(nameof(this.BruhCoins));
 
             this.state.Handle();
         }
-
     }
 
     public class SpinEventArgs : EventArgs
