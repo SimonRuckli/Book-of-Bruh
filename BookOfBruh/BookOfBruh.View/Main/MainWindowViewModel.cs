@@ -25,9 +25,11 @@
 
             this.StakeViewModel.StakeChanged += this.StakeChanged;
             this.ControlViewModel.OpenStake += this.OpenStake;
+            this.ControlViewModel.Spin += this.Spin;
 
             this.ViewClosedCommand = new RelayCommand(ViewClosed);
         }
+
 
         public RelayCommand ViewClosedCommand { get; set; }
         public SlotViewModel SlotViewModel { get; }
@@ -43,6 +45,11 @@
         {
             this.ControlViewModel.Stake = e.Stake;
             this.CloseStakeView();
+        }
+
+        private void Spin(object sender, SpinEventArgs e)
+        {
+            this.SlotViewModel.Slots = e.SpinResult.Slots;
         }
 
         private void ShowStakeWindow()

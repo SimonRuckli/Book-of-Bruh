@@ -29,7 +29,12 @@
             Slots generate = this.slotGenerator.Generate();
             double analyze = this.slotAnalyzer.Analyze(generate);
             this.Player.BruhCoins -= stake;
-            return new SpinResult(generate, analyze * stake);
+
+            double win = analyze * stake;
+
+            this.Player.BruhCoins += win;
+
+            return new SpinResult(generate, win);
         }
 
         public Result<double> AddToWallet(int code)

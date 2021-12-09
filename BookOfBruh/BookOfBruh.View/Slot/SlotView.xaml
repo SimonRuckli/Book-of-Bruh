@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance slot:SlotViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -18,5 +20,101 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="0"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol00}"/>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="1"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol10}"/>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="2"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol20}"/>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="3"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol30}"/>
+
+        <Label 
+            Grid.Row="0" 
+            Grid.Column="4"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol40}"/>
+
+
+
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="0"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol01}"/>
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="1"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol11}"/>
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="2"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol21}"/>
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="3"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol31}"/>
+
+        <Label 
+            Grid.Row="1" 
+            Grid.Column="4"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol41}"/>
+
+
+
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="0"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol02}"/>
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="1"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol12}"/>
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="2"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol22}"/>
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="3"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol32}"/>
+
+        <Label 
+            Grid.Row="2" 
+            Grid.Column="4"
+            Style="{StaticResource SymbolLabel}"
+            Content="{Binding Symbol42}"/>
     </Grid>
 </UserControl>
