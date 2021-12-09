@@ -18,6 +18,17 @@
             this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick, this.OpenStakeIsValid);
         }
 
+        public RelayCommand OpenStakeClickCommand { get; set; }
+
+        public RelayCommand SpinClickCommand { get; set; }
+
+        public EventHandler OpenStake;
+        public EventHandler<SpinEventArgs> Spin;
+
+        public double BruhCoins => this.game.Player.BruhCoins;
+
+        public double Stake { get; set; }
+
         private bool OpenStakeIsValid()
         {
             return true;
@@ -28,22 +39,6 @@
             this.OpenStake?.Invoke(this, EventArgs.Empty);
         }
 
-        public RelayCommand OpenStakeClickCommand { get; set; }
-
-        public RelayCommand SpinClickCommand { get; set; }
-
-        public EventHandler OpenStake;
-        public EventHandler<SpinEventArgs> Spin;
-
-        public double BruhCoins
-        {
-            get => this.game.Player.BruhCoins;
-            set => this.game.Player.BruhCoins = value;
-        }
-
-        public double Stake { get; set; }
-
-
         private bool SpinIsValid()
         {
             return true;
@@ -52,12 +47,8 @@
         private void SpinClick()
         {
             Result<SpinResult> result = this.game.Spin(this.Stake);
-
-            SpinResult resultValue = result.Value;
-
-            this.BruhCoins += resultValue.BruhCoins;
-
-            this.Spin?.Invoke(this, new SpinEventArgs(resultValue));
+            
+            this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
         }
 
     }
