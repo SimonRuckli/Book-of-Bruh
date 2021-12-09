@@ -81,7 +81,7 @@
 
         private void SpinClick()
         {
-            this.state.Handle();
+            this.state.TrySpin();
 
             Result<SpinResult> result = this.game.Spin(this.Stake);
             
