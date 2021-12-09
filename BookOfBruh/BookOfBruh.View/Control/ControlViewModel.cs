@@ -49,6 +49,8 @@
             Result<SpinResult> result = this.game.Spin(this.Stake);
             
             this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
+
+            OnPropertyChanged(nameof(this.BruhCoins));
         }
 
     }
