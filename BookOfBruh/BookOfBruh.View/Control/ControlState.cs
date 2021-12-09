@@ -16,7 +16,15 @@
     {
         public override void Handle()
         {
-            this.Context.TransitionTo(new ReadyToSpinState());
+            if (this.Context.BruhCoins >= this.Context.Stake)
+            {
+                this.Context.TransitionTo(new ReadyToSpinState());
+            }
+            else
+            {
+
+                this.Context.TransitionTo(new NotEnoughBruhCoinState());
+            }
         }
     }
 
@@ -25,6 +33,14 @@
         public override void Handle()
         {
             this.Context.TransitionTo(new SpinningState());
+        }
+    }
+
+    public class NotEnoughBruhCoinState : ControlState
+    {
+        public override void Handle()
+        {
+            this.Context.TransitionTo(new ReadyToSpinState());
         }
     }
 }

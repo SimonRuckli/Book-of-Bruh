@@ -29,10 +29,19 @@
 
         public EventHandler OpenStake;
         public EventHandler<SpinEventArgs> Spin;
+        private double stake;
 
         public double BruhCoins => this.game.Player.BruhCoins;
 
-        public double Stake { get; set; }
+        public double Stake
+        {
+            get => stake;
+            set
+            {
+                stake = value;
+                this.state.Handle();
+            }
+        }
 
         public void TransitionTo(ControlState newState)
         {

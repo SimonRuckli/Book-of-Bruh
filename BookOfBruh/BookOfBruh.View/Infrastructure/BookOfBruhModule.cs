@@ -20,7 +20,7 @@
             this.Bind<SlotViewModel>().ToSelf().InSingletonScope();
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
 
-            this.Bind<ControlState>().To<ReadyToSpinState>();
+            this.Bind<ControlState>().To<NotEnoughBruhCoinState>();
             
             this.Bind<Game>().ToSelf().InSingletonScope();
 
