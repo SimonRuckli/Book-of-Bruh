@@ -21,6 +21,8 @@
 
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
 
+            this.Bind<ControlState>().To<ReadyToSpinState>().InSingletonScope();
+
             this.Bind<Game>().ToSelf().InSingletonScope();
 
             this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
