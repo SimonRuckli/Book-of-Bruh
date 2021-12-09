@@ -40,16 +40,17 @@
             this.ViewClosedCommand = new RelayCommand(ViewClosed);
         }
 
-        private void AddToWallet(object sender, AddToWalletArgs e)
-        {
-            this.ControlViewModel.RefreshBruhCoins();
-        }
-
-
         public RelayCommand ViewClosedCommand { get; set; }
         public SlotViewModel SlotViewModel { get; }
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
+
+
+        private void AddToWallet(object sender, AddToWalletArgs e)
+        {
+            this.ControlViewModel.RefreshBruhCoins();
+            this.CloseWalletView();
+        }
 
         private void OpenStake(object sender, EventArgs e)
         {
