@@ -11,6 +11,7 @@
     {
         private readonly Game game;
         private ControlState state;
+        private double stake = 1;
 
         public ControlViewModel(Game game, ControlState state)
         {
@@ -29,7 +30,6 @@
 
         public EventHandler OpenStake;
         public EventHandler<SpinEventArgs> Spin;
-        private double stake;
 
         public double BruhCoins => this.game.Player.BruhCoins;
 
