@@ -32,7 +32,13 @@
             Grid.Row="2"
             Grid.Column="0"
             Style="{StaticResource CenteredBorderedLabel}"
-            Content="{Binding BruhCoins}"/>
+            Content="{Binding BruhCoins}">
+                <Label.InputBindings>
+                    <MouseBinding 
+                        Command="{Binding OpenWalletClickCommand}" 
+                        MouseAction="LeftClick"/>
+                </Label.InputBindings>
+        </Label>
 
         <Label
             Grid.Row="3"

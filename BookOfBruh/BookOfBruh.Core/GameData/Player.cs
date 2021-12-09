@@ -3,7 +3,6 @@
     public interface IPlayer
     {
         public double BruhCoins { get; set; }
-        public void AddBruhCoins(double bruhCoins);
     }
 
     public class Player : IPlayer
@@ -22,10 +21,6 @@
         }
 
         public string Name { get; set; }
-
-        public void AddBruhCoins(double bruhCoins)
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }
 }
