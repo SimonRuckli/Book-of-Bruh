@@ -37,7 +37,7 @@
             this.ControlViewModel.Spin += this.Spin;
             this.walletViewModel.AddedToWallet += this.AddToWallet;
 
-            this.ViewClosedCommand = new RelayCommand(ViewClosed);
+            this.ViewClosedCommand = new RelayCommand(this.ViewClosed);
         }
 
         public RelayCommand ViewClosedCommand { get; set; }
@@ -48,8 +48,11 @@
 
         private void AddToWallet(object sender, AddToWalletArgs e)
         {
-            this.ControlViewModel.RefreshBruhCoins();
-            this.CloseWalletView();
+            if (e.AddToWallet.IsSuccess)
+            {
+                this.ControlViewModel.RefreshBruhCoins();
+                this.CloseWalletView();
+            }
         }
 
         private void OpenStake(object sender, EventArgs e)
