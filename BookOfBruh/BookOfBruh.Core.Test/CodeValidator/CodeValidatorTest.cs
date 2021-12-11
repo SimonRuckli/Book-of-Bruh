@@ -15,8 +15,8 @@
         public void ValidCodeShouldReturnCorrectAmountOfBruhCoins(int code, double expected)
         {
             // Arrange
-            Dictionary<int, double> codeValues = new Dictionary<int, double> {{code, expected}};
-            CodeValidator testee = new CodeValidator(codeValues);
+            IAcceptedCodes acceptedCodes = new FakeAcceptedCodes();
+            CodeValidator testee = new CodeValidator(acceptedCodes);
 
             // Act
             Result<double> validate = testee.Validate(code);
@@ -24,6 +24,16 @@
             // Assert
             validate.Value.Should().Be(expected);
         }
+
+    }
+
+    public class FakeAcceptedCodes : IAcceptedCodes
+    {
+        public Dictionary<int, double> CodeList { get; } = new Dictionary<int, double>()
+        {
+            {2352, 23},
+            {2351, 2}
+        };
 
     }
 }

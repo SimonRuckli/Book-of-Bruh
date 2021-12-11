@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View
+﻿namespace BookOfBruh.View.Main
 {
     using System.Windows;
 

@@ -1,0 +1,51 @@
+﻿<Window x:Class="BookOfBruh.View.Wallet.WalletView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wallet="clr-namespace:BookOfBruh.View.Wallet"
+        mc:Ignorable="d"
+        Title="Wallet" ResizeMode="NoResize" Height="450" Width="550"
+        d:DataContext="{d:DesignInstance wallet:WalletViewModel}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Label
+            Grid.Row="0"
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Ihr Guthaben beträgt:"/>
+
+        <Label
+            Grid.Row="1"
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="{Binding BruhCoins}"/>
+
+        <Label
+            Grid.Row="2"
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Guthaben aufladen"/>
+
+        <TextBox
+            Grid.Row="3"
+            Grid.Column="0"
+            Style="{StaticResource CenteredTextBox}"
+            Text="{Binding Code}"
+            />
+
+        <Button
+            Grid.Row="4"
+            Command="{Binding AddToWalletCommand}"
+            Content="Code bestätigen"/>
+        
+    </Grid>
+</Window>

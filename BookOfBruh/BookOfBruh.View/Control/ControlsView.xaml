@@ -4,8 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:control="clr-namespace:BookOfBruh.View.Control"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    d:DataContext="{d:DesignInstance control:ControlViewModel}"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,43 +21,48 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
+
         <Label
             Grid.Row="1"
             Grid.Column="0"
-            Height="40"
-            Margin="10"
-            HorizontalContentAlignment="Center"
-            FontSize="15">
-            Guthaben
-        </Label>
-        <TextBox
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="BruhCoins"/>
+
+        <Label
             Grid.Row="2"
             Grid.Column="0"
-            Margin="10"
-            IsReadOnly="True" />
+            Style="{StaticResource CenteredBorderedLabel}"
+            Content="{Binding BruhCoins}">
+                <Label.InputBindings>
+                    <MouseBinding 
+                        Command="{Binding OpenWalletClickCommand}" 
+                        MouseAction="LeftClick"/>
+                </Label.InputBindings>
+        </Label>
+
         <Label
             Grid.Row="3"
             Grid.Column="0"
-            Height="40"
-            Margin="10"
-            HorizontalContentAlignment="Center"
-            FontSize="15">
-            Einsatz
-        </Label>
-        <TextBox
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Einsatz"/>
+
+            <Label
             Grid.Row="4"
             Grid.Column="0"
-            Margin="10"
-            IsReadOnly="True" />
-        <Button
+            Style="{StaticResource CenteredBorderedLabel}"
+            Content="{Binding Stake}">
+                <Label.InputBindings>
+                    <MouseBinding 
+                        Command="{Binding OpenStakeClickCommand}" 
+                        MouseAction="LeftClick"/>
+                </Label.InputBindings>
+        </Label>
+
+                <Button
             Grid.Row="5"
             Grid.Column="0"
-            Height="80"
-            Margin="10"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            FontSize="50">
-            Spin
-        </Button>
+            Style="{StaticResource CenteredButton}"
+            Command="{Binding SpinClickCommand}"
+            Content="Spin"/>
     </Grid>
 </UserControl>
