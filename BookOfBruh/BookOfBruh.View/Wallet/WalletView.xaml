@@ -3,8 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wallet="clr-namespace:BookOfBruh.View.Wallet"
         mc:Ignorable="d"
-        Title="Wallet" ResizeMode="NoResize" Height="450" Width="550">
+        Title="Wallet" ResizeMode="NoResize" Height="450" Width="550"
+        d:DataContext="{d:DesignInstance wallet:WalletViewModel}">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -19,34 +22,30 @@
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
-            HorizontalContentAlignment="Left"
-            FontSize="20">
-            Ihr Guthaben beträgt:
-        </Label>
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Ihr Guthaben beträgt:"/>
+
         <Label
             Grid.Row="1"
-            HorizontalContentAlignment="Center"
-            VerticalContentAlignment="Center"
-            Margin="10"
-            FontSize="40">
-            xx.xx Bruhcoins
-        </Label>
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="{Binding BruhCoins}"/>
+
         <Label
             Grid.Row="2"
-            HorizontalContentAlignment="Left"
-            FontSize="20">
-            Guthaben aufladen
-        </Label>
+            Style="{StaticResource CenteredGrayLabel}"
+            Content="Guthaben aufladen"/>
+
         <TextBox
             Grid.Row="3"
             Grid.Column="0"
-            Margin="100, 20, 100, 20"
+            Style="{StaticResource CenteredTextBox}"
+            Text="{Binding Code}"
             />
+
         <Button
             Grid.Row="4"
-            Margin="100, 20, 100, 20"
-            FontSize="20">
-            Code bestätigen
-        </Button>
+            Command="{Binding AddToWalletCommand}"
+            Content="Code bestätigen"/>
+        
     </Grid>
 </Window>

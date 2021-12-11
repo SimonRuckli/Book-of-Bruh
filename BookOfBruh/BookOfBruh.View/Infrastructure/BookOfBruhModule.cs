@@ -19,6 +19,8 @@
             this.Bind<ControlViewModel>().ToSelf().InSingletonScope();
             this.Bind<SlotViewModel>().ToSelf().InSingletonScope();
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
+            this.Bind<WalletViewService>().ToSelf().InSingletonScope();
+            this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
 
             this.Bind<ControlState>().To<NotEnoughBruhCoinState>();
             

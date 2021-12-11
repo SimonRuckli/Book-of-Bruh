@@ -43,7 +43,7 @@
 
             if (validate.IsSuccess)
             {
-                this.Player.AddBruhCoins(validate.Value);
+                this.Player.BruhCoins += validate.Value;
             }
 
             return validate;

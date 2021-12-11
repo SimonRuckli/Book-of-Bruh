@@ -22,13 +22,17 @@
 
             this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
             this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick, this.OpenStakeIsValid);
+            this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick, this.OpenWalletIsValid);
         }
+
+        public RelayCommand OpenWalletClickCommand { get; set; }
 
         public RelayCommand OpenStakeClickCommand { get; set; }
 
         public RelayCommand SpinClickCommand { get; set; }
 
         public EventHandler OpenStake;
+        public EventHandler OpenWallet;
         public EventHandler<SpinEventArgs> Spin;
 
         public double BruhCoins => this.game.Player.BruhCoins;
@@ -43,6 +47,7 @@
             }
         }
 
+
         public void TransitionTo(ControlState newState)
         {
             this.state = newState;
@@ -54,9 +59,19 @@
             return true;
         }
 
+        private bool OpenWalletIsValid()
+        {
+            return true;
+        }
+
         private void OpenStakeClick()
         {
             this.OpenStake?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OpenWalletClick()
+        {
+            this.OpenWallet?.Invoke(this, EventArgs.Empty);
         }
 
         private bool SpinIsValid()
@@ -66,17 +81,21 @@
 
         private void SpinClick()
         {
-            this.state.Handle();
+            this.state.TrySpin();
 
             Result<SpinResult> result = this.game.Spin(this.Stake);
             
             this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
 
+            this.RefreshBruhCoins();
+        }
+
+        public void RefreshBruhCoins()
+        {
             OnPropertyChanged(nameof(this.BruhCoins));
 
             this.state.Handle();
         }
-
     }
 
     public class SpinEventArgs : EventArgs

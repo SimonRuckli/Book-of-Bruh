@@ -62,16 +62,16 @@
         {
             List<ISymbol> disguises = new List<ISymbol>();
 
-            Point iterater = new Point(firstPoint.X +1, firstPoint.Y -1);
+            Point iterator = new Point(firstPoint.X +1, firstPoint.Y -1);
 
-            if (iterater.Y > 0)
+            if (iterator.Y < 0)
             {
-                iterater.Y = 0;
+                iterator.Y = 0;
             }
 
-            while (iterater.Y < 3)
+            while (iterator.Y < 3)
             {
-                ISymbol currentSymbol = slots.Symbols[iterater.X, iterater.Y];
+                ISymbol currentSymbol = slots.Symbols[iterator.X, iterator.Y];
 
                 if (disguises.All(s => s.GetType() != currentSymbol.GetType()))
                 {
@@ -79,7 +79,7 @@
                     disguises.Add(currentSymbol);
                 }
 
-                iterater.Y++;
+                iterator.Y++;
             }
 
             return disguises;
