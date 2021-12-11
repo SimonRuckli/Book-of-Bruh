@@ -31,7 +31,6 @@
             this.view = new InfoBoxView
             {
                 DataContext = this.infoBoxViewModel,
-                Topmost = true,
                 Title = title
             };
 
