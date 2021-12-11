@@ -17,8 +17,10 @@
         public void Display(double win)
         {
             const int milliseconds = 1000;
+            
 
-            this.timedMessageBox.ShowFor("Gewinn!",$"Du hast {win} gewonnen", milliseconds);
+            this.timedMessageBox.ShowFor("Gewinn!",$"Du hast {win} Bruhcoins gewonnen", milliseconds);
+            
         }
     }
 }
