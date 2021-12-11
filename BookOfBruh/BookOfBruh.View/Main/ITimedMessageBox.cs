@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.Main
 {
+    using System;
     using System.Threading.Tasks;
     using System.Windows;
     using InfoBox;
@@ -13,30 +14,40 @@
     {
         private readonly InfoBoxViewModel infoBoxViewModel;
 
+        private InfoBoxView view;
+
         public TimedMessageBox(InfoBoxViewModel infoBoxViewModel)
         {
             this.infoBoxViewModel = infoBoxViewModel;
+
+            this.infoBoxViewModel.FocusLost += this.CloseWindow;
+
         }
 
         public async Task ShowFor(string title, string message, int milliseconds)
         {
             this.infoBoxViewModel.Message = message;
 
-            InfoBoxView view = new InfoBoxView
+            this.view = new InfoBoxView
             {
-                DataContext = this.infoBoxViewModel, 
+                DataContext = this.infoBoxViewModel,
                 Topmost = true,
                 Title = title
             };
 
-            await this.ShowWindowFor(view, milliseconds);
+            await this.ShowWindowFor( milliseconds);
         }
 
-        private async Task ShowWindowFor(Window view, int milliseconds)
+        private async Task ShowWindowFor(int milliseconds)
         {
-            view.Show();
+            this.view.Show();
             await Task.Delay(milliseconds);
-            view.Close();
+            this.view.Close();
+        }
+
+        private void CloseWindow(object sender, EventArgs e)
+        {
+            this.view.Close();
         }
     }
 }
