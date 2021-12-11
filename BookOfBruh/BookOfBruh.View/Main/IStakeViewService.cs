@@ -16,7 +16,7 @@
                Topmost = true
            };
             
-            view.Show();
+            view.ShowDialog();
         }
     }
 }

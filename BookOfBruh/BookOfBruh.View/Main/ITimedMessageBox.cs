@@ -34,7 +34,7 @@
 
         private async Task ShowWindowFor(Window view, int milliseconds)
         {
-            view.Show();
+            view.ShowDialog();
             await Task.Delay(milliseconds);
             view.Close();
         }
