@@ -21,100 +21,85 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Label 
-            Grid.Row="0" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol00}"/>
 
-        <Label 
-            Grid.Row="0" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol10}"/>
+            <Image
+                Grid.Row="0" 
+                Grid.Column="0"
+                Source="{Binding Symbol00}" />
 
-        <Label 
-            Grid.Row="0" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol20}"/>
+            <Image
+                Grid.Row="0" 
+                Grid.Column="1"
+                Source="{Binding Symbol10}" />
 
-        <Label 
-            Grid.Row="0" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol30}"/>
+            <Image
+                Grid.Row="0" 
+                Grid.Column="2"
+                Source="{Binding Symbol20}" />
 
-        <Label 
-            Grid.Row="0" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol40}"/>
+            <Image
+                Grid.Row="0" 
+                Grid.Column="3"
+                Source="{Binding Symbol30}" />
+
+            <Image
+                Grid.Row="0" 
+                Grid.Column="4"
+                Source="{Binding Symbol40}" />
 
 
+            <Image
+                Grid.Row="1" 
+                Grid.Column="0"
+                Source="{Binding Symbol01}" />
+
+            <Image
+                Grid.Row="1" 
+                Grid.Column="1"
+                Source="{Binding Symbol11}" />
+
+            <Image
+                Grid.Row="1" 
+                Grid.Column="2"
+                Source="{Binding Symbol21}" />
+
+            <Image
+                Grid.Row="1" 
+                Grid.Column="3"
+                Source="{Binding Symbol31}" />
+
+            <Image
+                Grid.Row="1" 
+                Grid.Column="4"
+                Source="{Binding Symbol41}" />
 
 
-        <Label 
-            Grid.Row="1" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol01}"/>
+            <Image
+                Grid.Row="2" 
+                Grid.Column="0"
+                Source="{Binding Symbol02}" />
 
-        <Label 
-            Grid.Row="1" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol11}"/>
+            <Image
+                Grid.Row="2" 
+                Grid.Column="1"
+                Source="{Binding Symbol12}" />
 
-        <Label 
-            Grid.Row="1" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol21}"/>
+            <Image
+                Grid.Row="2" 
+                Grid.Column="2"
+                Source="{Binding Symbol22}" />
 
-        <Label 
-            Grid.Row="1" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol31}"/>
+            <Image
+                Grid.Row="2" 
+                Grid.Column="3"
+                Source="{Binding Symbol32}" />
 
-        <Label 
-            Grid.Row="1" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol41}"/>
+            <Image
+                Grid.Row="2" 
+                Grid.Column="4"
+                Source="{Binding Symbol42}" />
 
 
-
-
-        <Label 
-            Grid.Row="2" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol02}"/>
-
-        <Label 
-            Grid.Row="2" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol12}"/>
-
-        <Label 
-            Grid.Row="2" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol22}"/>
-
-        <Label 
-            Grid.Row="2" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol32}"/>
-
-        <Label 
-            Grid.Row="2" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolLabel}"
-            Content="{Binding Symbol42}"/>
+        
     </Grid>
 </UserControl>
