@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:BookOfBruh.View.InfoBox"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="InfoBoxView" Height="450" Width="800" 
+        Title="InfoBoxView" 
+        Height="100" Width="400" 
         WindowStyle="None"
+        ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance local:InfoBoxViewModel}">
 
     <b:Interaction.Triggers>
