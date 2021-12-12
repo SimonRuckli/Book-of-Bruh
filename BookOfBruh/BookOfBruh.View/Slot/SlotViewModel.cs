@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.View.Slot
 {
-    using System;
     using Core.GameData;
     using Core.Symbols;
     using Infrastructure;
@@ -31,11 +30,6 @@
         {
             string symbolName = slotsSymbol?.GetType().Name;
             return $"pack://application:,,,/BookOfBruh.View;component/Images/{symbolName}.png";
-        }
-
-        private static string SymbolToString(ISymbol slotsSymbol)
-        {
-            return slotsSymbol?.GetType().Name;
         }
     }
 }

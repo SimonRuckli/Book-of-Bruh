@@ -46,7 +46,7 @@
         <Setter Property="Margin" Value="5"></Setter>
     </Style>
 
-    <Style x:Key="Titel" TargetType="{x:Type Label}">
+    <Style x:Key="Title" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Background" Value="White" />
         <Setter Property="FontSize" Value="60" />
@@ -103,6 +103,12 @@
     <Style x:Key="SlotView" TargetType="{x:Type UserControl}">
         <Setter Property="MinHeight" Value="230"></Setter>
         <Setter Property="MinWidth" Value="280"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+    </Style>
+
+    <Style x:Key="WinView" TargetType="{x:Type UserControl}">
+        <Setter Property="MinHeight" Value="50"></Setter>
+        <Setter Property="MinWidth" Value="200"></Setter>
         <Setter Property="Margin" Value="10"></Setter>
     </Style>
 
