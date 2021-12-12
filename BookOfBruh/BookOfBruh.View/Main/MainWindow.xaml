@@ -21,12 +21,6 @@
     </b:Interaction.Triggers>
 
     <Grid>
-        <Grid.Resources>
-            <Style x:Key="Titel" TargetType="Control">
-                <Setter Property="HorizontalContentAlignment" Value="Center" />
-                <Setter Property="FontSize" Value="42" />
-            </Style>
-        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="1*" />

@@ -11,6 +11,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -22,29 +24,34 @@
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
-            Style="{StaticResource CenteredGrayLabel}"
+            Grid.Column="1"
+            Style="{StaticResource CenteredBlackLabel}"
             Content="Ihr Guthaben beträgt:"/>
 
         <Label
             Grid.Row="1"
-            Style="{StaticResource CenteredGrayLabel}"
+            Grid.Column="1"
+            Style="{StaticResource CenteredBlackLabel}"
             Content="{Binding BruhCoins}"/>
 
         <Label
             Grid.Row="2"
-            Style="{StaticResource CenteredGrayLabel}"
+            Grid.Column="1"
+            Style="{StaticResource CenteredBlackLabel}"
             Content="Guthaben aufladen"/>
 
         <TextBox
             Grid.Row="3"
-            Grid.Column="0"
+            Grid.Column="1"
             Style="{StaticResource CenteredTextBox}"
             Text="{Binding Code}"
             />
 
         <Button
             Grid.Row="4"
+            Grid.Column="1"
             Command="{Binding AddToWalletCommand}"
+            Style="{StaticResource CenteredButton}"
             Content="Code bestätigen"/>
         
     </Grid>

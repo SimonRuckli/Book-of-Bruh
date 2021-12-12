@@ -17,7 +17,7 @@
 
     <Grid>
        <Label
-            Style="{StaticResource CenteredGrayLabel}"
+            Style="{StaticResource CenteredBlackLabel}"
             Content="{Binding Message}"/>
     </Grid>
 </Window>
