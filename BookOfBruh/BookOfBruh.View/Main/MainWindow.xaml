@@ -10,9 +10,9 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     Title="Book of Bruh"
     MinWidth="800"
-    MinHeight="450"
+    MinHeight="500"
     Width="800"
-    Height="450"
+    Height="500"
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
     mc:Ignorable="d">
 
@@ -46,6 +46,7 @@
         <slot:SlotView 
             Grid.Row="1" 
             Grid.Column="0"
+            Style="{StaticResource SlotView}"
             DataContext="{Binding SlotViewModel}"/>
     </Grid>
 </Window>
