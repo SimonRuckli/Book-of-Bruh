@@ -7,6 +7,7 @@
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
+    using InfoBox;
     using Main;
     using Ninject.Modules;
     using Slot;
@@ -21,6 +22,9 @@
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
+            this.Bind<IWinDisplayer>().To<WinDisplayer>().InSingletonScope();
+            this.Bind<IInfoBox>().To<InfoBox>().InSingletonScope();
+            this.Bind<InfoBoxViewModel>().ToSelf().InSingletonScope();
 
             this.Bind<ControlState>().To<NotEnoughBruhCoinState>();
             

@@ -2,6 +2,7 @@
 {
     using System;
     using Control;
+    using Core.GameData;
     using Infrastructure;
     using Infrastructure.Commands;
     using Slot;
@@ -14,6 +15,7 @@
         private readonly IStakeViewService stakeViewService;
         private readonly WalletViewModel walletViewModel;
         private readonly IWalletViewService walletViewService;
+        private readonly IWinDisplayer winDisplayer;
 
         public MainWindowViewModel(
             SlotViewModel slotViewModel, 
@@ -21,12 +23,14 @@
             StakeViewModel stakeViewModel,
             IStakeViewService stakeViewService,
             WalletViewModel walletViewModel,
-            IWalletViewService walletViewService
+            IWalletViewService walletViewService, 
+            IWinDisplayer winDisplayer
         )
         {
             this.stakeViewService = stakeViewService;
             this.walletViewModel = walletViewModel;
             this.walletViewService = walletViewService;
+            this.winDisplayer = winDisplayer;
             this.SlotViewModel = slotViewModel;
             this.ControlViewModel = controlViewModel;
             this.StakeViewModel = stakeViewModel;
@@ -72,9 +76,15 @@
 
         private void Spin(object sender, SpinEventArgs e)
         {
-            this.SlotViewModel.Slots = e.SpinResult.Slots;
-        }
+            SpinResult spinResult = e.SpinResult;
 
+            if (spinResult.BruhCoins > 0)
+            {
+                this.winDisplayer.Display(spinResult.BruhCoins);
+            }
+
+            this.SlotViewModel.Slots = spinResult.Slots;
+        }
         private void ShowStakeWindow()
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
