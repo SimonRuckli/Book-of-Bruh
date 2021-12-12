@@ -11,6 +11,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="40" />
         <Setter Property="MinWidth" Value="40" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
     
     <Style x:Key="CenteredBlackLabel" TargetType="{x:Type Label}">
@@ -22,6 +23,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="20" />
         <Setter Property="MinWidth" Value="20" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
 
     <Style x:Key="CenteredBorderedLabel" TargetType="{x:Type Label}">
@@ -37,23 +39,14 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="15" />
         <Setter Property="MinWidth" Value="140" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
 
-    <Style x:Key="SymbolLabel" TargetType="{x:Type Label}">
-        <Setter Property="FontFamily" Value="Comic Sans MS" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="Gray" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="Margin" Value="1" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="MinHeight" Value="20" />
-        <Setter Property="MinWidth" Value="20" />
+    <Style x:Key="SymbolImage" TargetType="{x:Type Image}">
+        <Setter Property="Margin" Value="5"></Setter>
     </Style>
 
-    <Style x:Key="Titel" TargetType="{x:Type Label}">
+    <Style x:Key="Title" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Background" Value="White" />
         <Setter Property="FontSize" Value="60" />
@@ -72,8 +65,7 @@
         <Setter Property="Margin" Value="1" />
         <Setter Property="MinHeight" Value="50" />
         <Setter Property="MinWidth" Value="20" />
-        <Setter Property="Background" Value="DodgerBlue" />
-        <Setter Property="Foreground" Value="White" />
+
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -84,6 +76,17 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="DodgerBlue" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Gray" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="CenteredTextBox" TargetType="{x:Type TextBox}">
@@ -96,4 +99,17 @@
         <Setter Property="MinHeight" Value="20" />
         <Setter Property="MinWidth" Value="140" />
     </Style>
+
+    <Style x:Key="SlotView" TargetType="{x:Type UserControl}">
+        <Setter Property="MinHeight" Value="230"></Setter>
+        <Setter Property="MinWidth" Value="280"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+    </Style>
+
+    <Style x:Key="WinView" TargetType="{x:Type UserControl}">
+        <Setter Property="MinHeight" Value="50"></Setter>
+        <Setter Property="MinWidth" Value="200"></Setter>
+        <Setter Property="Margin" Value="10"></Setter>
+    </Style>
+
 </ResourceDictionary>

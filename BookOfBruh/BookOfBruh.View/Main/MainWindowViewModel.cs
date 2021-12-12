@@ -8,6 +8,7 @@
     using Slot;
     using Stake;
     using Wallet;
+    using Win;
 
     public class MainWindowViewModel : NotifyPropertyChangedBase
     {
@@ -15,25 +16,24 @@
         private readonly IStakeViewService stakeViewService;
         private readonly WalletViewModel walletViewModel;
         private readonly IWalletViewService walletViewService;
-        private readonly IWinDisplayer winDisplayer;
 
         public MainWindowViewModel(
             SlotViewModel slotViewModel, 
             ControlViewModel controlViewModel, 
             StakeViewModel stakeViewModel,
+            WinViewModel winViewModel,
             IStakeViewService stakeViewService,
             WalletViewModel walletViewModel,
-            IWalletViewService walletViewService, 
-            IWinDisplayer winDisplayer
+            IWalletViewService walletViewService
         )
         {
             this.stakeViewService = stakeViewService;
             this.walletViewModel = walletViewModel;
             this.walletViewService = walletViewService;
-            this.winDisplayer = winDisplayer;
             this.SlotViewModel = slotViewModel;
             this.ControlViewModel = controlViewModel;
             this.StakeViewModel = stakeViewModel;
+            this.WinViewModel = winViewModel;
 
             this.StakeViewModel.StakeChanged += this.StakeChanged;
             this.ControlViewModel.OpenStake += this.OpenStake;
@@ -48,6 +48,7 @@
         public SlotViewModel SlotViewModel { get; }
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
+        public WinViewModel WinViewModel { get; }
 
 
         private void AddToWallet(object sender, AddToWalletArgs e)
@@ -78,10 +79,7 @@
         {
             SpinResult spinResult = e.SpinResult;
 
-            if (spinResult.BruhCoins > 0)
-            {
-                this.winDisplayer.Display(spinResult.BruhCoins);
-            }
+            this.WinViewModel.BruhCoins = spinResult.BruhCoins;
 
             this.SlotViewModel.Slots = spinResult.Slots;
         }

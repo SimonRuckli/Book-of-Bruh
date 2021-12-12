@@ -8,11 +8,12 @@
     xmlns:control="clr-namespace:BookOfBruh.View.Control"
     xmlns:main="clr-namespace:BookOfBruh.View.Main"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:win="clr-namespace:BookOfBruh.View.Win"
     Title="Book of Bruh"
     MinWidth="800"
-    MinHeight="450"
+    MinHeight="500"
     Width="800"
-    Height="450"
+    Height="500"
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
     mc:Ignorable="d">
 
@@ -24,8 +25,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="8*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -35,7 +36,7 @@
         <Label
             Grid.Row="0"
             Grid.ColumnSpan="2"
-            Style="{StaticResource Titel}"
+            Style="{StaticResource Title}"
             Content="Book of Bruh"/>
 
         <control:ControlsView 
@@ -46,6 +47,13 @@
         <slot:SlotView 
             Grid.Row="1" 
             Grid.Column="0"
+            Style="{StaticResource SlotView}"
             DataContext="{Binding SlotViewModel}"/>
+
+        <win:WinView
+            Grid.Row="0" 
+            Grid.Column="1"
+            Style="{StaticResource WinView}"
+            DataContext="{Binding WinViewModel}"/>
     </Grid>
 </Window>
