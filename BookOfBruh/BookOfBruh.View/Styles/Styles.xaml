@@ -11,6 +11,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="40" />
         <Setter Property="MinWidth" Value="40" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
     
     <Style x:Key="CenteredBlackLabel" TargetType="{x:Type Label}">
@@ -22,6 +23,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="20" />
         <Setter Property="MinWidth" Value="20" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
 
     <Style x:Key="CenteredBorderedLabel" TargetType="{x:Type Label}">
@@ -37,6 +39,7 @@
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="15" />
         <Setter Property="MinWidth" Value="140" />
+        <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
 
     <Style x:Key="SymbolLabel" TargetType="{x:Type Label}">
