@@ -31,7 +31,7 @@
         <Label
             Grid.Row="1"
             Grid.Column="1"
-            Style="{StaticResource CenteredBlackLabel}"
+            Style="{StaticResource CenteredBlackBigLabel}"
             Content="{Binding BruhCoins}"/>
 
         <Label

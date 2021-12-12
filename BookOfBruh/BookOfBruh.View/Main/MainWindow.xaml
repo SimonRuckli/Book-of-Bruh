@@ -9,6 +9,8 @@
     xmlns:main="clr-namespace:BookOfBruh.View.Main"
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     Title="Book of Bruh"
+    MinWidth="800"
+    MinHeight="450"
     Width="800"
     Height="450"
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
