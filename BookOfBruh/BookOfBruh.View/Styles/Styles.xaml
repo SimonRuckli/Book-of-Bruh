@@ -42,18 +42,8 @@
         <Setter Property="ContentStringFormat" Value="{}{0:0.##}"></Setter>
     </Style>
 
-    <Style x:Key="SymbolLabel" TargetType="{x:Type Label}">
-        <Setter Property="FontFamily" Value="Comic Sans MS" />
-        <Setter Property="Foreground" Value="Black" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="BorderBrush" Value="Gray" />
-        <Setter Property="FontSize" Value="15" />
-        <Setter Property="Margin" Value="1" />
-        <Setter Property="HorizontalAlignment" Value="Center" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="MinHeight" Value="20" />
-        <Setter Property="MinWidth" Value="20" />
+    <Style x:Key="SymbolImage" TargetType="{x:Type Image}">
+        <Setter Property="Margin" Value="5"></Setter>
     </Style>
 
     <Style x:Key="Titel" TargetType="{x:Type Label}">

@@ -21,85 +21,97 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-
             <Image
                 Grid.Row="0" 
                 Grid.Column="0"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol00}" />
 
             <Image
                 Grid.Row="0" 
                 Grid.Column="1"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol10}" />
 
             <Image
                 Grid.Row="0" 
                 Grid.Column="2"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol20}" />
 
             <Image
                 Grid.Row="0" 
                 Grid.Column="3"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol30}" />
 
             <Image
                 Grid.Row="0" 
                 Grid.Column="4"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol40}" />
 
 
             <Image
                 Grid.Row="1" 
                 Grid.Column="0"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol01}" />
 
             <Image
                 Grid.Row="1" 
                 Grid.Column="1"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol11}" />
 
             <Image
                 Grid.Row="1" 
                 Grid.Column="2"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol21}" />
 
             <Image
                 Grid.Row="1" 
                 Grid.Column="3"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol31}" />
 
             <Image
                 Grid.Row="1" 
                 Grid.Column="4"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol41}" />
 
 
             <Image
                 Grid.Row="2" 
                 Grid.Column="0"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol02}" />
 
             <Image
                 Grid.Row="2" 
                 Grid.Column="1"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol12}" />
 
             <Image
                 Grid.Row="2" 
                 Grid.Column="2"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol22}" />
 
             <Image
                 Grid.Row="2" 
                 Grid.Column="3"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol32}" />
 
             <Image
                 Grid.Row="2" 
                 Grid.Column="4"
+                Style="{StaticResource SymbolImage}"
                 Source="{Binding Symbol42}" />
 
-
-        
     </Grid>
 </UserControl>
