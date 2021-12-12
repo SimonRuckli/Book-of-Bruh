@@ -72,8 +72,7 @@
         <Setter Property="Margin" Value="1" />
         <Setter Property="MinHeight" Value="50" />
         <Setter Property="MinWidth" Value="20" />
-        <Setter Property="Background" Value="DodgerBlue" />
-        <Setter Property="Foreground" Value="White" />
+
         <Setter Property="Template" >
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -84,6 +83,18 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="True">
+                <Setter Property="Background" Value="DodgerBlue" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="Gray" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+
     </Style>
 
     <Style x:Key="CenteredTextBox" TargetType="{x:Type TextBox}">
