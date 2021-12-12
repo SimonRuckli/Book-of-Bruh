@@ -7,20 +7,16 @@
 
     public class WinDisplayer : IWinDisplayer
     {
-        private readonly ITimedMessageBox timedMessageBox;
+        private readonly IInfoBox infoBox;
 
-        public WinDisplayer(ITimedMessageBox timedMessageBox)
+        public WinDisplayer(IInfoBox infoBox)
         {
-            this.timedMessageBox = timedMessageBox;
+            this.infoBox = infoBox;
         }
 
         public void Display(double win)
         {
-            const int milliseconds = 10000;
-            
-
-            this.timedMessageBox.ShowFor("Gewinn!",$"Du hast {win} Bruhcoins gewonnen", milliseconds);
-            
+            this.infoBox.ShowWindow($"Du hast {win} Bruhcoins gewonnen");
         }
     }
 }
