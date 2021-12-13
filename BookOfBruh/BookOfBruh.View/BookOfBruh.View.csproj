@@ -15,6 +15,7 @@
     <None Remove="Images\KSymbol.png" />
     <None Remove="Images\QSymbol.png" />
     <None Remove="Images\SimiSymbol.png" />
+    <None Remove="Images\Spinning.gif" />
     <None Remove="Images\TenSymbol.png" />
     <None Remove="Images\VincSymbol.png" />
     <None Remove="Images\WildSymbol.png" />
@@ -39,6 +40,7 @@
     <Resource Include="Images\KSymbol.png" />
     <Resource Include="Images\QSymbol.png" />
     <Resource Include="Images\SimiSymbol.png" />
+    <Resource Include="Images\Spinning.gif" />
     <Resource Include="Images\TenSymbol.png" />
     <Resource Include="Images\VincSymbol.png" />
     <Resource Include="Images\WildSymbol.png" />

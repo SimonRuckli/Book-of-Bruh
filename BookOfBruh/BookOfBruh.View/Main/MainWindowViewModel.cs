@@ -75,14 +75,15 @@
             this.CloseStakeView();
         }
 
-        private void Spin(object sender, SpinEventArgs e)
+        private async void Spin(object sender, SpinEventArgs e)
         {
             SpinResult spinResult = e.SpinResult;
 
             this.WinViewModel.BruhCoins = spinResult.BruhCoins;
 
-            this.SlotViewModel.RenderSpin(spinResult);
+            await this.SlotViewModel.RenderSpin(spinResult);
         }
+
         private void ShowStakeWindow()
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
