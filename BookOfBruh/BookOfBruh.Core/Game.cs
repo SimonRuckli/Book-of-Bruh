@@ -6,7 +6,6 @@
     using SlotGeneration;
     using CSharpFunctionalExtensions;
 
-
     public class Game
     {
         private readonly ICodeValidator codeValidator;
@@ -34,7 +33,7 @@
 
             this.Player.BruhCoins += win;
 
-            return new SpinResult(generate, win);
+            return new SpinResult(generate, win, analyzeResult.Patterns);
         }
 
         public Result<double> AddToWallet(int code)
