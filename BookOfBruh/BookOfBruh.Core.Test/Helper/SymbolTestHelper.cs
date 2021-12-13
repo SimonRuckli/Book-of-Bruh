@@ -46,10 +46,10 @@
     }
     internal struct Fs : ISymbol
     {
-        public double Rarity => 0;
+        public double Value => 0;
     }
     internal struct Fs2 : ISymbol
     {
-        public double Rarity => 0;
+        public double Value => 0;
     }
 }
