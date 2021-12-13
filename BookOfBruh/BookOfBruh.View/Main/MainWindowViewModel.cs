@@ -81,7 +81,7 @@
 
             this.WinViewModel.BruhCoins = spinResult.BruhCoins;
 
-            this.SlotViewModel.Slots = spinResult.Slots;
+            this.SlotViewModel.RenderSpin(spinResult);
         }
         private void ShowStakeWindow()
         {

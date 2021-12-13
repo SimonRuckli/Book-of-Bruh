@@ -16,7 +16,7 @@
         [Given(@"Given the slots are empty")]
         public void GivenTheSlotsAreEmpty()
         {
-            this.mainWindowViewModel.SlotViewModel.Slots.Should().BeNull();
+            this.mainWindowViewModel.SlotViewModel.Symbol00.Should().BeNull();
         }
 
 
@@ -31,7 +31,7 @@
         public void ThenTheSlotsAreFilled()
         {
 
-            this.mainWindowViewModel.SlotViewModel.Slots.Should().NotBeNull();
+            this.mainWindowViewModel.SlotViewModel.Symbol00.Should().NotBeNull();
         }
     }
 }
