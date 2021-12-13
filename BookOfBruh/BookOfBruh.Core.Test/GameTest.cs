@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.Core.Test
 {
+    using System.Collections.Generic;
     using CodeValidation;
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
@@ -144,9 +145,9 @@
             this.patternPoint = patternPoint;
         }
 
-        public double Analyze(Slots slots)
+        public AnalyzeResult Analyze(Slots slots)
         {
-            return this.patternPoint;
+            return new AnalyzeResult(this.patternPoint, new List<Pattern>());
         }
     }
 

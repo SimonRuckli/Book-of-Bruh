@@ -267,10 +267,10 @@
             Slots input = new Slots(symbols);
 
             // Act
-            double result = testee.Analyze(input);
+            AnalyzeResult result = testee.Analyze(input);
 
             // Assert
-            result.Should().BeApproximately(expected, 0.0001);
+            result.Multiplier.Should().BeApproximately(expected, 0.0001);
         }
     }
 }

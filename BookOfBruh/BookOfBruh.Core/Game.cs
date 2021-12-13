@@ -27,10 +27,10 @@
         public Result<SpinResult> Spin(double stake)
         {
             Slots generate = this.slotGenerator.Generate();
-            double analyze = this.slotAnalyzer.Analyze(generate);
+            AnalyzeResult analyzeResult = this.slotAnalyzer.Analyze(generate);
             this.Player.BruhCoins -= stake;
 
-            double win = analyze * stake;
+            double win = analyzeResult.Multiplier * stake;
 
             this.Player.BruhCoins += win;
 
