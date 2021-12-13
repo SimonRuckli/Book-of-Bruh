@@ -58,6 +58,10 @@
         <Setter Property="MinWidth" Value="150" />
     </Style>
 
+    <Style x:Key="SymbolImageBorder" TargetType="{x:Type Border}">
+        <Setter Property="BorderThickness" Value="5"></Setter>
+    </Style>
+
     <Style x:Key="CenteredButton" TargetType="{x:Type Button}">
         <Setter Property="FontFamily" Value="Comic Sans MS" />
         <Setter Property="FontSize" Value="30" />
