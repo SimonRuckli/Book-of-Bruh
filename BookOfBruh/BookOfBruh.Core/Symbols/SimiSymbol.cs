@@ -2,6 +2,6 @@
 {
     public struct SimiSymbol : ISymbol
     {
-        public double Rarity => 9;
+        public double Value => 3.45;
     }
 }

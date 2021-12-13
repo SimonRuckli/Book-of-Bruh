@@ -2,6 +2,6 @@
 {
     public struct VincSymbol : ISymbol
     {
-        public double Rarity => 7.5;
+        public double Value => 2.875;
     }
 }

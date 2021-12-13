@@ -2,6 +2,6 @@
 {
     public struct JoegiSymbol : ISymbol
     {
-        public double Rarity => 6;
+        public double Value => 2.3;
     }
 }

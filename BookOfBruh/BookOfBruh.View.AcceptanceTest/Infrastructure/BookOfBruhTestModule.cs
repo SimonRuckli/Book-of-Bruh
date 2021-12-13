@@ -10,6 +10,7 @@
     using Ninject.Modules;
     using View.Control;
     using View.Stake;
+    using Win;
 
     public class BookOfBruhTestModule : NinjectModule
     {
@@ -18,9 +19,11 @@
             this.Bind<ControlViewModel>().ToSelf().InSingletonScope();
             this.Bind<MainWindowViewModel>().ToSelf().InSingletonScope();
             this.Bind<StakeViewModel>().ToSelf().InSingletonScope();
+            this.Bind<WinViewModel>().ToSelf().InSingletonScope();
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
+
 
             this.Bind<ControlState>().To<ReadyToSpinState>().InSingletonScope();
 

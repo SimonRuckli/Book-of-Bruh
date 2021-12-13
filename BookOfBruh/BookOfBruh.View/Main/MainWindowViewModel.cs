@@ -2,11 +2,13 @@
 {
     using System;
     using Control;
+    using Core.GameData;
     using Infrastructure;
     using Infrastructure.Commands;
     using Slot;
     using Stake;
     using Wallet;
+    using Win;
 
     public class MainWindowViewModel : NotifyPropertyChangedBase
     {
@@ -19,6 +21,7 @@
             SlotViewModel slotViewModel, 
             ControlViewModel controlViewModel, 
             StakeViewModel stakeViewModel,
+            WinViewModel winViewModel,
             IStakeViewService stakeViewService,
             WalletViewModel walletViewModel,
             IWalletViewService walletViewService
@@ -30,6 +33,7 @@
             this.SlotViewModel = slotViewModel;
             this.ControlViewModel = controlViewModel;
             this.StakeViewModel = stakeViewModel;
+            this.WinViewModel = winViewModel;
 
             this.StakeViewModel.StakeChanged += this.StakeChanged;
             this.ControlViewModel.OpenStake += this.OpenStake;
@@ -44,6 +48,7 @@
         public SlotViewModel SlotViewModel { get; }
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
+        public WinViewModel WinViewModel { get; }
 
 
         private void AddToWallet(object sender, AddToWalletArgs e)
@@ -72,9 +77,12 @@
 
         private void Spin(object sender, SpinEventArgs e)
         {
-            this.SlotViewModel.Slots = e.SpinResult.Slots;
-        }
+            SpinResult spinResult = e.SpinResult;
 
+            this.WinViewModel.BruhCoins = spinResult.BruhCoins;
+
+            this.SlotViewModel.Slots = spinResult.Slots;
+        }
         private void ShowStakeWindow()
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);

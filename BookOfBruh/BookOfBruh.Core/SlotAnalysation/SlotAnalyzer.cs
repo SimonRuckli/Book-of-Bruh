@@ -114,15 +114,15 @@
             {
                 if (patternCount == 5)
                 {
-                    multiplier += firstSymbol.Rarity * 8;
+                    multiplier += firstSymbol.Value * 8;
                 }
                 if (patternCount == 4)
                 {
-                    multiplier += firstSymbol.Rarity * 3;
+                    multiplier += firstSymbol.Value * 3;
                 }
                 if (patternCount == 3)
                 {
-                    multiplier += firstSymbol.Rarity;
+                    multiplier += firstSymbol.Value;
                 }
             }
 
