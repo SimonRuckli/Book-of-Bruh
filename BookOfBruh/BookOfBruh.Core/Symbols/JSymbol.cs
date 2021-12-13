@@ -2,6 +2,6 @@
 {
     public struct JSymbol : ISymbol
     {
-        public double Rarity => 3;
+        public double Value => 1.15;
     }
 }
