@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:wallet="clr-namespace:BookOfBruh.View.Wallet"
         mc:Ignorable="d"
-        Title="Wallet" 
+        Title="Guthaben" 
         Icon="../Images/favicon.ico"
         ResizeMode="NoResize" Height="450" Width="550"
         d:DataContext="{d:DesignInstance wallet:WalletViewModel}">
