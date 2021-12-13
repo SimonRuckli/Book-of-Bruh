@@ -14,7 +14,7 @@
     {
         public SlotViewModel()
         {
-            Color[,] colors = GenerateCompleteGrayArray();
+            Color[,] colors = GenerateCompletelyTransparentArray();
             this.SetSymbolColors(colors);
         }
 
@@ -111,7 +111,7 @@
 
         private static Color[,] CalculateNewColors(List<Pattern> patterns)
         {
-            Color[,] colors = GenerateCompleteGrayArray();
+            Color[,] colors = GenerateCompletelyTransparentArray();
             foreach (Point point in patterns.SelectMany(pattern => pattern.Value))
             {
                 colors[point.X, point.Y] = Color.BlueViolet;
@@ -138,15 +138,15 @@
             return new SolidColorBrush(mediaColor);
         }
 
-        private static Color[,] GenerateCompleteGrayArray()
+        private static Color[,] GenerateCompletelyTransparentArray()
         {
             return new Color[,]
             {
-                { Color.DimGray, Color.DimGray, Color.DimGray },
-                { Color.DimGray, Color.DimGray, Color.DimGray },
-                { Color.DimGray, Color.DimGray, Color.DimGray },
-                { Color.DimGray, Color.DimGray, Color.DimGray },
-                { Color.DimGray, Color.DimGray, Color.DimGray }
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent }
             };
         }
     }
