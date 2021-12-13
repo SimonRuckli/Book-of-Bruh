@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Images\ASymbol.png" />
     <None Remove="Images\Background.png" />
+    <None Remove="Images\favicon.ico" />
     <None Remove="Images\JoegiSymbol.png" />
     <None Remove="Images\JSymbol.png" />
     <None Remove="Images\KSymbol.png" />
@@ -32,6 +33,7 @@
   <ItemGroup>
     <Resource Include="Images\ASymbol.png" />
     <Resource Include="Images\Background.png" />
+    <Resource Include="Images\favicon.ico" />
     <Resource Include="Images\JoegiSymbol.png" />
     <Resource Include="Images\JSymbol.png" />
     <Resource Include="Images\KSymbol.png" />

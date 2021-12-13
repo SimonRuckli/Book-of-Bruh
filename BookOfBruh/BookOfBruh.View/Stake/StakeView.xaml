@@ -6,7 +6,9 @@
         xmlns:stake="clr-namespace:BookOfBruh.View.Stake"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance stake:StakeViewModel}"
-        Title="Change Stake" ResizeMode="NoResize" Height="200" Width="500">
+        Title="Change Stake" 
+        Icon="../Images/favicon.ico"
+        ResizeMode="NoResize" Height="200" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
