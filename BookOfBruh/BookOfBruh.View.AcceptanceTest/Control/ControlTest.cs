@@ -23,7 +23,7 @@ namespace BookOfBruh.View.AcceptanceTest.Control
         {
             _.GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne();
             _.WhenIPressSpinAndRollThreeTenInARow();
-            _.ThenTheWalletShouldBeThree();
+            _.ThenTheWalletShouldBeCorrect();
         }
     }
 }

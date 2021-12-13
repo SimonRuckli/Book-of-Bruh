@@ -26,10 +26,10 @@
         }
 
 
-        [Then(@"The Wallet Should Be Six And The Slot Should Be Displayed")]
-        public void ThenTheWalletShouldBeThree()
+        [Then(@"The Wallet Should Be Correct And The Slot Should Be Displayed")]
+        public void ThenTheWalletShouldBeCorrect()
         {
-            this.controlViewModel.BruhCoins.Should().Be(3);
+            this.controlViewModel.BruhCoins.Should().Be(1.15);
         }
     }
 }
