@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.Slot
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
@@ -18,6 +19,8 @@
             Color[,] colors = GenerateCompletelyTransparentArray();
             this.SetSymbolColors(colors);
         }
+
+        public EventHandler<WinEventArgs> FinishedSpinning;
 
         public string Symbol00 { get; private set; }
         public string Symbol10 { get; private set; }
@@ -64,6 +67,7 @@
             await this.RenderSpinningSymbols();
             await this.RenderCorrectSymbols(spinResult.Slots);
             this.RenderPattern(spinResult.Patterns);
+            this.FinishedSpinning?.Invoke(this, new WinEventArgs(spinResult.BruhCoins));
         }
 
         private async Task RenderSpinningSymbols()
@@ -214,5 +218,15 @@
                 { Color.Transparent, Color.Transparent, Color.Transparent }
             };
         }
+    }
+
+    public class WinEventArgs : EventArgs
+    {
+        public WinEventArgs(double win)
+        {
+            this.BruhCoin = win;
+        }
+
+        public double BruhCoin { get; }
     }
 }

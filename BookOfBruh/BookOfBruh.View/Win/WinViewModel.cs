@@ -4,6 +4,11 @@
 
     public class WinViewModel : NotifyPropertyChangedBase
     {
-        public double BruhCoins { get; set; }
+        public double BruhCoins { get; private set; }
+
+        public void FinishedSpinning(double win)
+        {
+            this.BruhCoins = win;
+        }
     }
 }

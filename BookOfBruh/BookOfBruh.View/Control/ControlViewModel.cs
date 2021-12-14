@@ -76,11 +76,9 @@
             Result<SpinResult> result = this.game.Spin(this.Stake);
             
             this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
-
-            this.RefreshBruhCoins();
         }
 
-        public void RefreshBruhCoins()
+        private void RefreshBruhCoins()
         {
             this.OnPropertyChanged(nameof(this.BruhCoins));
         }
@@ -88,21 +86,14 @@
         public void AddToWallet()
         {
             this.state.Handle();
+            this.RefreshBruhCoins();
         }
 
         public void FinishedSpinning()
         {
             this.state.Handle();
-        }
-    }
 
-    public class SpinEventArgs : EventArgs
-    {
-        public SpinEventArgs(SpinResult spinResult)
-        {
-            this.SpinResult = spinResult;
+            this.RefreshBruhCoins();
         }
-
-        public SpinResult SpinResult { get;}
     }
 }

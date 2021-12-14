@@ -40,8 +40,15 @@
             this.ControlViewModel.OpenWallet += this.OpenWallet;
             this.ControlViewModel.Spin += this.Spin;
             this.walletViewModel.AddedToWallet += this.AddToWallet;
+            this.SlotViewModel.FinishedSpinning += this.FinishedSpinning;
 
             this.ViewClosedCommand = new RelayCommand(this.ViewClosed);
+        }
+
+        private void FinishedSpinning(object sender, WinEventArgs e)
+        {
+            this.ControlViewModel.FinishedSpinning();
+            this.WinViewModel.FinishedSpinning(e.BruhCoin);
         }
 
         public RelayCommand ViewClosedCommand { get; set; }
@@ -55,7 +62,6 @@
         {
             if (e.AddToWallet.IsSuccess)
             {
-                this.ControlViewModel.RefreshBruhCoins();
                 this.ControlViewModel.AddToWallet();
                 this.CloseWalletView();
             }
@@ -78,13 +84,7 @@
 
         private async void Spin(object sender, SpinEventArgs e)
         {
-            SpinResult spinResult = e.SpinResult;
-
-            this.WinViewModel.BruhCoins = spinResult.BruhCoins;
-
-            await this.SlotViewModel.RenderSpin(spinResult);
-
-            this.ControlViewModel.FinishedSpinning();
+            await this.SlotViewModel.RenderSpin(e.SpinResult);
         }
 
         private void ShowStakeWindow()
