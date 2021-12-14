@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View.Wallet
+﻿namespace BookOfBruh.View.Infrastructure.EventArgs
 {
     using System;
     using CSharpFunctionalExtensions;

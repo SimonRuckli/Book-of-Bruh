@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View.Stake
+﻿namespace BookOfBruh.View.Infrastructure.EventArgs
 {
     using System;
 

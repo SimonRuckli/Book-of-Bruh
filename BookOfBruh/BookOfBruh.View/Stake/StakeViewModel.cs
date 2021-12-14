@@ -3,6 +3,7 @@
     using System;
     using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
 
     public class StakeViewModel : NotifyPropertyChangedBase
     {

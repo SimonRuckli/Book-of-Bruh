@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View.Control
+﻿namespace BookOfBruh.View.Infrastructure.EventArgs
 {
     using System;
     using Core.GameData;

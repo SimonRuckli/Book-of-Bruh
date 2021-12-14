@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View.Main
+﻿namespace BookOfBruh.View.ViewService
 {
     using Wallet;
 

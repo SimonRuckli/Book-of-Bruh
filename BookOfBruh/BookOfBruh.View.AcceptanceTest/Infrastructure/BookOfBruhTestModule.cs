@@ -10,6 +10,7 @@
     using Ninject.Modules;
     using View.Control;
     using View.Stake;
+    using ViewService;
     using Win;
 
     public class BookOfBruhTestModule : NinjectModule

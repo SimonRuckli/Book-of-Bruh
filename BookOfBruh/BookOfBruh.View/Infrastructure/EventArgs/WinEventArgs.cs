@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.View.Slot
+﻿namespace BookOfBruh.View.Infrastructure.EventArgs
 {
     using System;
 

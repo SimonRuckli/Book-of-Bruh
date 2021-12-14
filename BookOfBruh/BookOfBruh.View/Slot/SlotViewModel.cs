@@ -10,6 +10,7 @@
     using Core.SlotAnalysation;
     using Core.Symbols;
     using Infrastructure;
+    using Infrastructure.EventArgs;
     using Color = System.Drawing.Color;
 
     public class SlotViewModel : NotifyPropertyChangedBase

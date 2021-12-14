@@ -10,6 +10,7 @@
     using Main;
     using Ninject.Modules;
     using Slot;
+    using ViewService;
     using Win;
 
     internal class BookOfBruhModule : NinjectModule

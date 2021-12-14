@@ -4,8 +4,10 @@
     using Control;
     using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
     using Slot;
     using Stake;
+    using ViewService;
     using Wallet;
     using Win;
 

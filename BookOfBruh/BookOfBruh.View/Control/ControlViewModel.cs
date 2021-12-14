@@ -6,6 +6,7 @@
     using CSharpFunctionalExtensions;
     using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
 
     public class ControlViewModel : NotifyPropertyChangedBase
     {
