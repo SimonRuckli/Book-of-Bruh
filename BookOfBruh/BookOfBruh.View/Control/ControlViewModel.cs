@@ -26,11 +26,9 @@
             this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick);
         }
 
-        public RelayCommand OpenWalletClickCommand { get; set; }
-
-        public RelayCommand OpenStakeClickCommand { get; set; }
-
-        public RelayCommand SpinClickCommand { get; set; }
+        public RelayCommand OpenWalletClickCommand { get; }
+        public RelayCommand OpenStakeClickCommand { get; }
+        public RelayCommand SpinClickCommand { get; }
 
         public EventHandler OpenStake;
         public EventHandler OpenWallet;

@@ -15,6 +15,7 @@
             {
                 Topmost = true
             };
+
             view.ShowDialog();
         }
     }

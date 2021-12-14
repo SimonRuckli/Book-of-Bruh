@@ -18,10 +18,10 @@
             this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick);
         }
 
+        public RelayCommand AddToWalletCommand { get; }
+
         public event EventHandler CloseView;
         public event EventHandler<AddToWalletArgs> AddedToWallet;
-
-        public RelayCommand AddToWalletCommand { get; set; }
 
         public double BruhCoins => game.Player.BruhCoins;
 
