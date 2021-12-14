@@ -60,29 +60,47 @@
         {
             Color[,] colors = GenerateCompletelyTransparentArray();
             this.SetSymbolColors(colors);
-            this.RenderSpinningSymbols();
+            await this.RenderSpinningSymbols();
             await this.RenderCorrectSymbols(spinResult.Slots);
             this.RenderPattern(spinResult.Patterns);
         }
 
-        private void RenderSpinningSymbols()
+        private async Task RenderSpinningSymbols()
         {
+            const int millisecondsDelay = 20;
+            
             this.Symbol00 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol10 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol20 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol30 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol40 = GetSpinningSymbol();
 
+            await Task.Delay(millisecondsDelay);
+
             this.Symbol01 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol11 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol21 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol31 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol41 = GetSpinningSymbol();
 
+            await Task.Delay(millisecondsDelay);
+
             this.Symbol02 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol12 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol22 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol32 = GetSpinningSymbol();
+            await Task.Delay(millisecondsDelay);
             this.Symbol42 = GetSpinningSymbol();
         }
 

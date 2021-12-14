@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance slot:SlotViewModel}">
@@ -28,7 +29,7 @@
             Background ="{Binding Symbol00Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol00}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol00}" />
         </Border>
 
         <Border
@@ -38,7 +39,7 @@
             Background ="{Binding Symbol10Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol10}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol10}" />
         </Border>
 
         <Border
@@ -48,7 +49,7 @@
             Background ="{Binding Symbol20Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol20}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol20}" />
         </Border>
 
         <Border
@@ -58,7 +59,7 @@
             Background ="{Binding Symbol30Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol30}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol30}" />
         </Border>
 
         <Border
@@ -68,7 +69,7 @@
             Background ="{Binding Symbol40Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol40}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol40}" />
         </Border>
 
 
@@ -79,7 +80,7 @@
             Background ="{Binding Symbol01Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol01}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol01}" />
         </Border>
 
         <Border
@@ -89,7 +90,7 @@
             Background ="{Binding Symbol11Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol11}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol11}" />
         </Border>
 
         <Border
@@ -99,7 +100,7 @@
             Background ="{Binding Symbol21Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol21}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol21}" />
         </Border>
 
         <Border
@@ -109,7 +110,7 @@
             Background ="{Binding Symbol31Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol31}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol31}" />
         </Border>
 
         <Border
@@ -119,7 +120,7 @@
             Background ="{Binding Symbol41Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol41}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol41}" />
         </Border>
 
 
@@ -130,7 +131,7 @@
             Background ="{Binding Symbol02Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol02}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol02}" />
         </Border>
 
         <Border
@@ -140,7 +141,7 @@
             Background ="{Binding Symbol12Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol12}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol12}" />
         </Border>
 
         <Border
@@ -150,7 +151,7 @@
             Background ="{Binding Symbol22Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol22}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol22}" />
         </Border>
 
         <Border
@@ -160,7 +161,7 @@
             Background ="{Binding Symbol32Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol32}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol32}" />
         </Border>
 
         <Border
@@ -170,7 +171,7 @@
             Background ="{Binding Symbol42Color}">
             <Image
                 Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol42}" />
+                gif:ImageBehavior.AnimatedSource="{Binding Symbol42}" />
         </Border>
 
     </Grid>
