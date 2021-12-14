@@ -56,6 +56,7 @@
             if (e.AddToWallet.IsSuccess)
             {
                 this.ControlViewModel.RefreshBruhCoins();
+                this.ControlViewModel.AddToWallet();
                 this.CloseWalletView();
             }
         }
@@ -82,6 +83,8 @@
             this.WinViewModel.BruhCoins = spinResult.BruhCoins;
 
             await this.SlotViewModel.RenderSpin(spinResult);
+
+            this.ControlViewModel.FinishedSpinning();
         }
 
         private void ShowStakeWindow()

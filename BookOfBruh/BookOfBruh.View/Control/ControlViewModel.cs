@@ -21,8 +21,8 @@
             this.state.SetContext(this);
 
             this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
-            this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick, this.OpenStakeIsValid);
-            this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick, this.OpenWalletIsValid);
+            this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick);
+            this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick);
         }
 
         public RelayCommand OpenWalletClickCommand { get; set; }
@@ -39,10 +39,10 @@
 
         public double Stake
         {
-            get => stake;
+            get => this.stake;
             set
             {
-                stake = value;
+                this.stake = value;
                 this.state.Handle();
             }
         }
@@ -52,16 +52,6 @@
         {
             this.state = newState;
             this.state.SetContext(this);
-        }
-
-        private bool OpenStakeIsValid()
-        {
-            return true;
-        }
-
-        private bool OpenWalletIsValid()
-        {
-            return true;
         }
 
         private void OpenStakeClick()
@@ -92,8 +82,16 @@
 
         public void RefreshBruhCoins()
         {
-            OnPropertyChanged(nameof(this.BruhCoins));
+            this.OnPropertyChanged(nameof(this.BruhCoins));
+        }
 
+        public void AddToWallet()
+        {
+            this.state.Handle();
+        }
+
+        public void FinishedSpinning()
+        {
             this.state.Handle();
         }
     }
@@ -102,7 +100,7 @@
     {
         public SpinEventArgs(SpinResult spinResult)
         {
-            SpinResult = spinResult;
+            this.SpinResult = spinResult;
         }
 
         public SpinResult SpinResult { get;}

@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.Slot
 {
+    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
@@ -55,6 +56,7 @@
         public Brush Symbol22Color { get; private set; }
         public Brush Symbol32Color { get; private set; }
         public Brush Symbol42Color { get; private set; }
+        
 
         public async Task RenderSpin(SpinResult spinResult)
         {
