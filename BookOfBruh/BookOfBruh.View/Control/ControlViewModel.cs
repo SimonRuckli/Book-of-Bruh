@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.View.Control
 {
     using System;
+    using System.Windows.Input;
     using Core;
     using Core.GameData;
     using CSharpFunctionalExtensions;
@@ -55,6 +56,8 @@
         public void FinishedSpinning()
         {
             this.state.Handle();
+
+            CommandManager.InvalidateRequerySuggested();
 
             this.RefreshBruhCoins();
         }

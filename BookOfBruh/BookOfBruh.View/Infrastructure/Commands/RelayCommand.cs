@@ -23,13 +23,8 @@ namespace BookOfBruh.View.Infrastructure.Commands
 
         /// <summary>Initializes a new instance of the <see cref="RelayCommand" /> class. </summary>
         /// <param name="execute">The action to execute. </param>
-        public RelayCommand(Action execute)
-            : this(execute, null) { }
-
-        /// <summary>Initializes a new instance of the <see cref="RelayCommand" /> class. </summary>
-        /// <param name="execute">The action to execute. </param>
         /// <param name="canExecute">The predicate to check whether the function can be executed. </param>
-        public RelayCommand(Action execute, Func<bool>? canExecute)
+        public RelayCommand(Action execute, Func<bool>? canExecute = null)
         {
             this.execute = execute ?? throw new ArgumentNullException(nameof(execute));
             this.canExecute = canExecute;
