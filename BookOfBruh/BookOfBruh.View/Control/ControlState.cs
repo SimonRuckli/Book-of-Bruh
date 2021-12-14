@@ -10,7 +10,7 @@
         }
 
         public abstract void Handle();
-        public abstract void TrySpin();
+        public abstract bool TrySpin();
     }
 
     public class SpinningState : ControlState
@@ -27,9 +27,9 @@
             }
         }
 
-        public override void TrySpin()
+        public override bool TrySpin()
         {
-            this.Context.TransitionTo(new SpinningState());
+            return false;
         }
     }
 
@@ -47,9 +47,10 @@
             }
         }
 
-        public override void TrySpin()
+        public override bool TrySpin()
         {
             this.Context.TransitionTo(new SpinningState());
+            return true;
         }
     }
 
@@ -67,9 +68,9 @@
             }
         }
 
-        public override void TrySpin()
+        public override bool TrySpin()
         {
-            this.Context.TransitionTo(new NotEnoughBruhCoinState());
+            return false;
         }
     }
 }

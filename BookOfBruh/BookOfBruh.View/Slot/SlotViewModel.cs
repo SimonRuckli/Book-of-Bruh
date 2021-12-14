@@ -1,6 +1,5 @@
 ﻿namespace BookOfBruh.View.Slot
 {
-    using System;
     using System.Collections.Generic;
     using System.Drawing;
     using System.Linq;
