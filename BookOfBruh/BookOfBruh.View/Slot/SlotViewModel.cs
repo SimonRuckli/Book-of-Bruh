@@ -59,19 +59,120 @@
         public Brush Symbol22Color { get; private set; }
         public Brush Symbol32Color { get; private set; }
         public Brush Symbol42Color { get; private set; }
-        
 
         public async Task RenderSpin(SpinResult spinResult)
         {
             this.ResetSlots();
 
-            await this.RenderSpinningSymbols();
-
-            await this.RenderCorrectSymbols(spinResult.Slots);
+            await this.SpinSymbols(spinResult.Slots.Symbols);
 
             this.RenderPattern(spinResult.Patterns);
 
             this.FinishedSpinning?.Invoke(this, new WinEventArgs(spinResult.BruhCoins));
+        }
+
+        private async Task SpinSymbols(ISymbol[,] symbols)
+        {
+            const int millisecondsDelay = 50;
+
+            List<ISymbol> symbolList00 = GenerateSpinSymbols(20, symbols[0, 0]);
+            List<ISymbol> symbolList01 = GenerateSpinSymbols(20, symbols[0, 1]);
+            List<ISymbol> symbolList02 = GenerateSpinSymbols(20, symbols[0, 2]);
+           
+            List<ISymbol> symbolList10 = GenerateSpinSymbols(25, symbols[1, 0]);
+            List<ISymbol> symbolList11 = GenerateSpinSymbols(25, symbols[1, 1]);
+            List<ISymbol> symbolList12 = GenerateSpinSymbols(25, symbols[1, 2]);
+           
+            List<ISymbol> symbolList20 = GenerateSpinSymbols(30, symbols[2, 0]);
+            List<ISymbol> symbolList21 = GenerateSpinSymbols(30, symbols[2, 1]);
+            List<ISymbol> symbolList22 = GenerateSpinSymbols(30, symbols[2, 2]);
+           
+            List<ISymbol> symbolList30 = GenerateSpinSymbols(35, symbols[3, 0]);
+            List<ISymbol> symbolList31 = GenerateSpinSymbols(35, symbols[3, 1]);
+            List<ISymbol> symbolList32 = GenerateSpinSymbols(35, symbols[3, 2]);
+           
+            List<ISymbol> symbolList40 = GenerateSpinSymbols(40, symbols[4, 0]);
+            List<ISymbol> symbolList41 = GenerateSpinSymbols(40, symbols[4, 1]);
+            List<ISymbol> symbolList42 = GenerateSpinSymbols(40, symbols[4, 2]);
+
+            for (int i = 0; i < 41; i++)
+            {
+                if (i < 20 + 1)
+                {
+                    this.Symbol00 = SymbolToPath(symbolList00[i]);
+                    this.Symbol01 = SymbolToPath(symbolList01[i]);
+                    this.Symbol02 = SymbolToPath(symbolList02[i]);
+                }
+                if (i < 25 + 1)
+                {
+                    this.Symbol10 = SymbolToPath(symbolList10[i]);
+                    this.Symbol11 = SymbolToPath(symbolList11[i]);
+                    this.Symbol12 = SymbolToPath(symbolList12[i]);
+                }
+                if (i < 30 + 1)
+                {
+                    this.Symbol20 = SymbolToPath(symbolList20[i]);
+                    this.Symbol21 = SymbolToPath(symbolList21[i]);
+                    this.Symbol22 = SymbolToPath(symbolList22[i]);
+                }
+                if (i < 35 + 1)
+                {
+                    this.Symbol30 = SymbolToPath(symbolList30[i]);
+                    this.Symbol31 = SymbolToPath(symbolList31[i]);
+                    this.Symbol32 = SymbolToPath(symbolList32[i]);
+                }
+
+                this.Symbol40 = SymbolToPath(symbolList40[i]);
+                this.Symbol41 = SymbolToPath(symbolList41[i]);
+                this.Symbol42 = SymbolToPath(symbolList42[i]);
+
+                await Task.Delay(millisecondsDelay);
+            }
+        }
+
+        private static List<ISymbol> GenerateSpinSymbols(int count, ISymbol endSymbol)
+        {
+            List<ISymbol> generate = GenerateSymbolList();
+            List<ISymbol> list = new List<ISymbol>();
+
+            Random random = new Random();
+            int max = generate.Count - 1;
+            int index = random.Next(max);
+
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(generate[index]);
+                index = NextIndex(index, max);
+            }
+
+            list.Add(endSymbol);
+
+            return list;
+        }
+
+        private static int NextIndex(int index, int max)
+        {
+            if (index == max)
+            {
+                return 0;
+            }
+
+            return index + 1;
+        }
+
+        private static List<ISymbol> GenerateSymbolList()
+        {
+            return new List<ISymbol>()
+            {
+                new TenSymbol(),
+                new JSymbol(),
+                new QSymbol(),
+                new KSymbol(),
+                new ASymbol(),
+                new JoegiSymbol(),
+                new VincSymbol(),
+                new SimiSymbol()
+            };
         }
 
         private void ResetSlots()
@@ -79,67 +180,7 @@
             Color[,] colors = GenerateCompletelyTransparentArray();
             this.SetSymbolColors(colors);
         }
-
-        private async Task RenderSpinningSymbols()
-        {
-            const int millisecondsDelay = 20;
-
-            this.Symbol00 = GetSpinningSymbol();
-            this.Symbol10 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol20 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol30 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol40 = await RenderSpinningSymbol(millisecondsDelay);
-
-            this.Symbol01 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol11 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol21 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol31 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol41 = await RenderSpinningSymbol(millisecondsDelay);
-
-            this.Symbol02 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol12 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol22 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol32 = await RenderSpinningSymbol(millisecondsDelay);
-            this.Symbol42 = await RenderSpinningSymbol(millisecondsDelay);
-        }
-
-        private static async Task<string> RenderSpinningSymbol(int delay)
-        {
-            await Task.Delay(delay);
-            return GetSpinningSymbol();
-        }
-
-        private async Task RenderCorrectSymbols(Slots slots)
-        {
-            const int millisecondsDelay = 100;
-
-            this.Symbol00 = await RenderCorrectSymbol(slots.Symbols[0, 0], millisecondsDelay);
-            this.Symbol10 = await RenderCorrectSymbol(slots.Symbols[1, 0], millisecondsDelay);
-            this.Symbol20 = await RenderCorrectSymbol(slots.Symbols[2, 0], millisecondsDelay);
-            this.Symbol30 = await RenderCorrectSymbol(slots.Symbols[3, 0], millisecondsDelay);
-            this.Symbol40 = await RenderCorrectSymbol(slots.Symbols[4, 0], millisecondsDelay);
-
-            this.Symbol01 = await RenderCorrectSymbol(slots.Symbols[0, 1], millisecondsDelay);
-            this.Symbol11 = await RenderCorrectSymbol(slots.Symbols[1, 1], millisecondsDelay);
-            this.Symbol21 = await RenderCorrectSymbol(slots.Symbols[2, 1], millisecondsDelay);
-            this.Symbol31 = await RenderCorrectSymbol(slots.Symbols[3, 1], millisecondsDelay);
-            this.Symbol41 = await RenderCorrectSymbol(slots.Symbols[4, 1], millisecondsDelay);
-
-            this.Symbol02 = await RenderCorrectSymbol(slots.Symbols[0, 2], millisecondsDelay);
-            this.Symbol12 = await RenderCorrectSymbol(slots.Symbols[1, 2], millisecondsDelay);
-            this.Symbol22 = await RenderCorrectSymbol(slots.Symbols[2, 2], millisecondsDelay);
-            this.Symbol32 = await RenderCorrectSymbol(slots.Symbols[3, 2], millisecondsDelay);
-            this.Symbol42 = await RenderCorrectSymbol(slots.Symbols[4, 2], millisecondsDelay);
-
-        }
-
-        private static async Task<string> RenderCorrectSymbol(ISymbol symbol, int delay)
-        {
-            await Task.Delay(delay);
-            return SymbolToPath(symbol);
-        }
-
-
+        
         private void RenderPattern(List<Pattern> patterns)
         {
             Color[,] colors = CalculateNewColors(patterns);
@@ -188,11 +229,6 @@
                 { Color.Transparent, Color.Transparent, Color.Transparent },
                 { Color.Transparent, Color.Transparent, Color.Transparent }
             };
-        }
-
-        private static string GetSpinningSymbol()
-        {
-            return $"pack://application:,,,/BookOfBruh.View;component/Images/Spinning.gif";
         }
 
         private static string SymbolToPath(ISymbol symbol)
