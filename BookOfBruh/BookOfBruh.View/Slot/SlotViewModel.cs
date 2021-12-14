@@ -73,79 +73,62 @@
         private async Task RenderSpinningSymbols()
         {
             const int millisecondsDelay = 20;
-            
+
             this.Symbol00 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol10 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol20 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol30 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol40 = GetSpinningSymbol();
+            this.Symbol10 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol20 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol30 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol40 = await RenderSpinningSymbol(millisecondsDelay);
 
-            await Task.Delay(millisecondsDelay);
+            this.Symbol01 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol11 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol21 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol31 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol41 = await RenderSpinningSymbol(millisecondsDelay);
 
-            this.Symbol01 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol11 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol21 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol31 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol41 = GetSpinningSymbol();
+            this.Symbol02 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol12 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol22 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol32 = await RenderSpinningSymbol(millisecondsDelay);
+            this.Symbol42 = await RenderSpinningSymbol(millisecondsDelay);
+        }
 
-            await Task.Delay(millisecondsDelay);
-
-            this.Symbol02 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol12 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol22 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol32 = GetSpinningSymbol();
-            await Task.Delay(millisecondsDelay);
-            this.Symbol42 = GetSpinningSymbol();
+        private static async Task<string> RenderSpinningSymbol(int delay)
+        {
+            await Task.Delay(delay);
+            return GetSpinningSymbol();
         }
 
         private async Task RenderCorrectSymbols(Slots slots)
         {
             const int millisecondsDelay = 100;
 
-            await Task.Delay(millisecondsDelay);
-            this.Symbol00 = this.SymbolToPath(slots.Symbols[0, 0]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol10 = this.SymbolToPath(slots.Symbols[1, 0]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol20 = this.SymbolToPath(slots.Symbols[2, 0]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol30 = this.SymbolToPath(slots.Symbols[3, 0]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol40 = this.SymbolToPath(slots.Symbols[4, 0]);
-            await Task.Delay(millisecondsDelay);
+            this.Symbol00 = await RenderCorrectSymbol(slots.Symbols[0, 0], millisecondsDelay);
+            this.Symbol10 = await RenderCorrectSymbol(slots.Symbols[1, 0], millisecondsDelay);
+            this.Symbol20 = await RenderCorrectSymbol(slots.Symbols[2, 0], millisecondsDelay);
+            this.Symbol30 = await RenderCorrectSymbol(slots.Symbols[3, 0], millisecondsDelay);
+            this.Symbol40 = await RenderCorrectSymbol(slots.Symbols[4, 0], millisecondsDelay);
 
-            this.Symbol01 = this.SymbolToPath(slots.Symbols[0, 1]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol11 = this.SymbolToPath(slots.Symbols[1, 1]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol21 = this.SymbolToPath(slots.Symbols[2, 1]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol31 = this.SymbolToPath(slots.Symbols[3, 1]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol41 = this.SymbolToPath(slots.Symbols[4, 1]);
-            await Task.Delay(millisecondsDelay);
+            this.Symbol01 = await RenderCorrectSymbol(slots.Symbols[0, 1], millisecondsDelay);
+            this.Symbol11 = await RenderCorrectSymbol(slots.Symbols[1, 1], millisecondsDelay);
+            this.Symbol21 = await RenderCorrectSymbol(slots.Symbols[2, 1], millisecondsDelay);
+            this.Symbol31 = await RenderCorrectSymbol(slots.Symbols[3, 1], millisecondsDelay);
+            this.Symbol41 = await RenderCorrectSymbol(slots.Symbols[4, 1], millisecondsDelay);
 
-            this.Symbol02 = this.SymbolToPath(slots.Symbols[0, 2]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol12 = this.SymbolToPath(slots.Symbols[1, 2]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol22 = this.SymbolToPath(slots.Symbols[2, 2]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol32 = this.SymbolToPath(slots.Symbols[3, 2]);
-            await Task.Delay(millisecondsDelay);
-            this.Symbol42 = this.SymbolToPath(slots.Symbols[4, 2]);
+            this.Symbol02 = await RenderCorrectSymbol(slots.Symbols[0, 2], millisecondsDelay);
+            this.Symbol12 = await RenderCorrectSymbol(slots.Symbols[1, 2], millisecondsDelay);
+            this.Symbol22 = await RenderCorrectSymbol(slots.Symbols[2, 2], millisecondsDelay);
+            this.Symbol32 = await RenderCorrectSymbol(slots.Symbols[3, 2], millisecondsDelay);
+            this.Symbol42 = await RenderCorrectSymbol(slots.Symbols[4, 2], millisecondsDelay);
+
         }
+
+        private static async Task<string> RenderCorrectSymbol(ISymbol symbol, int delay)
+        {
+            await Task.Delay(delay);
+            return SymbolToPath(symbol);
+        }
+
 
         private void RenderPattern(List<Pattern> patterns)
         {
@@ -184,12 +167,25 @@
 
             return colors;
         }
+
+        private static Color[,] GenerateCompletelyTransparentArray()
+        {
+            return new Color[,]
+            {
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent },
+                { Color.Transparent, Color.Transparent, Color.Transparent }
+            };
+        }
+
         private static string GetSpinningSymbol()
         {
             return $"pack://application:,,,/BookOfBruh.View;component/Images/Spinning.gif";
         }
 
-        private string SymbolToPath(ISymbol symbol)
+        private static string SymbolToPath(ISymbol symbol)
         {
             string symbolName = symbol?.GetType().Name;
             return $"pack://application:,,,/BookOfBruh.View;component/Images/{symbolName}.png";
@@ -206,27 +202,5 @@
             };
             return new SolidColorBrush(mediaColor);
         }
-
-        private static Color[,] GenerateCompletelyTransparentArray()
-        {
-            return new Color[,]
-            {
-                { Color.Transparent, Color.Transparent, Color.Transparent },
-                { Color.Transparent, Color.Transparent, Color.Transparent },
-                { Color.Transparent, Color.Transparent, Color.Transparent },
-                { Color.Transparent, Color.Transparent, Color.Transparent },
-                { Color.Transparent, Color.Transparent, Color.Transparent }
-            };
-        }
-    }
-
-    public class WinEventArgs : EventArgs
-    {
-        public WinEventArgs(double win)
-        {
-            this.BruhCoin = win;
-        }
-
-        public double BruhCoin { get; }
     }
 }

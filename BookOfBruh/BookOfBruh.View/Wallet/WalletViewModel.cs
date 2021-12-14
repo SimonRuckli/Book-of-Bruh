@@ -14,7 +14,7 @@
         {
             this.game = game;
 
-            this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick, this.AddToWalletIsValid);
+            this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick);
         }
 
         public event EventHandler CloseView;
@@ -26,9 +26,9 @@
 
         public int Code { get; set; }
 
-        private bool AddToWalletIsValid()
+        public void RequestClose()
         {
-            return true;
+            this.CloseView?.Invoke(this, EventArgs.Empty);
         }
 
         private void AddToWalletClick()
@@ -36,20 +36,5 @@
             Result<double> addToWalletResult = this.game.AddToWallet(this.Code);
             this.AddedToWallet?.Invoke(this, new AddToWalletArgs(addToWalletResult));
         }
-
-        public void RequestClose()
-        {
-            this.CloseView?.Invoke(this, EventArgs.Empty);
-        }
-    }
-
-    public class AddToWalletArgs : EventArgs
-    {
-        public AddToWalletArgs(Result<double> addToWallet)
-        {
-            AddToWallet = addToWallet;
-        }
-
-        public Result<double> AddToWallet { get; set; }
     }
 }

@@ -47,11 +47,37 @@
             }
         }
 
+        public void AddToWallet()
+        {
+            this.state.Handle();
+            this.RefreshBruhCoins();
+        }
+
+        public void FinishedSpinning()
+        {
+            this.state.Handle();
+
+            this.RefreshBruhCoins();
+        }
 
         public void TransitionTo(ControlState newState)
         {
             this.state = newState;
             this.state.SetContext(this);
+        }
+
+        private void SpinClick()
+        {
+            bool trySpin = this.state.TrySpin();
+
+            Result<SpinResult> result = this.game.Spin(this.Stake);
+
+            this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
+        }
+
+        private bool SpinIsValid()
+        {
+            return this.state is ReadyToSpinState;
         }
 
         private void OpenStakeClick()
@@ -64,36 +90,9 @@
             this.OpenWallet?.Invoke(this, EventArgs.Empty);
         }
 
-        private bool SpinIsValid()
-        {
-            return this.state is ReadyToSpinState;
-        }
-
-        private void SpinClick()
-        {
-            bool trySpin = this.state.TrySpin();
-            
-            Result<SpinResult> result = this.game.Spin(this.Stake);
-            
-            this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
-        }
-
         private void RefreshBruhCoins()
         {
             this.OnPropertyChanged(nameof(this.BruhCoins));
-        }
-
-        public void AddToWallet()
-        {
-            this.state.Handle();
-            this.RefreshBruhCoins();
-        }
-
-        public void FinishedSpinning()
-        {
-            this.state.Handle();
-
-            this.RefreshBruhCoins();
         }
     }
 }
