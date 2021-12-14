@@ -63,12 +63,21 @@
 
         public async Task RenderSpin(SpinResult spinResult)
         {
+            this.ResetSlots();
+
+            await this.RenderSpinningSymbols();
+
+            await this.RenderCorrectSymbols(spinResult.Slots);
+
+            this.RenderPattern(spinResult.Patterns);
+
+            this.FinishedSpinning?.Invoke(this, new WinEventArgs(spinResult.BruhCoins));
+        }
+
+        private void ResetSlots()
+        {
             Color[,] colors = GenerateCompletelyTransparentArray();
             this.SetSymbolColors(colors);
-            await this.RenderSpinningSymbols();
-            await this.RenderCorrectSymbols(spinResult.Slots);
-            this.RenderPattern(spinResult.Patterns);
-            this.FinishedSpinning?.Invoke(this, new WinEventArgs(spinResult.BruhCoins));
         }
 
         private async Task RenderSpinningSymbols()
