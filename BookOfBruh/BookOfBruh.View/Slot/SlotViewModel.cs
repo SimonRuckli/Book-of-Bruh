@@ -17,48 +17,45 @@
     {
         public SlotViewModel()
         {
-            Color[,] colors = GenerateCompletelyTransparentArray();
-            this.SetSymbolColors(colors);
+            this.Slot00 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot10 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot20 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot30 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot40 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+
+            this.Slot01 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot11 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot21 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot31 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot41 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+
+            this.Slot02 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot12 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot22 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot32 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
+            this.Slot42 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
         }
 
         public EventHandler<WinEventArgs> FinishedSpinning;
 
-        public string Symbol00 { get; private set; }
-        public string Symbol10 { get; private set; }
-        public string Symbol20 { get; private set; }
-        public string Symbol30 { get; private set; }
-        public string Symbol40 { get; private set; }
+        public Slot Slot00 { get; private set; }
+        public Slot Slot10 { get; private set; }
+        public Slot Slot20 { get; private set; }
+        public Slot Slot30 { get; private set; }
+        public Slot Slot40 { get; private set; }
 
-        public string Symbol01 { get; private set; }
-        public string Symbol11 { get; private set; }
-        public string Symbol21 { get; private set; }
-        public string Symbol31 { get; private set; }
-        public string Symbol41 { get; private set; }
+        public Slot Slot01 { get; private set; }
+        public Slot Slot11 { get; private set; }
+        public Slot Slot21 { get; private set; }
+        public Slot Slot31 { get; private set; }
+        public Slot Slot41 { get; private set; }
 
-        public string Symbol02 { get; private set; }
-        public string Symbol12 { get; private set; }
-        public string Symbol22 { get; private set; }
-        public string Symbol32 { get; private set; }
-        public string Symbol42 { get; private set; }
+        public Slot Slot02 { get; private set; }
+        public Slot Slot12 { get; private set; }
+        public Slot Slot22 { get; private set; }
+        public Slot Slot32 { get; private set; }
+        public Slot Slot42 { get; private set; }
 
-
-        public Brush Symbol00Color { get; private set; }
-        public Brush Symbol10Color { get; private set; }
-        public Brush Symbol20Color { get; private set; }
-        public Brush Symbol30Color { get; private set; }
-        public Brush Symbol40Color { get; private set; }
-
-        public Brush Symbol01Color { get; private set; }
-        public Brush Symbol11Color { get; private set; }
-        public Brush Symbol21Color { get; private set; }
-        public Brush Symbol31Color { get; private set; }
-        public Brush Symbol41Color { get; private set; }
-
-        public Brush Symbol02Color { get; private set; }
-        public Brush Symbol12Color { get; private set; }
-        public Brush Symbol22Color { get; private set; }
-        public Brush Symbol32Color { get; private set; }
-        public Brush Symbol42Color { get; private set; }
 
         public async Task RenderSpin(SpinResult spinResult)
         {
@@ -99,32 +96,32 @@
             {
                 if (i < 20 + 1)
                 {
-                    this.Symbol00 = SymbolToPath(symbolList00[i]);
-                    this.Symbol01 = SymbolToPath(symbolList01[i]);
-                    this.Symbol02 = SymbolToPath(symbolList02[i]);
+                    this.Slot00 = new Slot(SymbolToPath(symbolList00[i]), Slot00.Color);
+                    this.Slot01 = new Slot(SymbolToPath(symbolList01[i]), Slot01.Color);
+                    this.Slot02 = new Slot(SymbolToPath(symbolList02[i]), Slot02.Color);
                 }
                 if (i < 25 + 1)
                 {
-                    this.Symbol10 = SymbolToPath(symbolList10[i]);
-                    this.Symbol11 = SymbolToPath(symbolList11[i]);
-                    this.Symbol12 = SymbolToPath(symbolList12[i]);
+                    this.Slot10 = new Slot(SymbolToPath(symbolList10[i]), Slot10.Color);
+                    this.Slot11 = new Slot(SymbolToPath(symbolList11[i]), Slot11.Color);
+                    this.Slot12 = new Slot(SymbolToPath(symbolList12[i]), Slot12.Color);
                 }
                 if (i < 30 + 1)
                 {
-                    this.Symbol20 = SymbolToPath(symbolList20[i]);
-                    this.Symbol21 = SymbolToPath(symbolList21[i]);
-                    this.Symbol22 = SymbolToPath(symbolList22[i]);
+                    this.Slot20 = new Slot(SymbolToPath(symbolList20[i]), Slot20.Color);
+                    this.Slot21 = new Slot(SymbolToPath(symbolList21[i]), Slot21.Color);
+                    this.Slot22 = new Slot(SymbolToPath(symbolList22[i]), Slot22.Color);
                 }
                 if (i < 35 + 1)
                 {
-                    this.Symbol30 = SymbolToPath(symbolList30[i]);
-                    this.Symbol31 = SymbolToPath(symbolList31[i]);
-                    this.Symbol32 = SymbolToPath(symbolList32[i]);
+                    this.Slot30 = new Slot(SymbolToPath(symbolList30[i]), Slot30.Color);
+                    this.Slot31 = new Slot(SymbolToPath(symbolList31[i]), Slot31.Color);
+                    this.Slot32 = new Slot(SymbolToPath(symbolList32[i]), Slot32.Color);
                 }
 
-                this.Symbol40 = SymbolToPath(symbolList40[i]);
-                this.Symbol41 = SymbolToPath(symbolList41[i]);
-                this.Symbol42 = SymbolToPath(symbolList42[i]);
+                this.Slot40 = new Slot(SymbolToPath(symbolList40[i]), Slot40.Color);
+                this.Slot41 = new Slot(SymbolToPath(symbolList41[i]), Slot41.Color);
+                this.Slot42 = new Slot(SymbolToPath(symbolList42[i]), Slot42.Color);
 
                 await Task.Delay(millisecondsDelay);
             }
@@ -189,23 +186,23 @@
 
         private void SetSymbolColors(Color[,] colors)
         {
-            this.Symbol00Color = ColorToBrush(colors[0, 0]);
-            this.Symbol10Color = ColorToBrush(colors[1, 0]);
-            this.Symbol20Color = ColorToBrush(colors[2, 0]);
-            this.Symbol30Color = ColorToBrush(colors[3, 0]);
-            this.Symbol40Color = ColorToBrush(colors[4, 0]);
-
-            this.Symbol01Color = ColorToBrush(colors[0, 1]);
-            this.Symbol11Color = ColorToBrush(colors[1, 1]);
-            this.Symbol21Color = ColorToBrush(colors[2, 1]);
-            this.Symbol31Color = ColorToBrush(colors[3, 1]);
-            this.Symbol41Color = ColorToBrush(colors[4, 1]);
-
-            this.Symbol02Color = ColorToBrush(colors[0, 2]);
-            this.Symbol12Color = ColorToBrush(colors[1, 2]);
-            this.Symbol22Color = ColorToBrush(colors[2, 2]);
-            this.Symbol32Color = ColorToBrush(colors[3, 2]);
-            this.Symbol42Color = ColorToBrush(colors[4, 2]);
+            this.Slot00 = new Slot(Slot00.Symbol, ColorToBrush(colors[0, 0]));
+            this.Slot10 = new Slot(Slot10.Symbol, ColorToBrush(colors[1, 0]));
+            this.Slot20 = new Slot(Slot20.Symbol, ColorToBrush(colors[2, 0]));
+            this.Slot30 = new Slot(Slot30.Symbol, ColorToBrush(colors[3, 0]));
+            this.Slot40 = new Slot(Slot40.Symbol, ColorToBrush(colors[4, 0]));
+                                                                            
+            this.Slot01 = new Slot(Slot01.Symbol, ColorToBrush(colors[0, 1]));
+            this.Slot11 = new Slot(Slot11.Symbol, ColorToBrush(colors[1, 1]));
+            this.Slot21 = new Slot(Slot21.Symbol, ColorToBrush(colors[2, 1]));
+            this.Slot31 = new Slot(Slot31.Symbol, ColorToBrush(colors[3, 1]));
+            this.Slot41 = new Slot(Slot41.Symbol, ColorToBrush(colors[4, 1]));
+                                                                            
+            this.Slot02 = new Slot(Slot02.Symbol, ColorToBrush(colors[0, 2]));
+            this.Slot12 = new Slot(Slot12.Symbol, ColorToBrush(colors[1, 2]));
+            this.Slot22 = new Slot(Slot22.Symbol, ColorToBrush(colors[2, 2]));
+            this.Slot32 = new Slot(Slot32.Symbol, ColorToBrush(colors[3, 2]));
+            this.Slot42 = new Slot(Slot40.Symbol, ColorToBrush(colors[4, 2]));
         }
 
         private static Color[,] CalculateNewColors(List<Pattern> patterns)
