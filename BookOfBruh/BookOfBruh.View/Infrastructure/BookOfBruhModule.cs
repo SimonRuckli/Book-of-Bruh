@@ -26,6 +26,7 @@
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
 
             this.Bind<ControlState>().To<NotEnoughBruhCoinState>();
+            this.Bind<ISlotSpinner>().To<SlotSpinner>();
             
             this.Bind<Game>().ToSelf().InSingletonScope();
 

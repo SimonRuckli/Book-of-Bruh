@@ -15,8 +15,11 @@
 
     public class SlotViewModel : NotifyPropertyChangedBase
     {
-        public SlotViewModel()
+        private readonly ISlotSpinner slotSpinner;
+
+        public SlotViewModel(ISlotSpinner slotSpinner)
         {
+            this.slotSpinner = slotSpinner;
             this.Slot00 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
             this.Slot10 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
             this.Slot20 = new Slot(string.Empty, ColorToBrush(Color.Transparent));
@@ -69,109 +72,13 @@
         }
 
         private async Task SpinSymbols(ISymbol[,] symbols)
-        {
-            const int millisecondsDelay = 50;
-
-            List<ISymbol> symbolList00 = GenerateSpinSymbols(20, symbols[0, 0]);
-            List<ISymbol> symbolList01 = GenerateSpinSymbols(20, symbols[0, 1]);
-            List<ISymbol> symbolList02 = GenerateSpinSymbols(20, symbols[0, 2]);
-           
-            List<ISymbol> symbolList10 = GenerateSpinSymbols(25, symbols[1, 0]);
-            List<ISymbol> symbolList11 = GenerateSpinSymbols(25, symbols[1, 1]);
-            List<ISymbol> symbolList12 = GenerateSpinSymbols(25, symbols[1, 2]);
-           
-            List<ISymbol> symbolList20 = GenerateSpinSymbols(30, symbols[2, 0]);
-            List<ISymbol> symbolList21 = GenerateSpinSymbols(30, symbols[2, 1]);
-            List<ISymbol> symbolList22 = GenerateSpinSymbols(30, symbols[2, 2]);
-           
-            List<ISymbol> symbolList30 = GenerateSpinSymbols(35, symbols[3, 0]);
-            List<ISymbol> symbolList31 = GenerateSpinSymbols(35, symbols[3, 1]);
-            List<ISymbol> symbolList32 = GenerateSpinSymbols(35, symbols[3, 2]);
-           
-            List<ISymbol> symbolList40 = GenerateSpinSymbols(40, symbols[4, 0]);
-            List<ISymbol> symbolList41 = GenerateSpinSymbols(40, symbols[4, 1]);
-            List<ISymbol> symbolList42 = GenerateSpinSymbols(40, symbols[4, 2]);
-
-            for (int i = 0; i < 41; i++)
+        { 
+            await foreach(ISymbol symbol in slotSpinner.GenerateSpinSymbols(100,100,symbols[0,0]))
             {
-                if (i < 20 + 1)
-                {
-                    this.Slot00 = new Slot(SymbolToPath(symbolList00[i]), Slot00.Color);
-                    this.Slot01 = new Slot(SymbolToPath(symbolList01[i]), Slot01.Color);
-                    this.Slot02 = new Slot(SymbolToPath(symbolList02[i]), Slot02.Color);
-                }
-                if (i < 25 + 1)
-                {
-                    this.Slot10 = new Slot(SymbolToPath(symbolList10[i]), Slot10.Color);
-                    this.Slot11 = new Slot(SymbolToPath(symbolList11[i]), Slot11.Color);
-                    this.Slot12 = new Slot(SymbolToPath(symbolList12[i]), Slot12.Color);
-                }
-                if (i < 30 + 1)
-                {
-                    this.Slot20 = new Slot(SymbolToPath(symbolList20[i]), Slot20.Color);
-                    this.Slot21 = new Slot(SymbolToPath(symbolList21[i]), Slot21.Color);
-                    this.Slot22 = new Slot(SymbolToPath(symbolList22[i]), Slot22.Color);
-                }
-                if (i < 35 + 1)
-                {
-                    this.Slot30 = new Slot(SymbolToPath(symbolList30[i]), Slot30.Color);
-                    this.Slot31 = new Slot(SymbolToPath(symbolList31[i]), Slot31.Color);
-                    this.Slot32 = new Slot(SymbolToPath(symbolList32[i]), Slot32.Color);
-                }
-
-                this.Slot40 = new Slot(SymbolToPath(symbolList40[i]), Slot40.Color);
-                this.Slot41 = new Slot(SymbolToPath(symbolList41[i]), Slot41.Color);
-                this.Slot42 = new Slot(SymbolToPath(symbolList42[i]), Slot42.Color);
-
-                await Task.Delay(millisecondsDelay);
-            }
-        }
-
-        private static List<ISymbol> GenerateSpinSymbols(int count, ISymbol endSymbol)
-        {
-            List<ISymbol> generate = GenerateSymbolList();
-            List<ISymbol> list = new List<ISymbol>();
-
-            Random random = new Random();
-            int max = generate.Count - 1;
-            int index = random.Next(max);
-
-            for (int i = 0; i < count; i++)
-            {
-                list.Add(generate[index]);
-                index = NextIndex(index, max);
-            }
-
-            list.Add(endSymbol);
-
-            return list;
-        }
-
-        private static int NextIndex(int index, int max)
-        {
-            if (index == max)
-            {
-                return 0;
-            }
-
-            return index + 1;
-        }
-
-        private static List<ISymbol> GenerateSymbolList()
-        {
-            return new List<ISymbol>()
-            {
-                new TenSymbol(),
-                new JSymbol(),
-                new QSymbol(),
-                new KSymbol(),
-                new ASymbol(),
-                new JoegiSymbol(),
-                new VincSymbol(),
-                new SimiSymbol()
+                this.Slot00 = new Slot(SymbolToPath(symbol), Slot00.Color);
             };
         }
-
+        
         private void ResetSlots()
         {
             Color[,] colors = GenerateCompletelyTransparentArray();
