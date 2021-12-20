@@ -1,37 +1,29 @@
 ﻿namespace BookOfBruh.Core.SlotGeneration
 {
-    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using GameData;
+    using Reels;
     using Symbols;
 
-    public interface ISlotGenerator
+    public interface ISlotConverter
     {
-        Slots Generate();
+        Slots Convert(List<IReel> reels);
     }
 
-    public class SlotGenerator : ISlotGenerator
+    public class SlotConverter : ISlotConverter
     {
-        private readonly ISymbolGenerator symbolGenerator;
-        private readonly Random random;
-
-        public SlotGenerator(ISymbolGenerator symbolGenerator)
-        {
-            this.symbolGenerator = symbolGenerator;
-            this.random = new Random();
-        }
-
-        public Slots Generate()
+        public Slots Convert(List<IReel> reels)
         {
             ISymbol[,] symbols = new ISymbol[5, 3];
 
-            for (int x = 0; x < symbols.GetLength(0); x++)
+            foreach ((IReel reel, int i) in reels.Select((reel, i) => (reel, i)))
             {
-                for (int y = 0; y < symbols.GetLength(1); y++)
-                {
-                    int next = this.random.Next(100);
-                    symbols[x, y] = this.symbolGenerator.Generate(next);
-                }
+                symbols[i, 0] = reel.First;
+                symbols[i, 1] = reel.Second;
+                symbols[i, 2] = reel.Third;
             }
+
             return new Slots(symbols);
         }
     }

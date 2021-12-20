@@ -8,6 +8,7 @@
     using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Helper;
+    using Reels;
     using Symbols;
     using Xunit;
 
@@ -30,15 +31,16 @@
             // Arrange
             const double fakeBruhCoin = 0;
 
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
+            List<IReel> reels = new List<IReel>();
 
             IPlayer fakePlayer = new FakePlayer(0);
 
             SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins, new List<Pattern>());
 
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
 
             // Act
             Result<SpinResult> result = testee.Spin(stake);
@@ -57,13 +59,14 @@
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+            List<IReel> reels = new List<IReel>();
 
             IPlayer fakePlayer = new FakePlayer(0);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
 
             double expected = bruhCoins;
 
@@ -82,13 +85,14 @@
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+            List<IReel> reels = new List<IReel>();
 
             IPlayer fakePlayer = new FakePlayer(0);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
             
             // Act
             Result<double> result = testee.AddToWallet(code);
@@ -105,13 +109,14 @@
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
+            List<IReel> reels = new List<IReel>();
 
             IPlayer fakePlayer = new FakePlayer(playerBefore);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
             
             // Act
             testee.AddToWallet(code);
@@ -121,16 +126,16 @@
         }
     }
 
-    internal class FakeSlotGenerator : ISlotGenerator
+    internal class FakeSlotConverter : ISlotConverter
     {
         private readonly Slots slots;
 
-        public FakeSlotGenerator(Slots slots)
+        public FakeSlotConverter(Slots slots)
         {
             this.slots = slots;
         }
 
-        public Slots Generate()
+        public Slots Convert(List<IReel> reels)
         {
             return this.slots;
         }

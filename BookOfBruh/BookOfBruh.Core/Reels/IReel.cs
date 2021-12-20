@@ -1,10 +1,11 @@
 ﻿namespace BookOfBruh.Core.Reels
 {
+    using System.Threading.Tasks;
     using Symbols;
 
     public interface IReel
     {
-        void Spin(int times);
+        Task Spin(int times);
 
         ISymbol First { get; }
         ISymbol Second { get; }

@@ -31,7 +31,7 @@
 
             this.Bind<IPlayer>().To<Player>().InSingletonScope();
             this.Bind<IWallet>().To<Wallet>().InSingletonScope();
-            this.Bind<ISlotGenerator>().To<SlotGenerator>().InSingletonScope();
+            this.Bind<ISlotConverter>().To<SlotConverter>().InSingletonScope();
             this.Bind<ISymbolGenerator>().To<SymbolGenerator>().InSingletonScope();
             this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();

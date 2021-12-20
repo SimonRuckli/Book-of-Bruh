@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.Core.Reels
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Symbols;
 
     public class Reel : NotifyPropertyChangedBase, IReel
@@ -53,11 +54,12 @@
             }
         }
 
-        public void Spin(int times)
+        public async Task Spin(int times)
         {
             for (int i = 0; i < times; i++)
             {
                 this.UpdateIndexes();
+                await Task.Delay(100);
                 this.UpdateSymbols();
             }
         }

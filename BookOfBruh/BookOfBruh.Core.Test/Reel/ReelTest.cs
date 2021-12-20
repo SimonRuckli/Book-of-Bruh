@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.Core.Test.Reel
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using FluentAssertions;
     using FluentAssertions.Execution;
     using Reels;
@@ -10,7 +11,7 @@
     public class ReelTest
     {
         [Fact]
-        public void SpinTwoTimesShouldDisplayCorrectSymbol()
+        public async Task SpinTwoTimesShouldDisplayCorrectSymbol()
         {
             // Arrange
             List<ISymbol> symbols = new List<ISymbol>()
@@ -26,7 +27,7 @@
             const int times = 2;
 
             // Act
-            testee.Spin(times);
+            await testee.Spin(times);
 
             // Assert
             using (new AssertionScope())
@@ -38,7 +39,7 @@
         }
 
         [Fact]
-        public void SpinFullCircleShouldDisplayCorrectSymbol()
+        public async Task SpinFullCircleShouldDisplayCorrectSymbol()
         {
             // Arrange
             List<ISymbol> symbols = new List<ISymbol>()
@@ -54,7 +55,7 @@
             const int times = 7;
 
             // Act
-            testee.Spin(times);
+            await testee.Spin(times);
 
             // Assert
             using (new AssertionScope())

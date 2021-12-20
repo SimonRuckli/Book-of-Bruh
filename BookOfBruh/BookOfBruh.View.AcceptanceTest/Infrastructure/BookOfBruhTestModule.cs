@@ -5,7 +5,6 @@
     using Core.GameData;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
-    using Core.SlotGeneration;
     using Main;
     using Ninject.Modules;
     using View.Control;
@@ -31,7 +30,6 @@
             this.Bind<Game>().ToSelf().InSingletonScope();
 
             this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
-            this.Bind<ISlotGenerator>().To<FakeSlotGenerator>().InSingletonScope();
 
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
