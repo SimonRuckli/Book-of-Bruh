@@ -1,6 +1,8 @@
 ﻿namespace BookOfBruh.Core
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Reels;
     using SlotGeneration;
     using Symbols;
@@ -22,7 +24,7 @@
 
             for (int i = 0; i < count; i++)
             {
-                generate.Shuffle();
+                generate = generate.OrderBy(_ => Guid.NewGuid()).ToList();
                 reels.Add(new Reel(generate));
             }
 
