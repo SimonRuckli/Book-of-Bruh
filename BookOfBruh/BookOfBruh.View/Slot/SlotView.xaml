@@ -10,6 +10,7 @@
              d:DataContext="{d:DesignInstance slot:SlotViewModel}">
     <UserControl.Resources>
         <view:SymbolConverter x:Key="SymbolConverter" />
+        <view:IsPatternConverter x:Key="IsPatternConverter" />
     </UserControl.Resources>
     <Grid>
         <ItemsControl ItemsSource="{Binding Path=Reels}">
@@ -27,9 +28,19 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Image Grid.Row="0" Source="{Binding First, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
-                        <Image Grid.Row="1"  Source="{Binding Second, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
-                        <Image Grid.Row="2"  Source="{Binding Third, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+
+                        <Border Grid.Row="0" Style="{StaticResource SymbolImageBorder}" Background="{Binding First.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                            <Image  Source="{Binding First.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
+
+                        <Border Grid.Row="1"  Style="{StaticResource SymbolImageBorder}" Background="{Binding Second.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                        <Image  Source="{Binding Second.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
+
+                        <Border Grid.Row="2" Style="{StaticResource SymbolImageBorder}" Background="{Binding Third.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                            <Image Source="{Binding Third.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
+
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

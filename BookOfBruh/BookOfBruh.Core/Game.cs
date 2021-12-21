@@ -37,6 +37,13 @@
         {
             this.Player.BruhCoins -= stake;
 
+            foreach (IReel reel in Reels)
+            {
+                reel.First.IsPattern = false;
+                reel.Second.IsPattern = false;
+                reel.Third.IsPattern = false;
+            }
+
             List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(random.Next(50,100) + i * random.Next(10,30))).ToList();
 
             await Task.WhenAll(spinningReels);
@@ -44,6 +51,13 @@
             Slots slots = slotConverter.Convert(Reels);
 
             AnalyzeResult analyzeResult = this.slotAnalyzer.Analyze(slots);
+
+            for (int x = 0; x < this.Reels.Count; x++)
+            {
+                this.Reels[x].First.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 0));
+                this.Reels[x].Second.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 1));
+                this.Reels[x].Third.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 2));
+            }
 
             double win = analyzeResult.Multiplier * stake;
 

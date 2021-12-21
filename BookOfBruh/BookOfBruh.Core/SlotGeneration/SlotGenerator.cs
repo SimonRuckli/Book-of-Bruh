@@ -19,9 +19,9 @@
 
             foreach ((IReel reel, int i) in reels.Select((reel, i) => (reel, i)))
             {
-                symbols[i, 0] = reel.First;
-                symbols[i, 1] = reel.Second;
-                symbols[i, 2] = reel.Third;
+                symbols[i, 0] = reel.First.Symbol;
+                symbols[i, 1] = reel.Second.Symbol;
+                symbols[i, 2] = reel.Third.Symbol;
             }
 
             return new Slots(symbols);

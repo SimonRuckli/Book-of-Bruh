@@ -13,47 +13,23 @@
         private int secondIndex;
         private int thirdIndex;
 
-        private ISymbol first;
-        private ISymbol second;
-        private ISymbol third;
-
         public Reel(List<ISymbol> symbols)
         {
             this.symbols = symbols;
+
+            First = new Slot();
+            Second = new Slot();
+            Third = new Slot();
+
             this.firstIndex = 2;
             this.secondIndex = 1;
             this.thirdIndex = 0;
         }
 
-        public ISymbol First
-        {
-            get => first;
-            private set
-            {
-                first = value;
-                OnPropertyChanged();
-            }
-        }
+        public Slot First { get; }
+        public Slot Second { get; }
+        public Slot Third { get; }
 
-        public ISymbol Second
-        {
-            get => second;
-            private set
-            {
-                second = value; 
-                OnPropertyChanged();
-            }
-        }
-
-        public ISymbol Third
-        {
-            get => third;
-            private set
-            {
-                third = value;
-                OnPropertyChanged();
-            }
-        }
 
         public async Task Spin(int times)
         {
@@ -80,9 +56,9 @@
 
         private void UpdateSymbols()
         {
-            this.First = symbols[firstIndex];
-            this.Second = symbols[secondIndex];
-            this.Third = symbols[thirdIndex];
+            this.First.Symbol = symbols[firstIndex];
+            this.Second.Symbol = symbols[secondIndex];
+            this.Third.Symbol = symbols[thirdIndex];
         }
 
         private void UpdateIndexes()
@@ -104,6 +80,32 @@
             }
 
             return index;
+        }
+    }
+
+    public class Slot : NotifyPropertyChangedBase
+    {
+        private ISymbol symbol;
+        private bool isPattern;
+
+        public ISymbol Symbol
+        {
+            get => symbol;
+            set
+            {
+                symbol = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsPattern
+        {
+            get => isPattern;
+            set
+            {
+                isPattern = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

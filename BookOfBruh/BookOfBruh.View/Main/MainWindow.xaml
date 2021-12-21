@@ -11,7 +11,7 @@
     xmlns:win="clr-namespace:BookOfBruh.View.Win"
     Title="Book of Bruh"
     Icon="../Images/favicon.ico"
-    MinWidth="800"
+    MinWidth="850"
     MinHeight="500"
     Width="850"
     Height="500"

@@ -10,16 +10,12 @@
     public class ControlViewModel : NotifyPropertyChangedBase
     {
         private readonly Game game;
-        private ControlState state;
         private double stake = 1;
 
-        public ControlViewModel(Game game, ControlState state)
+        public ControlViewModel(Game game)
         {
             this.game = game;
-
-            this.state = state;
-            this.state.SetContext(this);
-
+            
             this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
             this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick);
             this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick);
@@ -41,24 +37,19 @@
             set
             {
                 this.stake = value;
-                this.state.Handle();
             }
         }
 
         public void AddToWallet()
         {
-            this.state.Handle();
             this.RefreshBruhCoins();
         }
         public void TransitionTo(ControlState newState)
         {
-            this.state = newState;
-            this.state.SetContext(this);
         }
 
         private async void SpinClick()
         {
-            bool trySpin = this.state.TrySpin();
 
            SpinResult result = await this.game.Spin(this.Stake);
 
@@ -67,7 +58,7 @@
 
         private bool SpinIsValid()
         {
-            return this.state is ReadyToSpinState;
+            return true;
         }
 
         private void OpenStakeClick()
