@@ -85,6 +85,7 @@
         {
             if (e.AddToWallet.IsSuccess)
             {
+                this.ControlViewModel.RefreshBruhCoins();
                 this.CloseWalletView();
             }
         }

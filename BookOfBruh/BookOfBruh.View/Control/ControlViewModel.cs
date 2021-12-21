@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.View.Control
 {
     using System;
+    using System.Threading.Tasks;
     using Core;
     using Core.GameData;
     using Infrastructure.Commands;
@@ -40,7 +41,13 @@
         {
             this.StartedSpin?.Invoke(this, EventArgs.Empty);
 
-            var win = await this.game.Spin(this.Stake);
+            Task<double> spin = this.game.Spin(this.Stake);
+
+            this.RefreshBruhCoins();
+
+            double win = await spin;
+
+            this.RefreshBruhCoins();
 
             this.FinishedSpin?.Invoke(this, new FinishedSpinEventArgs(win));
         }
@@ -58,6 +65,10 @@
         private void OpenWalletClick()
         {
             this.OpenWallet?.Invoke(this, EventArgs.Empty);
+        }
+        public void RefreshBruhCoins()
+        {
+            this.OnPropertyChanged(nameof(this.BruhCoins));
         }
     }
 }
