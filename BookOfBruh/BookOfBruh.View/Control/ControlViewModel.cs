@@ -30,12 +30,12 @@
         public EventHandler<FinishedSpinEventArgs> FinishedSpin;
         public EventHandler StartedSpin;
 
-        public double BruhCoins => this.slotMachine.Player.BruhCoins;
+        public double BruhCoins => this.slotMachine.BruhCoins;
 
         public double Stake
         {
-            get => this.slotMachine.Player.Stake;
-            set => this.slotMachine.Player.Stake = value;
+            get => this.slotMachine.Stake;
+            set => this.slotMachine.Stake = value;
         }
 
         public void RefreshSpinButton()

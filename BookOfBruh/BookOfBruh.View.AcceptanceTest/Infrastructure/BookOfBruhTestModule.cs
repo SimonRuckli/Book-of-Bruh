@@ -2,7 +2,6 @@
 {
     using Core;
     using Core.CodeValidation;
-    using Core.GameData;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Main;
@@ -25,9 +24,7 @@
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
 
             this.Bind<Game>().ToSelf().InSingletonScope();
-
-            this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
-
+            
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();

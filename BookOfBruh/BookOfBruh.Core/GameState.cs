@@ -20,7 +20,7 @@
     {
         public override void Handle()
         {
-            if (this.Context.Player.BruhCoins >= this.Context.Player.Stake)
+            if (this.Context.BruhCoins >= this.Context.Stake)
             {
                 this.Context.TransitionTo(new ReadyToSpinState());
             }
@@ -40,7 +40,7 @@
     {
         public override void Handle()
         {
-            if (this.Context.Player.BruhCoins >= this.Context.Player.Stake)
+            if (this.Context.BruhCoins >= this.Context.Stake)
             {
                 this.Context.TransitionTo(new ReadyToSpinState());
             }
@@ -61,7 +61,7 @@
     {
         public override void Handle()
         {
-            if (this.Context.Player.BruhCoins >= this.Context.Player.Stake)
+            if (this.Context.BruhCoins >= this.Context.Stake)
             {
                 this.Context.TransitionTo(new ReadyToSpinState());
             }

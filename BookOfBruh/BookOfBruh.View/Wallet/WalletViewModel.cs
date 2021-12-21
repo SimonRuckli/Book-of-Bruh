@@ -23,7 +23,7 @@
         public event EventHandler CloseView;
         public event EventHandler<AddToWalletArgs> AddedToWallet;
 
-        public double BruhCoins => slotMachine.Player.BruhCoins;
+        public double BruhCoins => slotMachine.BruhCoins;
 
         public int Code { get; set; }
 

@@ -37,10 +37,8 @@
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             GameState state = new ReadyToSpinState();
-
-            IPlayer fakePlayer = new FakePlayer(0, stake);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
 
             // Act
             double result = await testee.Spin();
@@ -64,10 +62,8 @@
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             GameState state = new ReadyToSpinState();
-
-            IPlayer fakePlayer = new FakePlayer(0, 0);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
 
             double expected = bruhCoins;
 
@@ -90,12 +86,11 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
-
-            IPlayer fakePlayer = new FakePlayer(0, 0);
+            
 
             GameState state = new ReadyToSpinState();
 
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             Result<double> result = testee.AddToWallet(code);
@@ -116,17 +111,16 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
-
-            IPlayer fakePlayer = new FakePlayer(playerBefore, 0);
+            
             GameState state = new ReadyToSpinState();
 
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             testee.AddToWallet(code);
 
             // Assert
-            testee.Player.BruhCoins.Should().Be(playerPast);
+            testee.BruhCoins.Should().Be(playerPast);
         }
     }
 
@@ -181,18 +175,5 @@
         {
             return this.bruhCoins == 0 ? Result.Failure<double>("Not a valid Code") : this.bruhCoins;
         }
-    }
-    
-    internal class FakePlayer : IPlayer
-    {
-        public FakePlayer(double playerBefore, double stake)
-        {
-            this.BruhCoins = playerBefore;
-            this.Stake = stake;
-        }
-        
-        public double BruhCoins { get; set; }
-        public double Stake { get; set; }
-
     }
 }

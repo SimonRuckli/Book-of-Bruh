@@ -20,9 +20,8 @@
         private GameState state;
 
 
-        public Game(IPlayer player, ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, GameState state)
+        public Game(ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, GameState state)
         {
-            this.Player = player;
             this.codeValidator = codeValidator;
             this.slotConverter = slotConverter;
             this.slotAnalyzer = slotAnalyzer;
@@ -31,10 +30,13 @@
             this.State.SetContext(this);
             this.random = new Random();
         }
-
-        public IPlayer Player { get; }
+        
 
         public List<IReel> Reels { get; }
+
+        public double Stake { get; set; }
+
+        public double BruhCoins { get; private set; }
 
         public GameState State
         {
@@ -48,7 +50,7 @@
 
         public async Task<double> Spin()
         {
-            this.Player.BruhCoins -= Player.Stake;
+            this.BruhCoins -= this.Stake;
 
             foreach (IReel reel in Reels)
             {
@@ -72,9 +74,9 @@
                 this.Reels[x].Third.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 2));
             }
 
-            double win = analyzeResult.Multiplier * this.Player.Stake;
+            double win = analyzeResult.Multiplier * this.Stake;
 
-            this.Player.BruhCoins += win;
+            this.BruhCoins += win;
 
             this.State.Handle();
 
@@ -87,7 +89,7 @@
 
             if (validate.IsSuccess)
             {
-                this.Player.BruhCoins += validate.Value;
+                this.BruhCoins += validate.Value;
             }
 
             this.State.Handle();
@@ -103,7 +105,8 @@
 
     public interface ISpinnable
     {
-        IPlayer Player { get; }
+        double Stake { get; set; }
+        double BruhCoins { get; }
 
         void TransitionTo(GameState newState);
 
@@ -112,7 +115,8 @@
 
     public interface ISlotMachine
     {
-        IPlayer Player { get; }
+        double Stake { get; set; }
+        double BruhCoins { get; }
 
         List<IReel> Reels { get; }
 

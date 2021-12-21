@@ -3,7 +3,6 @@
     using Control;
     using Core;
     using Core.CodeValidation;
-    using Core.GameData;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
@@ -27,8 +26,7 @@
             
             this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
             this.Bind<GameState>().To<NotEnoughBruhCoinState>().InSingletonScope();
-
-            this.Bind<IPlayer>().To<Player>().InSingletonScope();
+            
             this.Bind<ISlotConverter>().To<SlotConverter>().InSingletonScope();
             this.Bind<ISymbolGenerator>().To<SymbolGenerator>().InSingletonScope();
             this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
