@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.Core.Reels
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using Symbols;
 
@@ -19,9 +20,9 @@
         public Reel(List<ISymbol> symbols)
         {
             this.symbols = symbols;
-            this.firstIndex = 0;
+            this.firstIndex = 2;
             this.secondIndex = 1;
-            this.thirdIndex = 2;
+            this.thirdIndex = 0;
         }
 
         public ISymbol First
@@ -56,10 +57,23 @@
 
         public async Task Spin(int times)
         {
+            const int  minSpeed = 2000;
+            const int maxSpeed = 5;
+
+            List<int> speeds = new List<int>(){minSpeed};
+
+            for (int i = 0; i < times; i++)
+            {
+                int speed = speeds.Last() / 2;
+                speeds.Add(speed < maxSpeed ? maxSpeed : speed);
+            }
+
+            speeds.Reverse();
+
             for (int i = 0; i < times; i++)
             {
                 this.UpdateIndexes();
-                await Task.Delay(100);
+                await Task.Delay(speeds[i]);
                 this.UpdateSymbols();
             }
         }
