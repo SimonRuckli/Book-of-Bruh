@@ -1,10 +1,8 @@
 ﻿namespace BookOfBruh.View.Control
 {
     using System;
-    using System.Windows.Input;
     using Core;
     using Core.GameData;
-    using CSharpFunctionalExtensions;
     using Infrastructure;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
@@ -52,29 +50,19 @@
             this.state.Handle();
             this.RefreshBruhCoins();
         }
-
-        public void FinishedSpinning()
-        {
-            this.state.Handle();
-
-            CommandManager.InvalidateRequerySuggested();
-
-            this.RefreshBruhCoins();
-        }
-
         public void TransitionTo(ControlState newState)
         {
             this.state = newState;
             this.state.SetContext(this);
         }
 
-        private void SpinClick()
+        private async void SpinClick()
         {
             bool trySpin = this.state.TrySpin();
 
-            Result<SpinResult> result = this.game.Spin(this.Stake);
+           SpinResult result = await this.game.Spin(this.Stake);
 
-            this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
+            this.Spin?.Invoke(this, new SpinEventArgs(result));
         }
 
         private bool SpinIsValid()

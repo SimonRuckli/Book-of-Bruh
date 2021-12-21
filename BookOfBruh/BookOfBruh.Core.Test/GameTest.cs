@@ -1,6 +1,7 @@
 ﻿namespace BookOfBruh.Core.Test
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using CodeValidation;
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
@@ -26,7 +27,7 @@
                     "|-_-_-|", 6, 2, 12
             )]
 
-        public void SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
+        public async Task SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
         {
             // Arrange
             const double fakeBruhCoin = 0;
@@ -34,19 +35,19 @@
             ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
-            List<IReel> reels = new List<IReel>();
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
 
             IPlayer fakePlayer = new FakePlayer(0);
 
             SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins, new List<Pattern>());
 
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator);
 
             // Act
-            Result<SpinResult> result = testee.Spin(stake);
+            SpinResult result = await testee.Spin(stake);
 
             // Assert
-            result.Value.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected);
         }
 
         [Theory]
@@ -62,11 +63,11 @@
             ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-            List<IReel> reels = new List<IReel>();
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
 
             IPlayer fakePlayer = new FakePlayer(0);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator);
 
             double expected = bruhCoins;
 
@@ -88,11 +89,11 @@
             ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-            List<IReel> reels = new List<IReel>();
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
 
             IPlayer fakePlayer = new FakePlayer(0);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator);
             
             // Act
             Result<double> result = testee.AddToWallet(code);
@@ -112,17 +113,25 @@
             ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-            List<IReel> reels = new List<IReel>();
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
 
             IPlayer fakePlayer = new FakePlayer(playerBefore);
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reels);
+            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator);
             
             // Act
             testee.AddToWallet(code);
 
             // Assert
             testee.Player.BruhCoins.Should().Be(playerPast);
+        }
+    }
+
+    public class FakeReelsGenerator : IReelsGenerator
+    {
+        public List<IReel> Generate(int count)
+        {
+            return new List<IReel>();
         }
     }
 

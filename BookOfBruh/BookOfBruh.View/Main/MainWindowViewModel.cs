@@ -37,7 +37,6 @@
             this.walletViewService = walletViewService;
 
             this.ControlViewModel.Spin += this.Spin;
-            this.SlotViewModel.FinishedSpinning += this.FinishedSpinning;
 
             this.ControlViewModel.OpenStake += this.OpenStake;
             this.StakeViewModel.StakeChanged += this.StakeChanged;
@@ -55,16 +54,9 @@
 
         public RelayCommand ViewClosedCommand { get; set; }
 
-        private async void Spin(object sender, SpinEventArgs e)
+        private void Spin(object sender, SpinEventArgs e)
         {
             this.WinViewModel.StartedSpinning();
-            await this.SlotViewModel.RenderSpin(e.SpinResult);
-        }
-
-        private void FinishedSpinning(object sender, WinEventArgs e)
-        {
-            this.ControlViewModel.FinishedSpinning();
-            this.WinViewModel.FinishedSpinning(e.BruhCoin);
         }
 
         private void OpenStake(object sender, EventArgs e)

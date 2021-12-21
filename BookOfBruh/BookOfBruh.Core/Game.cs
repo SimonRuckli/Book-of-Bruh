@@ -1,6 +1,8 @@
 ﻿namespace BookOfBruh.Core
 {
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using CodeValidation;
     using GameData;
     using SlotAnalysation;
@@ -15,22 +17,26 @@
         private readonly ISlotAnalyzer slotAnalyzer;
 
 
-        public Game(IPlayer player, ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, List<IReel> reels)
+        public Game(IPlayer player, ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator)
         {
             this.Player = player;
             this.codeValidator = codeValidator;
             this.slotConverter = slotConverter;
             this.slotAnalyzer = slotAnalyzer;
-            Reels = reels;
+            Reels = reelsGenerator.Generate(5);
         }
 
         public IPlayer Player { get; }
 
         public List<IReel> Reels { get; }
 
-        public Result<SpinResult> Spin(double stake)
+        public async Task<SpinResult> Spin(double stake)
         {
             this.Player.BruhCoins -= stake;
+
+            List<Task> spinningReels = Reels.Select(reel => reel.Spin(10)).ToList();
+
+            await Task.WhenAll(spinningReels);
 
             Slots slots = slotConverter.Convert(Reels);
 

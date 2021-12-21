@@ -38,6 +38,7 @@
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();
             this.Bind<IPatternMatcher>().To<PatternMatcher>().InSingletonScope();
+            this.Bind<IReelsGenerator>().To<ReelsGenerator>().InSingletonScope();
 
             this.Bind<ILinePatternMatcher>().To<LinePatternMatcher>().InSingletonScope();
             this.Bind<IFlashPatternMatcher>().To<FlashPatternMatcher>().InSingletonScope();

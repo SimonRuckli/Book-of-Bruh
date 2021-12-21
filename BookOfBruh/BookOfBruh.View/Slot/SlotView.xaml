@@ -4,175 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
-             xmlns:gif="http://wpfanimatedgif.codeplex.com"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance slot:SlotViewModel}">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-
-        <Border
-            Grid.Row="0" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot00.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot00.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="0" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot10.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot10.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="0" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot20.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot20.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="0" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot30.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot30.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="0" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot40.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot40.Symbol}" />
-        </Border>
-
-
-        <Border
-            Grid.Row="1" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot01.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot01.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="1" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot11.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot11.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="1" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot21.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot21.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="1" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot31.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot31.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="1" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot41.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot41.Symbol}" />
-        </Border>
-
-
-        <Border
-            Grid.Row="2" 
-            Grid.Column="0"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot02.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot02.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="2" 
-            Grid.Column="1"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot12.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot12.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="2" 
-            Grid.Column="2"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot22.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot22.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="2" 
-            Grid.Column="3"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot32.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot32.Symbol}" />
-        </Border>
-
-        <Border
-            Grid.Row="2" 
-            Grid.Column="4"
-            Style="{StaticResource SymbolImageBorder}"
-            Background ="{Binding Slot42.Color}">
-            <Image
-                Style="{StaticResource SymbolImage}"
-                gif:ImageBehavior.AnimatedSource="{Binding Slot42.Symbol}" />
-        </Border>
-
+        <ItemsControl ItemsSource="{Binding Path=Reels}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" FlowDirection="LeftToRight">
+                        <Label Content="{Binding Path=First}"/>
+                        <Label Content="{Binding Path=Second}"/>
+                        <Label Content="{Binding Path=Third}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
