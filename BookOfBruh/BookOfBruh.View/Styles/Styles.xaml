@@ -115,7 +115,7 @@
 
     <Style x:Key="SlotView" TargetType="{x:Type UserControl}">
         <Setter Property="MinHeight" Value="230"></Setter>
-        <Setter Property="MinWidth" Value="280"></Setter>
+        <Setter Property="MinWidth" Value="300"></Setter>
         <Setter Property="Margin" Value="10"></Setter>
     </Style>
 
