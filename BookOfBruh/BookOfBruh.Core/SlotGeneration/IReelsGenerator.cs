@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core.SlotGeneration
 {
     using System.Collections.Generic;
     using Reels;

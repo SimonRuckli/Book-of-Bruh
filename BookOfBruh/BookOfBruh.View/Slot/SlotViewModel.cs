@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using Core;
     using Core.Reels;
-    using NotifyPropertyChangedBase = Infrastructure.NotifyPropertyChangedBase;
 
     public class SlotViewModel : NotifyPropertyChangedBase
     {

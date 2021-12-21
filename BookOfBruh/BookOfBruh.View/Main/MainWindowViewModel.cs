@@ -2,7 +2,7 @@
 {
     using System;
     using Control;
-    using Infrastructure;
+    using Core.Reels;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
     using Slot;

@@ -1,10 +1,9 @@
-﻿namespace BookOfBruh.Core
+﻿namespace BookOfBruh.Core.SlotGeneration
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using Reels;
-    using SlotGeneration;
     using Symbols;
 
     public class ReelsGenerator : IReelsGenerator

@@ -2,8 +2,8 @@
 {
     using System;
     using Core;
+    using Core.Reels;
     using CSharpFunctionalExtensions;
-    using Infrastructure;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
 

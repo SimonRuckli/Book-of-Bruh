@@ -3,7 +3,7 @@
     using System;
     using Core;
     using Core.GameData;
-    using Infrastructure;
+    using Core.Reels;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
 
@@ -43,9 +43,6 @@
         public void AddToWallet()
         {
             this.RefreshBruhCoins();
-        }
-        public void TransitionTo(ControlState newState)
-        {
         }
 
         private async void SpinClick()

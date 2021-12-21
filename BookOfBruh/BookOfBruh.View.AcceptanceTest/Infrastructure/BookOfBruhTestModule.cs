@@ -24,9 +24,6 @@
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
 
-
-            this.Bind<ControlState>().To<ReadyToSpinState>().InSingletonScope();
-
             this.Bind<Game>().ToSelf().InSingletonScope();
 
             this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
