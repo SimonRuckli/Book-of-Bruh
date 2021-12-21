@@ -18,6 +18,7 @@
         private readonly ISlotAnalyzer slotAnalyzer;
         private readonly Random random;
         private GameState state;
+        private double stake;
 
 
         public Game(ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, GameState state)
@@ -34,7 +35,16 @@
 
         public List<IReel> Reels { get; }
 
-        public double Stake { get; set; }
+        public double Stake
+        {
+            get => stake;
+            set
+            {
+                stake = value;
+                this.State.Handle();
+                OnPropertyChanged();
+            }
+        }
 
         public double BruhCoins { get; private set; }
 
