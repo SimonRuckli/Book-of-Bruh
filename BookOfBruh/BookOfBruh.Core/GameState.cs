@@ -4,11 +4,11 @@
 
     public abstract class GameState
     {
-        protected ISpinnable Context;
+        protected IGameStateContext GameStateContext;
 
-        public void SetContext(ISpinnable context)
+        public void SetContext(IGameStateContext gameStateContext)
         {
-            this.Context = context;
+            this.GameStateContext = gameStateContext;
         }
 
         public abstract void Handle();
@@ -20,13 +20,13 @@
     {
         public override void Handle()
         {
-            if (this.Context.BruhCoins >= this.Context.Stake)
+            if (this.GameStateContext.BruhCoins >= this.GameStateContext.Stake)
             {
-                this.Context.TransitionTo(new ReadyToSpinState());
+                this.GameStateContext.TransitionTo(new ReadyToSpinState());
             }
             else
             {
-                this.Context.TransitionTo(new NotEnoughBruhCoinState());
+                this.GameStateContext.TransitionTo(new NotEnoughBruhCoinState());
             }
         }
 
@@ -40,20 +40,20 @@
     {
         public override void Handle()
         {
-            if (this.Context.BruhCoins >= this.Context.Stake)
+            if (this.GameStateContext.BruhCoins >= this.GameStateContext.Stake)
             {
-                this.Context.TransitionTo(new ReadyToSpinState());
+                this.GameStateContext.TransitionTo(new ReadyToSpinState());
             }
             else
             {
-                this.Context.TransitionTo(new NotEnoughBruhCoinState());
+                this.GameStateContext.TransitionTo(new NotEnoughBruhCoinState());
             }
         }
 
         public override async Task<double> TrySpin()
         {
-            this.Context.TransitionTo(new SpinningState());
-            return await this.Context.Spin();
+            this.GameStateContext.TransitionTo(new SpinningState());
+            return await this.GameStateContext.Spin();
         }
     }
 
@@ -61,13 +61,13 @@
     {
         public override void Handle()
         {
-            if (this.Context.BruhCoins >= this.Context.Stake)
+            if (this.GameStateContext.BruhCoins >= this.GameStateContext.Stake)
             {
-                this.Context.TransitionTo(new ReadyToSpinState());
+                this.GameStateContext.TransitionTo(new ReadyToSpinState());
             }
             else
             {
-                this.Context.TransitionTo(new NotEnoughBruhCoinState());
+                this.GameStateContext.TransitionTo(new NotEnoughBruhCoinState());
             }
         }
 

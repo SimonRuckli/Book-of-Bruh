@@ -11,7 +11,7 @@
     using CSharpFunctionalExtensions;
     using Reels;
 
-    public class Game : NotifyPropertyChangedBase, ISlotMachine, ISpinnable
+    public class Game : NotifyPropertyChangedBase, ISlotMachine, IGameStateContext
     {
         private readonly ICodeValidator codeValidator;
         private readonly ISlotConverter slotConverter;
@@ -113,7 +113,7 @@
         }
     }
 
-    public interface ISpinnable
+    public interface IGameStateContext
     {
         double Stake { get; set; }
         double BruhCoins { get; }
