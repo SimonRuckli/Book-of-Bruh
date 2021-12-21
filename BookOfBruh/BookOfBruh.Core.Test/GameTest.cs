@@ -179,12 +179,7 @@
             return this.bruhCoins == 0 ? Result.Failure<double>("Not a valid Code") : this.bruhCoins;
         }
     }
-
-    internal class FakeWallet : IWallet
-    {
-        public double BruhCoins { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    }
-
+    
     internal class FakePlayer : IPlayer
     {
         public FakePlayer(double playerBefore)

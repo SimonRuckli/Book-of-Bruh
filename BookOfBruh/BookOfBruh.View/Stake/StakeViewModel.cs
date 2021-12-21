@@ -1,7 +1,7 @@
 ﻿namespace BookOfBruh.View.Stake
 {
     using System;
-    using Core.Reels;
+    using Core.GameData;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
 

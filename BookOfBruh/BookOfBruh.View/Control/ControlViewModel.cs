@@ -3,7 +3,6 @@
     using System;
     using Core;
     using Core.GameData;
-    using Core.Reels;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
 

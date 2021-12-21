@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using GameData;
     using Symbols;
 
     public class Reel : NotifyPropertyChangedBase, IReel

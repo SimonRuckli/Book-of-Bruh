@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.Core.Reels
 {
+    using GameData;
     using Symbols;
 
     public class Slot : NotifyPropertyChangedBase

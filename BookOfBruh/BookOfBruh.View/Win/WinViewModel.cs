@@ -1,6 +1,6 @@
 ﻿namespace BookOfBruh.View.Win
 {
-    using Core.Reels;
+    using Core.GameData;
 
     public class WinViewModel : NotifyPropertyChangedBase
     {

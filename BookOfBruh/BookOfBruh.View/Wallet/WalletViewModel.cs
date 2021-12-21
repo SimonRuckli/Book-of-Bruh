@@ -2,7 +2,7 @@
 {
     using System;
     using Core;
-    using Core.Reels;
+    using Core.GameData;
     using CSharpFunctionalExtensions;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;

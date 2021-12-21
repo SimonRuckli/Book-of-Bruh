@@ -1,4 +1,4 @@
-﻿namespace BookOfBruh.Core.Reels
+﻿namespace BookOfBruh.Core.GameData
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
