@@ -38,16 +38,14 @@
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
 
             IPlayer fakePlayer = new FakePlayer(0);
-
-            SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins, new List<Pattern>());
-
+            
             Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator);
 
             // Act
-            SpinResult result = await testee.Spin(stake);
+            double result = await testee.Spin(stake);
 
             // Assert
-            result.Should().BeEquivalentTo(expected);
+            result.Should().Be(bruhCoins);
         }
 
         [Theory]
@@ -186,14 +184,9 @@
         {
             this.BruhCoins = playerBefore;
         }
-
-        public string Name => throw new System.NotImplementedException();
-
+        
         public double BruhCoins { get; set; }
+        public double Stake { get; set; }
 
-        public void AddBruhCoins(double bruhCoins)
-        {
-            this.BruhCoins += bruhCoins;
-        }
     }
 }

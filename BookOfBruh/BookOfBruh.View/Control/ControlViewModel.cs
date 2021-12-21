@@ -9,7 +9,6 @@
     public class ControlViewModel : NotifyPropertyChangedBase
     {
         private readonly Game game;
-        private double stake = 1;
 
         public ControlViewModel(Game game)
         {
@@ -26,30 +25,24 @@
 
         public EventHandler OpenStake;
         public EventHandler OpenWallet;
-        public EventHandler<SpinEventArgs> Spin;
+        public EventHandler<FinishedSpinEventArgs> FinishedSpin;
+        public EventHandler StartedSpin;
 
         public double BruhCoins => this.game.Player.BruhCoins;
 
         public double Stake
         {
-            get => this.stake;
-            set
-            {
-                this.stake = value;
-            }
-        }
-
-        public void AddToWallet()
-        {
-            this.RefreshBruhCoins();
+            get => this.game.Player.Stake;
+            set => this.game.Player.Stake = value;
         }
 
         private async void SpinClick()
         {
+            this.StartedSpin?.Invoke(this, EventArgs.Empty);
 
-           SpinResult result = await this.game.Spin(this.Stake);
+            var win = await this.game.Spin(this.Stake);
 
-            this.Spin?.Invoke(this, new SpinEventArgs(result));
+            this.FinishedSpin?.Invoke(this, new FinishedSpinEventArgs(win));
         }
 
         private bool SpinIsValid()
@@ -65,11 +58,6 @@
         private void OpenWalletClick()
         {
             this.OpenWallet?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void RefreshBruhCoins()
-        {
-            this.OnPropertyChanged(nameof(this.BruhCoins));
         }
     }
 }

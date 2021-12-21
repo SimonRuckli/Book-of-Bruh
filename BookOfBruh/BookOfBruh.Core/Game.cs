@@ -33,7 +33,7 @@
 
         public List<IReel> Reels { get; }
 
-        public async Task<SpinResult> Spin(double stake)
+        public async Task<double> Spin(double stake)
         {
             this.Player.BruhCoins -= stake;
 
@@ -63,7 +63,7 @@
 
             this.Player.BruhCoins += win;
 
-            return new SpinResult(slots, win, analyzeResult.Patterns);
+            return win;
         }
 
         public Result<double> AddToWallet(int code)

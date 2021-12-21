@@ -36,7 +36,8 @@
             this.stakeViewService = stakeViewService;
             this.walletViewService = walletViewService;
 
-            this.ControlViewModel.Spin += this.Spin;
+            this.ControlViewModel.StartedSpin += this.StartedSpin;
+            this.ControlViewModel.FinishedSpin += this.FinishedSpin;
 
             this.ControlViewModel.OpenStake += this.OpenStake;
             this.StakeViewModel.StakeChanged += this.StakeChanged;
@@ -54,9 +55,14 @@
 
         public RelayCommand ViewClosedCommand { get; set; }
 
-        private void Spin(object sender, SpinEventArgs e)
+        private void StartedSpin(object sender, EventArgs e)
         {
             this.WinViewModel.StartedSpinning();
+        }
+
+        private void FinishedSpin(object sender, FinishedSpinEventArgs e)
+        {
+            this.WinViewModel.FinishedSpinning(e.Win);
         }
 
         private void OpenStake(object sender, EventArgs e)
@@ -79,7 +85,6 @@
         {
             if (e.AddToWallet.IsSuccess)
             {
-                this.ControlViewModel.AddToWallet();
                 this.CloseWalletView();
             }
         }

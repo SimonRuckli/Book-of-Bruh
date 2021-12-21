@@ -3,11 +3,13 @@
     public interface IPlayer
     {
         public double BruhCoins { get; set; }
+        public double Stake { get; set; }
     }
 
     public class Player : NotifyPropertyChangedBase, IPlayer
     {
         private double bruhCoins;
+        private double stake = 1;
 
         public double BruhCoins
         {
@@ -19,7 +21,14 @@
             }
         }
 
-        public string Name { get; set; }
-        
+        public double Stake
+        {
+            get => stake;
+            set
+            {
+                stake = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
