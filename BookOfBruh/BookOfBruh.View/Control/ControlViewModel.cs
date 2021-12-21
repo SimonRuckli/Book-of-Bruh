@@ -9,11 +9,11 @@
 
     public class ControlViewModel : NotifyPropertyChangedBase
     {
-        private readonly Game game;
+        private readonly ISlotMachine slotMachine;
 
-        public ControlViewModel(Game game)
+        public ControlViewModel(ISlotMachine slotMachine)
         {
-            this.game = game;
+            this.slotMachine = slotMachine;
             
             this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
             this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick);
@@ -29,19 +29,19 @@
         public EventHandler<FinishedSpinEventArgs> FinishedSpin;
         public EventHandler StartedSpin;
 
-        public double BruhCoins => this.game.Player.BruhCoins;
+        public double BruhCoins => this.slotMachine.Player.BruhCoins;
 
         public double Stake
         {
-            get => this.game.Player.Stake;
-            set => this.game.Player.Stake = value;
+            get => this.slotMachine.Player.Stake;
+            set => this.slotMachine.Player.Stake = value;
         }
 
         private async void SpinClick()
         {
             this.StartedSpin?.Invoke(this, EventArgs.Empty);
 
-            Task<double> spin = this.game.Spin(this.Stake);
+            Task<double> spin = this.slotMachine.State.TrySpin();
 
             this.RefreshBruhCoins();
 
@@ -54,7 +54,7 @@
 
         private bool SpinIsValid()
         {
-            return true;
+            return this.slotMachine.State is ReadyToSpinState;
         }
 
         private void OpenStakeClick()

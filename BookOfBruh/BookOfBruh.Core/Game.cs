@@ -11,21 +11,24 @@
     using CSharpFunctionalExtensions;
     using Reels;
 
-    public class Game
+    public class Game : NotifyPropertyChangedBase, ISlotMachine, ISpinnable
     {
         private readonly ICodeValidator codeValidator;
         private readonly ISlotConverter slotConverter;
         private readonly ISlotAnalyzer slotAnalyzer;
         private readonly Random random;
+        private GameState state;
 
 
-        public Game(IPlayer player, ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator)
+        public Game(IPlayer player, ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, GameState state)
         {
             this.Player = player;
             this.codeValidator = codeValidator;
             this.slotConverter = slotConverter;
             this.slotAnalyzer = slotAnalyzer;
             this.Reels = reelsGenerator.Generate(5);
+            this.State = state;
+            this.State.SetContext(this);
             this.random = new Random();
         }
 
@@ -33,9 +36,19 @@
 
         public List<IReel> Reels { get; }
 
-        public async Task<double> Spin(double stake)
+        public GameState State
         {
-            this.Player.BruhCoins -= stake;
+            get => state;
+            private set
+            {
+                state = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async Task<double> Spin()
+        {
+            this.Player.BruhCoins -= Player.Stake;
 
             foreach (IReel reel in Reels)
             {
@@ -59,9 +72,11 @@
                 this.Reels[x].Third.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 2));
             }
 
-            double win = analyzeResult.Multiplier * stake;
+            double win = analyzeResult.Multiplier * this.Player.Stake;
 
             this.Player.BruhCoins += win;
+
+            this.State.Handle();
 
             return win;
         }
@@ -75,7 +90,34 @@
                 this.Player.BruhCoins += validate.Value;
             }
 
+            this.State.Handle();
             return validate;
         }
+
+        public void TransitionTo(GameState state)
+        {
+            this.State = state;
+            state.SetContext(this);
+        }
+    }
+
+    public interface ISpinnable
+    {
+        IPlayer Player { get; }
+
+        void TransitionTo(GameState state);
+
+        Task<double> Spin();
+    }
+
+    public interface ISlotMachine
+    {
+        IPlayer Player { get; }
+
+        List<IReel> Reels { get; }
+
+        GameState State { get; }
+
+        Result<double> AddToWallet(int code);
     }
 }

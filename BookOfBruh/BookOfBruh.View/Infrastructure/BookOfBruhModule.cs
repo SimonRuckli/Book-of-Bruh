@@ -25,7 +25,8 @@
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
             
-            this.Bind<Game>().ToSelf().InSingletonScope();
+            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<GameState>().To<NotEnoughBruhCoinState>().InSingletonScope();
 
             this.Bind<IPlayer>().To<Player>().InSingletonScope();
             this.Bind<ISlotConverter>().To<SlotConverter>().InSingletonScope();
