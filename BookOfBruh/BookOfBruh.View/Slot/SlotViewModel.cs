@@ -7,14 +7,14 @@
 
     public class SlotViewModel : NotifyPropertyChangedBase
     {
-        private readonly Game game;
+        private readonly ISlotMachine slotMachine;
 
-        public SlotViewModel(Game game)
+        public SlotViewModel(ISlotMachine slotMachine)
         {
-            this.game = game;
+            this.slotMachine = slotMachine;
         }
 
-        public List<IReel> Reels => game.Reels;
+        public List<IReel> Reels => slotMachine.Reels;
 
     }
 }

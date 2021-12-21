@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using System.Windows.Input;
     using Core;
     using Core.GameData;
     using Infrastructure.Commands;
@@ -35,6 +36,11 @@
         {
             get => this.slotMachine.Player.Stake;
             set => this.slotMachine.Player.Stake = value;
+        }
+
+        public void RefreshSpinButton()
+        {
+            CommandManager.InvalidateRequerySuggested();
         }
 
         private async void SpinClick()

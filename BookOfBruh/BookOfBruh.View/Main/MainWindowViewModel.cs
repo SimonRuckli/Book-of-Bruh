@@ -63,6 +63,7 @@
         private void FinishedSpin(object sender, FinishedSpinEventArgs e)
         {
             this.WinViewModel.FinishedSpinning(e.Win);
+            this.ControlViewModel.RefreshSpinButton();
         }
 
         private void OpenStake(object sender, EventArgs e)
@@ -73,6 +74,7 @@
         private void StakeChanged(object sender, StakeEventArgs e)
         {
             this.ControlViewModel.Stake = e.Stake;
+            this.ControlViewModel.RefreshSpinButton();
             this.CloseStakeView();
         }
 

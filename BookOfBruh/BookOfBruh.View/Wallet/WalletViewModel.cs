@@ -9,11 +9,11 @@
 
     public class WalletViewModel : NotifyPropertyChangedBase
     {
-        private readonly Game game;
+        private readonly ISlotMachine slotMachine;
 
-        public WalletViewModel(Game game)
+        public WalletViewModel(ISlotMachine slotMachine)
         {
-            this.game = game;
+            this.slotMachine = slotMachine;
 
             this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick);
         }
@@ -23,7 +23,7 @@
         public event EventHandler CloseView;
         public event EventHandler<AddToWalletArgs> AddedToWallet;
 
-        public double BruhCoins => game.Player.BruhCoins;
+        public double BruhCoins => slotMachine.Player.BruhCoins;
 
         public int Code { get; set; }
 
@@ -34,7 +34,7 @@
 
         private void AddToWalletClick()
         {
-            Result<double> addToWalletResult = this.game.AddToWallet(this.Code);
+            Result<double> addToWalletResult = this.slotMachine.AddToWallet(this.Code);
             this.AddedToWallet?.Invoke(this, new AddToWalletArgs(addToWalletResult));
         }
     }
