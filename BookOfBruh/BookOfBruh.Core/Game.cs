@@ -41,7 +41,7 @@
             get => state;
             private set
             {
-                state = value;
+                this.state = value;
                 OnPropertyChanged();
             }
         }
@@ -94,10 +94,10 @@
             return validate;
         }
 
-        public void TransitionTo(GameState state)
+        public void TransitionTo(GameState newState)
         {
-            this.State = state;
-            state.SetContext(this);
+            this.State = newState;
+            this.State.SetContext(this);
         }
     }
 
@@ -105,7 +105,7 @@
     {
         IPlayer Player { get; }
 
-        void TransitionTo(GameState state);
+        void TransitionTo(GameState newState);
 
         Task<double> Spin();
     }
