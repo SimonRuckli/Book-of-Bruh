@@ -20,7 +20,7 @@
 
         public List<Point> FindMatches(int direction, List<Point> input)
         {
-            List<Point> flashPattern = new List<Point>();
+            List<Point> flashPattern = new();
 
             flashPattern.AddRange(this.FindFirstTrianglePattern(input, direction));
             flashPattern.AddRange(this.FindSecondTrianglePattern(input, direction));

@@ -8,11 +8,14 @@
 
   <ItemGroup>
     <None Remove="Images\ASymbol.png" />
+    <None Remove="Images\Background.png" />
+    <None Remove="Images\favicon.ico" />
     <None Remove="Images\JoegiSymbol.png" />
     <None Remove="Images\JSymbol.png" />
     <None Remove="Images\KSymbol.png" />
     <None Remove="Images\QSymbol.png" />
     <None Remove="Images\SimiSymbol.png" />
+    <None Remove="Images\Spinning.gif" />
     <None Remove="Images\TenSymbol.png" />
     <None Remove="Images\VincSymbol.png" />
     <None Remove="Images\WildSymbol.png" />
@@ -22,6 +25,7 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="Ninject" Version="3.3.4" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +34,14 @@
 
   <ItemGroup>
     <Resource Include="Images\ASymbol.png" />
+    <Resource Include="Images\Background.png" />
+    <Resource Include="Images\favicon.ico" />
     <Resource Include="Images\JoegiSymbol.png" />
     <Resource Include="Images\JSymbol.png" />
     <Resource Include="Images\KSymbol.png" />
     <Resource Include="Images\QSymbol.png" />
     <Resource Include="Images\SimiSymbol.png" />
+    <Resource Include="Images\Spinning.gif" />
     <Resource Include="Images\TenSymbol.png" />
     <Resource Include="Images\VincSymbol.png" />
     <Resource Include="Images\WildSymbol.png" />

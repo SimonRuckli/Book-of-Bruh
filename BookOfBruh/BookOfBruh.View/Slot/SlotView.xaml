@@ -4,114 +4,46 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:slot="clr-namespace:BookOfBruh.View.Slot"
+             xmlns:view="clr-namespace:BookOfBruh.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance slot:SlotViewModel}">
+    <UserControl.Resources>
+        <view:SymbolConverter x:Key="SymbolConverter" />
+        <view:IsPatternConverter x:Key="IsPatternConverter" />
+    </UserControl.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding Path=Reels}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
 
-            <Image
-                Grid.Row="0" 
-                Grid.Column="0"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol00}" />
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-            <Image
-                Grid.Row="0" 
-                Grid.Column="1"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol10}" />
+                        <Border Grid.Row="0" Style="{StaticResource SymbolImageBorder}" Background="{Binding First.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                            <Image  Source="{Binding First.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
 
-            <Image
-                Grid.Row="0" 
-                Grid.Column="2"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol20}" />
+                        <Border Grid.Row="1"  Style="{StaticResource SymbolImageBorder}" Background="{Binding Second.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                        <Image  Source="{Binding Second.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
 
-            <Image
-                Grid.Row="0" 
-                Grid.Column="3"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol30}" />
+                        <Border Grid.Row="2" Style="{StaticResource SymbolImageBorder}" Background="{Binding Third.IsPattern, Converter={StaticResource IsPatternConverter}}">
+                            <Image Source="{Binding Third.Symbol, Converter={StaticResource SymbolConverter}}" Style="{StaticResource SymbolImage}"/>
+                        </Border>
 
-            <Image
-                Grid.Row="0" 
-                Grid.Column="4"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol40}" />
-
-
-            <Image
-                Grid.Row="1" 
-                Grid.Column="0"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol01}" />
-
-            <Image
-                Grid.Row="1" 
-                Grid.Column="1"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol11}" />
-
-            <Image
-                Grid.Row="1" 
-                Grid.Column="2"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol21}" />
-
-            <Image
-                Grid.Row="1" 
-                Grid.Column="3"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol31}" />
-
-            <Image
-                Grid.Row="1" 
-                Grid.Column="4"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol41}" />
-
-
-            <Image
-                Grid.Row="2" 
-                Grid.Column="0"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol02}" />
-
-            <Image
-                Grid.Row="2" 
-                Grid.Column="1"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol12}" />
-
-            <Image
-                Grid.Row="2" 
-                Grid.Column="2"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol22}" />
-
-            <Image
-                Grid.Row="2" 
-                Grid.Column="3"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol32}" />
-
-            <Image
-                Grid.Row="2" 
-                Grid.Column="4"
-                Style="{StaticResource SymbolImage}"
-                Source="{Binding Symbol42}" />
-
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

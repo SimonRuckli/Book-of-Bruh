@@ -1,63 +1,33 @@
 ﻿namespace BookOfBruh.View.Stake
 {
     using System;
-    using Infrastructure;
+    using Core.GameData;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
 
     public class StakeViewModel : NotifyPropertyChangedBase
     {
         public StakeViewModel()
         {
-            this.SelectStakeOneClickCommand = new RelayCommand(this.SelectStakeOneClick, this.SelectStakeOneIsValid);
-            this.SelectStakeTwoClickCommand = new RelayCommand(this.SelectStakeTwoClick, this.SelectStakeTwoIsValid);
-            this.SelectStakeFiveClickCommand = new RelayCommand(this.SelectStakeFiveClick, this.SelectStakeFiveIsValid);
-            this.SelectStakePointTenClickCommand = new RelayCommand(this.SelectStakePointTenClick, this.SelectStakePointTenIsValid);
-            this.SelectStakePointTwentyClickCommand = new RelayCommand(this.SelectStakePointTwentyClick, this.SelectStakePointTwentyIsValid);
-            this.SelectStakePointFiftyClickCommand = new RelayCommand(this.SelectStakePointFiftyClick, this.SelectStakePointFiftyIsValid);
+            this.SelectStakeOneClickCommand = new RelayCommand(this.SelectStakeOneClick);
+            this.SelectStakeTwoClickCommand = new RelayCommand(this.SelectStakeTwoClick);
+            this.SelectStakeFiveClickCommand = new RelayCommand(this.SelectStakeFiveClick);
+            this.SelectStakePointTenClickCommand = new RelayCommand(this.SelectStakePointTenClick);
+            this.SelectStakePointTwentyClickCommand = new RelayCommand(this.SelectStakePointTwentyClick);
+            this.SelectStakePointFiftyClickCommand = new RelayCommand(this.SelectStakePointFiftyClick);
         }
 
 
-        public EventHandler CloseView { get; set; }
 
-        public EventHandler<StakeEventArgs> StakeChanged { get; set; }
+        public RelayCommand SelectStakeOneClickCommand { get; }
+        public RelayCommand SelectStakeTwoClickCommand { get; }
+        public RelayCommand SelectStakePointTenClickCommand { get; }
+        public RelayCommand SelectStakePointFiftyClickCommand { get; }
+        public RelayCommand SelectStakePointTwentyClickCommand { get; }
+        public RelayCommand SelectStakeFiveClickCommand { get; }
 
-        public RelayCommand SelectStakeOneClickCommand { get; set; }
-
-        public RelayCommand SelectStakeTwoClickCommand { get; set; }
-        public RelayCommand SelectStakePointTenClickCommand { get; set; }
-        public RelayCommand SelectStakePointFiftyClickCommand { get; set; }
-        public RelayCommand SelectStakePointTwentyClickCommand { get; set; }
-        public RelayCommand SelectStakeFiveClickCommand { get; set; }
-
-        private bool SelectStakeOneIsValid()
-        {
-            return true;
-        }
-
-        private bool SelectStakeTwoIsValid()
-        {
-            return true;
-        }
-
-        private bool SelectStakeFiveIsValid()
-        {
-            return true;
-        }
-
-        private bool SelectStakePointTenIsValid()
-        {
-            return true;
-        }
-
-        private bool SelectStakePointTwentyIsValid()
-        {
-            return true;
-        }
-
-        private bool SelectStakePointFiftyIsValid()
-        {
-            return true;
-        }
+        public EventHandler CloseView;
+        public EventHandler<StakeEventArgs> StakeChanged;
 
         private void SelectStakeOneClick()
         {
@@ -91,7 +61,7 @@
 
         private void RaiseStakeChangedEventWithArgs(double stake)
         {
-            var args = new StakeEventArgs(stake);
+            StakeEventArgs args = new StakeEventArgs(stake);
             this.StakeChanged?.Invoke(this, args);
         }
 

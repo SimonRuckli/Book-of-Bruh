@@ -3,10 +3,11 @@
     using System;
     using Control;
     using Core.GameData;
-    using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
     using Slot;
     using Stake;
+    using ViewService;
     using Wallet;
     using Win;
 
@@ -14,7 +15,6 @@
     {
 
         private readonly IStakeViewService stakeViewService;
-        private readonly WalletViewModel walletViewModel;
         private readonly IWalletViewService walletViewService;
 
         public MainWindowViewModel(
@@ -22,34 +22,66 @@
             ControlViewModel controlViewModel, 
             StakeViewModel stakeViewModel,
             WinViewModel winViewModel,
-            IStakeViewService stakeViewService,
             WalletViewModel walletViewModel,
+            IStakeViewService stakeViewService,
             IWalletViewService walletViewService
         )
         {
-            this.stakeViewService = stakeViewService;
-            this.walletViewModel = walletViewModel;
-            this.walletViewService = walletViewService;
             this.SlotViewModel = slotViewModel;
             this.ControlViewModel = controlViewModel;
             this.StakeViewModel = stakeViewModel;
             this.WinViewModel = winViewModel;
+            this.WalletViewModel = walletViewModel;
+            this.stakeViewService = stakeViewService;
+            this.walletViewService = walletViewService;
 
-            this.StakeViewModel.StakeChanged += this.StakeChanged;
+            this.ControlViewModel.StartedSpin += this.StartedSpin;
+            this.ControlViewModel.FinishedSpin += this.FinishedSpin;
+
             this.ControlViewModel.OpenStake += this.OpenStake;
+            this.StakeViewModel.StakeChanged += this.StakeChanged;
+
             this.ControlViewModel.OpenWallet += this.OpenWallet;
-            this.ControlViewModel.Spin += this.Spin;
-            this.walletViewModel.AddedToWallet += this.AddToWallet;
+            this.WalletViewModel.AddedToWallet += this.AddToWallet;
 
             this.ViewClosedCommand = new RelayCommand(this.ViewClosed);
         }
 
-        public RelayCommand ViewClosedCommand { get; set; }
         public SlotViewModel SlotViewModel { get; }
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
         public WinViewModel WinViewModel { get; }
+        public  WalletViewModel WalletViewModel;
 
+        public RelayCommand ViewClosedCommand { get; set; }
+
+        private void StartedSpin(object sender, EventArgs e)
+        {
+            this.WinViewModel.StartedSpinning();
+        }
+
+        private void FinishedSpin(object sender, FinishedSpinEventArgs e)
+        {
+            this.WinViewModel.FinishedSpinning(e.Win);
+            this.ControlViewModel.RefreshSpinButton();
+        }
+
+        private void OpenStake(object sender, EventArgs e)
+        {
+            this.stakeViewService.CreateWindow(this.StakeViewModel);
+        }
+
+        private void StakeChanged(object sender, StakeEventArgs e)
+        {
+            this.ControlViewModel.Stake = e.Stake;
+            this.ControlViewModel.RefreshSpinButton();
+            this.CloseStakeView();
+        }
+
+        private void OpenWallet(object sender, EventArgs e)
+        {
+            this.walletViewService.CreateWindow(this.WalletViewModel);
+        }
 
         private void AddToWallet(object sender, AddToWalletArgs e)
         {
@@ -60,39 +92,6 @@
             }
         }
 
-        private void OpenStake(object sender, EventArgs e)
-        {
-            this.ShowStakeWindow();
-        }
-        private void OpenWallet(object sender, EventArgs e)
-        {
-            this.ShowWalletWindow();
-        }
-
-        private void StakeChanged(object sender, StakeEventArgs e)
-        {
-            this.ControlViewModel.Stake = e.Stake;
-            this.CloseStakeView();
-        }
-
-        private void Spin(object sender, SpinEventArgs e)
-        {
-            SpinResult spinResult = e.SpinResult;
-
-            this.WinViewModel.BruhCoins = spinResult.BruhCoins;
-
-            this.SlotViewModel.Slots = spinResult.Slots;
-        }
-        private void ShowStakeWindow()
-        {
-            this.stakeViewService.CreateWindow(this.StakeViewModel);
-        }
-
-        private void ShowWalletWindow()
-        {
-            this.walletViewService.CreateWindow(this.walletViewModel);
-        }
-
         private void ViewClosed()
         {
             this.CloseStakeView();
@@ -101,7 +100,7 @@
 
         private void CloseWalletView()
         {
-            this.walletViewModel.RequestClose();
+            this.WalletViewModel.RequestClose();
         }
 
         private void CloseStakeView()

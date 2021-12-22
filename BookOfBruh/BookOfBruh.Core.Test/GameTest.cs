@@ -1,5 +1,7 @@
 ﻿namespace BookOfBruh.Core.Test
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using CodeValidation;
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
@@ -7,6 +9,7 @@
     using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Helper;
+    using Reels;
     using Symbols;
     using Xunit;
 
@@ -24,26 +27,24 @@
                     "|-_-_-|", 6, 2, 12
             )]
 
-        public void SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
+        public async Task SpinShouldReturnCorrectSpinResult(string generatedSlot, double patternPoint, double stake, double bruhCoins )
         {
             // Arrange
             const double fakeBruhCoin = 0;
 
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
-
-            IPlayer fakePlayer = new FakePlayer(0);
-
-            SpinResult expected = new SpinResult(new Slots(SymbolTestHelper.SymbolsFromPattern(generatedSlot)), bruhCoins);
-
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
+            GameState state = new ReadyToSpinState();
+            
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state){Stake = stake};
 
             // Act
-            Result<SpinResult> result = testee.Spin(stake);
+            double result = await testee.Spin();
 
             // Assert
-            result.Value.Should().BeEquivalentTo(expected);
+            result.Should().Be(bruhCoins);
         }
 
         [Theory]
@@ -56,13 +57,13 @@
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-
-            IPlayer fakePlayer = new FakePlayer(0);
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
+            GameState state = new ReadyToSpinState();
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
 
             double expected = bruhCoins;
 
@@ -81,13 +82,15 @@
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-
-            IPlayer fakePlayer = new FakePlayer(0);
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+
+            GameState state = new ReadyToSpinState();
+
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             Result<double> result = testee.AddToWallet(code);
@@ -98,38 +101,47 @@
 
         [Theory]
 
-        [InlineData(1, 34, 0, 34)]
+        [InlineData(1, 34, 34)]
 
-        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerBefore, double playerPast)
+        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerPast)
         {
             // Arrange
             const double fakePatternPoint = 0;
-            ISlotGenerator fakeSlotGenerator = new FakeSlotGenerator( new Slots(new ISymbol[5,3]));
+            ISlotConverter fakeSlotConverter = new FakeSlotConverter( new Slots(new ISymbol[5,3]));
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
-
-            IPlayer fakePlayer = new FakePlayer(playerBefore);
+            IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             
-            Game testee = new Game(fakePlayer, fakeCodeValidator, fakeSlotGenerator, fakeSlotAnalyzer);
+            GameState state = new ReadyToSpinState();
+
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             testee.AddToWallet(code);
 
             // Assert
-            testee.Player.BruhCoins.Should().Be(playerPast);
+            testee.BruhCoins.Should().Be(playerPast);
         }
     }
 
-    internal class FakeSlotGenerator : ISlotGenerator
+    public class FakeReelsGenerator : IReelsGenerator
+    {
+        public List<IReel> Generate(int count)
+        {
+            return new List<IReel>();
+        }
+    }
+
+    internal class FakeSlotConverter : ISlotConverter
     {
         private readonly Slots slots;
 
-        public FakeSlotGenerator(Slots slots)
+        public FakeSlotConverter(Slots slots)
         {
             this.slots = slots;
         }
 
-        public Slots Generate()
+        public Slots Convert(List<IReel> reels)
         {
             return this.slots;
         }
@@ -144,9 +156,9 @@
             this.patternPoint = patternPoint;
         }
 
-        public double Analyze(Slots slots)
+        public AnalyzeResult Analyze(Slots slots)
         {
-            return this.patternPoint;
+            return new AnalyzeResult(this.patternPoint, new List<Pattern>());
         }
     }
 
@@ -162,28 +174,6 @@
         public Result<double> Validate(int code)
         {
             return this.bruhCoins == 0 ? Result.Failure<double>("Not a valid Code") : this.bruhCoins;
-        }
-    }
-
-    internal class FakeWallet : IWallet
-    {
-        public double BruhCoins { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    }
-
-    internal class FakePlayer : IPlayer
-    {
-        public FakePlayer(double playerBefore)
-        {
-            this.BruhCoins = playerBefore;
-        }
-
-        public string Name => throw new System.NotImplementedException();
-
-        public double BruhCoins { get; set; }
-
-        public void AddBruhCoins(double bruhCoins)
-        {
-            this.BruhCoins += bruhCoins;
         }
     }
 }

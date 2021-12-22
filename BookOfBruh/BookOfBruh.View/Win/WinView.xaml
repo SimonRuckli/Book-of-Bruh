@@ -18,12 +18,12 @@
 
         <Label 
             Grid.Row="0"
-            Style="{StaticResource CenteredBlackLabel}"
+            Style="{StaticResource CenteredWhiteLabel}"
             Content="Du hast Gewonnen"/>
 
         <Label
             Grid.Row="1"
-            Style="{StaticResource CenteredBlackLabel}"
+            Style="{StaticResource CenteredWhiteLabel}"
             Content="{Binding BruhCoins}"/>
     </Grid>
 </UserControl>
