@@ -60,7 +60,8 @@
 
         public async Task<double> Spin()
         {
-            this.BruhCoins -= this.Stake;
+            double spinningStake = this.Stake;
+            this.BruhCoins -= spinningStake;
 
             foreach (IReel reel in Reels)
             {
@@ -84,7 +85,7 @@
                 this.Reels[x].Third.IsPattern = analyzeResult.Patterns.Any(pt => pt.Value.Any(p => p.X == x && p.Y == 2));
             }
 
-            double win = analyzeResult.Multiplier * this.Stake;
+            double win = analyzeResult.Multiplier * spinningStake;
 
             this.BruhCoins += win;
 

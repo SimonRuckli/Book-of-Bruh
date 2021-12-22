@@ -19,18 +19,14 @@
             this.symbols = symbols;
             this.speedCalculator = speedCalculator;
 
-            First = new Slot();
-            Second = new Slot();
-            Third = new Slot();
-
             this.firstIndex = 2;
             this.secondIndex = 1;
             this.thirdIndex = 0;
         }
 
-        public Slot First { get; }
-        public Slot Second { get; }
-        public Slot Third { get; }
+        public Slot First { get; } = new();
+        public Slot Second { get; } = new();
+        public Slot Third { get; } = new();
 
 
         public async Task Spin(int times)
