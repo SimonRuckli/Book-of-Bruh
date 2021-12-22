@@ -10,8 +10,8 @@
 
     public class SpeedCalculator : ISpeedCalculator
     {
-        private const int minSpeed = 2000;
-        private const int maxSpeed = 5;
+        private const int minSpeed = 400;
+        private const int maxSpeed = 10;
 
         public List<int> Calculate(int times)
         {
@@ -19,7 +19,7 @@
 
             for (int i = 0; i < times; i++)
             {
-                int speed = speeds.Last() / 2;
+                int speed = (int) (speeds.Last() / 1.4d);
                 speeds.Add(speed < maxSpeed ? maxSpeed : speed);
             }
 
