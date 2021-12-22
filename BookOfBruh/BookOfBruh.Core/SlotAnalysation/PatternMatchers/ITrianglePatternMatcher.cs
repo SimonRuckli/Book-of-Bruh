@@ -13,23 +13,23 @@
     {
         public List<Point> FindMatchesAt(int position, int direction, List<Point> input)
         {
-            List<Point> pointsAtPositon = input.Where(point => point.X == position).ToList();
+            List<Point> pointsAtColumn = input.Where(point => point.X == position).ToList(); // one or none
 
-            if (pointsAtPositon.Count == 0)
+            if (pointsAtColumn.Count == 0)
             {
                 return new List<Point>();
             }
 
-            Point firstPoint = pointsAtPositon.First();
+            Point firstPoint = pointsAtColumn.First();
 
-            List<Point> trianglePattern = new List<Point>() { firstPoint };
+            List<Point> trianglePattern = new() { firstPoint };
 
             Point lastPoint = firstPoint;
 
             foreach (Point point in input
-                                    .Where(point => point.X == lastPoint.X + 1)
-                                    .Where(point => point.Y == firstPoint.Y || point.Y == firstPoint.Y + direction)
-                                    .Where(point => point.Y == lastPoint.Y + 1 || point.Y == lastPoint.Y - 1))
+                                    .Where(point => IsOneColumnFartherThan(point, lastPoint))
+                                    .Where(point => IsPointInSameRowOrRowInDirectionOf(point, firstPoint, direction))
+                                    .Where(point => IsPointInOtherRowThan(point, lastPoint)))
             {
                 trianglePattern.Add(point);
                 lastPoint = point;
@@ -41,6 +41,21 @@
             }
 
             return trianglePattern.Count >= 3 ? trianglePattern : new List<Point>();
+        }
+
+        private static bool IsOneColumnFartherThan(Point point, Point last)
+        {
+            return point.X == last.X + 1;
+        }
+
+        private static bool IsPointInSameRowOrRowInDirectionOf(Point point, Point firstPoint, int direction)
+        {
+            return point.Y == firstPoint.Y || point.Y == firstPoint.Y + direction;
+        }
+
+        private static bool IsPointInOtherRowThan(Point point, Point lastPoint)
+        {
+            return point.Y == lastPoint.Y + 1 || point.Y == lastPoint.Y - 1;
         }
     }
 }

@@ -27,23 +27,39 @@
 
         private static List<Point> FindOnlyDiagonalPattern(IReadOnlyList<Point> input, int start)
         {
-            List<Point> diagonal = new List<Point>() { input[start] };
+            List<Point> diagonal = new() { input[start] };
 
             for (int i = start + 1; i < input.Count; i++)
             {
-                if (input[i].X == diagonal.Last().X + 1)
+                if (IsDiagonalPattern(input[i], diagonal))
                 {
-                    if (input[i].Y == diagonal.Last().Y + 1 || input[i].Y == diagonal.Last().Y - 1)
-                    {
-                        if (diagonal.All(p => p.Y != input[i].Y))
-                        {
-                            diagonal.Add(input[i]);
-                        }
-                    }
+                    diagonal.Add(input[i]);
                 }
             }
 
             return diagonal.Count >= 3 ? diagonal : new List<Point>();
+        }
+
+        private static bool IsDiagonalPattern(Point point, IReadOnlyCollection<Point> diagonal)
+        {
+            return IsOneColumnFartherThan(point, diagonal.Last()) &&
+                   IsOneHigherOrOneLowerThan(point, diagonal.Last()) &&
+                   !AnyPreviousPointsOnSameRow(point, diagonal);
+        }
+
+        private static bool IsOneColumnFartherThan(Point point, Point last)
+        {
+            return point.X == last.X + 1;
+        }
+
+        private static bool IsOneHigherOrOneLowerThan(Point point, Point last)
+        {
+            return point.Y == last.Y + 1 || point.Y == last.Y - 1;
+        }
+
+        private static bool AnyPreviousPointsOnSameRow(Point point, IEnumerable<Point> diagonal)
+        {
+            return diagonal.Any(p => p.Y == point.Y);
         }
     }
 }
