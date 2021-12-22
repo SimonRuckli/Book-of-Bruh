@@ -23,7 +23,9 @@
                 new ASymbol(),
             };
 
-            IReel testee = new Reel(symbols);
+            ISpeedCalculator speedCalculator = new FakeSpeedCalculator();
+
+            IReel testee = new Reel(symbols, speedCalculator);
             const int times = 2;
 
             // Act
@@ -32,9 +34,9 @@
             // Assert
             using (new AssertionScope())
             {
-                testee.First.Should().BeOfType(typeof(ASymbol));
-                testee.Second.Should().BeOfType(typeof(ASymbol));
-                testee.Third.Should().BeOfType(typeof(ASymbol));
+                testee.First.Symbol.Should().BeOfType(typeof(ASymbol));
+                testee.Second.Symbol.Should().BeOfType(typeof(ASymbol));
+                testee.Third.Symbol.Should().BeOfType(typeof(ASymbol));
             }
         }
 
@@ -51,7 +53,9 @@
                 new SimiSymbol(),
             };
 
-            IReel testee = new Reel(symbols);
+            ISpeedCalculator speedCalculator = new FakeSpeedCalculator();
+
+            IReel testee = new Reel(symbols, speedCalculator);
             const int times = 7;
 
             // Act
@@ -60,11 +64,26 @@
             // Assert
             using (new AssertionScope())
             {
-                testee.First.Should().BeOfType(typeof(ASymbol));
-                testee.Second.Should().BeOfType(typeof(QSymbol));
-                testee.Third.Should().BeOfType(typeof(SimiSymbol));
+                testee.First.Symbol.Should().BeOfType(typeof(SimiSymbol));
+                testee.Second.Symbol.Should().BeOfType(typeof(QSymbol));
+                testee.Third.Symbol.Should().BeOfType(typeof(ASymbol));
             }
         }
         
+    }
+
+    public class FakeSpeedCalculator : ISpeedCalculator
+    {
+        public List<int> Calculate(int times)
+        {
+            List<int> speeds = new List<int>();
+
+            for (int i = 0; i < times; i++)
+            {
+                speeds.Add(1);
+            }
+
+            return speeds;
+        }
     }
 }

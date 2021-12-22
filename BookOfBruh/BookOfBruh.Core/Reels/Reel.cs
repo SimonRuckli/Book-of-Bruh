@@ -1,7 +1,6 @@
 ﻿namespace BookOfBruh.Core.Reels
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using GameData;
     using Symbols;
@@ -9,14 +8,16 @@
     public class Reel : NotifyPropertyChangedBase, IReel
     {
         private readonly List<ISymbol> symbols;
+        private readonly ISpeedCalculator speedCalculator;
 
         private int firstIndex;
         private int secondIndex;
         private int thirdIndex;
 
-        public Reel(List<ISymbol> symbols)
+        public Reel(List<ISymbol> symbols, ISpeedCalculator speedCalculator)
         {
             this.symbols = symbols;
+            this.speedCalculator = speedCalculator;
 
             First = new Slot();
             Second = new Slot();
@@ -34,18 +35,7 @@
 
         public async Task Spin(int times)
         {
-            const int  minSpeed = 2000;
-            const int maxSpeed = 5;
-
-            List<int> speeds = new List<int>(){minSpeed};
-
-            for (int i = 0; i < times; i++)
-            {
-                int speed = speeds.Last() / 2;
-                speeds.Add(speed < maxSpeed ? maxSpeed : speed);
-            }
-
-            speeds.Reverse();
+            List<int> speeds = this.speedCalculator.Calculate(times);
 
             for (int i = 0; i < times; i++)
             {

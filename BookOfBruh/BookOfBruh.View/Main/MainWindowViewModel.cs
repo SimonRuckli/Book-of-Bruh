@@ -13,7 +13,6 @@
 
     public class MainWindowViewModel : NotifyPropertyChangedBase
     {
-        private readonly WalletViewModel walletViewModel;
 
         private readonly IStakeViewService stakeViewService;
         private readonly IWalletViewService walletViewService;
@@ -32,7 +31,7 @@
             this.ControlViewModel = controlViewModel;
             this.StakeViewModel = stakeViewModel;
             this.WinViewModel = winViewModel;
-            this.walletViewModel = walletViewModel;
+            this.WalletViewModel = walletViewModel;
             this.stakeViewService = stakeViewService;
             this.walletViewService = walletViewService;
 
@@ -43,7 +42,7 @@
             this.StakeViewModel.StakeChanged += this.StakeChanged;
 
             this.ControlViewModel.OpenWallet += this.OpenWallet;
-            this.walletViewModel.AddedToWallet += this.AddToWallet;
+            this.WalletViewModel.AddedToWallet += this.AddToWallet;
 
             this.ViewClosedCommand = new RelayCommand(this.ViewClosed);
         }
@@ -52,6 +51,7 @@
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
         public WinViewModel WinViewModel { get; }
+        public  WalletViewModel WalletViewModel;
 
         public RelayCommand ViewClosedCommand { get; set; }
 
@@ -80,7 +80,7 @@
 
         private void OpenWallet(object sender, EventArgs e)
         {
-            this.walletViewService.CreateWindow(this.walletViewModel);
+            this.walletViewService.CreateWindow(this.WalletViewModel);
         }
 
         private void AddToWallet(object sender, AddToWalletArgs e)
@@ -100,7 +100,7 @@
 
         private void CloseWalletView()
         {
-            this.walletViewModel.RequestClose();
+            this.WalletViewModel.RequestClose();
         }
 
         private void CloseStakeView()

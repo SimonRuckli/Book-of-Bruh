@@ -3,6 +3,7 @@
     using Control;
     using Core;
     using Core.CodeValidation;
+    using Core.Reels;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
@@ -25,6 +26,7 @@
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
             
             this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
             this.Bind<GameState>().To<NotEnoughBruhCoinState>().InSingletonScope();
             
             this.Bind<ISlotConverter>().To<SlotConverter>().InSingletonScope();

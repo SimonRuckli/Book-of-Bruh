@@ -16,14 +16,15 @@
         {
             this.slotMachine = slotMachine;
             
-            this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
+            this.SpinClickCommand = new AsyncRelayCommand(this.SpinClick, this.SpinIsValid);
             this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick);
             this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick);
         }
+        
 
         public RelayCommand OpenWalletClickCommand { get; }
         public RelayCommand OpenStakeClickCommand { get; }
-        public RelayCommand SpinClickCommand { get; }
+        public AsyncRelayCommand SpinClickCommand { get; }
 
         public EventHandler OpenStake;
         public EventHandler OpenWallet;
@@ -43,7 +44,7 @@
             CommandManager.InvalidateRequerySuggested();
         }
 
-        private async void SpinClick()
+        private async Task SpinClick()
         {
             this.StartedSpin?.Invoke(this, EventArgs.Empty);
 

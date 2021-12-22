@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
+    using System.Threading.Tasks;
     using FluentAssertions;
     using TechTalk.SpecFlow;
     using View.Control;
@@ -20,16 +21,16 @@
         }
 
         [When(@"IPressSpinAndRollThreeTenInARow")]
-        public void WhenIPressSpinAndRollThreeTenInARow()
+        public async Task WhenIPressSpinAndRollThreeTenInARow()
         {
-            this.controlViewModel.SpinClickCommand.Execute();
+            await this.controlViewModel.SpinClickCommand.ExecuteAsync();
         }
 
 
         [Then(@"The Wallet Should Be Correct And The Slot Should Be Displayed")]
         public void ThenTheWalletShouldBeCorrect()
         {
-            this.controlViewModel.BruhCoins.Should().Be(1.15);
+            this.controlViewModel.BruhCoins.Should().BeInRange(0.149,0.51);
         }
     }
 }

@@ -9,12 +9,13 @@
     public class ReelsGenerator : IReelsGenerator
     {
         private readonly ISymbolListGenerator symbolListGenerator;
+        private readonly ISpeedCalculator speedCalculator;
 
-        public ReelsGenerator(ISymbolListGenerator symbolListGenerator)
+        public ReelsGenerator(ISymbolListGenerator symbolListGenerator, ISpeedCalculator speedCalculator)
         {
             this.symbolListGenerator = symbolListGenerator;
+            this.speedCalculator = speedCalculator;
         }
-
 
         public List<IReel> Generate(int count)
         {
@@ -24,7 +25,7 @@
             for (int i = 0; i < count; i++)
             {
                 generate = generate.OrderBy(_ => Guid.NewGuid()).ToList();
-                reels.Add(new Reel(generate));
+                reels.Add(new Reel(generate, speedCalculator));
             }
 
             return reels;

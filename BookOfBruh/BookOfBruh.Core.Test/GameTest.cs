@@ -38,7 +38,7 @@
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             GameState state = new ReadyToSpinState();
             
-            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state){Stake = stake};
 
             // Act
             double result = await testee.Spin();
@@ -101,9 +101,9 @@
 
         [Theory]
 
-        [InlineData(1, 34, 0, 34)]
+        [InlineData(1, 34, 34)]
 
-        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerBefore, double playerPast)
+        public void AddToWalletShouldAddMoneyToPlayer(int code, double bruhCoins, double playerPast)
         {
             // Arrange
             const double fakePatternPoint = 0;

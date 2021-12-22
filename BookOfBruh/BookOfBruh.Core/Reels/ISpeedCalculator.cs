@@ -1,0 +1,31 @@
+﻿namespace BookOfBruh.Core.Reels
+{
+    using System.Collections.Generic;
+    using System.Linq;
+
+    public interface ISpeedCalculator
+    {
+        List<int> Calculate(int times);
+    }
+
+    public class SpeedCalculator : ISpeedCalculator
+    {
+        private const int minSpeed = 2000;
+        private const int maxSpeed = 5;
+
+        public List<int> Calculate(int times)
+        {
+            List<int> speeds = new List<int>() { minSpeed };
+
+            for (int i = 0; i < times; i++)
+            {
+                int speed = speeds.Last() / 2;
+                speeds.Add(speed < maxSpeed ? maxSpeed : speed);
+            }
+
+            speeds.Reverse();
+
+            return speeds;
+        }
+    }
+}

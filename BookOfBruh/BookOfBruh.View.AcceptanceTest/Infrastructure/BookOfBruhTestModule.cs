@@ -2,8 +2,10 @@
 {
     using Core;
     using Core.CodeValidation;
+    using Core.Reels;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
+    using Core.SlotGeneration;
     using Main;
     using Ninject.Modules;
     using View.Control;
@@ -22,9 +24,15 @@
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
+            this.Bind<ISlotConverter>().To<FakeSlotConverter>().InSingletonScope();
+            this.Bind<IReelsGenerator>().To<ReelsGenerator>().InSingletonScope();
+            this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
 
-            this.Bind<Game>().ToSelf().InSingletonScope();
-            
+
+            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
+            this.Bind<GameState>().To<ReadyToSpinState>().InSingletonScope();
+
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
             this.Bind<ISlotAnalyzer>().To<SlotAnalyzer>().InSingletonScope();
