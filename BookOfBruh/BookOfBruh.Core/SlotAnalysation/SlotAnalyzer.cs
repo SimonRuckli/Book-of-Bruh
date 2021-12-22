@@ -8,7 +8,7 @@
 
     public interface ISlotAnalyzer
     {
-        double Analyze(Slots slots);
+        AnalyzeResult Analyze(Slots slots);
     }
 
     public class SlotAnalyzer : ISlotAnalyzer
@@ -20,9 +20,11 @@
             this.patternMatcher = patternMatcher;
         }
 
-        public double Analyze(Slots slots)
+        public AnalyzeResult Analyze(Slots slots)
         {
             double multiplier = 0;
+
+            List<Pattern> allPatterns = new List<Pattern>();
 
             const int first = 0;
 
@@ -49,13 +51,15 @@
 
                     List<Pattern> patterns = this.patternMatcher.FindMatches(points);
 
+                    allPatterns.AddRange(patterns);
+
                     List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
 
                     multiplier += CalculateRowMultiplier(patternCounts, symbol);
                 }
             }
-
-            return multiplier;
+             
+            return new AnalyzeResult(multiplier, allPatterns);
         }
 
         private static List<ISymbol> CalculateWildDisguising(Point firstPoint, Slots slots)

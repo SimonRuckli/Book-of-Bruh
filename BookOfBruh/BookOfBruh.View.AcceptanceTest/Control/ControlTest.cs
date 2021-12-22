@@ -1,6 +1,7 @@
 ﻿// ReSharper disable ArrangeThisQualifier
 namespace BookOfBruh.View.AcceptanceTest.Control
 {
+    using System.Threading.Tasks;
     using Infrastructure;
     using Ninject;
     using View.Control;
@@ -19,11 +20,11 @@ namespace BookOfBruh.View.AcceptanceTest.Control
 
 
         [Fact]
-        public void SpinWithStakeOneShouldReturnThree()
+        public async Task SpinWithStakeOneShouldReturnThree()
         {
             _.GivenTheWalletContainsOneBruhCoinAndTheStakeIsOne();
-            _.WhenIPressSpinAndRollThreeTenInARow();
-            _.ThenTheWalletShouldBeThree();
+            await _.WhenIPressSpinAndRollThreeTenInARow();
+            _.ThenTheWalletShouldBeCorrect();
         }
     }
 }

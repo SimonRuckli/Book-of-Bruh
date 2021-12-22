@@ -25,7 +25,7 @@
         <Label
             Grid.Row="1"
             Grid.Column="0"
-            Style="{StaticResource CenteredBlackLabel}"
+            Style="{StaticResource CenteredWhiteLabel}"
             Content="BruhCoins"/>
 
         <Label
@@ -43,7 +43,7 @@
         <Label
             Grid.Row="3"
             Grid.Column="0"
-            Style="{StaticResource CenteredBlackLabel}"
+            Style="{StaticResource CenteredWhiteLabel}"
             Content="Einsatz"/>
 
             <Label

@@ -1,6 +1,7 @@
 ﻿// ReSharper disable ArrangeThisQualifier
 namespace BookOfBruh.View.AcceptanceTest.Slot
 {
+    using System.Threading.Tasks;
     using Infrastructure;
     using Main;
     using Ninject;
@@ -20,10 +21,10 @@ namespace BookOfBruh.View.AcceptanceTest.Slot
 
 
         [Fact]
-        public void SpinShouldFillSlots()
+        public async Task SpinShouldFillSlots()
         {
-            _.GivenTheSlotsAreEmpty();
-            _.WhenISpin();
+            _.GivenTheSlotsAreEmptyAndThePlayerAddedMoney();
+            await _.WhenISpin();
             _.ThenTheSlotsAreFilled();
         }
     }

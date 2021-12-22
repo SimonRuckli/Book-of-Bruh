@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Slot
 {
+    using System.Threading.Tasks;
     using FluentAssertions;
     using Main;
     using TechTalk.SpecFlow;
@@ -14,16 +15,19 @@
         }
 
         [Given(@"Given the slots are empty")]
-        public void GivenTheSlotsAreEmpty()
+        public void GivenTheSlotsAreEmptyAndThePlayerAddedMoney()
         {
-            this.mainWindowViewModel.SlotViewModel.Slots.Should().BeNull();
+            this.mainWindowViewModel.WalletViewModel.Code = 69;
+            this.mainWindowViewModel.WalletViewModel.AddToWalletCommand.Execute();
+            this.mainWindowViewModel.SlotViewModel.Reels[0].First.Symbol.Should().BeNull();
+            this.mainWindowViewModel.WalletViewModel.BruhCoins.Should().Be(25);
         }
 
 
         [When(@"When I spin")]
-        public void WhenISpin()
+        public async Task WhenISpin()
         {
-            this.mainWindowViewModel.ControlViewModel.SpinClickCommand.Execute();
+            await this.mainWindowViewModel.ControlViewModel.SpinClickCommand.ExecuteAsync();
         }
 
 
@@ -31,7 +35,7 @@
         public void ThenTheSlotsAreFilled()
         {
 
-            this.mainWindowViewModel.SlotViewModel.Slots.Should().NotBeNull();
+            this.mainWindowViewModel.SlotViewModel.Reels[0].First.Symbol.Should().NotBeNull();
         }
     }
 }

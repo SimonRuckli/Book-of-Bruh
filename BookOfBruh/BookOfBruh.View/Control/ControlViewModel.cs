@@ -1,67 +1,67 @@
 ﻿namespace BookOfBruh.View.Control
 {
     using System;
+    using System.Threading.Tasks;
+    using System.Windows.Input;
     using Core;
     using Core.GameData;
-    using CSharpFunctionalExtensions;
-    using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
 
     public class ControlViewModel : NotifyPropertyChangedBase
     {
-        private readonly Game game;
-        private ControlState state;
-        private double stake = 1;
+        private readonly ISlotMachine slotMachine;
 
-        public ControlViewModel(Game game, ControlState state)
+        public ControlViewModel(ISlotMachine slotMachine)
         {
-            this.game = game;
-
-            this.state = state;
-            this.state.SetContext(this);
-
-            this.SpinClickCommand = new RelayCommand(this.SpinClick, this.SpinIsValid);
-            this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick, this.OpenStakeIsValid);
-            this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick, this.OpenWalletIsValid);
+            this.slotMachine = slotMachine;
+            
+            this.SpinClickCommand = new AsyncRelayCommand(this.SpinClick, this.SpinIsValid);
+            this.OpenStakeClickCommand = new RelayCommand(this.OpenStakeClick);
+            this.OpenWalletClickCommand = new RelayCommand(this.OpenWalletClick);
         }
+        
 
-        public RelayCommand OpenWalletClickCommand { get; set; }
-
-        public RelayCommand OpenStakeClickCommand { get; set; }
-
-        public RelayCommand SpinClickCommand { get; set; }
+        public RelayCommand OpenWalletClickCommand { get; }
+        public RelayCommand OpenStakeClickCommand { get; }
+        public AsyncRelayCommand SpinClickCommand { get; }
 
         public EventHandler OpenStake;
         public EventHandler OpenWallet;
-        public EventHandler<SpinEventArgs> Spin;
+        public EventHandler<FinishedSpinEventArgs> FinishedSpin;
+        public EventHandler StartedSpin;
 
-        public double BruhCoins => this.game.Player.BruhCoins;
+        public double BruhCoins => this.slotMachine.BruhCoins;
 
         public double Stake
         {
-            get => stake;
-            set
-            {
-                stake = value;
-                this.state.Handle();
-            }
+            get => this.slotMachine.Stake;
+            set => this.slotMachine.Stake = value;
         }
 
-
-        public void TransitionTo(ControlState newState)
+        public void RefreshSpinButton()
         {
-            this.state = newState;
-            this.state.SetContext(this);
+            CommandManager.InvalidateRequerySuggested();
         }
 
-        private bool OpenStakeIsValid()
+        private async Task SpinClick()
         {
-            return true;
+            this.StartedSpin?.Invoke(this, EventArgs.Empty);
+
+            Task<double> spin = this.slotMachine.State.TrySpin();
+
+            this.RefreshBruhCoins();
+
+            double win = await spin;
+
+            this.RefreshBruhCoins();
+
+            this.FinishedSpin?.Invoke(this, new FinishedSpinEventArgs(win));
         }
 
-        private bool OpenWalletIsValid()
+        private bool SpinIsValid()
         {
-            return true;
+            return this.slotMachine.State is ReadyToSpinState;
         }
 
         private void OpenStakeClick()
@@ -73,38 +73,9 @@
         {
             this.OpenWallet?.Invoke(this, EventArgs.Empty);
         }
-
-        private bool SpinIsValid()
-        {
-            return this.state is ReadyToSpinState;
-        }
-
-        private void SpinClick()
-        {
-            this.state.TrySpin();
-
-            Result<SpinResult> result = this.game.Spin(this.Stake);
-            
-            this.Spin?.Invoke(this, new SpinEventArgs(result.Value));
-
-            this.RefreshBruhCoins();
-        }
-
         public void RefreshBruhCoins()
         {
-            OnPropertyChanged(nameof(this.BruhCoins));
-
-            this.state.Handle();
+            this.OnPropertyChanged(nameof(this.BruhCoins));
         }
-    }
-
-    public class SpinEventArgs : EventArgs
-    {
-        public SpinEventArgs(SpinResult spinResult)
-        {
-            SpinResult = spinResult;
-        }
-
-        public SpinResult SpinResult { get;}
     }
 }

@@ -2,7 +2,7 @@
 {
     using Core;
     using Core.CodeValidation;
-    using Core.GameData;
+    using Core.Reels;
     using Core.SlotAnalysation;
     using Core.SlotAnalysation.PatternMatchers;
     using Core.SlotGeneration;
@@ -10,6 +10,7 @@
     using Ninject.Modules;
     using View.Control;
     using View.Stake;
+    using ViewService;
     using Win;
 
     public class BookOfBruhTestModule : NinjectModule
@@ -23,14 +24,14 @@
             this.Bind<IStakeViewService>().To<StakeViewService>().InSingletonScope();
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
+            this.Bind<ISlotConverter>().To<FakeSlotConverter>().InSingletonScope();
+            this.Bind<IReelsGenerator>().To<ReelsGenerator>().InSingletonScope();
+            this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
 
 
-            this.Bind<ControlState>().To<ReadyToSpinState>().InSingletonScope();
-
-            this.Bind<Game>().ToSelf().InSingletonScope();
-
-            this.Bind<IPlayer>().To<FakeIPlayer>().InSingletonScope();
-            this.Bind<ISlotGenerator>().To<FakeSlotGenerator>().InSingletonScope();
+            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
+            this.Bind<GameState>().To<ReadyToSpinState>().InSingletonScope();
 
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();

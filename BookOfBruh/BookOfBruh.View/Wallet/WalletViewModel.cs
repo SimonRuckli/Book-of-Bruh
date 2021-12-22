@@ -2,54 +2,40 @@
 {
     using System;
     using Core;
+    using Core.GameData;
     using CSharpFunctionalExtensions;
-    using Infrastructure;
     using Infrastructure.Commands;
+    using Infrastructure.EventArgs;
 
     public class WalletViewModel : NotifyPropertyChangedBase
     {
-        private readonly Game game;
+        private readonly ISlotMachine slotMachine;
 
-        public WalletViewModel(Game game)
+        public WalletViewModel(ISlotMachine slotMachine)
         {
-            this.game = game;
+            this.slotMachine = slotMachine;
 
-            this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick, this.AddToWalletIsValid);
+            this.AddToWalletCommand = new RelayCommand(this.AddToWalletClick);
         }
+
+        public RelayCommand AddToWalletCommand { get; }
 
         public event EventHandler CloseView;
         public event EventHandler<AddToWalletArgs> AddedToWallet;
 
-        public RelayCommand AddToWalletCommand { get; set; }
-
-        public double BruhCoins => game.Player.BruhCoins;
+        public double BruhCoins => slotMachine.BruhCoins;
 
         public int Code { get; set; }
-
-        private bool AddToWalletIsValid()
-        {
-            return true;
-        }
-
-        private void AddToWalletClick()
-        {
-            Result<double> addToWalletResult = this.game.AddToWallet(this.Code);
-            this.AddedToWallet?.Invoke(this, new AddToWalletArgs(addToWalletResult));
-        }
 
         public void RequestClose()
         {
             this.CloseView?.Invoke(this, EventArgs.Empty);
         }
-    }
 
-    public class AddToWalletArgs : EventArgs
-    {
-        public AddToWalletArgs(Result<double> addToWallet)
+        private void AddToWalletClick()
         {
-            AddToWallet = addToWallet;
+            Result<double> addToWalletResult = this.slotMachine.AddToWallet(this.Code);
+            this.AddedToWallet?.Invoke(this, new AddToWalletArgs(addToWalletResult));
         }
-
-        public Result<double> AddToWallet { get; set; }
     }
 }

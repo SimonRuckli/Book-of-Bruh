@@ -10,9 +10,10 @@
     xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:win="clr-namespace:BookOfBruh.View.Win"
     Title="Book of Bruh"
-    MinWidth="800"
+    Icon="../Images/favicon.ico"
+    MinWidth="850"
     MinHeight="500"
-    Width="800"
+    Width="850"
     Height="500"
     d:DataContext="{d:DesignInstance main:MainWindowViewModel}"
     mc:Ignorable="d">
@@ -33,11 +34,26 @@
             <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
 
-        <Label
-            Grid.Row="0"
+        <Image 
+            Grid.RowSpan="2"
             Grid.ColumnSpan="2"
-            Style="{StaticResource Title}"
-            Content="Book of Bruh"/>
+            Style="{StaticResource BackgroundImage}"
+            Source="pack://application:,,,/BookOfBruh.View;component/Images/Background.png"/>
+
+        <Border 
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            Style="{StaticResource TransparentBorder}"/>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Style="{StaticResource Title}"
+                Content="Book of Bruh"/>
+        
 
         <control:ControlsView 
             Grid.Row="1" 

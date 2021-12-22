@@ -15,19 +15,29 @@
         {
             Point firstPoint = input.First(point => point.X == position);
 
-            List<Point> linePattern = new List<Point>() { firstPoint };
+            List<Point> linePattern = new() { firstPoint };
 
             Point lastPoint = firstPoint;
 
             foreach (Point point in input
-                                    .Where(point => point.X == lastPoint.X + 1)
-                                    .Where(point => point.Y == lastPoint.Y))
+                                    .Where(point => IsOneColumnFarther(point, lastPoint))
+                                    .Where(point => IsInSameRowAsFirstPoint(point, firstPoint)))
             {
                 linePattern.Add(point);
                 lastPoint = point;
             }
 
             return linePattern.Count >= 3 ? linePattern : new List<Point>();
+        }
+
+        private static bool IsOneColumnFarther(Point point, Point lastPoint)
+        {
+            return point.X == lastPoint.X + 1;
+        }
+
+        private static bool IsInSameRowAsFirstPoint(Point point, Point firstPoint)
+        {
+            return point.Y == firstPoint.Y;
         }
     }
 }

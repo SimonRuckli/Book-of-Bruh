@@ -20,31 +20,31 @@
 
         public List<Point> FindMatches(int direction, List<Point> input)
         {
-            List<Point> uPattern = new List<Point>() { input.First() };
+            List<Point> uPattern = new() { input.First() };
 
             uPattern.AddRange(this.FindShortedLinePattern(input, direction));
 
             IEnumerable<Point> lastPoint = input
-                                           .Where(p => p.X == 4)
-                                           .Where(p => p.Y == input.First().Y);
+                                           .Where(IsInLastColumn)
+                                           .Where(point => IsInSameRowAsFirstPoint(point, input.First())); // one or none
             uPattern.AddRange(lastPoint);
 
             return uPattern.Count == 5 ? uPattern : new List<Point>();
         }
 
-        private List<Point> FindShortedLinePattern(IReadOnlyCollection<Point> input, int direction)
+        private IEnumerable<Point> FindShortedLinePattern(IReadOnlyCollection<Point> input, int direction)
         {
             List<Point> firstPointInLinePattern = input
-                                                  .Where(p => p.X == 1)
-                                                  .Where(p => p.Y == input.First().Y + direction)
-                                                  .ToList();
-
-            List<Point> shortedInput = input.Where(p => p.X > 1).ToList();
+                .Where(IsPointInSecondColumn)
+                .Where(point => IsInRowInDirection(point, input.First(), direction))
+                .ToList(); // one or none
 
             if (!firstPointInLinePattern.Any())
             {
                 return new List<Point>();
             }
+
+            List<Point> shortedInput = input.Where(IsInFrontOfSecondColumn).ToList();
 
             shortedInput.AddRange(firstPointInLinePattern);
 
@@ -56,6 +56,31 @@
             }
 
             return linePattern;
+        }
+
+        private static bool IsInFrontOfSecondColumn(Point point)
+        {
+            return point.X > 1;
+        }
+
+        private static bool IsInRowInDirection(Point point, Point first, int direction)
+        {
+            return point.Y == first.Y + direction;
+        }
+
+        private static bool IsPointInSecondColumn(Point point)
+        {
+            return point.X == 1;
+        }
+
+        private static bool IsInSameRowAsFirstPoint(Point point, Point first)
+        {
+            return point.Y == first.Y;
+        }
+
+        private static bool IsInLastColumn(Point point)
+        {
+            return point.X == 4;
         }
     }
 }
