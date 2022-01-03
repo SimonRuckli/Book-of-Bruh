@@ -1,5 +1,6 @@
 ﻿namespace BookOfBruh.Core.SlotAnalysation
 {
+    using System.Collections;
     using System.Drawing;
     using System.Collections.Generic;
     using System.Linq;
@@ -33,100 +34,79 @@
 
             List<Point> orderedInput = input.OrderBy(p => p.X).ToList();
 
-            List<Point> linePattern = this.FindLinePattern(orderedInput);
-            List<Point> trianglePatternUp = this.FindTrianglePatternUp(orderedInput);
-            List<Point> trianglePatternDown = this.FindTrianglePatternDown(orderedInput);
-            List<Point> diagonalPattern = this.FindDiagonalPattern(orderedInput);
-            List<Point> uPatternUp = this.FindUPatternUp(orderedInput);
-            List<Point> uPatternDown = this.FindUPatternDown(orderedInput);
-            List<Point> flashPatternUp = this.FindFlashPatternUp(orderedInput);
-            List<Point> flashPatternDown = this.FindFlashPatternDown(orderedInput);
+            patterns.AddRange(this.FindLinePattern(orderedInput));
+            patterns.AddRange(this.FindUPattern(orderedInput));
+            patterns.AddRange(this.FindDiagonalPattern(orderedInput));
+            patterns.AddRange(this.FindTriangleAndFlashPattern(orderedInput));
+            
+            return patterns.Where(p => p.Value.Any()).ToList();
+        }
 
-            if (linePattern.Any())
+        private IEnumerable<Pattern> FindLinePattern(List<Point> input)
+        {
+            var patterns = new List<Pattern>();
+
+            List<Point> linePattern = this.linePatternMatcher.FindMatchesAt(0, input);
+
+            patterns.Add(new Pattern(linePattern));
+            
+            return patterns;
+        }
+
+        private IEnumerable<Pattern> FindUPattern(List<Point> input)
+        {
+            var patterns = new List<Pattern>();
+
+            List<Point> uPatternUp = this.uPatternMatcher.FindMatches(1, input);
+            List<Point> uPatternDown = this.uPatternMatcher.FindMatches(-1, input);
+
+            patterns.Add(new Pattern(uPatternUp));
+            patterns.Add(new Pattern(uPatternDown));
+
+            return patterns;
+        }
+
+        private IEnumerable<Pattern> FindDiagonalPattern(List<Point> input)
+        {
+            var patterns = new List<Pattern>();
+
+            List<Point> diagonalPattern = this.diagonalPatternMatcher.FindMatches(input);
+
+            patterns.Add(new Pattern(diagonalPattern));
+
+            return patterns;
+        }
+
+        private  IEnumerable<Pattern> FindTriangleAndFlashPattern(List<Point> input)
+        {
+            var patterns = new List<Pattern>();
+
+            patterns.AddRange(FindTriangleAndFlashPatternInDirection(1, input));
+            patterns.AddRange(FindTriangleAndFlashPatternInDirection(-1, input));
+
+            return patterns;
+        }
+
+        private IEnumerable<Pattern> FindTriangleAndFlashPatternInDirection(int direction, List<Point> input)
+        {
+            var patterns = new List<Pattern>();
+
+            List<Point> flashPattern = this.flashPatternMatcher.FindMatches(direction, input);
+            List<Point> trianglePattern = this.trianglePatternMatcher.FindMatchesAt(0, direction, input);
+
+            patterns.Add(new Pattern(flashPattern));
+       
+            if (!IsPartOfFlashPattern(trianglePattern, flashPattern))
             {
-                patterns.Add(new Pattern(linePattern));
-            }
-            if (trianglePatternUp.Any())
-            {
-                if ((trianglePatternUp.Count == 3 && flashPatternUp.Any()) == false)
-                {
-                    patterns.Add(new Pattern(trianglePatternUp));
-                }
-            }
-            if (trianglePatternDown.Any())
-            {
-                if ((trianglePatternDown.Count == 3 && flashPatternDown.Any()) == false)
-                {
-                    patterns.Add(new Pattern(trianglePatternDown));
-                }
-            }
-            if (diagonalPattern.Any())
-            {
-                patterns.Add(new Pattern(diagonalPattern));
-            }
-            if (uPatternUp.Any())
-            {
-                patterns.Add(new Pattern(uPatternUp));
-            }
-            if (uPatternDown.Any())
-            {
-                patterns.Add(new Pattern(uPatternDown));
-            }
-            if (flashPatternUp.Any())
-            {
-                patterns.Add(new Pattern(flashPatternUp));
-            }
-            if (flashPatternDown.Any())
-            {
-                patterns.Add(new Pattern(flashPatternDown));
+                patterns.Add(new Pattern(trianglePattern));
             }
 
             return patterns;
         }
 
-        private List<Point> FindDiagonalPattern(List<Point> input)
+        private static bool IsPartOfFlashPattern(ICollection trianglePattern, IEnumerable<Point> flashPattern)
         {
-            return this.diagonalPatternMatcher.FindMatches(input);
-        }
-
-        private List<Point> FindFlashPatternDown(List<Point> input)
-        {
-            return this.flashPatternMatcher.FindMatches(-1, input);
-        }
-
-        private List<Point> FindFlashPatternUp(List<Point> input)
-        {
-            return this.flashPatternMatcher.FindMatches(1, input);
-        }
-
-        private List<Point> FindUPatternDown(List<Point> input)
-        {
-            return this.uPatternMatcher.FindMatches(-1, input);
-        }
-
-        private List<Point> FindUPatternUp(List<Point> input)
-        {
-            return this.uPatternMatcher.FindMatches(1, input);
-        }
-
-        private List<Point> FindLinePattern(List<Point> input)
-        {
-            return this.linePatternMatcher.FindMatchesAt(0, input);
-        }
-
-        private List<Point> FindTrianglePatternDown(List<Point> input)
-        {
-            return this.FindTrianglePattern(input, -1);
-        }
-
-        private List<Point> FindTrianglePatternUp(List<Point> input)
-        {
-            return this.FindTrianglePattern(input, 1);
-        }
-
-        private  List<Point> FindTrianglePattern(List<Point> input, int direction)
-        {
-            return this.trianglePatternMatcher.FindMatchesAt(0, direction, input);
+            return trianglePattern.Count == 3 && flashPattern.Any();
         }
     }
 }
