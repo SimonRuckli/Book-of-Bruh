@@ -32,20 +32,9 @@
             {
                 var firstPoint = new Point(first, y);
 
-                ISymbol type = slots.Symbols[firstPoint.X, firstPoint.Y];
+                List<ISymbol> symbols = CalculateSymbolsInFirstPosition(firstPoint, slots);
 
-                var types = new List<ISymbol>();
-
-                if (type is WildSymbol)
-                {
-                    types = CalculateWildDisguising(firstPoint, slots);
-                }
-                else
-                {
-                    types.Add(type);
-                }
-
-                foreach (ISymbol symbol in types)
+                foreach (ISymbol symbol in symbols)
                 {
                     List<Point> points = CalculateSameSymbolPoints(slots, firstPoint, symbol);
 
@@ -60,6 +49,24 @@
             }
              
             return new AnalyzeResult(multiplier, allPatterns);
+        }
+
+        private static List<ISymbol> CalculateSymbolsInFirstPosition(Point firstPoint, Slots slots)
+        {
+            var symbols = new List<ISymbol>();
+
+            ISymbol symbol = slots.Symbols[firstPoint.X, firstPoint.Y];
+
+            if (symbol is WildSymbol)
+            {
+                symbols = CalculateWildDisguising(firstPoint, slots);
+            }
+            else
+            {
+                symbols.Add(symbol);
+            }
+
+            return symbols;
         }
 
         private static List<ISymbol> CalculateWildDisguising(Point firstPoint, Slots slots)
