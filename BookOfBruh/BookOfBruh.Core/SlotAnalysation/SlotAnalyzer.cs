@@ -42,23 +42,36 @@
             {
                 var startPoint = new Point(first, y);
 
-                List<ISymbol> symbols = GetSymbolsInFirstPosition(startPoint, slots);
+                (List<Pattern> rowPatterns, double rowMultiplier) = this.AnalyzeRow(startPoint, slots);
 
-                foreach (ISymbol symbol in symbols)
-                {
-                    List<Point> points = this.sameSymbolCalculator.Calculate(startPoint, slots, symbol);
-
-                    List<Pattern> patterns = this.patternMatcher.FindMatches(points);
-
-                    allPatterns.AddRange(patterns);
-
-                    List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
-
-                    multiplier += this.patternMultiplierCalculator.Calculate(patternCounts, symbol);
-                }
+                allPatterns.AddRange(rowPatterns);
+                multiplier += rowMultiplier;
             }
 
             return new AnalyzeResult(multiplier, allPatterns);
+        }
+
+        private (List<Pattern> rowPattern, double rowMultiplier) AnalyzeRow(Point startPoint, Slots slots)
+        {
+            double multiplier = 0;
+            var allPatterns = new List<Pattern>();
+
+            List<ISymbol> symbols = this.GetSymbolsInFirstPosition(startPoint, slots);
+
+            foreach (ISymbol symbol in symbols)
+            {
+                List<Point> points = this.sameSymbolCalculator.Calculate(startPoint, slots, symbol);
+
+                List<Pattern> patterns = this.patternMatcher.FindMatches(points);
+
+                allPatterns.AddRange(patterns);
+
+                List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
+
+                multiplier += this.patternMultiplierCalculator.Calculate(patternCounts, symbol);
+            }
+
+            return (allPatterns, multiplier);
         }
 
         private List<ISymbol> GetSymbolsInFirstPosition(Point firstPoint, Slots slots)
