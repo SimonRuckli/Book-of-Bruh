@@ -1,10 +1,9 @@
-﻿namespace BookOfBruh.Core.SlotAnalysation
+﻿namespace BookOfBruh.Core.SlotAnalysation.PatternMatchers
 {
     using System.Collections;
-    using System.Drawing;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Linq;
-    using PatternMatchers;
 
     public class PatternMatcher : IPatternMatcher
     {
@@ -81,8 +80,8 @@
         {
             var patterns = new List<Pattern>();
 
-            patterns.AddRange(FindTriangleAndFlashPatternInDirection(1, input));
-            patterns.AddRange(FindTriangleAndFlashPatternInDirection(-1, input));
+            patterns.AddRange(this.FindTriangleAndFlashPatternInDirection(1, input));
+            patterns.AddRange(this.FindTriangleAndFlashPatternInDirection(-1, input));
 
             return patterns;
         }

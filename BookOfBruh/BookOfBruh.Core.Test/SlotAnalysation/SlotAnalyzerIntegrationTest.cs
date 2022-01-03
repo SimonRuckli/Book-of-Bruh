@@ -6,6 +6,7 @@
     using Ninject;
     using Xunit;
     using Helper;
+    using Symbols;
 
     public class SlotAnalyzerIntegrationTest
     {
@@ -260,16 +261,15 @@
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, double expected)
         {
             // Arrange
-            var patternMatcher = this.kernel.Get<IPatternMatcher>();
 
-            var testee = new SlotAnalyzer(patternMatcher);
+            var testee = this.kernel.Get<SlotAnalyzer>();
 
-            var symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
+            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
 
             var input = new Slots(symbols);
 
             // Act
-            var result = testee.Analyze(input);
+            AnalyzeResult result = testee.Analyze(input);
 
             // Assert
             result.Multiplier.Should().BeApproximately(expected, 0.0001);

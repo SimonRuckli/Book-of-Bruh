@@ -43,6 +43,10 @@
             this.Bind<IDiagonalPatternMatcher>().To<DiagonalPatternMatcher>().InSingletonScope();
             this.Bind<ITrianglePatternMatcher>().To<TrianglePatternMatcher>().InSingletonScope();
             this.Bind<IUPatternMatcher>().To<UPatternMatcher>().InSingletonScope();
+
+            this.Bind<IPatternMultiplierCalculator>().To<PatternMultiplierCalculator>().InSingletonScope();
+            this.Bind<ISameSymbolCalculator>().To<SameSymbolCalculator>().InSingletonScope();
+            this.Bind<IWildDisguiseCalculator>().To<WildDisguiseCalculator>().InSingletonScope();
         }
     }
 }

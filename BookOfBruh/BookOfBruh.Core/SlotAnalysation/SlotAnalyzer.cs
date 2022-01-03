@@ -5,6 +5,7 @@
     using System.Linq;
     using Symbols;
     using GameData;
+    using PatternMatchers;
 
     public interface ISlotAnalyzer
     {
