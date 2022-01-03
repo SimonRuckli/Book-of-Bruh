@@ -14,7 +14,7 @@
         public void SymbolListGeneratorShouldReturnCorrectAmountOfSymbols()
         {
             // Arrange
-            SymbolListGenerator testee = new SymbolListGenerator();
+            ISymbolListGenerator testee = new SymbolListGenerator();
 
 
             const int levelOneSymbolChance = 18;

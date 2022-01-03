@@ -8,7 +8,6 @@
     using FluentAssertions;
     using BookOfBruh.Core.SlotAnalysation;
     using GameData;
-    using Symbols;
 
     public class SlotAnalyzerTest
     {
@@ -679,17 +678,17 @@
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, string[] stringPatterns, double expected)
         {
             // Arrange
-            List<Pattern> patterns = PatternTestHelper.PatternsFromStringPatterns(stringPatterns);
+            var patterns = PatternTestHelper.PatternsFromStringPatterns(stringPatterns);
             IPatternMatcher patternMatcher = new FakePatternMatcher(patterns);
 
-            SlotAnalyzer testee = new SlotAnalyzer(patternMatcher);
+            var testee = new SlotAnalyzer(patternMatcher);
 
-            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
+            var symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
 
-            Slots input = new Slots(symbols);
+            var input = new Slots(symbols);
 
             // Act
-            AnalyzeResult result = testee.Analyze(input);
+            var result = testee.Analyze(input);
 
             // Assert
             result.Multiplier.Should().BeApproximately(expected, 0.0001);
@@ -701,7 +700,7 @@
 
             public FakePatternMatcher(List<Pattern> patterns)
             {
-                foreach (Pattern pattern in patterns)
+                foreach (var pattern in patterns)
                 {
                     this.patterns.Add(new Pattern(pattern.Value.OrderBy(p => p.X).ToList()));
                 }
@@ -709,14 +708,14 @@
 
             public List<Pattern> FindMatches(List<Point> input)
             {
-                List<Point> orderedInput = input.OrderBy(p => p.X).ToList();
+                var orderedInput = input.OrderBy(p => p.X).ToList();
                 if (this.patterns.Count > 1)
                 {
-                    List<Pattern> matching = new List<Pattern>();
+                    var matching = new List<Pattern>();
 
-                    foreach (Pattern pattern in this.patterns)
+                    foreach (var pattern in this.patterns)
                     {
-                        List<Point> test = pattern.Value.Where(point => orderedInput.Contains(point)).ToList();
+                        var test = pattern.Value.Where(point => orderedInput.Contains(point)).ToList();
                         if (pattern.Value.SequenceEqual(test))
                         {
                             matching.Add(pattern);

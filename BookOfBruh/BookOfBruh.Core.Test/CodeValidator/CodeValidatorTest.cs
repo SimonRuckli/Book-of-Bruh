@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using CodeValidation;
-    using CSharpFunctionalExtensions;
     using FluentAssertions;
     using Xunit;
 
@@ -16,10 +15,10 @@
         {
             // Arrange
             IAcceptedCodes acceptedCodes = new FakeAcceptedCodes();
-            CodeValidator testee = new CodeValidator(acceptedCodes);
+            var testee = new CodeValidator(acceptedCodes);
 
             // Act
-            Result<double> validate = testee.Validate(code);
+            var validate = testee.Validate(code);
 
             // Assert
             validate.Value.Should().Be(expected);

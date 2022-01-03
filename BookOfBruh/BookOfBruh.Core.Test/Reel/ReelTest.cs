@@ -14,7 +14,7 @@
         public async Task SpinTwoTimesShouldDisplayCorrectSymbol()
         {
             // Arrange
-            List<ISymbol> symbols = new List<ISymbol>()
+            var symbols = new List<ISymbol>()
             {
                 new ASymbol(),
                 new ASymbol(),
@@ -44,7 +44,7 @@
         public async Task SpinFullCircleShouldDisplayCorrectSymbol()
         {
             // Arrange
-            List<ISymbol> symbols = new List<ISymbol>()
+            var symbols = new List<ISymbol>()
             {
                 new TenSymbol(),
                 new JSymbol(),
@@ -76,9 +76,9 @@
     {
         public List<int> Calculate(int times)
         {
-            List<int> speeds = new List<int>();
+            var speeds = new List<int>();
 
-            for (int i = 0; i < times; i++)
+            for (var i = 0; i < times; i++)
             {
                 speeds.Add(1);
             }

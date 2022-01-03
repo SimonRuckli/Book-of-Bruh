@@ -29,9 +29,9 @@
             this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
 
 
-            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISlotMachine>().To<SlotMachine>().InSingletonScope();
             this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
-            this.Bind<GameState>().To<ReadyToSpinState>().InSingletonScope();
+            this.Bind<SlotMachineState>().To<ReadyToSpinState>().InSingletonScope();
 
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();

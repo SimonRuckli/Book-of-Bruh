@@ -11,7 +11,7 @@
     {
         public void CreateWindow(StakeViewModel stakeViewModel)
         {
-           StakeView view = new StakeView(stakeViewModel)
+           var view = new StakeView(stakeViewModel)
            {
                Topmost = true
            };

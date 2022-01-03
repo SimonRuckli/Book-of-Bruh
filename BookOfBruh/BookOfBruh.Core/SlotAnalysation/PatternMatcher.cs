@@ -29,7 +29,7 @@
 
         public List<Pattern> FindMatches(List<Point> input)
         {
-            List<Pattern> patterns = new List<Pattern>();
+            var patterns = new List<Pattern>();
 
             List<Point> orderedInput = input.OrderBy(p => p.X).ToList();
 

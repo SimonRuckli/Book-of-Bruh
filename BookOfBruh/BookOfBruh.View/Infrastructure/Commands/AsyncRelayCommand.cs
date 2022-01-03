@@ -57,7 +57,7 @@
         /// <summary>Initializes a new instance of the <see cref="AsyncRelayCommand{TParameter}"/> class. </summary>
         /// <param name="execute">The function. </param>
         public AsyncRelayCommand(Func<TParameter, Task> execute)
-            : this(execute, param => true)
+            : this(execute, _ => true)
         {
         }
 

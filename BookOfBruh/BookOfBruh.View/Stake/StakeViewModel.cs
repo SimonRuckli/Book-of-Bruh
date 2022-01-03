@@ -61,7 +61,7 @@
 
         private void RaiseStakeChangedEventWithArgs(double stake)
         {
-            StakeEventArgs args = new StakeEventArgs(stake);
+            var args = new StakeEventArgs(stake);
             this.StakeChanged?.Invoke(this, args);
         }
 

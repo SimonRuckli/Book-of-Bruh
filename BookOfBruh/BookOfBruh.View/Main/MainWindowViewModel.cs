@@ -16,6 +16,7 @@
 
         private readonly IStakeViewService stakeViewService;
         private readonly IWalletViewService walletViewService;
+        public readonly WalletViewModel WalletViewModel;
 
         public MainWindowViewModel(
             SlotViewModel slotViewModel, 
@@ -51,7 +52,6 @@
         public ControlViewModel ControlViewModel { get; }
         public StakeViewModel StakeViewModel { get; }
         public WinViewModel WinViewModel { get; }
-        public  WalletViewModel WalletViewModel;
 
         public RelayCommand ViewClosedCommand { get; set; }
 

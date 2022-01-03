@@ -2,7 +2,6 @@
 {
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
-    using Symbols;
     using FluentAssertions;
     using Ninject;
     using Xunit;
@@ -258,16 +257,16 @@
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, double expected)
         {
             // Arrange
-            IPatternMatcher patternMatcher = this.kernel.Get<IPatternMatcher>();
+            var patternMatcher = this.kernel.Get<IPatternMatcher>();
 
-            SlotAnalyzer testee = new SlotAnalyzer(patternMatcher);
+            var testee = new SlotAnalyzer(patternMatcher);
 
-            ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
+            var symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
 
-            Slots input = new Slots(symbols);
+            var input = new Slots(symbols);
 
             // Act
-            AnalyzeResult result = testee.Analyze(input);
+            var result = testee.Analyze(input);
 
             // Assert
             result.Multiplier.Should().BeApproximately(expected, 0.0001);

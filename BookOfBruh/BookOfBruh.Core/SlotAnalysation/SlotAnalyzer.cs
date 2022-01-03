@@ -24,17 +24,17 @@
         {
             double multiplier = 0;
 
-            List<Pattern> allPatterns = new List<Pattern>();
+            var allPatterns = new List<Pattern>();
 
             const int first = 0;
 
             for (int y = 0; y < slots.Rows; y++)
             {
-                Point firstPoint = new Point(first, y);
+                var firstPoint = new Point(first, y);
 
                 ISymbol type = slots.Symbols[firstPoint.X, firstPoint.Y];
 
-                List<ISymbol> types = new List<ISymbol>();
+                var types = new List<ISymbol>();
 
                 if (type is WildSymbol)
                 {
@@ -64,9 +64,9 @@
 
         private static List<ISymbol> CalculateWildDisguising(Point firstPoint, Slots slots)
         {
-            List<ISymbol> disguises = new List<ISymbol>();
+            var disguises = new List<ISymbol>();
 
-            Point iterator = new Point(firstPoint.X +1, firstPoint.Y -1);
+            var iterator = new Point(firstPoint.X +1, firstPoint.Y -1);
 
             if (iterator.Y < 0)
             {
@@ -91,7 +91,7 @@
 
         private static List<Point> CalculateSameSymbolPoints(Slots slots, Point firstPoint, ISymbol template)
         {
-            List<Point> points = new List<Point>() { firstPoint };
+            var points = new List<Point>() { firstPoint };
             
             const int ignoreFirst = 1;
             

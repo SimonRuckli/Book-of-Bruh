@@ -3,7 +3,6 @@
     using System;
     using Core;
     using Core.GameData;
-    using CSharpFunctionalExtensions;
     using Infrastructure.Commands;
     using Infrastructure.EventArgs;
 
@@ -34,7 +33,7 @@
 
         private void AddToWalletClick()
         {
-            Result<double> addToWalletResult = this.slotMachine.AddToWallet(this.Code);
+            var addToWalletResult = this.slotMachine.AddToWallet(this.Code);
             this.AddedToWallet?.Invoke(this, new AddToWalletArgs(addToWalletResult));
         }
     }
