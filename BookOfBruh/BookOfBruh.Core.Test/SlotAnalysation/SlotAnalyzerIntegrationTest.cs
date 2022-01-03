@@ -248,10 +248,13 @@
                     "|W_-_W|" +
                     "|-AAA-|", 22.08)]
 
-
         [InlineData("|-TTT-|" +
                     "|W_-_T|" +
                     "|-AAA-|", 9.2)]
+
+        [InlineData("|-_-_-|" +
+                    "|W_A_A|" +
+                    "|-W-A-|", 12.88)]
 
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, double expected)

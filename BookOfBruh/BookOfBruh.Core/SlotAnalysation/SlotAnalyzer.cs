@@ -71,29 +71,45 @@
 
         private static List<ISymbol> CalculateWildDisguising(Point firstPoint, Slots slots)
         {
-            var disguises = new List<ISymbol>();
+            var disguises = new List<ISymbol> {new WildSymbol()};
 
-            var iterator = new Point(firstPoint.X +1, firstPoint.Y -1);
-
-            if (iterator.Y < 0)
+            int nextColumn = firstPoint.X + 1;
+            
+            for (int y = -1; y <= +1; y++)
             {
-                iterator.Y = 0;
-            }
+                var nextPoint = new Point(nextColumn, firstPoint.Y + y);
 
-            while (iterator.Y < 3)
-            {
-                ISymbol currentSymbol = slots.Symbols[iterator.X, iterator.Y];
-
-                if (disguises.All(s => s.GetType() != currentSymbol.GetType()))
+                if (IsInRange(nextPoint, slots))
                 {
+                    ISymbol symbol = slots.Symbols[nextColumn, firstPoint.Y + y];
 
-                    disguises.Add(currentSymbol);
+                    if (symbol is WildSymbol)
+                    {
+                        disguises.AddRange(CalculateWildDisguising(nextPoint, slots));
+                    }
+                    else
+                    {
+                        disguises.Add(symbol);
+                    }
                 }
-
-                iterator.Y++;
             }
 
-            return disguises;
+            return disguises.Distinct().ToList();
+        }
+
+        private static bool IsInRange(Point point, Slots slots)
+        {
+            if (0 > point.X || point.Y < 0)
+            {
+                return false;
+            }
+
+            if (slots.Columns <= point.X || point.Y >= slots.Rows)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private static List<Point> CalculateSameSymbolPoints(Slots slots, Point firstPoint, ISymbol template)
