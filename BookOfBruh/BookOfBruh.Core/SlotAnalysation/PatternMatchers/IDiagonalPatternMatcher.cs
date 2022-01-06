@@ -27,7 +27,7 @@
 
         private static List<Point> FindOnlyDiagonalPattern(IReadOnlyList<Point> input, int start)
         {
-            List<Point> diagonal = new() { input[start] };
+            var diagonal = new List<Point>() { input[start] };
 
             for (int i = start + 1; i < input.Count; i++)
             {

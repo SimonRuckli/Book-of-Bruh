@@ -5,6 +5,7 @@
     using System.Linq;
     using Symbols;
     using GameData;
+    using PatternMatchers;
 
     public interface ISlotAnalyzer
     {
@@ -14,123 +15,82 @@
     public class SlotAnalyzer : ISlotAnalyzer
     {
         private readonly IPatternMatcher patternMatcher;
+        private readonly IWildDisguiseCalculator wildDisguiseCalculator;
+        private readonly ISameSymbolCalculator sameSymbolCalculator;
+        private readonly IPatternMultiplierCalculator patternMultiplierCalculator;
 
-        public SlotAnalyzer(IPatternMatcher patternMatcher)
+        public SlotAnalyzer(
+            IPatternMatcher patternMatcher,
+            IWildDisguiseCalculator wildDisguiseCalculator,
+            ISameSymbolCalculator sameSymbolCalculator,
+            IPatternMultiplierCalculator patternMultiplierCalculator)
         {
             this.patternMatcher = patternMatcher;
+            this.wildDisguiseCalculator = wildDisguiseCalculator;
+            this.sameSymbolCalculator = sameSymbolCalculator;
+            this.patternMultiplierCalculator = patternMultiplierCalculator;
         }
 
         public AnalyzeResult Analyze(Slots slots)
         {
             double multiplier = 0;
 
-            List<Pattern> allPatterns = new List<Pattern>();
+            var allPatterns = new List<Pattern>();
 
             const int first = 0;
 
             for (int y = 0; y < slots.Rows; y++)
             {
-                Point firstPoint = new Point(first, y);
+                var startPoint = new Point(first, y);
 
-                ISymbol type = slots.Symbols[firstPoint.X, firstPoint.Y];
+                (List<Pattern> rowPatterns, double rowMultiplier) = this.AnalyzeRow(startPoint, slots);
 
-                List<ISymbol> types = new List<ISymbol>();
-
-                if (type is WildSymbol)
-                {
-                    types = CalculateWildDisguising(firstPoint, slots);
-                }
-                else
-                {
-                    types.Add(type);
-                }
-
-                foreach (ISymbol symbol in types)
-                {
-                    List<Point> points = CalculateSameSymbolPoints(slots, firstPoint, symbol);
-
-                    List<Pattern> patterns = this.patternMatcher.FindMatches(points);
-
-                    allPatterns.AddRange(patterns);
-
-                    List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
-
-                    multiplier += CalculateRowMultiplier(patternCounts, symbol);
-                }
+                allPatterns.AddRange(rowPatterns);
+                multiplier += rowMultiplier;
             }
-             
+
             return new AnalyzeResult(multiplier, allPatterns);
         }
 
-        private static List<ISymbol> CalculateWildDisguising(Point firstPoint, Slots slots)
-        {
-            List<ISymbol> disguises = new List<ISymbol>();
-
-            Point iterator = new Point(firstPoint.X +1, firstPoint.Y -1);
-
-            if (iterator.Y < 0)
-            {
-                iterator.Y = 0;
-            }
-
-            while (iterator.Y < 3)
-            {
-                ISymbol currentSymbol = slots.Symbols[iterator.X, iterator.Y];
-
-                if (disguises.All(s => s.GetType() != currentSymbol.GetType()))
-                {
-
-                    disguises.Add(currentSymbol);
-                }
-
-                iterator.Y++;
-            }
-
-            return disguises;
-        }
-
-        private static List<Point> CalculateSameSymbolPoints(Slots slots, Point firstPoint, ISymbol template)
-        {
-            List<Point> points = new List<Point>() { firstPoint };
-            
-            const int ignoreFirst = 1;
-            
-            for (int y = 0; y < slots.Rows; y++)
-            {
-                for (int x = ignoreFirst; x < slots.Columns; x++)
-                {
-                    ISymbol current = slots.Symbols[x, y];
-                    if (current.GetType() == template.GetType() || current is WildSymbol)
-                    {
-                        points.Add(new Point(x, y));
-                    }
-                }
-            }
-
-            return points;
-        }
-
-        private static double CalculateRowMultiplier(List<int> patternCounts, ISymbol firstSymbol)
+        private (List<Pattern> rowPattern, double rowMultiplier) AnalyzeRow(Point startPoint, Slots slots)
         {
             double multiplier = 0;
+            var allPatterns = new List<Pattern>();
 
-            foreach (int patternCount in patternCounts)
+            List<ISymbol> symbols = this.GetSymbolsInFirstPosition(startPoint, slots);
+
+            foreach (ISymbol symbol in symbols)
             {
-                if (patternCount == 5)
-                {
-                    multiplier += firstSymbol.Value * 8;
-                }
-                if (patternCount == 4)
-                {
-                    multiplier += firstSymbol.Value * 3;
-                }
-                if (patternCount == 3)
-                {
-                    multiplier += firstSymbol.Value;
-                }
+                List<Point> points = this.sameSymbolCalculator.Calculate(startPoint, slots, symbol);
+
+                List<Pattern> patterns = this.patternMatcher.FindMatches(points);
+
+                allPatterns.AddRange(patterns);
+
+                List<int> patternCounts = patterns.Select(pattern => pattern.Value.Count).ToList();
+
+                multiplier += this.patternMultiplierCalculator.Calculate(patternCounts, symbol);
             }
 
-            return multiplier;
+            return (allPatterns, multiplier);
+        }
+
+        private List<ISymbol> GetSymbolsInFirstPosition(Point firstPoint, Slots slots)
+        {
+            var symbols = new List<ISymbol>();
+
+            ISymbol symbol = slots.Symbols[firstPoint.X, firstPoint.Y];
+
+            if (symbol is WildSymbol)
+            {
+                symbols = this.wildDisguiseCalculator.Calculate(firstPoint, slots);
+            }
+            else
+            {
+                symbols.Add(symbol);
+            }
+
+            return symbols;
         }
     }
 }

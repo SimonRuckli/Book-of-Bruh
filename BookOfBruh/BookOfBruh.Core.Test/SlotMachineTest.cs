@@ -13,7 +13,7 @@
     using Symbols;
     using Xunit;
 
-    public class GameTest
+    public class SlotMachineTest
     {
         [Theory]
 
@@ -36,9 +36,9 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(patternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(fakeBruhCoin);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
-            GameState state = new ReadyToSpinState();
+            SlotMachineState state = new ReadyToSpinState();
             
-            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state){Stake = stake};
+            var testee = new SlotMachine(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state){Stake = stake};
 
             // Act
             double result = await testee.Spin();
@@ -61,9 +61,9 @@
             ISlotAnalyzer fakeSlotAnalyzer = new FakeSlotAnalyzer(fakePatternPoint);
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
-            GameState state = new ReadyToSpinState();
+            SlotMachineState state = new ReadyToSpinState();
             
-            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            var testee = new SlotMachine(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
 
             double expected = bruhCoins;
 
@@ -88,9 +88,9 @@
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             
 
-            GameState state = new ReadyToSpinState();
+            SlotMachineState state = new ReadyToSpinState();
 
-            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            var testee = new SlotMachine(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             Result<double> result = testee.AddToWallet(code);
@@ -112,9 +112,9 @@
             ICodeValidator fakeCodeValidator = new FakeCodeValidator(bruhCoins);
             IReelsGenerator reelsGenerator = new FakeReelsGenerator();
             
-            GameState state = new ReadyToSpinState();
+            SlotMachineState state = new ReadyToSpinState();
 
-            Game testee = new Game(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
+            var testee = new SlotMachine(fakeCodeValidator, fakeSlotConverter, fakeSlotAnalyzer, reelsGenerator, state);
             
             // Act
             testee.AddToWallet(code);
@@ -141,7 +141,7 @@
             this.slots = slots;
         }
 
-        public Slots Convert(List<IReel> reels)
+        public Slots Convert(IEnumerable<IReel> reels)
         {
             return this.slots;
         }

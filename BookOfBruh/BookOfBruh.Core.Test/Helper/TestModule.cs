@@ -15,6 +15,11 @@
             this.Bind<IUPatternMatcher>().To<UPatternMatcher>().InSingletonScope();
 
             this.Bind<IPatternMatcher>().To<PatternMatcher>().InSingletonScope();
+
+
+            this.Bind<IPatternMultiplierCalculator>().To<PatternMultiplierCalculator>().InSingletonScope();
+            this.Bind<ISameSymbolCalculator>().To<SameSymbolCalculator>().InSingletonScope();
+            this.Bind<IWildDisguiseCalculator>().To<WildDisguiseCalculator>().InSingletonScope();
         }
     }
 }

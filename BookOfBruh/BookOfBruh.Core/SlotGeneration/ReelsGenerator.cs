@@ -19,7 +19,7 @@
 
         public List<IReel> Generate(int count)
         {
-            List<IReel> reels = new List<IReel>();
+            var reels = new List<IReel>();
             List<ISymbol> generate = symbolListGenerator.Generate();
 
             for (int i = 0; i < count; i++)

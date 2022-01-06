@@ -26,13 +26,13 @@
         {
             const char point = 'P';
 
-            List<List<char>> enumerable = pattern.Split('|', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Select(c => c).ToList()).ToList();
+            var enumerable = pattern.Split('|', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Select(c => c).ToList()).ToList();
 
-            List<Point> validPoints = new List<Point>();
+            var validPoints = new List<Point>();
 
-            for (int y = 0; y < enumerable.Count; y++)
+            for (var y = 0; y < enumerable.Count; y++)
             {
-                for (int x = 0; x < enumerable[y].Count; x++)
+                for (var x = 0; x < enumerable[y].Count; x++)
                 {
                     if (enumerable[y][x] == point)
                     {

@@ -11,7 +11,7 @@
     {
         public void CreateWindow(WalletViewModel walletViewModel)
         {
-            WalletView view = new WalletView(walletViewModel)
+            var view = new WalletView(walletViewModel)
             {
                 Topmost = true
             };

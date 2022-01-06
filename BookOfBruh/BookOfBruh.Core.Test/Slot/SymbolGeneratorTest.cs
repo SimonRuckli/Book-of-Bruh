@@ -17,10 +17,10 @@
             const int n = 100;
             const int expected = 18;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -38,10 +38,10 @@
             const int n = 100;
             const int expected = 18;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -59,10 +59,10 @@
             const int n = 100;
             const int expected = 14;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -80,10 +80,10 @@
             const int n = 100;
             const int expected = 14;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -101,10 +101,10 @@
             const int n = 100;
             const int expected = 10;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -122,10 +122,10 @@
             const int n = 100;
             const int expected = 8;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -143,10 +143,10 @@
             const int n = 100;
             const int expected = 7;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -164,10 +164,10 @@
             const int n = 100;
             const int expected = 6;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -185,10 +185,10 @@
             const int n = 100;
             const int expected = 5;
 
-            ISymbol[] symbols = new ISymbol[n];
+            var symbols = new ISymbol[n];
 
             // Act
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 symbols[i] = testee.Generate(i);
             }
@@ -203,41 +203,41 @@
     {
         public List<ISymbol> Generate()
         {
-            List<ISymbol> symbols = new List<ISymbol>();
+            var symbols = new List<ISymbol>();
 
-            for (int i = 0; i < 18; i++)
+            for (var i = 0; i < 18; i++)
             {
                 symbols.Add(new JSymbol());
                 symbols.Add(new TenSymbol());
             }
 
-            for (int i = 0; i < 14; i++)
+            for (var i = 0; i < 14; i++)
             {
                 symbols.Add(new QSymbol());
                 symbols.Add(new KSymbol());
             }
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 symbols.Add(new ASymbol());
             }
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 symbols.Add(new JoegiSymbol());
             }
 
-            for (int i = 0; i < 7; i++)
+            for (var i = 0; i < 7; i++)
             {
                 symbols.Add(new VincSymbol());
             }
 
-            for (int i = 0; i < 6; i++)
+            for (var i = 0; i < 6; i++)
             {
                 symbols.Add(new SimiSymbol());
             }
 
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 symbols.Add(new WildSymbol());
             }

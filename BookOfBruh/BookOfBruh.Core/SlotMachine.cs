@@ -11,17 +11,17 @@
     using CSharpFunctionalExtensions;
     using Reels;
 
-    public class Game : NotifyPropertyChangedBase, ISlotMachine, IGameStateContext
+    public class SlotMachine : NotifyPropertyChangedBase, ISlotMachine, ISlotMachineStateContext
     {
         private readonly ICodeValidator codeValidator;
         private readonly ISlotConverter slotConverter;
         private readonly ISlotAnalyzer slotAnalyzer;
         private readonly Random random;
-        private GameState state;
+        private SlotMachineState state;
         private double stake = 1;
 
 
-        public Game(ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, GameState state)
+        public SlotMachine(ICodeValidator codeValidator, ISlotConverter slotConverter, ISlotAnalyzer slotAnalyzer, IReelsGenerator reelsGenerator, SlotMachineState state)
         {
             this.codeValidator = codeValidator;
             this.slotConverter = slotConverter;
@@ -48,7 +48,7 @@
 
         public double BruhCoins { get; private set; }
 
-        public GameState State
+        public SlotMachineState State
         {
             get => state;
             private set
@@ -107,19 +107,19 @@
             return validate;
         }
 
-        public void TransitionTo(GameState newState)
+        public void TransitionTo(SlotMachineState newState)
         {
             this.State = newState;
             this.State.SetContext(this);
         }
     }
 
-    public interface IGameStateContext
+    public interface ISlotMachineStateContext
     {
         double Stake { get; set; }
         double BruhCoins { get; }
 
-        void TransitionTo(GameState newState);
+        void TransitionTo(SlotMachineState newState);
 
         Task<double> Spin();
     }
@@ -131,7 +131,7 @@
 
         List<IReel> Reels { get; }
 
-        GameState State { get; }
+        SlotMachineState State { get; }
 
         Result<double> AddToWallet(int code);
     }

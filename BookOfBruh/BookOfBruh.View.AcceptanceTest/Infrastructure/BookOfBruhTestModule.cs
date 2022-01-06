@@ -29,9 +29,9 @@
             this.Bind<ISymbolListGenerator>().To<SymbolListGenerator>().InSingletonScope();
 
 
-            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISlotMachine>().To<SlotMachine>().InSingletonScope();
             this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
-            this.Bind<GameState>().To<ReadyToSpinState>().InSingletonScope();
+            this.Bind<SlotMachineState>().To<ReadyToSpinState>().InSingletonScope();
 
             this.Bind<ICodeValidator>().To<CodeValidator>().InSingletonScope();
             this.Bind<IAcceptedCodes>().To<AcceptedCodes>().InSingletonScope();
@@ -43,6 +43,10 @@
             this.Bind<IDiagonalPatternMatcher>().To<DiagonalPatternMatcher>().InSingletonScope();
             this.Bind<ITrianglePatternMatcher>().To<TrianglePatternMatcher>().InSingletonScope();
             this.Bind<IUPatternMatcher>().To<UPatternMatcher>().InSingletonScope();
+
+            this.Bind<IPatternMultiplierCalculator>().To<PatternMultiplierCalculator>().InSingletonScope();
+            this.Bind<ISameSymbolCalculator>().To<SameSymbolCalculator>().InSingletonScope();
+            this.Bind<IWildDisguiseCalculator>().To<WildDisguiseCalculator>().InSingletonScope();
         }
     }
 }
