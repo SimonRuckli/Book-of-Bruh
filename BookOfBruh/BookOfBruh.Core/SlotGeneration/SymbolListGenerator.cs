@@ -15,7 +15,7 @@
 
         public List<ISymbol> Generate()
         {
-            List<ISymbol> symbols = new List<ISymbol>();
+            var symbols = new List<ISymbol>();
 
             symbols.AddRange(GenerateListOfSameSymbols(new TenSymbol(), levelOneSymbolChance));
             symbols.AddRange(GenerateListOfSameSymbols(new JSymbol(), levelOneSymbolChance));
@@ -32,7 +32,7 @@
 
         private static IEnumerable<ISymbol> GenerateListOfSameSymbols(ISymbol symbol, int count)
         {
-            List<ISymbol> symbols = new List<ISymbol>();
+            var symbols = new List<ISymbol>();
 
             for (int i = 0; i < count; i++)
             {

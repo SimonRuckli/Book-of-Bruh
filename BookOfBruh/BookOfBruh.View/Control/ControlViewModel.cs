@@ -48,11 +48,11 @@
         {
             this.StartedSpin?.Invoke(this, EventArgs.Empty);
 
-            Task<double> spin = this.slotMachine.State.TrySpin();
+            var spin = this.slotMachine.State.TrySpin();
 
             this.RefreshBruhCoins();
 
-            double win = await spin;
+            var win = await spin;
 
             this.RefreshBruhCoins();
 

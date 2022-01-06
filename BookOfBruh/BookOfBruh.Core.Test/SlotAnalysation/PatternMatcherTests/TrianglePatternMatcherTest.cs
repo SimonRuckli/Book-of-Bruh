@@ -1,7 +1,5 @@
 ﻿namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
 {
-    using System.Collections.Generic;
-    using System.Drawing;
     using System.Linq;
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
     using FluentAssertions;
@@ -98,12 +96,12 @@
             // Arrange
             ITrianglePatternMatcher testee = new TrianglePatternMatcher();
 
-            List<Point> input = PatternTestHelper.PointsFromString(inputString);
+            var input = PatternTestHelper.PointsFromString(inputString);
 
-            List<Point> expected = PatternTestHelper.PointsFromString(expectedString);
+            var expected = PatternTestHelper.PointsFromString(expectedString);
 
             // Act
-            List<Point> result = testee.FindMatchesAt(position, direction, input.OrderBy(p => p.X).ToList());
+            var result = testee.FindMatchesAt(position, direction, input.OrderBy(p => p.X).ToList());
 
             // Assert
             result.Should().BeEquivalentTo(expected);
@@ -124,12 +122,12 @@
             // Arrange
             ITrianglePatternMatcher testee = new TrianglePatternMatcher();
 
-            List<Point> input = PatternTestHelper.PointsFromString(inputString);
+            var input = PatternTestHelper.PointsFromString(inputString);
 
-            List<Point> expected = PatternTestHelper.PointsFromString(expectedString);
+            var expected = PatternTestHelper.PointsFromString(expectedString);
 
             // Act
-            List<Point> result = testee.FindMatchesAt(position, direction, input.OrderBy(p => p.X).ToList());
+            var result = testee.FindMatchesAt(position, direction, input.OrderBy(p => p.X).ToList());
 
             // Assert
             result.Should().BeEquivalentTo(expected);

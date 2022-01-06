@@ -66,12 +66,12 @@ namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
             // Arrange
             IUPatternMatcher testee = new UPatternMatcher(new FakeLinePattern(PatternTestHelper.PointsFromString(linePatternString)));
 
-            List<Point> input = PatternTestHelper.PointsFromString(inputString);
+            var input = PatternTestHelper.PointsFromString(inputString);
 
-            List<Point> expected = PatternTestHelper.PointsFromString(expectedString);
+            var expected = PatternTestHelper.PointsFromString(expectedString);
 
             // Act
-            List<Point> result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
+            var result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
 
             // Assert
             result.Should().BeEquivalentTo(expected);
@@ -96,12 +96,12 @@ namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
             // Arrange
             IUPatternMatcher testee = new UPatternMatcher(new FakeLinePattern(PatternTestHelper.PointsFromString(linePatternString)));
 
-            List<Point> input = PatternTestHelper.PointsFromString(inputString);
+            var input = PatternTestHelper.PointsFromString(inputString);
 
-            List<Point> expected = PatternTestHelper.PointsFromString(expectedString);
+            var expected = PatternTestHelper.PointsFromString(expectedString);
 
             // Act
-            List<Point> result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
+            var result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
 
             // Assert
             result.Should().BeEquivalentTo(expected);

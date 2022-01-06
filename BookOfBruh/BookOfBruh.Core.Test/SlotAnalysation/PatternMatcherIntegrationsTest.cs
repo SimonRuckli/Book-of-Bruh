@@ -2,9 +2,6 @@
 {
     using Xunit;
     using FluentAssertions;
-    using BookOfBruh.Core.SlotAnalysation;
-    using System.Collections.Generic;
-    using System.Drawing;
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
     using Helper;
 
@@ -288,8 +285,8 @@
         public void PatternMatcherShouldReturnCorrectSinglePattern(string input, string[] patterns)
         {
             // Arrange
-            List<Point> pointList = PatternTestHelper.PointsFromString(input);
-            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
+            var pointList = PatternTestHelper.PointsFromString(input);
+            var expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
             
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
@@ -299,7 +296,7 @@
                 new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
-            List<Pattern> result = testee.FindMatches(pointList);
+            var result = testee.FindMatches(pointList);
 
             // Assert
             result.Should().BeEquivalentTo(expected);
@@ -407,8 +404,8 @@
         public void PatternMatcherShouldReturnIncorrectSinglePattern(string input, string[] patterns)
         {
             // Arrange
-            List<Point> pointList = PatternTestHelper.PointsFromString(input);
-            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
+            var pointList = PatternTestHelper.PointsFromString(input);
+            var expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
 
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
@@ -418,7 +415,7 @@
                 new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
-            List<Pattern> result = testee.FindMatches(pointList);
+            var result = testee.FindMatches(pointList);
 
             // Assert
             result.Should().BeEquivalentTo(expected);
@@ -606,8 +603,8 @@
         public void PatternMatcherShouldReturnCorrectMultiplePattern(string input, string[] patterns)
         {
             // Arrange
-            List<Point> pointList = PatternTestHelper.PointsFromString(input);
-            List<Pattern> expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
+            var pointList = PatternTestHelper.PointsFromString(input);
+            var expected = PatternTestHelper.PatternsFromStringPatterns(patterns);
 
             IPatternMatcher testee = new PatternMatcher(
                 new LinePatternMatcher(),
@@ -617,7 +614,7 @@
                 new FlashPatternMatcher(new TrianglePatternMatcher()));
 
             // Act
-            List<Pattern> result = testee.FindMatches(pointList);
+            var result = testee.FindMatches(pointList);
 
             // Assert
             result.Should().BeEquivalentTo(expected);

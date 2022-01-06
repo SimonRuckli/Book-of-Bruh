@@ -2,11 +2,11 @@
 {
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
-    using Symbols;
     using FluentAssertions;
     using Ninject;
     using Xunit;
     using Helper;
+    using Symbols;
 
     public class SlotAnalyzerIntegrationTest
     {
@@ -249,22 +249,24 @@
                     "|W_-_W|" +
                     "|-AAA-|", 22.08)]
 
-
         [InlineData("|-TTT-|" +
                     "|W_-_T|" +
                     "|-AAA-|", 9.2)]
+
+        [InlineData("|-_-_-|" +
+                    "|W_A_A|" +
+                    "|-W-A-|", 12.88)]
 
 
         public void SlotAnalyzerShouldReturnCorrectMultiplierWhen(string inputPattern, double expected)
         {
             // Arrange
-            IPatternMatcher patternMatcher = this.kernel.Get<IPatternMatcher>();
 
-            SlotAnalyzer testee = new SlotAnalyzer(patternMatcher);
+            var testee = this.kernel.Get<SlotAnalyzer>();
 
             ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(inputPattern);
 
-            Slots input = new Slots(symbols);
+            var input = new Slots(symbols);
 
             // Act
             AnalyzeResult result = testee.Analyze(input);

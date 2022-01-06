@@ -15,7 +15,7 @@
 
         public List<int> Calculate(int times)
         {
-            List<int> speeds = new List<int>() { minSpeed };
+            var speeds = new List<int>() { minSpeed };
 
             for (int i = 0; i < times; i++)
             {

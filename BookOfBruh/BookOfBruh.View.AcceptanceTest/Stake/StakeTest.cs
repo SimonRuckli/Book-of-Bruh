@@ -13,7 +13,7 @@ namespace BookOfBruh.View.AcceptanceTest.Stake
         public StakeTest()
         {
             IKernel kernel = new StandardKernel(new BookOfBruhTestModule());
-            MainWindowViewModel mainWindowViewModel = kernel.Get<MainWindowViewModel>();
+            var mainWindowViewModel = kernel.Get<MainWindowViewModel>();
             _ = new StakeStep(mainWindowViewModel);
         }
 

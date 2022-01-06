@@ -13,7 +13,7 @@
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             IKernel kernel = new StandardKernel(new BookOfBruhModule());
-            MainWindow mainWindow = new MainWindow { DataContext = kernel.Get<MainWindowViewModel>() };
+            var mainWindow = new MainWindow { DataContext = kernel.Get<MainWindowViewModel>() };
             mainWindow.InitializeComponent();
             mainWindow.Show();
         }

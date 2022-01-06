@@ -12,7 +12,7 @@
         {
             List<List<ISymbol>> enumerable = pattern.Split('|', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Select(c => SymbolFromChar(c)).ToList()).ToList();
 
-            ISymbol[,] symbols = new ISymbol[5, 3];
+            var symbols = new ISymbol[5, 3];
 
             for (int y = 0; y < enumerable.Count; y++)
             {

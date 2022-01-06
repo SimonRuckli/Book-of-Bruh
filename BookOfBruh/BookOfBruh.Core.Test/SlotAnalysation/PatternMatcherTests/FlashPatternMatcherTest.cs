@@ -49,12 +49,12 @@
             // Arrange
             IFlashPatternMatcher testee = new FlashPatternMatcher(new FakeTrianglePattern(PatternTestHelper.PointsFromString(firstTriangle), PatternTestHelper.PointsFromString(secondTriangle)));
 
-            List<Point> input = PatternTestHelper.PointsFromString(inputString);
+            var input = PatternTestHelper.PointsFromString(inputString);
 
-            List<Point> expected = PatternTestHelper.PointsFromString(expectedString);
+            var expected = PatternTestHelper.PointsFromString(expectedString);
 
             // Act
-            List<Point> result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
+            var result = testee.FindMatches(direction, input.OrderBy(p => p.X).ToList());
 
             // Assert
             result.Should().BeEquivalentTo(expected);

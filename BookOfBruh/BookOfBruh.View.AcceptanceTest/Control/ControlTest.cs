@@ -14,7 +14,7 @@ namespace BookOfBruh.View.AcceptanceTest.Control
         public ControlTest()
         {
             IKernel kernel = new StandardKernel(new BookOfBruhTestModule());
-            ControlViewModel controlViewModel = kernel.Get<ControlViewModel>();
+            var controlViewModel = kernel.Get<ControlViewModel>();
             _ = new ControlStep(controlViewModel);
         }
 

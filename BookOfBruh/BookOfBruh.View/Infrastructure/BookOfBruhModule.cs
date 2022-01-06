@@ -25,9 +25,9 @@
             this.Bind<WalletViewService>().ToSelf().InSingletonScope();
             this.Bind<IWalletViewService>().To<WalletViewService>().InSingletonScope();
             
-            this.Bind<ISlotMachine>().To<Game>().InSingletonScope();
+            this.Bind<ISlotMachine>().To<SlotMachine>().InSingletonScope();
             this.Bind<ISpeedCalculator>().To<SpeedCalculator>().InSingletonScope();
-            this.Bind<GameState>().To<NotEnoughBruhCoinState>().InSingletonScope();
+            this.Bind<SlotMachineState>().To<NotEnoughBruhCoinState>().InSingletonScope();
             
             this.Bind<ISlotConverter>().To<SlotConverter>().InSingletonScope();
             this.Bind<ISymbolGenerator>().To<SymbolGenerator>().InSingletonScope();
@@ -43,6 +43,10 @@
             this.Bind<IDiagonalPatternMatcher>().To<DiagonalPatternMatcher>().InSingletonScope();
             this.Bind<ITrianglePatternMatcher>().To<TrianglePatternMatcher>().InSingletonScope();
             this.Bind<IUPatternMatcher>().To<UPatternMatcher>().InSingletonScope();
+
+            this.Bind<IPatternMultiplierCalculator>().To<PatternMultiplierCalculator>().InSingletonScope();
+            this.Bind<ISameSymbolCalculator>().To<SameSymbolCalculator>().InSingletonScope();
+            this.Bind<IWildDisguiseCalculator>().To<WildDisguiseCalculator>().InSingletonScope();
         }
     }
 }

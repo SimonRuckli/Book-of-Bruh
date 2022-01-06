@@ -8,14 +8,14 @@
 
     public interface ISlotConverter
     {
-        Slots Convert(List<IReel> reels);
+        Slots Convert(IEnumerable<IReel> reels);
     }
 
     public class SlotConverter : ISlotConverter
     {
-        public Slots Convert(List<IReel> reels)
+        public Slots Convert(IEnumerable<IReel> reels)
         {
-            ISymbol[,] symbols = new ISymbol[5, 3];
+            var symbols = new ISymbol[5, 3];
 
             foreach ((IReel reel, int i) in reels.Select((reel, i) => (reel, i)))
             {

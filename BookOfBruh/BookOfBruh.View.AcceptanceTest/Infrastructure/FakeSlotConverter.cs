@@ -8,11 +8,11 @@
 
     internal class FakeSlotConverter : ISlotConverter
     {
-        public Slots Convert(List<IReel> reels)
+        public Slots Convert(IEnumerable<IReel> reels)
         {
-            string pattern = "|TTT_-|" +
-                             "|-_-_-|" +
-                             "|-_-_-|";
+            const string pattern = "|TTT_-|" +
+                                   "|-_-_-|" +
+                                   "|-_-_-|";
 
             ISymbol[,] symbols = SymbolTestHelper.SymbolsFromPattern(pattern);
 
