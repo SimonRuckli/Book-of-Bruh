@@ -41,7 +41,7 @@
 
         private void SelectStakeFiveClick()
         {
-            this.RaiseStakeChangedEventWithArgs(5);
+            this.RaiseStakeChangedEventWithArgs(50);
         }
 
         private void SelectStakePointTenClick()

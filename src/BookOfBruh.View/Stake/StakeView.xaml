@@ -69,14 +69,14 @@
             Grid.Column="4"
             Style="{StaticResource CenteredButton}"
             Command="{Binding SelectStakeTwoClickCommand}"
-            Content="2.00">
+            Content="5.00">
         </Button>
         <Button
             Grid.Row="1"
             Grid.Column="5"
             Style="{StaticResource CenteredButton}"
             Command="{Binding SelectStakeFiveClickCommand}"
-            Content="5.00">
+            Content="50.00">
         </Button>
     </Grid>
 </Window>

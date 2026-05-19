@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="src/BookOfBruh.Core.Test/BookOfBruh.Core.Test.csproj" />
+  <Project Path="src/BookOfBruh.Core/BookOfBruh.Core.csproj" />
+  <Project Path="src/BookOfBruh.View.AcceptanceTest/BookOfBruh.View.AcceptanceTest.csproj" />
+  <Project Path="src/BookOfBruh.View/BookOfBruh.View.csproj" />
+</Solution>
