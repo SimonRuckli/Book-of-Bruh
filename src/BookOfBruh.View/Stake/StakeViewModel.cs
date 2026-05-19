@@ -26,8 +26,8 @@
         public RelayCommand SelectStakePointTwentyClickCommand { get; }
         public RelayCommand SelectStakeFiveClickCommand { get; }
 
-        public EventHandler CloseView;
-        public EventHandler<StakeEventArgs> StakeChanged;
+        public EventHandler? CloseView;
+        public EventHandler<StakeEventArgs>? StakeChanged;
 
         private void SelectStakeOneClick()
         {

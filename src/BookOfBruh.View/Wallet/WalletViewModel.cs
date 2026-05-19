@@ -19,8 +19,8 @@
 
         public RelayCommand AddToWalletCommand { get; }
 
-        public event EventHandler CloseView;
-        public event EventHandler<AddToWalletArgs> AddedToWallet;
+        public event EventHandler? CloseView;
+        public event EventHandler<AddToWalletArgs>? AddedToWallet;
 
         public double BruhCoins => slotMachine.BruhCoins;
 

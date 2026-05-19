@@ -55,35 +55,35 @@
 
         public RelayCommand ViewClosedCommand { get; set; }
 
-        private void StartedSpin(object sender, EventArgs e)
+        private void StartedSpin(object? sender, EventArgs e)
         {
             this.WinViewModel.StartedSpinning();
         }
 
-        private void FinishedSpin(object sender, FinishedSpinEventArgs e)
+        private void FinishedSpin(object? sender, FinishedSpinEventArgs e)
         {
             this.WinViewModel.FinishedSpinning(e.Win);
             this.ControlViewModel.RefreshSpinButton();
         }
 
-        private void OpenStake(object sender, EventArgs e)
+        private void OpenStake(object? sender, EventArgs e)
         {
             this.stakeViewService.CreateWindow(this.StakeViewModel);
         }
 
-        private void StakeChanged(object sender, StakeEventArgs e)
+        private void StakeChanged(object? sender, StakeEventArgs e)
         {
             this.ControlViewModel.Stake = e.Stake;
             this.ControlViewModel.RefreshSpinButton();
             this.CloseStakeView();
         }
 
-        private void OpenWallet(object sender, EventArgs e)
+        private void OpenWallet(object? sender, EventArgs e)
         {
             this.walletViewService.CreateWindow(this.WalletViewModel);
         }
 
-        private void AddToWallet(object sender, AddToWalletArgs e)
+        private void AddToWallet(object? sender, AddToWalletArgs e)
         {
             if (e.AddToWallet.IsSuccess)
             {

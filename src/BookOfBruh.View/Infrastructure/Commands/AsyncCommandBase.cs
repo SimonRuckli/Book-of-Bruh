@@ -10,7 +10,7 @@
     public abstract class AsyncCommandBase : ICommand
     {
         /// <summary>Occurs when changes occur that affect whether or not the command should execute. </summary>
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
@@ -21,12 +21,12 @@
         public abstract bool CanExecuteTask();
 
         [DebuggerStepThrough]
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             return this.CanExecute();
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             this.Execute();
         }
@@ -68,7 +68,7 @@
     public abstract class AsyncCommandBase<T> : ICommand
     {
         /// <summary>Occurs when changes occur that affect whether or not the command should execute. </summary>
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add
             {
@@ -85,7 +85,7 @@
 
         public abstract bool CanExecuteTask(T parameter);
 
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             if (typeof(T).IsValueType && parameter == null)
             {
@@ -95,7 +95,7 @@
             return this.CanExecute((T)parameter);
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             if (typeof(T).IsValueType && parameter == null)
             {

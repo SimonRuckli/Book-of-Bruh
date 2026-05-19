@@ -26,10 +26,10 @@
         public RelayCommand OpenStakeClickCommand { get; }
         public AsyncRelayCommand SpinClickCommand { get; }
 
-        public EventHandler OpenStake;
-        public EventHandler OpenWallet;
-        public EventHandler<FinishedSpinEventArgs> FinishedSpin;
-        public EventHandler StartedSpin;
+        public EventHandler? OpenStake;
+        public EventHandler? OpenWallet;
+        public EventHandler<FinishedSpinEventArgs>? FinishedSpin;
+        public EventHandler? StartedSpin;
 
         public double BruhCoins => this.slotMachine.BruhCoins;
 

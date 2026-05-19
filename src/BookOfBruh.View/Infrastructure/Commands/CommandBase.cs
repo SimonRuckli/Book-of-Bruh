@@ -25,12 +25,12 @@ namespace BookOfBruh.View.Infrastructure.Commands
             remove => CommandManager.RequerySuggested -= value;
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             this.Execute();
         }
 
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             return this.CanExecute();
         }
@@ -64,7 +64,7 @@ namespace BookOfBruh.View.Infrastructure.Commands
     public abstract class CommandBase<T> : ICommand
     {
         /// <summary>Occurs when changes occur that affect whether or not the command should execute. </summary>
-        public event EventHandler CanExecuteChanged
+        public event EventHandler? CanExecuteChanged
         {
             add => CommandManager.RequerySuggested += value;
 
@@ -72,12 +72,12 @@ namespace BookOfBruh.View.Infrastructure.Commands
         }
 
         [DebuggerStepThrough]
-        bool ICommand.CanExecute(object parameter)
+        bool ICommand.CanExecute(object? parameter)
         {
             return this.CanExecute((T) parameter);
         }
 
-        void ICommand.Execute(object parameter)
+        void ICommand.Execute(object? parameter)
         {
             this.Execute((T) parameter);
         }

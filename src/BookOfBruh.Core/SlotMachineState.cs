@@ -40,7 +40,7 @@
     {
         public override void Handle()
         {
-            if (this.SlotMachineStateContext.BruhCoins >= this.SlotMachineStateContext.Stake)
+            if (this.SlotMachineStateContext!.BruhCoins >= this.SlotMachineStateContext.Stake)
             {
                 this.SlotMachineStateContext.TransitionTo(new ReadyToSpinState());
             }
@@ -52,7 +52,7 @@
 
         public override async Task<double> TrySpin()
         {
-            this.SlotMachineStateContext.TransitionTo(new SpinningState());
+            this.SlotMachineStateContext!.TransitionTo(new SpinningState());
             return await this.SlotMachineStateContext.Spin();
         }
     }
