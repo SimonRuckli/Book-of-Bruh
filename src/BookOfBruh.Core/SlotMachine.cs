@@ -25,7 +25,7 @@
             this.codeValidator = codeValidator;
             this.slotConverter = slotConverter;
             this.slotAnalyzer = slotAnalyzer;
-            this.Reels = reelsGenerator.Generate(5);
+            this.Reels = reelsGenerator.Generate(GameData.SlotMachineConstants.ReelCount);
             this.state = state;
             this.state.SetContext(this);
         }
@@ -68,7 +68,7 @@
                 reel.Third.IsPattern = false;
             }
 
-            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(Random.Shared.Next(80, 100) + i * 20)).ToList();
+            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(Random.Shared.Next(GameData.SlotMachineConstants.MinSpinDuration, GameData.SlotMachineConstants.MaxSpinDuration) + i * GameData.SlotMachineConstants.ReelDelayIncrement)).ToList();
 
             await Task.WhenAll(spinningReels);
 

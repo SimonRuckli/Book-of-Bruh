@@ -15,7 +15,7 @@
     {
         public Slots Convert(IEnumerable<IReel> reels)
         {
-            var symbols = new ISymbol[5, 3];
+            var symbols = new ISymbol[GameData.SlotMachineConstants.ReelCount, GameData.SlotMachineConstants.SymbolsPerReel];
 
             foreach ((IReel reel, int i) in reels.Select((reel, i) => (reel, i)))
             {

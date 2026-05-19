@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Core.GameData;
     using Core.Symbols;
 
     internal class SymbolTestHelper
@@ -12,7 +13,7 @@
         {
             List<List<ISymbol>> enumerable = pattern.Split('|', StringSplitOptions.RemoveEmptyEntries).Select(line => line.Select(c => SymbolFromChar(c)).ToList()).ToList();
 
-            var symbols = new ISymbol[5, 3];
+            var symbols = new ISymbol[SlotMachineConstants.ReelCount, SlotMachineConstants.SymbolsPerReel];
 
             for (int y = 0; y < enumerable.Count; y++)
             {
