@@ -24,7 +24,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
 		<PackageReference Include="Ninject" />
-		<PackageReference Include="PropertyChanged.Fody" />
+		<PackageReference Include="PropertyChanged.Fody" PrivateAssets="All" />
 		<PackageReference Include="WpfAnimatedGif" />
 	</ItemGroup>
 
