@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Images\ASymbol.png" />
+		<None Remove="Images\Background.png" />
+		<None Remove="Images\favicon.ico" />
+		<None Remove="Images\JoegiSymbol.png" />
+		<None Remove="Images\JSymbol.png" />
+		<None Remove="Images\KSymbol.png" />
+		<None Remove="Images\QSymbol.png" />
+		<None Remove="Images\SimiSymbol.png" />
+		<None Remove="Images\Spinning.gif" />
+		<None Remove="Images\TenSymbol.png" />
+		<None Remove="Images\VincSymbol.png" />
+		<None Remove="Images\WildSymbol.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+		<PackageReference Include="Ninject" />
+		<PackageReference Include="PropertyChanged.Fody" PrivateAssets="All" />
+		<PackageReference Include="WpfAnimatedGif" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BookOfBruh.Core\BookOfBruh.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Images\ASymbol.png" />
+		<Resource Include="Images\Background.png" />
+		<Resource Include="Images\favicon.ico" />
+		<Resource Include="Images\JoegiSymbol.png" />
+		<Resource Include="Images\JSymbol.png" />
+		<Resource Include="Images\KSymbol.png" />
+		<Resource Include="Images\QSymbol.png" />
+		<Resource Include="Images\SimiSymbol.png" />
+		<Resource Include="Images\Spinning.gif" />
+		<Resource Include="Images\TenSymbol.png" />
+		<Resource Include="Images\VincSymbol.png" />
+		<Resource Include="Images\WildSymbol.png" />
+	</ItemGroup>
+
+</Project>
