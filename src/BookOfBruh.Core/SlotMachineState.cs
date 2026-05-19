@@ -1,10 +1,17 @@
 ﻿namespace BookOfBruh.Core
 {
+    using System;
     using System.Threading.Tasks;
 
     public abstract class SlotMachineState
     {
-        protected ISlotMachineStateContext? SlotMachineStateContext;
+        private ISlotMachineStateContext? slotMachineStateContext;
+
+        protected ISlotMachineStateContext SlotMachineStateContext
+        {
+            get => this.slotMachineStateContext ?? throw new InvalidOperationException("State context has not been initialized. Call SetContext before using the state.");
+            private set => this.slotMachineStateContext = value;
+        }
 
         public void SetContext(ISlotMachineStateContext slotMachineStateContext)
         {
@@ -40,7 +47,7 @@
     {
         public override void Handle()
         {
-            if (this.SlotMachineStateContext!.BruhCoins >= this.SlotMachineStateContext.Stake)
+            if (this.SlotMachineStateContext.BruhCoins >= this.SlotMachineStateContext.Stake)
             {
                 this.SlotMachineStateContext.TransitionTo(new ReadyToSpinState());
             }
@@ -52,7 +59,7 @@
 
         public override async Task<double> TrySpin()
         {
-            this.SlotMachineStateContext!.TransitionTo(new SpinningState());
+            this.SlotMachineStateContext.TransitionTo(new SpinningState());
             return await this.SlotMachineStateContext.Spin();
         }
     }

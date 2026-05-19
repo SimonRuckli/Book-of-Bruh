@@ -16,7 +16,6 @@
         private readonly ICodeValidator codeValidator;
         private readonly ISlotConverter slotConverter;
         private readonly ISlotAnalyzer slotAnalyzer;
-        private readonly Random random;
         private SlotMachineState state;
         private double stake = 1;
 
@@ -29,7 +28,6 @@
             this.Reels = reelsGenerator.Generate(5);
             this.state = state;
             this.state.SetContext(this);
-            this.random = new Random();
         }
 
 
@@ -70,7 +68,7 @@
                 reel.Third.IsPattern = false;
             }
 
-            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(random.Next(80, 100) + i * 20)).ToList();
+            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(Random.Shared.Next(80, 100) + i * 20)).ToList();
 
             await Task.WhenAll(spinningReels);
 
