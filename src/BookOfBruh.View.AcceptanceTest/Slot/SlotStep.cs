@@ -1,7 +1,7 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Slot
 {
     using System.Threading.Tasks;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Main;
     using TechTalk.SpecFlow;
 

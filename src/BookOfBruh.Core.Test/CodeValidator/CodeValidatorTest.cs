@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using CodeValidation;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Xunit;
 
     public class CodeValidatorTest

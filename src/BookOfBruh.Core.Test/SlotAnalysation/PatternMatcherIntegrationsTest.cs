@@ -1,7 +1,7 @@
 ﻿namespace BookOfBruh.Core.Test.SlotAnalysation
 {
     using Xunit;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
     using Helper;
 

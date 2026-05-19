@@ -1,7 +1,7 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Control
 {
     using System.Threading.Tasks;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using TechTalk.SpecFlow;
     using View.Control;
 

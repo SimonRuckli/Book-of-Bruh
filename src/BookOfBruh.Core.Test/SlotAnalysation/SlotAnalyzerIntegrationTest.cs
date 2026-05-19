@@ -2,7 +2,7 @@
 {
     using GameData;
     using BookOfBruh.Core.SlotAnalysation;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Ninject;
     using Xunit;
     using Helper;

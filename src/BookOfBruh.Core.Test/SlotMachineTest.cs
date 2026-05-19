@@ -7,7 +7,7 @@
     using BookOfBruh.Core.SlotAnalysation;
     using SlotGeneration;
     using CSharpFunctionalExtensions;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Helper;
     using Reels;
     using Symbols;

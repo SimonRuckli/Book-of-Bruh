@@ -5,8 +5,8 @@
     using SlotGeneration;
     using Symbols;
     using Xunit;
-    using FluentAssertions;
-    using FluentAssertions.Execution;
+    using AwesomeAssertions;
+    using AwesomeAssertions.Execution;
 
     public class SymbolListGeneratorTest
     {

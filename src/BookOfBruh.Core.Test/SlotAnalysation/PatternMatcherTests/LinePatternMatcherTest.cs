@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Xunit;
     using Helper;
 

@@ -6,7 +6,7 @@ namespace BookOfBruh.Core.Test.SlotAnalysation.PatternMatcherTests
     using System.Drawing;
     using System.Linq;
     using BookOfBruh.Core.SlotAnalysation.PatternMatchers;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Xunit;
 
     public class UPatternMatcherTest

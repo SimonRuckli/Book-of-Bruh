@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using SlotGeneration;
     using Symbols;
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Xunit;
     using System.Linq;
 

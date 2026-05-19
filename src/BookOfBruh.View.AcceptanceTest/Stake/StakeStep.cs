@@ -1,6 +1,6 @@
 ﻿namespace BookOfBruh.View.AcceptanceTest.Stake
 {
-    using FluentAssertions;
+    using AwesomeAssertions;
     using Main;
 
     public class StakeStep

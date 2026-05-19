@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using FluentAssertions;
-    using FluentAssertions.Execution;
+    using AwesomeAssertions;
+    using AwesomeAssertions.Execution;
     using Reels;
     using Symbols;
     using Xunit;
@@ -69,7 +69,7 @@
                 testee.Third.Symbol.Should().BeOfType(typeof(ASymbol));
             }
         }
-        
+
     }
 
     public class FakeSpeedCalculator : ISpeedCalculator
