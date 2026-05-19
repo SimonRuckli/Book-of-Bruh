@@ -4,7 +4,7 @@
 
     public abstract class SlotMachineState
     {
-        protected ISlotMachineStateContext SlotMachineStateContext;
+        protected ISlotMachineStateContext? SlotMachineStateContext;
 
         public void SetContext(ISlotMachineStateContext slotMachineStateContext)
         {

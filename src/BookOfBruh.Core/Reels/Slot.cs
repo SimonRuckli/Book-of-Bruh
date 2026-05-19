@@ -5,10 +5,10 @@
 
     public class Slot : NotifyPropertyChangedBase
     {
-        private ISymbol symbol;
+        private ISymbol? symbol;
         private bool isPattern;
 
-        public ISymbol Symbol
+        public ISymbol? Symbol
         {
             get => symbol;
             set

@@ -27,11 +27,11 @@
             this.slotConverter = slotConverter;
             this.slotAnalyzer = slotAnalyzer;
             this.Reels = reelsGenerator.Generate(5);
-            this.State = state;
-            this.State.SetContext(this);
+            this.state = state;
+            this.state.SetContext(this);
             this.random = new Random();
         }
-        
+
 
         public List<IReel> Reels { get; }
 
@@ -70,7 +70,7 @@
                 reel.Third.IsPattern = false;
             }
 
-            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(random.Next(80,100) + i * 20)).ToList();
+            List<Task> spinningReels = Reels.Select((reel, i) => reel.Spin(random.Next(80, 100) + i * 20)).ToList();
 
             await Task.WhenAll(spinningReels);
 
